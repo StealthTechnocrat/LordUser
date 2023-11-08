@@ -1,0 +1,662 @@
+<div class="match_bx">
+    <div class="match_head">
+        <div class="upper_row">
+            <div class="series_name">
+                <h6>
+                    <div *ngIf="showTimer" class="count-down-timer">
+                        <!-- <p>Countdown to {{ currentTime }}</p> -->
+                        <div class="wrapper">
+                          <div class="times">
+                            <div class="d-flex flex-column justify-content-center align-items-center mx-1">
+                              <p>{{ days }}</p> <!-- Use {{ }} to display the value -->
+                              <span class="disc">Days</span>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center align-items-center mx-1">
+                              <p>{{ hours }}</p> <!-- Use {{ }} to display the value -->
+                              <span class="disc">Hours</span>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center align-items-center mx-1">
+                              <p>{{ minutes }}</p> <!-- Use {{ }} to display the value -->
+                              <span class="disc">Minutes</span>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center align-items-center mx-1">
+                              <p>{{ seconds }}</p> <!-- Use {{ }} to display the value -->
+                              <span class="disc">Seconds</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div *ngIf="!showTimer">
+                        {{rtrnObj.SeriesName}}
+                      </div>
+                      
+                    <!-- <app-time-countdown></app-time-countdown> -->
+                </h6>
+            </div>
+            <div class="market_assets">
+                <ul class="nav nav-pills list-unstyled d-flex m-0 p-0" id="pills-tab" role="tablist">
+                    <li>
+                        <button class="nav-link bg-transparent border-0 p-0 " id="pills-scorecard-tab"
+                            data-toggle="pill" data-target="#pills-scorecard" type="button" role="tab"
+                            aria-controls="pills-scorecard" aria-selected="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 90.873 90.873">
+                                <g id="a0f5cf2b6228a65ddaa82594b5dd3b42" transform="translate(-10 -10)">
+                                    <path id="Path_21" data-name="Path 21"
+                                        d="M55.436,10a45.436,45.436,0,1,0,45.436,45.436A45.439,45.439,0,0,0,55.436,10ZM38.319,74.177a1.755,1.755,0,0,1-1.632,1.632H30.168a1.8,1.8,0,0,1-1.632-1.836V68.678l9.783-5.7v11.2Zm13.649,0a1.755,1.755,0,0,1-1.632,1.632H43.818a1.755,1.755,0,0,1-1.632-1.632V60.731l5.295-3.06,4.479,2.448ZM65.627,54.212V74.177A1.755,1.755,0,0,1,64,75.809H57.476a1.755,1.755,0,0,1-1.632-1.632V62.159h.2l9.579-8.151ZM79.277,74.177a1.755,1.755,0,0,1-1.632,1.632H71.126A1.648,1.648,0,0,1,69.7,73.973V50.55l5.7-4.887,3.876,4.479Zm.195-37.694-2.04,5.7-2.244-2.652-18.536,15.9L55.223,56.66l-1.02-.408L47.48,52.58,27.312,64.607l-2.643-4.479L46.062,47.5l1.224-.816,1.224.612,6.519,3.468L72.146,36.093,69.7,33.237,75.6,32.013l5.907-1.224Z"
+                                        fill="#7f7533"></path>
+                                </g>
+                            </svg>
+                        </button>
+                    </li>
+                    <li>
+                        <button class="nav-link bg-transparent border-0 p-0" id="pills-livematch-tab" data-toggle="pill"
+                            data-target="#pills-livematch" type="button" role="tab" aria-controls="pills-livematch"
+                            aria-selected="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 90.403 90.403">
+                                <path id="Subtraction_10" data-name="Subtraction 10"
+                                    d="M45.2,90.4A45.214,45.214,0,0,1,27.607,3.552,45.213,45.213,0,0,1,62.8,86.851,44.92,44.92,0,0,1,45.2,90.4ZM25.865,67.137v4.329H66.26V67.137H52.993V61.7H70.248a3.268,3.268,0,0,0,3.265-3.265V25.763A3.268,3.268,0,0,0,70.248,22.5h-49.6a3.268,3.268,0,0,0-3.265,3.265V58.432A3.268,3.268,0,0,0,20.649,61.7H37.937v5.44ZM69.39,57.372H21.509V26.822H69.39V57.371ZM37.717,32.509V51.685l16.2-9.587Z"
+                                    fill="#7f7533"></path>
+                            </svg>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="bottom_row">
+            <div class="event_name">
+                <h4 class="d-flex align-items-center mb-0">
+                    <div class="w-50 text-right team_name">
+                        {{rtrnObj.Runner1}}
+                    </div>
+                    <div class="animate_bx">
+                        <ul class="flip-animation">
+                            <li>
+                                <span class="vs_img">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        width="30" height="30" viewBox="0 0 65.141 65.34">
+                                        <defs>
+                                            <clipPath id="clip-path">
+                                                <rect width="65.141" height="65.34" fill="none"></rect>
+                                            </clipPath>
+                                        </defs>
+                                        <g id="Repeat_Grid_1" data-name="Repeat Grid 1" clip-path="url(#clip-path)">
+                                            <g id="Group_3" data-name="Group 3"
+                                                transform="translate(-757.532 -436.426)">
+                                                <path id="Subtraction_2" data-name="Subtraction 2"
+                                                    d="M27,54A27.007,27.007,0,0,1,16.49,2.122,27.007,27.007,0,0,1,37.51,51.878,26.832,26.832,0,0,1,27,54Zm5.451-22.123L28.6,32.7a6.748,6.748,0,0,0,3.262,4.27,11.626,11.626,0,0,0,5.729,1.37,10.188,10.188,0,0,0,6.324-1.861,6.086,6.086,0,0,0,2.442-5.1A6.335,6.335,0,0,0,45.2,27.7c-.77-1.106-2.3-1.955-4.56-2.522L36.9,24.24c-2.031-.5-3.061-1.392-3.061-2.643a2.414,2.414,0,0,1,.975-1.966,4.488,4.488,0,0,1,2.828-.773c2.117,0,3.483.84,4.061,2.5l3.77-.935a5.612,5.612,0,0,0-2.844-3.513,10.3,10.3,0,0,0-5.068-1.24,8.643,8.643,0,0,0-5.607,1.78,5.813,5.813,0,0,0-2.191,4.73,6.448,6.448,0,0,0,.62,2.787,5.048,5.048,0,0,0,1.651,2.022,10.4,10.4,0,0,0,3.191,1.281l4.206,1.1a3.722,3.722,0,0,1,2.208,1.2,2.938,2.938,0,0,1,.516,1.668,2.512,2.512,0,0,1-1.136,2.078,5.426,5.426,0,0,1-3.247.838,6.961,6.961,0,0,1-3.641-.818A3.639,3.639,0,0,1,32.451,31.877ZM9.065,16.006,15.848,38h4.028l6.881-21.994h-3.3L18.3,32.86,13.254,16.006Z"
+                                                    transform="translate(763 442)"></path>
+                                                <path id="Path_2" data-name="Path 2"
+                                                    d="M768.4,489.5l2.639,2.463-9.473,9.438h0s-1.527,1.734-3.042.172a1.77,1.77,0,0,1,.2-2.8Z"
+                                                    transform="translate(1580.574 938.646) rotate(180)"></path>
+                                                <path id="Path_3" data-name="Path 3"
+                                                    d="M768.4,489.5l2.639,2.463-9.473,9.438h0s-1.527,1.734-3.042.172a1.77,1.77,0,0,1,.2-2.8Z"
+                                                    transform="translate(-0.369 -0.455)"></path>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </span>
+                            </li>
+                            <li class="times-n-date">
+                                <div class="date-time">
+                                    <span class="day-name">{{ evtTime | date:'EEEE' }}</span>
+                                    <span class="time">{{ evtTime | date:'h:mm a' }}</span>
+                                    
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="w-50 team_name">
+                        {{rtrnObj.Runner2}}
+                    </div>
+                </h4>
+            </div>
+        </div>
+    </div>
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane px-2 fade " id="pills-scorecard" role="tabpanel" aria-labelledby="pills-scorecard-tab">
+            ...
+        </div>
+        <div class="tab-pane px-2 fade " id="pills-livematch" role="tabpanel" aria-labelledby="pills-livematch-tab">
+            <div class="mobile_tv">
+                <div class="collapse" id="liveTv" *ngIf="uISERVICE.tv">
+                    <div class="inner_tv">
+                        <iframe width="100%" height="200" [src]="uISERVICE.IframeUrl" title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="accordianods">
+        <ul class="nav nav-pills list-unstyled d-flex m-0 p-0" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-all-tab" data-toggle="pill" data-target="#pills-all"
+                    type="button" role="tab" aria-controls="pills-all" aria-selected="true">All</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-odds-tab" data-toggle="pill" data-target="#pills-odds"
+                    type="button" role="tab" aria-controls="pills-odds" aria-selected="false">Match Odds</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-bookmaker-tab" data-toggle="pill" data-target="#pills-bookmaker"
+                    type="button" role="tab" aria-controls="pills-bookmaker" aria-selected="false">Bookmaker</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-fancy-tab" data-toggle="pill" data-target="#pills-fancy"
+                    type="button" role="tab" aria-controls="pills-fancy" aria-selected="false">Fancy</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
+                <div class="tab_accordion" *ngFor="let mrkt of rtrnObj.markets;let i=index">
+                    <button class="btn accor_btn" type="button" data-toggle="collapse" [attr.data-target]="'#matchOdds' + i"
+                        aria-expanded="true" aria-controls="matchOdds">
+                        <div class="tab_name">
+                            <i class="fa fa-circle"></i>
+                             <span class="txt ml-2 ">{{mrkt.marketName}}</span>
+                            <small class="pl-3">Min:{{mrkt.MinStake}} &nbsp;Max:{{mrkt.MaxStake}}</small>
+                        </div>
+                        <!-- <div class="bl_title back">Back</div>
+                        <div class="bl_title lay">Lay</div> -->
+                        <!-- <button type="button" class="btn p-0 h-auto ml-auto">
+                            <i class="fa fa-info-circle"></i>
+                        </button> -->
+                        <svg class="svg-icon ml-auto mr-md-3">
+                            <use href="/assets/icons/icons_defs.svg#svg__arrow"></use>
+                        </svg>
+                    </button>
+                    <div class="collapse show" [attr.id]="'matchOdds' + i">
+                        <div class="inner_bet_table mob-BackLay">
+                            <div class="bet_table_row rowHead justify-content-end">
+                                <div class="backHead">
+                                    Back
+                                </div>
+                                <div class="LayHead">
+                                    Lay
+                                </div>
+                            </div>
+                            <div class="bet_table_row" *ngFor="let rnr of mrkt.runners;let r=index"
+                                [ngClass]="{'bet_locked':rtrnObj.status || mrkt.status || (rnr.runners.availableToLay[0].price==0 && rnr.runners.availableToBack[0].price==0)}">
+                                <div class="nation_name">
+                                    <p>{{rnr.RunnerName}}</p>
+                                    <!-- <span class="btm ">
+                                        <span class="profitloss" [ngClass]="{'negative':rnr.Book<0}">{{rnr.Book |
+                                            number:'1.2-2'}}</span>
+                
+                                    </span> -->
+                                </div>
+                                <div class="bl_boxMain">
+                                    <div class="bl_box back back_2">
+                                        <span class="odds">{{rnr.runners.availableToBack[2].price}}</span>
+                                        <span class="size">{{rnr.runners.availableToBack[2].size}}</span>
+                                    </div>
+                                    <div class="bl_box back back_1">
+                                        <span class="odds">{{rnr.runners.availableToBack[1].price}}</span>
+                                        <span class="size">{{rnr.runners.availableToBack[1].size}}</span>
+                                    </div>
+                                    <div class="bl_box back"
+                                        (click)="setValues('Back',rnr.runners.availableToBack[0].price,rnr.runners.availableToBack[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay)">
+                                        <span class="odds">{{rnr.runners.availableToBack[0].price}}</span>
+                                        <span class="size">{{rnr.runners.availableToBack[0].size}}</span>
+                                    </div>
+                                    <div class="bl_box lay"
+                                        (click)="setValues('Lay',rnr.runners.availableToLay[0].price,rnr.runners.availableToLay[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay)">
+                                        <span class="odds">{{rnr.runners.availableToLay[0].price}}</span>
+                                        <span class="size">{{rnr.runners.availableToLay[0].size}}</span>
+                                    </div>
+                                    <div class="bl_box lay lay_1">
+                                        <span class="odds">{{rnr.runners.availableToLay[1].price}}</span>
+                                        <span class="size">{{rnr.runners.availableToLay[1].size}}</span>
+                                    </div>
+                                    <div class="bl_box lay lay_2">
+                                        <span class="odds">{{rnr.runners.availableToLay[2].price}}</span>
+                                        <span class="size">{{rnr.runners.availableToLay[2].size}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <app-bet-slip *ngIf="uISERVICE.showSlip[i]"></app-bet-slip>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="tab_accordion" *ngIf="sportsId==4 && sesnObj?.length>0">
+                    <button class="btn accor_btn" type="button" data-toggle="collapse" data-target="#fancyBets" aria-expanded="true"
+                        aria-controls="fancyBets">
+                        <div class="tab_name">
+                           
+                            <span class="txt ml-2 ">Fancy</span>
+                            <small class="d-md-none pl-3">Min:{{matchData.MinStake}} &nbsp;Max:{{matchData.MaxStake}}</small>
+                        </div>
+                
+                        <!-- <div class="bl_title lay">No</div>
+                        <div class="bl_title back">Yes</div> -->
+                        <svg class="svg-icon ml-auto mr-md-3">
+                            <use href="/assets/icons/icons_defs.svg#svg__arrow"></use>
+                        </svg> 
+                    </button>
+                    <div class="collapse show" id="fancyBets">
+                        <div class="inner_bet_table mob-BackLay fancyBackLay">
+                            <!-- <div class="bet_table_row rowHead border-bottom justify-content-end d-flex d-md-none">
+                                <div class="LayHead">
+                                    No
+                                </div>
+                                <div class="backHead">
+                                    Yes
+                                </div>
+                            </div> -->
+                            <div class="bet_table_row flex-wrap fancyTableCol" *ngFor="let ssn of sesnObj;let s=index"
+                                [ngClass]="{'bet_locked':rtrnObj.status || rtrnObj.EventFancy || ssn.GameStatus=='SUSPENDED' || ssn.BackPrice1=='0'}">
+                                <div class="d-flex w-100">
+                                    <div class="nation_name">
+                                        <p class="d-flex align-items-center"><i class="fa fa-circle mr-1" style="font-size: 8px; color: #00b181;" aria-hidden="true"></i>
+                                             {{ssn.RunnerName}} 
+                                            <!-- <span class="d-block selectionPoiny"
+                                                [ngClass]="{'negtive-val':getSessionPl(ssn.SelectionId)<0}">{{getSessionPl(ssn.SelectionId)}}</span> -->
+                                        </p>
+                                    </div>
+                                    <div class="bl_box content-none mob-noneCont"></div>
+                                    <div class="bl_box content-none mob-noneCont"></div>
+                                    <div class="bl_box content-none fancy_modalBox d-none">
+                                        <button class="btn p-0 fancy_modal_btn" data-toggle="modal" data-target="#fancybookModal"><img
+                                                style="width: 20px;" src="/assets/img/ladder.svg" alt=""
+                                                (click)="fancyBook(ssn.SelectionId,ssn.RunnerName)"></button>
+                                    </div>
+                                    <div class="bl_boxMain">
+                                        <div class="bl_box lay"
+                                            (click)="setValues('No',ssn.LayPrice1,ssn.LaySize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            <span class="odds">{{ssn.LayPrice1}}</span>
+                                            <span class="size">{{ssn.LaySize1}}</span>
+                                        </div>
+                                        <div class="bl_box back"
+                                            (click)="setValues('Yes',ssn.BackPrice1,ssn.BackSize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            <span class="odds">{{ssn.BackPrice1}}</span>
+                                            <span class="size">{{ssn.BackSize1}}</span>
+                                        </div>
+                                    </div>
+                
+                                    <div class="bl_box fancy_bx content-none mobNone">
+                                        <span class="value">Min: {{matchData.MinStake}}</span>
+                                        <span class="value">Max: {{matchData.MaxStake}}</span>
+                                    </div>
+                                </div>
+                                <div class="w-100 mt-1 betslip_hide" [ngClass]="{'betSlip_show': uISERVICE.fancySlip[s]}">
+                                    <app-bet-slip></app-bet-slip>
+                                </div>
+                            </div>
+                
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal fade fancybook_modal" id="fancybookModal" tabindex="-1" role="dialog"
+                    aria-labelledby="fancybookModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="fancybookModalLabel">{{fancy}}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Runs</th>
+                                                <th scope="col">Position</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let ssn of sessonBookList">
+                                                <td>{{ssn.RunValue}}</td>
+                                                <td class="red" [ngClass]="{'red':ssn.Pl<0,'green':ssn.Pl>=0}">{{ssn.Pl}}</td>
+                                            </tr>
+                                            <tr *ngIf="sessonBookList?.length==0">
+                                                <td colspan="2">
+                                                    <h6 class="text-center">No Record</h6>
+                                                </td>
+                                            </tr>
+                
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-odds" role="tabpanel" aria-labelledby="pills-odds-tab">
+                
+            </div>
+            <div class="tab-pane fade" id="pills-bookmaker" role="tabpanel" aria-labelledby="pills-bookmaker-tab">
+                
+            </div>
+            <div class="tab-pane fade" id="pills-fancy" role="tabpanel" aria-labelledby="pills-fancy-tab">
+                
+            </div>
+          </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- <div class="back_bar d-xl-none">
+    <a routerLink="/games" class="back_btn d-flex align-items-center">
+        <svg class="svg-icon">
+            <use href="/assets/icons/icons_defs.svg#svg_event-arrow"></use>
+        </svg>
+        <p class="pl-2">{{rtrnObj.EventName}}</p>
+    </a>
+    <button class="btn btn-primary bet_btn" type="button" data-toggle="modal" data-target="#allbetsmodal"
+        (click)="GetAllBets()">Bets</button>
+</div> -->
+
+<!-- <div class="scrore_area cricket_score" *ngIf="rtrnObj!=null">
+    <div class="mobile_tv">
+        <div class="collapse" id="liveTv" *ngIf="uISERVICE.tv">
+            <div class="inner_tv">
+                <iframe width="100%" height="200" [src]="uISERVICE.IframeUrl" title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="event_info">
+        <h4>{{rtrnObj.EventName}}
+            <small>
+                <span class="icon">
+                    <svg class="svg-icon">
+                        <use href="/assets/img/icons/icons_defs.svg#timer"></use>
+                    </svg>
+                </span> {{rtrnObj.EventTime | date:'MMM d, y, h:mm:ss a'}}
+            </small>
+        </h4>
+        <div class="event_status ml-auto">
+            <button class="btn btn-primary live_btn" type="button" data-toggle="collapse" href="#liveTv" role="button"
+                aria-expanded="false" aria-controls="liveTv" (click)="LiveTv()">Live</button>
+        </div>
+    </div>
+    <div class="score_bar" *ngIf="rtrnObj.Inplay && sportsId==4 && scoreData?.length>0">
+        <div class="row">
+            <div class="col-6">
+                <div class="team">
+                    <strong>{{rtrnObj.Runner1}}</strong>
+                </div>
+                <div class="score_data">
+                    <div *ngIf="scoreData[0].score.home.inning1!=undefined">
+                        {{scoreData[0].score.home.inning1.runs}}-{{scoreData[0].score.home.inning1.wickets}}
+                        ({{scoreData[0].score.home.inning1.overs}})</div>
+                    <div *ngIf="scoreData[0].score.home.inning2!=undefined">
+                        {{scoreData[0].score.home.inning2.runs}}-{{scoreData[0].score.home.inning2.wickets}}
+                        ({{scoreData[0].score.home.inning2.overs}})</div>
+                    <div *ngIf="scoreData[0].score.home.inning3!=undefined">
+                        {{scoreData[0].score.home.inning3.runs}}-{{scoreData[0].score.home.inning3.wickets}}
+                        ({{scoreData[0].score.home.inning3.overs}})</div>
+                    <div *ngIf="scoreData[0].score.home.inning1==undefined">0-0(0.0)</div>
+                </div>
+
+            </div>
+            <div class="col-6 text-right">
+                <div class="team">
+                    <strong>{{rtrnObj.Runner2}}</strong>
+                </div>
+                <div class="score_data">
+                    <div *ngIf="scoreData[0].score.away.inning1!=undefined">
+                        {{scoreData[0].score.away.inning1.runs}}-{{scoreData[0].score.away.inning1.wickets}}
+                        ({{scoreData[0].score.away.inning1.overs}})</div>
+                    <div *ngIf="scoreData[0].score.away.inning2!=undefined">
+                        {{scoreData[0].score.away.inning2.runs}}-{{scoreData[0].score.away.inning2.wickets}}
+                        ({{scoreData[0].score.away.inning2.overs}})</div>
+                    <div *ngIf="scoreData[0].score.away.inning3!=undefined">
+                        {{scoreData[0].score.away.inning3.runs}}-{{scoreData[0].score.away.inning3.wickets}}
+                        ({{scoreData[0].score.away.inning3.overs}})</div>
+                    <div *ngIf="scoreData[0].score.away.inning1==undefined">0-0(0.0)</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="score_bar" *ngIf="rtrnObj.Inplay && sportsId==1 && scoreData?.length>0">
+        <div class="row">
+            <div class="col-5 pr-sm-0">
+                <div class="team">
+                    <strong>{{rtrnObj.Runner1}}</strong>
+                </div>
+            </div>
+            <div class="col-2 p-0 d-flex justify-content-center">
+                <div class="f_score_data">{{scoreData[0].score.home.score}}</div>
+                <span class="f_score_datad">-</span>
+                <div class="f_score_data">{{scoreData[0].score.away.score}}</div>
+            </div>
+            <div class="col-5 pl-sm-0 text-right">
+                <div class="team">
+                    <strong>{{rtrnObj.Runner2}}</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="score_bar tennis_score_bar" *ngIf="rtrnObj.Inplay && sportsId==2 && scoreData?.length>0">
+        <div class="row mx-0">
+            <div class="col-4 pr-sm-0 px-1">
+                <div class="team">
+                    <strong>{{rtrnObj.Runner1}}</strong>
+                </div>
+            </div>
+            <div class="col-4 pl-sm-0 px-1">
+                <div class="d-flex justify-content-center">
+                    <div class="set_design">Set{{scoreData[0].currentSet}} | Game{{scoreData[0].currentGame}}</div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="f_score_data">{{scoreData[0].score.home.score}}</div>
+                    <span class="f_score_datad">:</span>
+                    <div class="f_score_data">{{scoreData[0].score.away.score}}</div>
+                </div>
+            </div>
+            <div class="col-4 pl-sm-0 text-right px-1">
+                <div class="team">
+                    <strong>{{rtrnObj.Runner2}}</strong>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2 mx-0">
+            <div class="col-sm-12 px-1">
+                <table class="table tennis_table_design">
+                    <tbody>
+
+                        <tr>
+                            <td><strong style="width: 240px;">{{rtrnObj.Runner1}}</strong></td>
+                            <td class="text-right" *ngFor="let data of scoreData[0].score.home.gameSequence">
+                                <div style="width: 30px;"></div> {{data}}
+                            </td>
+                            <td>{{scoreData[0].score.home.sets}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="width: 240px;">{{rtrnObj.Runner2}}</strong></td>
+                            <td class="text-right" *ngFor="let data of scoreData[0].score.away.gameSequence">
+                                <div style="width: 30px;"></div>{{data}}
+                            </td>
+                            <td>{{scoreData[0].score.away.sets}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- <div class="tab_accordion" *ngFor="let mrkt of rtrnObj.markets;let i=index">
+    <button class="btn accor_btn" type="button" data-toggle="collapse" [attr.data-target]="'#matchOdds' + i"
+        aria-expanded="true" aria-controls="matchOdds">
+        <div class="tab_name">
+            <svg class="svg-icon">
+                <use href="/assets/icons/icons_defs.svg#svg__arrow"></use>
+            </svg> <span class="txt ml-2 ">{{mrkt.marketName}}</span>
+            <small class="pl-3">Min:{{mrkt.MinStake}} &nbsp;Max:{{mrkt.MaxStake}}</small>
+        </div>
+        <div class="bl_title back">Back</div>
+        <div class="bl_title lay">Lay</div>
+    </button>
+    <div class="collapse show" [attr.id]="'matchOdds' + i">
+        <div class="inner_bet_table mob-BackLay">
+            <div class="bet_table_row rowHead justify-content-end">
+                <div class="backHead">
+                    Back
+                </div>
+                <div class="LayHead">
+                    Lay
+                </div>
+            </div>
+            <div class="bet_table_row" *ngFor="let rnr of mrkt.runners;let r=index"
+                [ngClass]="{'bet_locked':rtrnObj.status || mrkt.status || (rnr.runners.availableToLay[0].price==0 && rnr.runners.availableToBack[0].price==0)}">
+                <div class="nation_name">
+                    <p>{{rnr.RunnerName}}</p>
+                    <span class="btm">
+                        <span class="profitloss" [ngClass]="{'negative':rnr.Book<0}">{{rnr.Book |
+                            number:'1.2-2'}}</span>
+
+                    </span>
+                </div>
+                <div class="bl_boxMain">
+                    <div class="bl_box back back_2">
+                        <span class="odds">{{rnr.runners.availableToBack[2].price}}</span>
+                        <span class="size">{{rnr.runners.availableToBack[2].size}}</span>
+                    </div>
+                    <div class="bl_box back back_1">
+                        <span class="odds">{{rnr.runners.availableToBack[1].price}}</span>
+                        <span class="size">{{rnr.runners.availableToBack[1].size}}</span>
+                    </div>
+                    <div class="bl_box back"
+                        (click)="setValues('Back',rnr.runners.availableToBack[0].price,rnr.runners.availableToBack[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay)">
+                        <span class="odds">{{rnr.runners.availableToBack[0].price}}</span>
+                        <span class="size">{{rnr.runners.availableToBack[0].size}}</span>
+                    </div>
+                    <div class="bl_box lay"
+                        (click)="setValues('Lay',rnr.runners.availableToLay[0].price,rnr.runners.availableToLay[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay)">
+                        <span class="odds">{{rnr.runners.availableToLay[0].price}}</span>
+                        <span class="size">{{rnr.runners.availableToLay[0].size}}</span>
+                    </div>
+                    <div class="bl_box lay lay_1">
+                        <span class="odds">{{rnr.runners.availableToLay[1].price}}</span>
+                        <span class="size">{{rnr.runners.availableToLay[1].size}}</span>
+                    </div>
+                    <div class="bl_box lay lay_2">
+                        <span class="odds">{{rnr.runners.availableToLay[2].price}}</span>
+                        <span class="size">{{rnr.runners.availableToLay[2].size}}</span>
+                    </div>
+                </div>
+            </div>
+            <app-bet-slip *ngIf="uISERVICE.showSlip[i]"></app-bet-slip>
+        </div>
+    </div>
+</div>
+
+
+<div class="tab_accordion" *ngIf="sportsId==4 && sesnObj?.length>0">
+    <button class="btn accor_btn" type="button" data-toggle="collapse" data-target="#fancyBets" aria-expanded="true"
+        aria-controls="fancyBets">
+        <div class="tab_name">
+            <svg class="svg-icon">
+                <use href="/assets/icons/icons_defs.svg#svg__arrow"></use>
+            </svg> <span class="txt ml-2 ">Fancy</span>
+            <small class="d-md-none pl-3">Min:{{matchData.MinStake}} &nbsp;Max:{{matchData.MaxStake}}</small>
+        </div>
+
+        <div class="bl_title lay">No</div>
+        <div class="bl_title back">Yes</div>
+    </button>
+    <div class="collapse show" id="fancyBets">
+        <div class="inner_bet_table mob-BackLay fancyBackLay">
+            <div class="bet_table_row rowHead border-bottom justify-content-end d-flex d-md-none">
+                <div class="LayHead">
+                    No
+                </div>
+                <div class="backHead">
+                    Yes
+                </div>
+            </div>
+            <div class="bet_table_row flex-wrap fancyTableCol" *ngFor="let ssn of sesnObj;let s=index"
+                [ngClass]="{'bet_locked':rtrnObj.status || rtrnObj.EventFancy || ssn.GameStatus=='SUSPENDED' || ssn.BackPrice1=='0'}">
+                <div class="d-flex w-100">
+                    <div class="nation_name">
+                        <p>{{ssn.RunnerName}} <span class="d-block selectionPoiny"
+                                [ngClass]="{'negtive-val':getSessionPl(ssn.SelectionId)<0}">{{getSessionPl(ssn.SelectionId)}}</span>
+                    </div>
+                    <div class="bl_box content-none mob-noneCont"></div>
+                    <div class="bl_box content-none fancy_modalBox">
+                        <button class="btn p-0 fancy_modal_btn" data-toggle="modal" data-target="#fancybookModal"><img
+                                style="width: 20px;" src="/assets/img/ladder.svg" alt=""
+                                (click)="fancyBook(ssn.SelectionId,ssn.RunnerName)"></button>
+                    </div>
+                    <div class="bl_boxMain">
+                        <div class="bl_box lay"
+                            (click)="setValues('No',ssn.LayPrice1,ssn.LaySize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                            <span class="odds">{{ssn.LayPrice1}}</span>
+                            <span class="size">{{ssn.LaySize1}}</span>
+                        </div>
+                        <div class="bl_box back"
+                            (click)="setValues('Yes',ssn.BackPrice1,ssn.BackSize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                            <span class="odds">{{ssn.BackPrice1}}</span>
+                            <span class="size">{{ssn.BackSize1}}</span>
+                        </div>
+                    </div>
+
+                    <div class="bl_box fancy_bx content-none mobNone">
+                        <span class="value">Min: {{matchData.MinStake}}</span>
+                        <span class="value">Max: {{matchData.MaxStake}}</span>
+                    </div>
+                </div>
+                <div class="w-100 mt-1 betslip_hide" [ngClass]="{'betSlip_show': uISERVICE.fancySlip[s]}">
+                    <app-bet-slip></app-bet-slip>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade fancybook_modal" id="fancybookModal" tabindex="-1" role="dialog"
+    aria-labelledby="fancybookModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="fancybookModalLabel">{{fancy}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">Runs</th>
+                                <th scope="col">Position</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let ssn of sessonBookList">
+                                <td>{{ssn.RunValue}}</td>
+                                <td class="red" [ngClass]="{'red':ssn.Pl<0,'green':ssn.Pl>=0}">{{ssn.Pl}}</td>
+                            </tr>
+                            <tr *ngIf="sessonBookList?.length==0">
+                                <td colspan="2">
+                                    <h6 class="text-center">No Record</h6>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

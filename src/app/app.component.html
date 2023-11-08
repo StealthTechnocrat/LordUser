@@ -1,0 +1,62 @@
+<main class="main_wrap">
+    <app-header></app-header>
+    <div class="inner" [ngClass]="{'live_games_design':!uISERVICE.sideBar}">
+        <div class="left_bar d-none d-xl-block">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="center_sec">
+            <!-- <div class="news_area">
+                <marquee behavior="scroll" direction="left">
+                    <p *ngFor="let news of uISERVICE.News">
+                        <span class="date">{{news.createdOn | date:'M/d/yy,
+                          h:mm a'}}</span>:-  {{news.News}}
+                      </p>
+                </marquee>
+                <span class="icon"><img src="/assets/img/icons/noti_ic.svg" alt=""></span>
+            </div> -->
+            <div class="news_marquee mobMarquee px-2 mb-1 d-flex d-xl-none">
+                <marquee behavior="scroll" direction="left" [scrollDelay]="100">
+                  <div class="item">
+                    <i class="fas fa-circle"></i>
+                    <span class="marquee-news-text"> * ECI GERMANY * Saurashtra premier league * East
+                      Africa T20 * Andra premier league * Maharaja trophy * Rajasthan premier league * youths odi *Under19
+                      matches. Bets will be Deleted Due to some technical issues. </span>
+                  </div>
+                </marquee>
+              </div>
+            <router-outlet></router-outlet>
+            <app-footer></app-footer>
+        </div>
+        <div class="right_bar d-none d-xl-block">
+            <div class="right_inner">
+                <!-- <div class="collapse" id="liveTv" *ngIf="uISERVICE.tv">
+                    <div class="inner_tv">
+                        <iframe width="100%" height="200" [src]="uISERVICE.IframeUrl"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                    </div>
+                </div> -->
+                <!-- <app-sidebar-bets></app-sidebar-bets> -->
+                <app-casino-sidebar></app-casino-sidebar>
+            </div>
+        </div>
+    </div>
+    <div class="loader" *ngIf="uISERVICE.loader">
+        <!-- <svg class="svg-icon">
+            <use href="/assets/img/icons/icons_defs.svg#svg_ball_loader"></use>
+        </svg> -->
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: rgba(241, 242, 243, 0); display: block; shape-rendering: auto;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+            <circle cx="30" cy="50" fill="#ffc728" r="20">
+              <animate attributeName="cx" repeatCount="indefinite" dur="1s" keyTimes="0;0.5;1" values="30;70;30" begin="-0.5s"></animate>
+            </circle>
+            <circle cx="70" cy="50" fill="#434200" r="20">
+              <animate attributeName="cx" repeatCount="indefinite" dur="1s" keyTimes="0;0.5;1" values="30;70;30" begin="0s"></animate>
+            </circle>
+            <circle cx="30" cy="50" fill="#ffc728" r="20">
+              <animate attributeName="cx" repeatCount="indefinite" dur="1s" keyTimes="0;0.5;1" values="30;70;30" begin="-0.5s"></animate>
+              <animate attributeName="fill-opacity" values="0;0;1;1" calcMode="discrete" keyTimes="0;0.499;0.5;1" dur="1s" repeatCount="indefinite"></animate>
+            </circle>
+            </svg>
+    </div>
+</main>

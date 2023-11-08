@@ -1,0 +1,31 @@
+.count-down-timer {
+    .wrapper {
+      .description,
+      .times {
+        display: flex;
+        grid-column-gap: 6px;
+        padding: 0 6px;
+      }
+      .times {
+        p {
+            letter-spacing: 0;
+            position: relative;
+            margin: 0;
+            font-size: 22px;
+            font-weight: 600;
+            color: #5c6060;
+            text-align: center;
+            @media screen and (max-width: 475px) {
+                font-size: 16px;
+            }
+        }
+        span.disc{
+            margin: 0;
+            text-align: center;
+            font-size: 10px;
+            font-weight: 400;
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,147 @@
+<!-- <div class="back_bar d-lg-none">
+    <a routerLink="/games" class="back_btn d-flex align-items-center">
+        <svg class="svg-icon">
+            <use href="/assets/icons/icons_defs.svg#svg_event-arrow"></use>
+        </svg>
+        <p class="pl-2">Betting Profit and Loss</p>
+    </a>
+</div> -->
+<div class="main_wrap">
+    <div class="center_col full_wid">
+        <div class="center_inner pt-3 pt-lg-0">
+            <div class="page_title">
+                <h3>Results</h3>
+            </div>
+            <div class="table_area my_bets_table">
+                <div class="filter">
+                    <form class="mb-3 form-inline d-block">
+                        <div class="main_form row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-6 col-sm-3 col-md-2 mb-2">
+                                        <div class="form-field">
+                                            <label for="">Select Sport</label>
+                                            <select class="form-control">
+                                                <option selected value=0>All</option>
+                                                <option value=1>Soccer</option>
+                                                <option value=2>Tennis</option>
+                                                <option value=4>Cricket</option>
+                                                <option value=5>Table Games</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-3 col-md-2 mb-2">
+                                        <div class="form-field">
+                                            <label for=""> Tournaments</label>
+                                            <select class="form-control">
+                                                <option selected value=0>All</option>
+                                                <option value=1>Soccer</option>
+                                                <option value=2>Tennis</option>
+                                                <option value=4>Cricket</option>
+                                                <option value=5>Table Games</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-3 col-md-2 mb-2">
+                                        <div class="form-field">
+                                            <label for=""> Matches</label>
+                                            <select class="form-control">
+                                                <option selected value=0>All</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-3 col-md-2 mb-2">
+                                        <div class="form-field">
+                                            <label for=""> Market</label>
+                                            <select class="form-control">
+                                                <option selected value=0>All</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-3 col-md-2 mb-2">
+                                        <div class="form-field">
+                                            <label for="">Start Date</label>
+                                            <input type="date" name="sdate" class="form-control mr-2">
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-3 col-md-2 mb-2">
+                                        <div class="form-field">
+                                            <label for="">End Date</label>
+                                            <input type="date" class="form-control" name="edate">
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-3 col-md-2 mb-2">
+                                        <div class="form-field customCheckBx">
+                                            <input type="checkbox" class="form-check-input" id="Market">
+                                            <label class="form-check-label" for="Market">Market</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-3 col-md-2 mb-2">
+                                        <div class="form-field customCheckBx">
+                                            <input type="checkbox" class="form-check-input" id="BookMaker">
+                                            <label class="form-check-label" for="BookMaker">BookMaker</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-3 col-md-2 mb-2">
+                                        <div class="form-field customCheckBx">
+                                            <input type="checkbox" class="form-check-input" id="ManualOdds">
+                                            <label class="form-check-label" for="ManualOdds">Manual Odds</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-3 col-md-2 mb-2">
+                                        <div class="form-field customCheckBx">
+                                            <input type="checkbox" class="form-check-input" id="LineMarket">
+                                            <label class="form-check-label" for="LineMarket">Line Market</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-3 col-md-2 mb-2">
+                                        <div class="form-field customCheckBx">
+                                            <input type="checkbox" class="form-check-input" id="AdvSession">
+                                            <label class="form-check-label" for="AdvSession">Adv Session</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-field d-flex justify-content-between align-items-center">
+                                    <button type="submit" class="btn btn-primary">Load</button>
+                                    <div class="d-flex align-items-center">
+                                        <button type="button" class="btn btn-primary file_btn ">
+                                            Excel
+                                        </button>
+                                        <button type="button" class="btn btn-primary file_btn ">
+                                            CSV
+                                        </button>
+                                        <button type="button" class="btn btn-primary file_btn ">
+                                            PDF
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-middle table-striped mb-0 table_design" id="excel-table2">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>M. Type</th>
+                                <th>Market Name</th>
+                                <th>Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>02/11/2023, 11:30 PM</td>
+                                <td>Market</td>
+                                <td>Soccer / Spanish Copa del Rey / Arosa FC v Granada / Match Odds</td>
+                                <td>Granada</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
