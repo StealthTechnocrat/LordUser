@@ -581,76 +581,6 @@
   </div>
 </div>
 
-<!-- Modal -->
-<div class="modal loginModal pr-0 fade" id="changePassword" tabindex="-1" aria-labelledby="changePasswordLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered mobCstmWdth">
-    <div class="modal-content">
-      <div class="login_form">
-        <button type="button" class="btn-close" id="loginClose" data-dismiss="modal" aria-label="Close"
-          (click)="LogOut()">X</button>
-        <div class="row loginWrap">
-          <div class="col-md-6 p-0 d-none d-md-block">
-            <div class="leftImg">
-              <img src="/assets/img/sport_login.png" alt="img" class="img-fluid">
-            </div>
-          </div>
-          <div class="col-md-6 position-relative change_passwordCol">
-            <div class="loginWrapInner">
-              <h3>Change Password</h3>
-              <div class="logBodyWrap">
-                <div class="form-group">
-                  <label>Old Password</label>
-                  <div class="position-relative">
-                    <span class="icon">
-                      <svg class="svg-icon">
-                        <use href="/assets/img/icons/icons_defs.svg#svg_lock"></use>
-                      </svg>
-                    </span>
-                    <input type="text" class="form-control" placeholder="old password" [(ngModel)]="oldpwd">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label>New Password</label>
-                  <div class="position-relative">
-                    <span class="icon">
-                      <svg class="svg-icon">
-                        <use href="/assets/img/icons/icons_defs.svg#svg_lock"></use>
-                      </svg>
-                    </span>
-                    <input type="text" class="form-control" placeholder="newpwd" [(ngModel)]="newpwd">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label>Confirm Password</label>
-                  <div class="position-relative">
-                    <span class="icon">
-                      <svg class="svg-icon">
-                        <use href="/assets/img/icons/icons_defs.svg#svg_lock"></use>
-                      </svg>
-                    </span>
-                    <input type="text" class="form-control" placeholder="confrmPwd" [(ngModel)]="confrmPwd">
-
-
-                  </div>
-                </div>
-                <div class="sub_btn_area">
-                  <button class="btn btn-primary" type="button" (click)="changePwd()">Submit</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div> -->
-    </div>
-  </div>
-</div>
-
 
 
 <!--terms condition Modal -->
@@ -899,20 +829,21 @@
                     <div class="col-12">
                       <div class="form-field">
                         <label>New Password</label>
-                        <input type="text" placeholder="Enter New Password" class="form-control">
-                      </div>
+                        <input  type="password" class="form-control"
+                        placeholder="New Password" name="NewPwd" [(ngModel)]="NewPwd">  
+                      </div>                    
                     </div>
                     <div class="col-12">
                       <div class="form-field">
                         <label>Enter New Password</label>
-                        <input type="text" placeholder="Enter New Password" class="form-control">
-                      </div>
+                        <input  type="password"
+                        class="form-control" placeholder="Confirm New Password" name="CnfPwd" [(ngModel)]="CnfPwd">                      </div>
                     </div>
                     <div class="col-12">
                       <div class="form-field">
-                        <label>Confirm Password</label>
-                        <input type="text" placeholder="Enter Confirm Password" class="form-control">
-                      </div>
+                        <label>Old Password</label>
+                        <input  type="password"
+                        class="form-control" placeholder="Enter Old Password" name="oldpwd" [(ngModel)]="oldpwd">                      </div>
                     </div>
                     
                   </div>
@@ -920,7 +851,7 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary modSubmit"><span class="animate-btn">Change</span></button>
+              <button type="button" class="btn btn-primary modSubmit"><span class="animate-btn" (clcik)="ChangePwd()" > Change</span></button>
               <button type="button" class="btn btn-secondary modCancel" data-dismiss="modal" ><span class="animate-btn">Clear</span></button>
             </div>
           </div>

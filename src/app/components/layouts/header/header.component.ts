@@ -35,6 +35,9 @@ export class HeaderComponent implements OnInit {
   newpwd: string;
   oldpwd: string;
   confrmPwd: string;
+  NewPwd: string="";
+  CnfPwd: string="";
+  OldPwd: string="";
   constructor(
     private accountService: AccountService,
     public uISERVICE: UiService,
@@ -81,6 +84,65 @@ export class HeaderComponent implements OnInit {
     console.log("bal", this.uISERVICE.Bal)
   }
 
+  ChangePwd() {
+    if(this.NewPwd==""){
+      this.uISERVICE.Error = true;
+      this.uISERVICE.Message = "Enter New Password";
+      setTimeout(() => {
+        this.uISERVICE.Error = false;
+      }, 3000);
+    }else{
+      if(this.CnfPwd==""){
+        this.uISERVICE.Error = true;
+        this.uISERVICE.Message = "Enter Confirm Password";
+        setTimeout(() => {
+          this.uISERVICE.Error = false;
+        }, 3000);
+      }else{
+        if(this.OldPwd==""){
+          this.uISERVICE.Error = true;
+          this.uISERVICE.Message = "Enter Current Password";
+          setTimeout(() => {
+            this.uISERVICE.Error = false;
+          }, 3000);
+        }else{
+            if (this.NewPwd == this.CnfPwd) {
+              this.uISERVICE.loader=true;
+              this.accountService
+                .changePwd(this.oldpwd, this.newpwd)
+                .then((response) => {
+                  
+                  if (response.Status) {
+                    this.uISERVICE.loader=false;
+                    this.uISERVICE.Success = true;
+                    this.uISERVICE.Message = "Executed Successfully";
+                    document.getElementById('cls').click();
+                    this.NewPwd="";
+                    this.CnfPwd="";
+                    this.OldPwd="";
+                    setTimeout(() => {
+                      this.uISERVICE.Success = false;
+                    }, 3000);
+                  } else {
+                    this.uISERVICE.loader=false;
+                    this.uISERVICE.Error = true;
+                    this.uISERVICE.Message = response.Result;
+                    setTimeout(() => {
+                      this.uISERVICE.Error = false;
+                    }, 3000);
+                  }
+                });
+            } else {
+              this.uISERVICE.Message = "Confirm Password not matched";
+              this.uISERVICE.Error = true;
+              setTimeout(() => {
+                this.uISERVICE.Error = false;
+              }, 2500);
+            }
+        }
+      }
+    }
+  }
 
   getInplayEvents(){
     this.uISERVICE.inplay = true;

@@ -96,6 +96,13 @@ export class StatementComponent implements OnInit {
     this.endDate = data + " " + "23:59:59";
   }
 
+  resetValue(){
+    this.latest_date = "";
+    this.last = "";
+    this.Ttype = "";
+    this.mrktName = ""
+  }
+
    /* desiable date work start */
    desabledate(){
     this.dtToday = new Date();

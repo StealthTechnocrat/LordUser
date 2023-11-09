@@ -45,6 +45,7 @@ export class SetBetComponent implements OnInit {
   minutes: number;
   seconds: number;
   showTimer : boolean = false;
+  marketType: string = 'all';
 
   constructor(private router: Router, public sanitizer: DomSanitizer, private http: HttpClient, private accountService: AccountService, private route: ActivatedRoute, public uISERVICE: UiService, private modalService: NgbModal) { }
   toggleModal() {
@@ -77,21 +78,26 @@ export class SetBetComponent implements OnInit {
       }, 2000);
     }
   }
-  updateCountdown() {
+
+  selectMarket(value){
     debugger;
-    
-    // Get the current date and time
+if(value == 'all'){
+this.marketType = 'all' 
+}else if(value == 'odds'){
+this.marketType = 'odds'
+}else if(value == 'book'){
+this.marketType = 'book'
+}else{
+this.marketType = 'ssn'
+}
+  }
+
+  updateCountdown() {
     const currentDate = new Date();
     const formattedDateTime = currentDate.toISOString().slice(0, 19);
-  
-    console.log(formattedDateTime); // Output in the desired format
-    
-    // Parse the event time to a Date object if it's a string
+    console.log(formattedDateTime); 
     const eventTime = new Date(this.evtTime);
-  
-    // Calculate the time difference in milliseconds
     const timeDifference = eventTime.getTime() - currentDate.getTime();
-  
     if (timeDifference <= 0) {
       this.showTimer = false;
       this.days = 0;
@@ -328,12 +334,13 @@ export class SetBetComponent implements OnInit {
         break;
       case 4:
         this.matchData = this.rtrnObj.markets.find(x => x.marketName === "Match Odds");
+        console.log("oddsssss",this.rtrnObj.markets)
+
         const BookData = this.rtrnObj.markets.find(x => x.marketName === "BookMaker");
         if (this.matchData != null) {
           if (this.matchData.ApiUrlType == 1) {
             await this.http.get(this.rtrnObj.apiUrls.DaimondUrl + this.MtchMrkt + "/" + this.eventId).subscribe(data => {
               this.apiData = data;
-              
               if (this.apiData.market != null && this.apiData.market?.length > 0) {
                 this.sesnObj = this.apiData.session;
                 console.log("session",this.sesnObj)

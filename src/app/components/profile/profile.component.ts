@@ -96,7 +96,7 @@ export class ProfileComponent implements OnInit {
             this.uISERVICE.Error = false;
           }, 3000);
         }else{
-          if (this.OldPwd == this.UserDetails.Password) {
+          if (this.OldPwd != this.UserDetails.Password) {
             if (this.NewPwd == this.CnfPwd) {
               this.uISERVICE.loader=true;
               this.accountService
