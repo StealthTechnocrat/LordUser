@@ -42,14 +42,14 @@
                     <!-- in-play matches -->
                     <div *ngIf="sidebarType==2" class="upcoming_games_list inply">
                         <ul class="list-unstyled p-0 m-0">
-                            <li class=" game_item" *ngFor="let evnt of uISERVICE.TopInplay">
+                            <li class=" game_item" *ngFor="let evnt of inplayList">
                                 <a href="javascript:void(0)">
                                     <div class="date_time in-play">
                                         <div class="animate">
                                             <ul class="flip-animation">
                                                 <li class="time_date">
-                                                    <span class="date">Today</span>
-                                                    <span class="time">{{evnt.EventTime | date:'h:mm a'}}</span>
+                                                    <span class="day-name">{{ evnt.EventTime | todayTomorrow }}</span>
+                                                    <span class="time">{{ evnt.EventTime | date:'h:mm a' }}</span>
                                                 </li>
                                                 <li>
                                                     <span class="in-play-light">
@@ -107,11 +107,21 @@
                     <!-- Upcoming matches -->
                     <div *ngIf="sidebarType==3" class="upcoming_games_list">
                         <ul class="list-unstyled p-0 m-0">
-                            <li class=" game_item" *ngFor="let evnt of uISERVICE.TopEvents">
+                            <li class=" game_item" *ngFor="let evnt of upcomingList">
                                 <a href="javascript:void(0)">
-                                    <div class="date_time">
-                                        <span class="date">Today</span>
-                                        <span class="time">{{evnt.EventTime | date:'h:mm a'}}</span>
+                                    <div class="timeCol">
+                                        <div class="animate">
+                                            <ul class="flip-animation">
+                                                <li class="time_date d-flex flex-column">
+                                                    <span class="time">{{evnt.EventTime |
+                                                        date:'dd/MM/yy'}}</span>
+                                                </li>
+                                                <li>
+                                                    <span class="time"> {{evnt.EventTime | date:'h:mm
+                                                        a'}}</span>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                     <div class="game_name">
                                         <h5>

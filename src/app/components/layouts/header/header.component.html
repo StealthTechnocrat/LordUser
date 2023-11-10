@@ -817,7 +817,7 @@
   <div class="modal-dialog modal-lg modal-dialog-centered chipSettingModal changepasswordModal">
     <div class="modal-content">
       <div class="login_form ">
-        <button type="button" id="changepasswordBtn" class="btn-close" data-dismiss="modal" aria-label="Close">X</button>
+        <button type="button" id="cls1" class="btn-close" data-dismiss="modal" aria-label="Close">X</button>
           <div class="position-relative">
             <div class="termConWrap">
               <div class="page_title">
@@ -843,7 +843,7 @@
                       <div class="form-field">
                         <label>Old Password</label>
                         <input  type="password"
-                        class="form-control" placeholder="Enter Old Password" name="oldpwd" [(ngModel)]="oldpwd">                      </div>
+                        class="form-control" placeholder="Enter Old Password" name="oldpwd" [(ngModel)]="OldPwd">                      </div>
                     </div>
                     
                   </div>
@@ -851,7 +851,7 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary modSubmit"><span class="animate-btn" (clcik)="ChangePwd()" > Change</span></button>
+              <button type="button" class="btn btn-primary modSubmit"><span class="animate-btn" (click)="ChangePwd()" > Change</span></button>
               <button type="button" class="btn btn-secondary modCancel" data-dismiss="modal" ><span class="animate-btn">Clear</span></button>
             </div>
           </div>

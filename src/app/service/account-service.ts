@@ -44,9 +44,38 @@ export class AccountService {
   private GetTableGamesUrl = environment.apiBaseUrl + "CasinoSettings/GetTableGames";
   private GetLogoUrl = environment.apiBaseUrl + "Chip/GetLogo";
   private GetApiUrlsUrl = environment.apiBaseUrl + "Event/GetApiUrls";
-  private changePwdUrl=environment.apiBaseUrl + "SignUp/SetIsPwd";
+  private changePwdUrl=environment.apiBaseUrl + "SignUp/changePassword";
   private getCompListUrl = environment.apiBaseUrl + "Event/GetCompetitionList";
   private getEventListUrl = environment.apiBaseUrl + "Event/GetEventListBySportsId";
+  private getAllInplayUrl = environment.apiBaseUrl + "Event/GetInplayEvents";
+  private getUpcomingEventsUrl = environment.apiBaseUrl + "Event/GetUpcomingEvents";
+  private GetAllEventsBySportsIdUrl = environment.apiBaseUrl + "Event/GetAllEventsBySportsId";
+
+
+
+  GetAllEventsBySportsId(sportsId, type): Promise<any> {
+    return this.baseHttpService
+      .Get(this.GetAllEventsBySportsIdUrl + "?sportsId=" + sportsId + "&type=" + type)
+      .then(function (response) {
+        return response.json();
+      });
+  }
+  
+  getAllInplay(): Promise<any> {
+    return this.baseHttpService
+      .Get(this.getAllInplayUrl)
+      .then(function (response) {
+        return response.json();
+      });
+  }
+
+  getAllUpcoming(): Promise<any> {
+    return this.baseHttpService
+      .Get(this.getUpcomingEventsUrl)
+      .then(function (response) {
+        return response.json();
+      });
+  }
 
   getCompList(sportsId): Promise<any> {
     return this.baseHttpService
@@ -389,7 +418,7 @@ export class AccountService {
 
   changePwd(oldpwd, newpwd): Promise<any> {
     return this.baseHttpService
-      .Get(this.changePwdUrl + "?oldpwd=" + oldpwd + "&newpwd=" + newpwd)
+      .Get(this.changePwdUrl + "?oldPwd=" + oldpwd + "&newPwd=" + newpwd)
       .then(function (response) {
         return response.json();
       });

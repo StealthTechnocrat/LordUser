@@ -42,7 +42,7 @@ import { FooterComponent } from './components/layouts/footer/footer.component';
 import { TimeCountdownComponent } from './components/time-countdown/time-countdown.component';
 import { ResultsComponent } from './components/results/results.component';
 // import { SetBetComponent } from './components/set-bet/set-bet.component';
-
+import { TimepipeService } from './service/timepipe.service';
 const cookieConfig:NgcCookieConsentConfig = {
   cookie: {
     domain: 'http://fix2club.com' // or 'your.domain.com' // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
@@ -60,7 +60,9 @@ const cookieConfig:NgcCookieConsentConfig = {
 };
 @NgModule({
   declarations: [
+
     AppComponent,
+    TimepipeService,
     HeaderComponent,
     SafePipe,
     SidebarComponent,

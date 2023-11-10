@@ -11,7 +11,7 @@
             <div class="market_area">
                 <div class="tabs_nav">
                     <ul class="nav" id="myTab" role="tablist">
-                        <li class="nav-item" role="presentation" (click)="changeSportsId(4,'Cri')">
+                        <li class="nav-item" role="presentation" (click)="changeSportsId(4)">
                             <a class="nav-link active" id="cricket-tab" data-toggle="tab" href="#cricket" role="tab"
                                 aria-controls="cricket" aria-selected="true">
                                 <div class="tag-live">
@@ -23,7 +23,7 @@
                                 <span class="txt"> Cricket</span>
                             </a>
                         </li>
-                        <li class="nav-item" role="presentation" (click)="changeSportsId(2,'Ten')">
+                        <li class="nav-item" role="presentation" (click)="changeSportsId(2)">
                             <a class="nav-link" id="tennis-tab" data-toggle="tab" href="#tennis" role="tab"
                                 aria-controls="tennis" aria-selected="false">
                                 <div class="tag-live">
@@ -35,7 +35,7 @@
                                 <span class="txt">Tennis</span>
                             </a>
                         </li>
-                        <li class="nav-item" role="presentation" (click)="changeSportsId(1,'Foo')">
+                        <li class="nav-item" role="presentation" (click)="changeSportsId(1)">
                             <a class="nav-link" id="football-tab" data-toggle="tab" href="#football" role="tab"
                                 aria-controls="football" aria-selected="false">
                                 <div class="tag-live">
@@ -77,25 +77,41 @@
                             <div class="event_list_wrappper" *ngIf="rtrnObj!=null">
                                 <!-- First section -->
                                 <div *ngIf="!uISERVICE.inplay">
-                                    <div class="event_l" *ngFor="let evnt of rtrnObj.Events; let i = index">
+                                    <div class="event_l" *ngFor="let evnt of uISERVICE.TopEvents; let i = index">
                                         <div class="row m-0 align-items-center w-100 p-2 marketList">
                                             <div class="col-lg-8 px-0">
                                                 <div class="event_league_name eventLiveInplay">
                                                     <div class="d-flex">
-                                                        <div class="timeCol inplayBlink">
+                                                        <div *ngIf="evnt.Inplay" class="timeCol inplayBlink">
                                                             <div class="animate">
                                                                 <ul class="flip-animation">
                                                                     <li class="time_date ">
-                                                                        <span class="time">{{evnt.EventTime | date:'h:mm
-                                                                            a'}}</span>
+                                                                        <span
+                                                                            class="time">{{evnt.EventTime | date:'h:mm a'}}</span>
                                                                     </li>
                                                                     <li class="">
-                                                                        <span class="in-play-light"><i class="fa fa-play"
+                                                                        <span class="in-play-light"><i
+                                                                                class="fa fa-play"
                                                                                 aria-hidden="true"></i> In-Play </span>
                                                                     </li>
                                                                 </ul>
                                                             </div>
                                                         </div>
+                                                        <div class="timeCol" *ngIf="!evnt.Inplay">
+                                                            <div class="animate">
+                                                                <ul class="flip-animation">
+                                                                    <li class="time_date d-flex flex-column">
+                                                                        <span class="time">{{evnt.EventTime |
+                                                                            date:'dd/MM/yy'}}</span>
+                                                                    </li>
+                                                                    <li>
+                                                                        <span class="time"> {{evnt.EventTime | date:'h:mm
+                                                                            a'}}</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+
                                                         <div class="event_teams"
                                                             routerLink="/set-bet/{{evnt.SportsId}}/{{evnt.EventId}}">
                                                             <div class="d-flex align-items-center  live_blinking">
@@ -113,7 +129,8 @@
                                                                                     </rect>
                                                                                 </clipPath>
                                                                             </defs>
-                                                                            <g id="Repeat_Grid_1" data-name="Repeat Grid 1"
+                                                                            <g id="Repeat_Grid_1"
+                                                                                data-name="Repeat Grid 1"
                                                                                 clip-path="url(#clip-path)">
                                                                                 <g id="Group_3" data-name="Group 3"
                                                                                     transform="translate(-757.532 -436.426)">
@@ -181,7 +198,7 @@
 
                                 <!-- Second section -->
                                 <div *ngIf="uISERVICE.inplay">
-                                    <div class="event_l" *ngFor="let evnt of rtrnObj.Events; let i = index">
+                                    <div class="event_l" *ngFor="let evnt of uISERVICE.TopInplay ; let i = index">
                                         <div class="row m-0 align-items-center w-100 p-2 marketList">
                                             <div class="col-lg-8 px-0">
                                                 <div class="event_league_name eventLiveInplay">
@@ -194,7 +211,8 @@
                                                                             a'}}</span>
                                                                     </li>
                                                                     <li class="">
-                                                                        <span class="in-play-light"><i class="fa fa-play"
+                                                                        <span class="in-play-light"><i
+                                                                                class="fa fa-play"
                                                                                 aria-hidden="true"></i> In-Play </span>
                                                                     </li>
                                                                 </ul>
@@ -217,7 +235,8 @@
                                                                                     </rect>
                                                                                 </clipPath>
                                                                             </defs>
-                                                                            <g id="Repeat_Grid_1" data-name="Repeat Grid 1"
+                                                                            <g id="Repeat_Grid_1"
+                                                                                data-name="Repeat Grid 1"
                                                                                 clip-path="url(#clip-path)">
                                                                                 <g id="Group_3" data-name="Group 3"
                                                                                     transform="translate(-757.532 -436.426)">
@@ -284,8 +303,8 @@
                                 </div>
 
                                 <!-- Third section -->
-                                <div *ngIf="!uISERVICE.inplay">
-                                    <div class="event_l" *ngFor="let evnt of rtrnObj.NxtEvnts; let i = index">
+                                <!-- <div >
+                                    <div class="event_l" *ngFor="let evnt of rtrnObj.TopEvents; let i = index">
                                         <div class="row m-0 align-items-center w-100 p-2 marketList">
                                             <div class="col-lg-8 px-0">
                                                 <div class="event_league_name d-flex align-items-center">
@@ -319,7 +338,8 @@
                                                                                     </rect>
                                                                                 </clipPath>
                                                                             </defs>
-                                                                            <g id="Repeat_Grid_1" data-name="Repeat Grid 1"
+                                                                            <g id="Repeat_Grid_1"
+                                                                                data-name="Repeat Grid 1"
                                                                                 clip-path="url(#clip-path)">
                                                                                 <g id="Group_3" data-name="Group 3"
                                                                                     transform="translate(-757.532 -436.426)">
@@ -381,8 +401,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>                                    </div>
-                                </div>
+                                        </div>
+                                    </div>
+                                </div> -->
                                 <div class="no_events text-center py-2" *ngIf="rtrnObj.Events?.length==0">
                                     <!-- <h6>No Live Event</h6> -->
                                     <h6>There is a no match available at this time.</h6>
