@@ -8,6 +8,7 @@ import { Router } from "@angular/router";
 import * as XLSX from "xlsx";
 import { SignUpModel } from "src/app/Model/Sign_Up_Model";
 import { SignInModel } from "src/app/Model/signin-model";
+import { SharedService } from "src/app/service/shared.service";
 
 @Component({
   selector: "app-header",
@@ -38,11 +39,12 @@ export class HeaderComponent implements OnInit {
   CnfPwd: string = "";
   OldPwd: string = "";
   rtrnObj: any = [];
-  type: string = "inplay";
+
   constructor(
     private accountService: AccountService,
     public uISERVICE: UiService,
-    private router: Router
+    private router: Router,
+    private sharedService: SharedService
   ) {
     const isExpired = this.isTokenExpired(Cookie.get("usersCookies"));
     if (isExpired) {
@@ -51,6 +53,9 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.sharedService.getSportsId().subscribe((data) => {
+      this.sportid = data;
+    });
     this.getLogos();
     this.uISERVICE.tv = false;
     this.uISERVICE.News = JSON.parse(localStorage.getItem("News"));
@@ -143,8 +148,13 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  getInplayEvents() {
+  getInplay() {
     this.uISERVICE.inplay = true;
+    this.getInplayEvents();
+  }
+  
+  restInplay() {
+    this.uISERVICE.inplay = false;
     this.getEvents();
   }
 
@@ -152,18 +162,13 @@ export class HeaderComponent implements OnInit {
     debugger;
     this.rtrnObj = [];
     this.accountService
-      .GetAllEventsBySportsId(this.sportid, this.type)
+      .GetAllEventsBySportsId(this.sportid)
       .then((response) => {
         if (response) {
           this.rtrnObj = response.Result;
-          this.uISERVICE.TopEvents = this.rtrnObj.TopEvents;
-          this.uISERVICE.TopInplay = this.rtrnObj.TopInplay;
-          this.uISERVICE.TopEvents = JSON.parse(
-            localStorage.getItem("TopEvents")
-          );
-          this.uISERVICE.TopInplay = JSON.parse(
-            localStorage.getItem("TopInplay")
-          );
+          console.log("this.rtrnObj", this.rtrnObj);
+          this.sharedService.setEventData(this.rtrnObj.TopEvents);
+          console.log("this.TopEvents", this.uISERVICE.TopEvents);
           this.uISERVICE.cricketEventCount = this.rtrnObj.CricketEventCount;
           this.uISERVICE.cricketInPlayEventCount =
             this.rtrnObj.CricketInplayEventCount;
@@ -180,9 +185,36 @@ export class HeaderComponent implements OnInit {
       });
   }
 
-  restInplay() {
-    this.uISERVICE.inplay = false;
+
+  getInplayEvents() {
+    debugger;
+    if(this.sportid == null || this.sportid == undefined){
+this.sportid = 4;
+    }
+    this.rtrnObj = [];
+    this.accountService
+      .GetInplayEventsBySportsId(this.sportid)
+      .then((response) => {
+        if (response) {
+          this.rtrnObj = response.Result;
+          this.sharedService.setEventData(this.rtrnObj.TopEvents);
+          this.uISERVICE.cricketEventCount = this.rtrnObj.CricketEventCount;
+          this.uISERVICE.cricketInPlayEventCount =
+            this.rtrnObj.CricketInplayEventCount;
+          this.uISERVICE.tennisEventCount = this.rtrnObj.TennisEventCount;
+          this.uISERVICE.tennisInPlayEventCount =
+            this.rtrnObj.TennisInplayEventCount;
+          this.uISERVICE.footballEventCount = this.rtrnObj.FootballEventCount;
+          this.uISERVICE.footballInPlayEventCount =
+            this.rtrnObj.FootbalInplayEventCount;
+          console.log("evt", this.rtrnObj);
+        } else {
+          this.rtrnObj = [];
+        }
+      });
   }
+
+ 
 
   isTokenExpired(token: string): boolean {
     try {

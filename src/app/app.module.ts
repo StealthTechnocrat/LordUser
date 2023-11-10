@@ -43,6 +43,7 @@ import { TimeCountdownComponent } from './components/time-countdown/time-countdo
 import { ResultsComponent } from './components/results/results.component';
 // import { SetBetComponent } from './components/set-bet/set-bet.component';
 import { TimepipeService } from './service/timepipe.service';
+import { SharedService } from './service/shared.service';
 const cookieConfig:NgcCookieConsentConfig = {
   cookie: {
     domain: 'http://fix2club.com' // or 'your.domain.com' // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
@@ -105,7 +106,7 @@ import { ToastrModule } from 'ngx-toastr';
     DragDropModule,
   ],
   //exports: [SetBetComponent],
-  providers: [DatePipe,{ provide: LocationStrategy, useClass: HashLocationStrategy },WindowService, { provide: NgcCookieConsentConfig, useValue: config }, NgcCookieConsentService, AccountService, BaseHttpService, AuthGuardService, UiService, PagerService],
+  providers: [DatePipe, SharedService, { provide: LocationStrategy, useClass: HashLocationStrategy },WindowService, { provide: NgcCookieConsentConfig, useValue: config }, NgcCookieConsentService, AccountService, BaseHttpService, AuthGuardService, UiService, PagerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

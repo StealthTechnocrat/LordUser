@@ -77,10 +77,10 @@
                             <div class="event_list_wrappper" *ngIf="rtrnObj!=null">
                                 <!-- First section -->
                                 <div *ngIf="!uISERVICE.inplay">
-                                    <div class="event_l" *ngFor="let evnt of uISERVICE.TopEvents; let i = index">
+                                    <div class="event_l" *ngFor="let evnt of topEvents; let i = index">
                                         <div class="row m-0 align-items-center w-100 p-2 marketList">
                                             <div class="col-lg-8 px-0">
-                                                <div class="event_league_name eventLiveInplay">
+                                                <div class="event_league_name d-flex align-items-center eventLiveInplay">
                                                     <div class="d-flex">
                                                         <div *ngIf="evnt.Inplay" class="timeCol inplayBlink">
                                                             <div class="animate">
@@ -198,10 +198,10 @@
 
                                 <!-- Second section -->
                                 <div *ngIf="uISERVICE.inplay">
-                                    <div class="event_l" *ngFor="let evnt of uISERVICE.TopInplay ; let i = index">
+                                    <div class="event_l" *ngFor="let evnt of topEvents ; let i = index">
                                         <div class="row m-0 align-items-center w-100 p-2 marketList">
                                             <div class="col-lg-8 px-0">
-                                                <div class="event_league_name eventLiveInplay">
+                                                <div class="event_league_name d-flex align-items-center  eventLiveInplay">
                                                     <div class="d-flex">
                                                         <div class="timeCol inplayBlink">
                                                             <div class="animate">

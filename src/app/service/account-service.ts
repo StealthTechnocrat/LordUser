@@ -50,12 +50,20 @@ export class AccountService {
   private getAllInplayUrl = environment.apiBaseUrl + "Event/GetInplayEvents";
   private getUpcomingEventsUrl = environment.apiBaseUrl + "Event/GetUpcomingEvents";
   private GetAllEventsBySportsIdUrl = environment.apiBaseUrl + "Event/GetAllEventsBySportsId";
+  private GetInplayEventsBySportsIdUrl = environment.apiBaseUrl + "Event/GetInplayEventsBySportsId";
 
 
-
-  GetAllEventsBySportsId(sportsId, type): Promise<any> {
+  GetInplayEventsBySportsId(sportsId): Promise<any> {
     return this.baseHttpService
-      .Get(this.GetAllEventsBySportsIdUrl + "?sportsId=" + sportsId + "&type=" + type)
+      .Get(this.GetInplayEventsBySportsIdUrl + "?sportsId=" + sportsId)
+      .then(function (response) {
+        return response.json();
+      });
+  }
+
+  GetAllEventsBySportsId(sportsId): Promise<any> {
+    return this.baseHttpService
+      .Get(this.GetAllEventsBySportsIdUrl + "?sportsId=" + sportsId)
       .then(function (response) {
         return response.json();
       });

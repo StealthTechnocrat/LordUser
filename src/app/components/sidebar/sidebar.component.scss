@@ -646,6 +646,12 @@
 .upcoming_games_list {
     li {
         transition: all .5s;
+        .time{
+            font-size: 10px;
+            display: flex;
+            white-space: pre;
+            justify-content: center;
+        }
         &:hover{
             margin-left: 4px;
             transition: all .5s;
@@ -740,10 +746,14 @@
                         color: #5c6060!important;
                         margin-bottom: 46px!important;
                         text-transform: uppercase;
+                        .day-name{
+                            color: #fff;
+                        }
                         &.time_date{
                             display: block;
-                            top: 5px;
+                            top: 9px;
                             position: relative;
+                            
                         }
                         .date, .time{
                             color: #fff!important;
@@ -762,6 +772,7 @@
                             justify-content: center;
                             gap: 4px;
                             font-weight: 600;
+                            top: 4px;
                             .icon-holder-verysmall {
                                 width: 8px;
                                 height: 11px;
