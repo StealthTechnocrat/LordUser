@@ -6,37 +6,37 @@
                     <div *ngIf="showTimer" class="count-down-timer">
                         <!-- <p>Countdown to {{ currentTime }}</p> -->
                         <div class="wrapper">
-                          <div class="times">
-                            <div class="d-flex flex-column justify-content-center align-items-center mx-1">
-                              <p>{{ days }}</p> <!-- Use {{ }} to display the value -->
-                              <span class="disc">Days</span>
+                            <div class="times">
+                                <div class="d-flex flex-column justify-content-center align-items-center mx-1">
+                                    <p>{{ days }}</p> <!-- Use {{ }} to display the value -->
+                                    <span class="disc">Days</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center align-items-center mx-1">
+                                    <p>{{ hours }}</p> <!-- Use {{ }} to display the value -->
+                                    <span class="disc">Hours</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center align-items-center mx-1">
+                                    <p>{{ minutes }}</p> <!-- Use {{ }} to display the value -->
+                                    <span class="disc">Minutes</span>
+                                </div>
+                                <div class="d-flex flex-column justify-content-center align-items-center mx-1">
+                                    <p>{{ seconds }}</p> <!-- Use {{ }} to display the value -->
+                                    <span class="disc">Seconds</span>
+                                </div>
                             </div>
-                            <div class="d-flex flex-column justify-content-center align-items-center mx-1">
-                              <p>{{ hours }}</p> <!-- Use {{ }} to display the value -->
-                              <span class="disc">Hours</span>
-                            </div>
-                            <div class="d-flex flex-column justify-content-center align-items-center mx-1">
-                              <p>{{ minutes }}</p> <!-- Use {{ }} to display the value -->
-                              <span class="disc">Minutes</span>
-                            </div>
-                            <div class="d-flex flex-column justify-content-center align-items-center mx-1">
-                              <p>{{ seconds }}</p> <!-- Use {{ }} to display the value -->
-                              <span class="disc">Seconds</span>
-                            </div>
-                          </div>
                         </div>
-                      </div>
-                      <div *ngIf="!showTimer">
+                    </div>
+                    <div *ngIf="!showTimer">
                         {{rtrnObj.SeriesName}}
-                      </div>
-                      
+                    </div>
+
                     <!-- <app-time-countdown></app-time-countdown> -->
                 </h6>
             </div>
             <div class="market_assets">
                 <ul class="nav nav-pills list-unstyled d-flex m-0 p-0" id="pills-tab" role="tablist">
                     <li>
-                        <button class="nav-link bg-transparent border-0 p-0 " id="pills-scorecard-tab"
+                        <button class="nav-link bg-transparent border-0 p-0 active" id="pills-scorecard-tab"
                             data-toggle="pill" data-target="#pills-scorecard" type="button" role="tab"
                             aria-controls="pills-scorecard" aria-selected="true">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 90.873 90.873">
@@ -100,7 +100,7 @@
                                 <div class="date-time">
                                     <span class="day-name">{{ evtTime | date:'EEEE' }}</span>
                                     <span class="time">{{ evtTime | date:'h:mm a' }}</span>
-                                    
+
                                 </div>
                             </li>
                         </ul>
@@ -113,13 +113,42 @@
         </div>
     </div>
     <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane px-2 fade " id="pills-scorecard" role="tabpanel" aria-labelledby="pills-scorecard-tab">
-            ...
+        <div class="tab-pane px-2 fade active show" id="pills-scorecard" role="tabpanel" aria-labelledby="pills-scorecard-tab">
+            <div class="scrore_area cricket_score" *ngIf="rtrnObj!=null && rtrnObj.Inplay">
+                <iframe width="100%" height="200" [src]="scoreUrlFrame" title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
         </div>
         <div class="tab-pane px-2 fade " id="pills-livematch" role="tabpanel" aria-labelledby="pills-livematch-tab">
             <div class="mobile_tv">
                 <div class="collapse" id="liveTv" *ngIf="uISERVICE.tv">
                     <div class="inner_tv">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <h6>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 311.106 228.333">
+                                    <g id="live-streaming" transform="translate(-92.234 0.001)">
+                                        <path id="Path_2" data-name="Path 2"
+                                            d="M247.828,160.641a46.485,46.485,0,1,0-32.914-13.586,46.485,46.485,0,0,0,32.914,13.586Zm-11.723-58.129a16.462,16.462,0,1,1-4.839,11.657,16.617,16.617,0,0,1,4.839-11.657Zm0,0"
+                                            fill="#242424"></path>
+                                        <path id="Path_3" data-name="Path 3"
+                                            d="M302.637,179.762a15,15,0,0,0,21.215.023,92.674,92.674,0,0,0,0-131.234A15,15,0,1,0,302.66,69.785a62.675,62.675,0,0,1,0,88.766,15,15,0,0,0-.023,21.211Zm0,0"
+                                            fill="#242424"></path>
+                                        <path id="Path_4" data-name="Path 4"
+                                            d="M171.723,179.785a15,15,0,1,0,21.191-21.234,62.68,62.68,0,0,1,0-88.77,15,15,0,1,0-21.192-21.234,92.679,92.679,0,0,0,0,131.238Zm0,0"
+                                            fill="#242424"></path>
+                                        <path id="Path_9" data-name="Path 9"
+                                            d="M373.34,114.168a124.284,124.284,0,0,1-36.75,88.547,15,15,0,1,0,21.191,21.234,155.047,155.047,0,0,0,0-219.562A15,15,0,1,0,336.59,25.622a124.278,124.278,0,0,1,36.75,88.547Zm0,0"
+                                            fill="#242424"></path>
+                                        <path id="Path_10" data-name="Path 10"
+                                            d="M148.391,228.332a15,15,0,0,0,10.594-25.617,125.054,125.054,0,0,1,0-177.1A15,15,0,1,0,137.792,4.382a155.052,155.052,0,0,0,0,219.566,14.957,14.957,0,0,0,10.6,4.383Zm0,0"
+                                            fill="#242424"></path>
+                                    </g>
+                                </svg>
+                                Live Match
+                            </h6>
+                        </div>
                         <iframe width="100%" height="200" [src]="uISERVICE.IframeUrl" title="YouTube video player"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -132,20 +161,24 @@
     <div class="accordianods">
         <ul class="nav nav-pills list-unstyled d-flex m-0 p-0" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button (click)="selectMarket('all')" class="nav-link active" id="pills-all-tab" data-toggle="pill" data-target="#pills-all"
-                    type="button" role="tab" aria-controls="pills-all" aria-selected="true">All</button>
+                <button (click)="selectMarket('all')" class="nav-link active" id="pills-all-tab" data-toggle="pill"
+                    data-target="#pills-all" type="button" role="tab" aria-controls="pills-all"
+                    aria-selected="true">All</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button (click)="selectMarket('odds')" class="nav-link" id="pills-odds-tab" data-toggle="pill" data-target="#pills-odds"
-                    type="button" role="tab" aria-controls="pills-odds" aria-selected="false">Match Odds</button>
+                <button (click)="selectMarket('odds')" class="nav-link" id="pills-odds-tab" data-toggle="pill"
+                    data-target="#pills-odds" type="button" role="tab" aria-controls="pills-odds"
+                    aria-selected="false">Match Odds</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button (click)="selectMarket('book')" class="nav-link" id="pills-bookmaker-tab" data-toggle="pill" data-target="#pills-bookmaker"
-                    type="button" role="tab" aria-controls="pills-bookmaker" aria-selected="false">Bookmaker</button>
+                <button (click)="selectMarket('book')" class="nav-link" id="pills-bookmaker-tab" data-toggle="pill"
+                    data-target="#pills-bookmaker" type="button" role="tab" aria-controls="pills-bookmaker"
+                    aria-selected="false">Bookmaker</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button (click)="selectMarket('ssn')" class="nav-link" id="pills-fancy-tab" data-toggle="pill" data-target="#pills-fancy"
-                    type="button" role="tab" aria-controls="pills-fancy" aria-selected="false">Fancy</button>
+                <button (click)="selectMarket('ssn')" class="nav-link" id="pills-fancy-tab" data-toggle="pill"
+                    data-target="#pills-fancy" type="button" role="tab" aria-controls="pills-fancy"
+                    aria-selected="false">Fancy</button>
             </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">
@@ -153,11 +186,11 @@
             <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
                 <div *ngIf="marketType=='all'">
                     <div class="tab_accordion" *ngFor="let mrkt of rtrnObj.markets;let i=index">
-                        <button class="btn accor_btn" type="button" data-toggle="collapse" [attr.data-target]="'#matchOdds' + i"
-                            aria-expanded="true" aria-controls="matchOdds">
+                        <button class="btn accor_btn" type="button" data-toggle="collapse"
+                            [attr.data-target]="'#matchOdds' + i" aria-expanded="true" aria-controls="matchOdds">
                             <div class="tab_name">
                                 <i class="fa fa-circle"></i>
-                                 <span class="txt ml-2 ">{{mrkt.marketName}}</span>
+                                <span class="txt ml-2 ">{{mrkt.marketName}}</span>
                                 <small class="pl-3">Min:{{mrkt.MinStake}} &nbsp;Max:{{mrkt.MaxStake}}</small>
                             </div>
                             <svg class="svg-icon ml-auto mr-md-3">
@@ -213,37 +246,40 @@
                         </div>
                     </div>
                 </div>
-             
-                
-                
-                <div class="tab_accordion" *ngIf="sportsId==4 && sesnObj?.length>0">
-                    <button class="btn accor_btn" type="button" data-toggle="collapse" data-target="#fancyBets" aria-expanded="true"
-                        aria-controls="fancyBets">
+
+
+
+                <div class="tab_accordion" *ngIf="sportsId==4 && overRuns?.length>0">
+                    <button class="btn accor_btn" type="button" data-toggle="collapse" data-target="#fancyBets"
+                        aria-expanded="true" aria-controls="fancyBets">
                         <div class="tab_name">
-                           
-                            <span class="txt ml-2 ">Fancy</span>
-                            <small class="d-md-none pl-3">Min:{{matchData.MinStake}} &nbsp;Max:{{matchData.MaxStake}}</small>
+
+                            <span class="txt ml-2 ">FANCY</span>
+                            <small class="d-md-none pl-3">Min:{{matchData.MinStake}}
+                                &nbsp;Max:{{matchData.MaxStake}}</small>
                         </div>
                         <svg class="svg-icon ml-auto mr-md-3">
                             <use href="/assets/icons/icons_defs.svg#svg__arrow"></use>
-                        </svg> 
+                        </svg>
                     </button>
-                    <div  class="collapse show" id="fancyBets">
+                    <div class="collapse show" id="fancyBets">
                         <div *ngIf="marketType=='ssn' || marketType =='all'"
-                        class="inner_bet_table mob-BackLay fancyBackLay">
-                            <div class="bet_table_row flex-wrap fancyTableCol" *ngFor="let ssn of sesnObj;let s=index"
+                            class="inner_bet_table mob-BackLay fancyBackLay">
+                            <div class="bet_table_row flex-wrap fancyTableCol" *ngFor="let ssn of overRuns;let s=index"
                                 [ngClass]="{'bet_locked':rtrnObj.status || rtrnObj.EventFancy || ssn.GameStatus=='SUSPENDED' || ssn.BackPrice1=='0'}">
                                 <div class="d-flex w-100">
                                     <div class="nation_name">
-                                        <p class="d-flex align-items-center"><i class="fa fa-circle mr-1" style="font-size: 8px; color: #00b181;" aria-hidden="true"></i>
-                                             {{ssn.RunnerName}}
-                                             </p>
+                                        <p class="d-flex align-items-center"><i class="fa fa-circle mr-1"
+                                                style="font-size: 8px; color: #00b181;" aria-hidden="true"></i>
+                                            {{ssn.RunnerName}}
+                                        </p>
                                     </div>
                                     <div class="bl_box content-none mob-noneCont"></div>
                                     <div class="bl_box content-none mob-noneCont"></div>
                                     <div class="bl_box content-none fancy_modalBox d-none">
-                                        <button class="btn p-0 fancy_modal_btn" data-toggle="modal" data-target="#fancybookModal"><img
-                                                style="width: 20px;" src="/assets/img/ladder.svg" alt=""
+                                        <button class="btn p-0 fancy_modal_btn" data-toggle="modal"
+                                            data-target="#fancybookModal"><img style="width: 20px;"
+                                                src="/assets/img/ladder.svg" alt=""
                                                 (click)="fancyBook(ssn.SelectionId,ssn.RunnerName)"></button>
                                     </div>
                                     <div class="bl_boxMain">
@@ -258,123 +294,395 @@
                                             <span class="size">{{ssn.BackSize1}}</span>
                                         </div>
                                     </div>
-                
+
                                     <div class="bl_box fancy_bx content-none mobNone">
                                         <span class="value">Min: {{matchData.MinStake}}</span>
                                         <span class="value">Max: {{matchData.MaxStake}}</span>
                                     </div>
                                 </div>
-                                <div class="w-100 mt-1 betslip_hide" [ngClass]="{'betSlip_show': uISERVICE.fancySlip[s]}">
+                                <div class="w-100 mt-1 betslip_hide"
+                                    [ngClass]="{'betSlip_show': uISERVICE.fancySlip[s]}">
                                     <app-bet-slip></app-bet-slip>
                                 </div>
                             </div>
-                
+
                         </div>
                     </div>
                 </div>
-                
-                <!-- <div class="modal fade fancybook_modal" id="fancybookModal" tabindex="-1" role="dialog"
-                    aria-labelledby="fancybookModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="fancybookModalLabel">{{fancy}}</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered mb-0">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Runs</th>
-                                                <th scope="col">Position</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr *ngFor="let ssn of sessonBookList">
-                                                <td>{{ssn.RunValue}}</td>
-                                                <td class="red" [ngClass]="{'red':ssn.Pl<0,'green':ssn.Pl>=0}">{{ssn.Pl}}</td>
-                                            </tr>
-                                            <tr *ngIf="sessonBookList?.length==0">
-                                                <td colspan="2">
-                                                    <h6 class="text-center">No Record</h6>
-                                                </td>
-                                            </tr>
-                
-                                        </tbody>
-                                    </table>
+                <div class="tab_accordion" *ngIf="sportsId==4 && wicketsFall?.length>0">
+                    <button class="btn accor_btn" type="button" data-toggle="collapse" data-target="#fancyBets"
+                        aria-expanded="true" aria-controls="fancyBets">
+                        <div class="tab_name">
+
+                            <span class="txt ml-2 ">WICKET</span>
+                            <small class="d-md-none pl-3">Min:{{matchData.MinStake}}
+                                &nbsp;Max:{{matchData.MaxStake}}</small>
+                        </div>
+                        <svg class="svg-icon ml-auto mr-md-3">
+                            <use href="/assets/icons/icons_defs.svg#svg__arrow"></use>
+                        </svg>
+                    </button>
+                    <div class="collapse show" id="fancyBets">
+                        <div *ngIf="marketType=='ssn' || marketType =='all'"
+                            class="inner_bet_table mob-BackLay fancyBackLay">
+                            <div class="bet_table_row flex-wrap fancyTableCol"
+                                *ngFor="let ssn of wicketsFall;let s=index"
+                                [ngClass]="{'bet_locked':rtrnObj.status || rtrnObj.EventFancy || ssn.GameStatus=='SUSPENDED' || ssn.BackPrice1=='0'}">
+                                <div class="d-flex w-100">
+                                    <div class="nation_name">
+                                        <p class="d-flex align-items-center"><i class="fa fa-circle mr-1"
+                                                style="font-size: 8px; color: #00b181;" aria-hidden="true"></i>
+                                            {{ssn.RunnerName}}
+                                        </p>
+                                    </div>
+                                    <div class="bl_box content-none mob-noneCont"></div>
+                                    <div class="bl_box content-none mob-noneCont"></div>
+                                    <div class="bl_box content-none fancy_modalBox d-none">
+                                        <button class="btn p-0 fancy_modal_btn" data-toggle="modal"
+                                            data-target="#fancybookModal"><img style="width: 20px;"
+                                                src="/assets/img/ladder.svg" alt=""
+                                                (click)="fancyBook(ssn.SelectionId,ssn.RunnerName)"></button>
+                                    </div>
+                                    <div class="bl_boxMain">
+                                        <div class="bl_box lay"
+                                            (click)="setValues('No',ssn.LayPrice1,ssn.LaySize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            <span class="odds">{{ssn.LayPrice1}}</span>
+                                            <span class="size">{{ssn.LaySize1}}</span>
+                                        </div>
+                                        <div class="bl_box back"
+                                            (click)="setValues('Yes',ssn.BackPrice1,ssn.BackSize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            <span class="odds">{{ssn.BackPrice1}}</span>
+                                            <span class="size">{{ssn.BackSize1}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="bl_box fancy_bx content-none mobNone">
+                                        <span class="value">Min: {{matchData.MinStake}}</span>
+                                        <span class="value">Max: {{matchData.MaxStake}}</span>
+                                    </div>
+                                </div>
+                                <div class="w-100 mt-1 betslip_hide"
+                                    [ngClass]="{'betSlip_show': uISERVICE.fancySlip[s]}">
+                                    <app-bet-slip></app-bet-slip>
                                 </div>
                             </div>
+
                         </div>
                     </div>
-                </div> -->
+                </div>
+
+                <div class="tab_accordion" *ngIf="sportsId==4 && boundaries?.length>0">
+                    <button class="btn accor_btn" type="button" data-toggle="collapse" data-target="#fancyBets"
+                        aria-expanded="true" aria-controls="fancyBets">
+                        <div class="tab_name">
+
+                            <span class="txt ml-2 ">BOUNDARIES</span>
+                            <small class="d-md-none pl-3">Min:{{matchData.MinStake}}
+                                &nbsp;Max:{{matchData.MaxStake}}</small>
+                        </div>
+                        <svg class="svg-icon ml-auto mr-md-3">
+                            <use href="/assets/icons/icons_defs.svg#svg__arrow"></use>
+                        </svg>
+                    </button>
+                    <div class="collapse show" id="fancyBets">
+                        <div *ngIf="marketType=='ssn' || marketType =='all'"
+                            class="inner_bet_table mob-BackLay fancyBackLay">
+                            <div class="bet_table_row flex-wrap fancyTableCol"
+                                *ngFor="let ssn of boundaries;let s=index"
+                                [ngClass]="{'bet_locked':rtrnObj.status || rtrnObj.EventFancy || ssn.GameStatus=='SUSPENDED' || ssn.BackPrice1=='0'}">
+                                <div class="d-flex w-100">
+                                    <div class="nation_name">
+                                        <p class="d-flex align-items-center"><i class="fa fa-circle mr-1"
+                                                style="font-size: 8px; color: #00b181;" aria-hidden="true"></i>
+                                            {{ssn.RunnerName}}
+                                        </p>
+                                    </div>
+                                    <div class="bl_box content-none mob-noneCont"></div>
+                                    <div class="bl_box content-none mob-noneCont"></div>
+                                    <div class="bl_box content-none fancy_modalBox d-none">
+                                        <button class="btn p-0 fancy_modal_btn" data-toggle="modal"
+                                            data-target="#fancybookModal"><img style="width: 20px;"
+                                                src="/assets/img/ladder.svg" alt=""
+                                                (click)="fancyBook(ssn.SelectionId,ssn.RunnerName)"></button>
+                                    </div>
+                                    <div class="bl_boxMain">
+                                        <div class="bl_box lay"
+                                            (click)="setValues('No',ssn.LayPrice1,ssn.LaySize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            <span class="odds">{{ssn.LayPrice1}}</span>
+                                            <span class="size">{{ssn.LaySize1}}</span>
+                                        </div>
+                                        <div class="bl_box back"
+                                            (click)="setValues('Yes',ssn.BackPrice1,ssn.BackSize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            <span class="odds">{{ssn.BackPrice1}}</span>
+                                            <span class="size">{{ssn.BackSize1}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="bl_box fancy_bx content-none mobNone">
+                                        <span class="value">Min: {{matchData.MinStake}}</span>
+                                        <span class="value">Max: {{matchData.MaxStake}}</span>
+                                    </div>
+                                </div>
+                                <div class="w-100 mt-1 betslip_hide"
+                                    [ngClass]="{'betSlip_show': uISERVICE.fancySlip[s]}">
+                                    <app-bet-slip></app-bet-slip>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab_accordion" *ngIf="sportsId==4 && ballFace?.length>0">
+                    <button class="btn accor_btn" type="button" data-toggle="collapse" data-target="#fancyBets"
+                        aria-expanded="true" aria-controls="fancyBets">
+                        <div class="tab_name">
+
+                            <span class="txt ml-2 ">BALL FACE</span>
+                            <small class="d-md-none pl-3">Min:{{matchData.MinStake}}
+                                &nbsp;Max:{{matchData.MaxStake}}</small>
+                        </div>
+                        <svg class="svg-icon ml-auto mr-md-3">
+                            <use href="/assets/icons/icons_defs.svg#svg__arrow"></use>
+                        </svg>
+                    </button>
+                    <div class="collapse show" id="fancyBets">
+                        <div *ngIf="marketType=='ssn' || marketType =='all'"
+                            class="inner_bet_table mob-BackLay fancyBackLay">
+                            <div class="bet_table_row flex-wrap fancyTableCol" *ngFor="let ssn of ballFace;let s=index"
+                                [ngClass]="{'bet_locked':rtrnObj.status || rtrnObj.EventFancy || ssn.GameStatus=='SUSPENDED' || ssn.BackPrice1=='0'}">
+                                <div class="d-flex w-100">
+                                    <div class="nation_name">
+                                        <p class="d-flex align-items-center"><i class="fa fa-circle mr-1"
+                                                style="font-size: 8px; color: #00b181;" aria-hidden="true"></i>
+                                            {{ssn.RunnerName}}
+                                        </p>
+                                    </div>
+                                    <div class="bl_box content-none mob-noneCont"></div>
+                                    <div class="bl_box content-none mob-noneCont"></div>
+                                    <div class="bl_box content-none fancy_modalBox d-none">
+                                        <button class="btn p-0 fancy_modal_btn" data-toggle="modal"
+                                            data-target="#fancybookModal"><img style="width: 20px;"
+                                                src="/assets/img/ladder.svg" alt=""
+                                                (click)="fancyBook(ssn.SelectionId,ssn.RunnerName)"></button>
+                                    </div>
+                                    <div class="bl_boxMain">
+                                        <div class="bl_box lay"
+                                            (click)="setValues('No',ssn.LayPrice1,ssn.LaySize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            <span class="odds">{{ssn.LayPrice1}}</span>
+                                            <span class="size">{{ssn.LaySize1}}</span>
+                                        </div>
+                                        <div class="bl_box back"
+                                            (click)="setValues('Yes',ssn.BackPrice1,ssn.BackSize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            <span class="odds">{{ssn.BackPrice1}}</span>
+                                            <span class="size">{{ssn.BackSize1}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="bl_box fancy_bx content-none mobNone">
+                                        <span class="value">Min: {{matchData.MinStake}}</span>
+                                        <span class="value">Max: {{matchData.MaxStake}}</span>
+                                    </div>
+                                </div>
+                                <div class="w-100 mt-1 betslip_hide"
+                                    [ngClass]="{'betSlip_show': uISERVICE.fancySlip[s]}">
+                                    <app-bet-slip></app-bet-slip>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab_accordion" *ngIf="sportsId==4 && ballsWicketLost?.length>0">
+                    <button class="btn accor_btn" type="button" data-toggle="collapse" data-target="#fancyBets"
+                        aria-expanded="true" aria-controls="fancyBets">
+                        <div class="tab_name">
+
+                            <span class="txt ml-2 ">WICKET LOST</span>
+                            <small class="d-md-none pl-3">Min:{{matchData.MinStake}}
+                                &nbsp;Max:{{matchData.MaxStake}}</small>
+                        </div>
+                        <svg class="svg-icon ml-auto mr-md-3">
+                            <use href="/assets/icons/icons_defs.svg#svg__arrow"></use>
+                        </svg>
+                    </button>
+                    <div class="collapse show" id="fancyBets">
+                        <div *ngIf="marketType=='ssn' || marketType =='all'"
+                            class="inner_bet_table mob-BackLay fancyBackLay">
+                            <div class="bet_table_row flex-wrap fancyTableCol"
+                                *ngFor="let ssn of ballsWicketLost;let s=index"
+                                [ngClass]="{'bet_locked':rtrnObj.status || rtrnObj.EventFancy || ssn.GameStatus=='SUSPENDED' || ssn.BackPrice1=='0'}">
+                                <div class="d-flex w-100">
+                                    <div class="nation_name">
+                                        <p class="d-flex align-items-center"><i class="fa fa-circle mr-1"
+                                                style="font-size: 8px; color: #00b181;" aria-hidden="true"></i>
+                                            {{ssn.RunnerName}}
+                                        </p>
+                                    </div>
+                                    <div class="bl_box content-none mob-noneCont"></div>
+                                    <div class="bl_box content-none mob-noneCont"></div>
+                                    <div class="bl_box content-none fancy_modalBox d-none">
+                                        <button class="btn p-0 fancy_modal_btn" data-toggle="modal"
+                                            data-target="#fancybookModal"><img style="width: 20px;"
+                                                src="/assets/img/ladder.svg" alt=""
+                                                (click)="fancyBook(ssn.SelectionId,ssn.RunnerName)"></button>
+                                    </div>
+                                    <div class="bl_boxMain">
+                                        <div class="bl_box lay"
+                                            (click)="setValues('No',ssn.LayPrice1,ssn.LaySize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            <span class="odds">{{ssn.LayPrice1}}</span>
+                                            <span class="size">{{ssn.LaySize1}}</span>
+                                        </div>
+                                        <div class="bl_box back"
+                                            (click)="setValues('Yes',ssn.BackPrice1,ssn.BackSize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            <span class="odds">{{ssn.BackPrice1}}</span>
+                                            <span class="size">{{ssn.BackSize1}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="bl_box fancy_bx content-none mobNone">
+                                        <span class="value">Min: {{matchData.MinStake}}</span>
+                                        <span class="value">Max: {{matchData.MaxStake}}</span>
+                                    </div>
+                                </div>
+                                <div class="w-100 mt-1 betslip_hide"
+                                    [ngClass]="{'betSlip_show': uISERVICE.fancySlip[s]}">
+                                    <app-bet-slip></app-bet-slip>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab_accordion" *ngIf="sportsId==4 && otherFancy?.length>0">
+                    <button class="btn accor_btn" type="button" data-toggle="collapse" data-target="#fancyBets"
+                        aria-expanded="true" aria-controls="fancyBets">
+                        <div class="tab_name">
+
+                            <span class="txt ml-2 ">OTHER FANCY</span>
+                            <small class="d-md-none pl-3">Min:{{matchData.MinStake}}
+                                &nbsp;Max:{{matchData.MaxStake}}</small>
+                        </div>
+                        <svg class="svg-icon ml-auto mr-md-3">
+                            <use href="/assets/icons/icons_defs.svg#svg__arrow"></use>
+                        </svg>
+                    </button>
+                    <div class="collapse show" id="fancyBets">
+                        <div *ngIf="marketType=='ssn' || marketType =='all'"
+                            class="inner_bet_table mob-BackLay fancyBackLay">
+                            <div class="bet_table_row flex-wrap fancyTableCol"
+                                *ngFor="let ssn of otherFancy;let s=index"
+                                [ngClass]="{'bet_locked':rtrnObj.status || rtrnObj.EventFancy || ssn.GameStatus=='SUSPENDED' || ssn.BackPrice1=='0'}">
+                                <div class="d-flex w-100">
+                                    <div class="nation_name">
+                                        <p class="d-flex align-items-center"><i class="fa fa-circle mr-1"
+                                                style="font-size: 8px; color: #00b181;" aria-hidden="true"></i>
+                                            {{ssn.RunnerName}}
+                                        </p>
+                                    </div>
+                                    <div class="bl_box content-none mob-noneCont"></div>
+                                    <div class="bl_box content-none mob-noneCont"></div>
+                                    <div class="bl_box content-none fancy_modalBox d-none">
+                                        <button class="btn p-0 fancy_modal_btn" data-toggle="modal"
+                                            data-target="#fancybookModal"><img style="width: 20px;"
+                                                src="/assets/img/ladder.svg" alt=""
+                                                (click)="fancyBook(ssn.SelectionId,ssn.RunnerName)"></button>
+                                    </div>
+                                    <div class="bl_boxMain">
+                                        <div class="bl_box lay"
+                                            (click)="setValues('No',ssn.LayPrice1,ssn.LaySize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            <span class="odds">{{ssn.LayPrice1}}</span>
+                                            <span class="size">{{ssn.LaySize1}}</span>
+                                        </div>
+                                        <div class="bl_box back"
+                                            (click)="setValues('Yes',ssn.BackPrice1,ssn.BackSize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            <span class="odds">{{ssn.BackPrice1}}</span>
+                                            <span class="size">{{ssn.BackSize1}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="bl_box fancy_bx content-none mobNone">
+                                        <span class="value">Min: {{matchData.MinStake}}</span>
+                                        <span class="value">Max: {{matchData.MaxStake}}</span>
+                                    </div>
+                                </div>
+                                <div class="w-100 mt-1 betslip_hide"
+                                    [ngClass]="{'betSlip_show': uISERVICE.fancySlip[s]}">
+                                    <app-bet-slip></app-bet-slip>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <div class="tab-pane fade" id="pills-odds" role="tabpanel" aria-labelledby="pills-odds-tab">
-                 <div *ngIf="marketType=='odds'">
+                <div *ngIf="marketType=='odds'">
                     <div class="tab_accordion" *ngFor="let mrkt of rtrnObj.markets;let i=index">
                         <ng-container *ngIf="mrkt.marketName === 'Match Odds'">
-                        <button class="btn accor_btn" type="button" data-toggle="collapse" [attr.data-target]="'#matchOdds' + i"
-                            aria-expanded="true" aria-controls="matchOdds">
-                            <div class="tab_name">
-                                <i class="fa fa-circle"></i>
-                                 <span class="txt ml-2 ">{{mrkt.marketName}}</span>
-                                <small class="pl-3">Min:{{mrkt.MinStake}} &nbsp;Max:{{mrkt.MaxStake}}</small>
-                            </div>
-                            <svg class="svg-icon ml-auto mr-md-3">
-                                <use href="/assets/icons/icons_defs.svg#svg__arrow"></use>
-                            </svg>
-                        </button>
-                        <div class="collapse show" [attr.id]="'matchOdds' + i">
-                            <div class="inner_bet_table mob-BackLay">
-                                <div class="bet_table_row rowHead justify-content-end">
-                                    <div class="backHead">
-                                        Back
-                                    </div>
-                                    <div class="LayHead">
-                                        Lay
-                                    </div>
+                            <button class="btn accor_btn" type="button" data-toggle="collapse"
+                                [attr.data-target]="'#matchOdds' + i" aria-expanded="true" aria-controls="matchOdds">
+                                <div class="tab_name">
+                                    <i class="fa fa-circle"></i>
+                                    <span class="txt ml-2 ">{{mrkt.marketName}}</span>
+                                    <small class="pl-3">Min:{{mrkt.MinStake}} &nbsp;Max:{{mrkt.MaxStake}}</small>
                                 </div>
-                                <div class="bet_table_row" *ngFor="let rnr of mrkt.runners;let r=index"
-                                    [ngClass]="{'bet_locked':rtrnObj.status || mrkt.status || (rnr.runners.availableToLay[0].price==0 && rnr.runners.availableToBack[0].price==0)}">
-                                    <div class="nation_name">
-                                        <p>{{rnr.RunnerName}}</p>
-                                    </div>
-                                    <div class="bl_boxMain">
-                                        <div class="bl_box back back_2">
-                                            <span class="odds">{{rnr.runners.availableToBack[2].price}}</span>
-                                            <span class="size">{{rnr.runners.availableToBack[2].size}}</span>
+                                <svg class="svg-icon ml-auto mr-md-3">
+                                    <use href="/assets/icons/icons_defs.svg#svg__arrow"></use>
+                                </svg>
+                            </button>
+                            <div class="collapse show" [attr.id]="'matchOdds' + i">
+                                <div class="inner_bet_table mob-BackLay">
+                                    <div class="bet_table_row rowHead justify-content-end">
+                                        <div class="backHead">
+                                            Back
                                         </div>
-                                        <div class="bl_box back back_1">
-                                            <span class="odds">{{rnr.runners.availableToBack[1].price}}</span>
-                                            <span class="size">{{rnr.runners.availableToBack[1].size}}</span>
-                                        </div>
-                                        <div class="bl_box back"
-                                            (click)="setValues('Back',rnr.runners.availableToBack[0].price,rnr.runners.availableToBack[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay)">
-                                            <span class="odds">{{rnr.runners.availableToBack[0].price}}</span>
-                                            <span class="size">{{rnr.runners.availableToBack[0].size}}</span>
-                                        </div>
-                                        <div class="bl_box lay"
-                                            (click)="setValues('Lay',rnr.runners.availableToLay[0].price,rnr.runners.availableToLay[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay)">
-                                            <span class="odds">{{rnr.runners.availableToLay[0].price}}</span>
-                                            <span class="size">{{rnr.runners.availableToLay[0].size}}</span>
-                                        </div>
-                                        <div class="bl_box lay lay_1">
-                                            <span class="odds">{{rnr.runners.availableToLay[1].price}}</span>
-                                            <span class="size">{{rnr.runners.availableToLay[1].size}}</span>
-                                        </div>
-                                        <div class="bl_box lay lay_2">
-                                            <span class="odds">{{rnr.runners.availableToLay[2].price}}</span>
-                                            <span class="size">{{rnr.runners.availableToLay[2].size}}</span>
+                                        <div class="LayHead">
+                                            Lay
                                         </div>
                                     </div>
+                                    <div class="bet_table_row" *ngFor="let rnr of mrkt.runners;let r=index"
+                                        [ngClass]="{'bet_locked':rtrnObj.status || mrkt.status || (rnr.runners.availableToLay[0].price==0 && rnr.runners.availableToBack[0].price==0)}">
+                                        <div class="nation_name">
+                                            <p>{{rnr.RunnerName}}</p>
+                                        </div>
+                                        <div class="bl_boxMain">
+                                            <div class="bl_box back back_2">
+                                                <span class="odds">{{rnr.runners.availableToBack[2].price}}</span>
+                                                <span class="size">{{rnr.runners.availableToBack[2].size}}</span>
+                                            </div>
+                                            <div class="bl_box back back_1">
+                                                <span class="odds">{{rnr.runners.availableToBack[1].price}}</span>
+                                                <span class="size">{{rnr.runners.availableToBack[1].size}}</span>
+                                            </div>
+                                            <div class="bl_box back"
+                                                (click)="setValues('Back',rnr.runners.availableToBack[0].price,rnr.runners.availableToBack[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay)">
+                                                <span class="odds">{{rnr.runners.availableToBack[0].price}}</span>
+                                                <span class="size">{{rnr.runners.availableToBack[0].size}}</span>
+                                            </div>
+                                            <div class="bl_box lay"
+                                                (click)="setValues('Lay',rnr.runners.availableToLay[0].price,rnr.runners.availableToLay[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay)">
+                                                <span class="odds">{{rnr.runners.availableToLay[0].price}}</span>
+                                                <span class="size">{{rnr.runners.availableToLay[0].size}}</span>
+                                            </div>
+                                            <div class="bl_box lay lay_1">
+                                                <span class="odds">{{rnr.runners.availableToLay[1].price}}</span>
+                                                <span class="size">{{rnr.runners.availableToLay[1].size}}</span>
+                                            </div>
+                                            <div class="bl_box lay lay_2">
+                                                <span class="odds">{{rnr.runners.availableToLay[2].price}}</span>
+                                                <span class="size">{{rnr.runners.availableToLay[2].size}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <app-bet-slip *ngIf="uISERVICE.showSlip[i]"></app-bet-slip>
                                 </div>
-                                <app-bet-slip *ngIf="uISERVICE.showSlip[i]"></app-bet-slip>
                             </div>
-                        </div>
-                    </ng-container>
+                        </ng-container>
                     </div>
                 </div>
             </div>
@@ -383,65 +691,65 @@
                 <div *ngIf="marketType=='book'">
                     <div class="tab_accordion" *ngFor="let mrkt of rtrnObj.markets;let i=index">
                         <ng-container *ngIf="mrkt.marketName === 'BookMaker'">
-                        <button class="btn accor_btn" type="button" data-toggle="collapse" [attr.data-target]="'#matchOdds' + i"
-                            aria-expanded="true" aria-controls="matchOdds">
-                            <div class="tab_name">
-                                <i class="fa fa-circle"></i>
-                                 <span class="txt ml-2 ">{{mrkt.marketName}}</span>
-                                <small class="pl-3">Min:{{mrkt.MinStake}} &nbsp;Max:{{mrkt.MaxStake}}</small>
-                            </div>
-                            <svg class="svg-icon ml-auto mr-md-3">
-                                <use href="/assets/icons/icons_defs.svg#svg__arrow"></use>
-                            </svg>
-                        </button>
-                        <div class="collapse show" [attr.id]="'matchOdds' + i">
-                            <div class="inner_bet_table mob-BackLay">
-                                <div class="bet_table_row rowHead justify-content-end">
-                                    <div class="backHead">
-                                        Back
-                                    </div>
-                                    <div class="LayHead">
-                                        Lay
-                                    </div>
+                            <button class="btn accor_btn" type="button" data-toggle="collapse"
+                                [attr.data-target]="'#matchOdds' + i" aria-expanded="true" aria-controls="matchOdds">
+                                <div class="tab_name">
+                                    <i class="fa fa-circle"></i>
+                                    <span class="txt ml-2 ">{{mrkt.marketName}}</span>
+                                    <small class="pl-3">Min:{{mrkt.MinStake}} &nbsp;Max:{{mrkt.MaxStake}}</small>
                                 </div>
-                                <div class="bet_table_row" *ngFor="let rnr of mrkt.runners;let r=index"
-                                    [ngClass]="{'bet_locked':rtrnObj.status || mrkt.status || (rnr.runners.availableToLay[0].price==0 && rnr.runners.availableToBack[0].price==0)}">
-                                    <div class="nation_name">
-                                        <p>{{rnr.RunnerName}}</p>
-                                    </div>
-                                    <div class="bl_boxMain">
-                                        <div class="bl_box back back_2">
-                                            <span class="odds">{{rnr.runners.availableToBack[2].price}}</span>
-                                            <span class="size">{{rnr.runners.availableToBack[2].size}}</span>
+                                <svg class="svg-icon ml-auto mr-md-3">
+                                    <use href="/assets/icons/icons_defs.svg#svg__arrow"></use>
+                                </svg>
+                            </button>
+                            <div class="collapse show" [attr.id]="'matchOdds' + i">
+                                <div class="inner_bet_table mob-BackLay">
+                                    <div class="bet_table_row rowHead justify-content-end">
+                                        <div class="backHead">
+                                            Back
                                         </div>
-                                        <div class="bl_box back back_1">
-                                            <span class="odds">{{rnr.runners.availableToBack[1].price}}</span>
-                                            <span class="size">{{rnr.runners.availableToBack[1].size}}</span>
-                                        </div>
-                                        <div class="bl_box back"
-                                            (click)="setValues('Back',rnr.runners.availableToBack[0].price,rnr.runners.availableToBack[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay)">
-                                            <span class="odds">{{rnr.runners.availableToBack[0].price}}</span>
-                                            <span class="size">{{rnr.runners.availableToBack[0].size}}</span>
-                                        </div>
-                                        <div class="bl_box lay"
-                                            (click)="setValues('Lay',rnr.runners.availableToLay[0].price,rnr.runners.availableToLay[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay)">
-                                            <span class="odds">{{rnr.runners.availableToLay[0].price}}</span>
-                                            <span class="size">{{rnr.runners.availableToLay[0].size}}</span>
-                                        </div>
-                                        <div class="bl_box lay lay_1">
-                                            <span class="odds">{{rnr.runners.availableToLay[1].price}}</span>
-                                            <span class="size">{{rnr.runners.availableToLay[1].size}}</span>
-                                        </div>
-                                        <div class="bl_box lay lay_2">
-                                            <span class="odds">{{rnr.runners.availableToLay[2].price}}</span>
-                                            <span class="size">{{rnr.runners.availableToLay[2].size}}</span>
+                                        <div class="LayHead">
+                                            Lay
                                         </div>
                                     </div>
+                                    <div class="bet_table_row" *ngFor="let rnr of mrkt.runners;let r=index"
+                                        [ngClass]="{'bet_locked':rtrnObj.status || mrkt.status || (rnr.runners.availableToLay[0].price==0 && rnr.runners.availableToBack[0].price==0)}">
+                                        <div class="nation_name">
+                                            <p>{{rnr.RunnerName}}</p>
+                                        </div>
+                                        <div class="bl_boxMain">
+                                            <div class="bl_box back back_2">
+                                                <span class="odds">{{rnr.runners.availableToBack[2].price}}</span>
+                                                <span class="size">{{rnr.runners.availableToBack[2].size}}</span>
+                                            </div>
+                                            <div class="bl_box back back_1">
+                                                <span class="odds">{{rnr.runners.availableToBack[1].price}}</span>
+                                                <span class="size">{{rnr.runners.availableToBack[1].size}}</span>
+                                            </div>
+                                            <div class="bl_box back"
+                                                (click)="setValues('Back',rnr.runners.availableToBack[0].price,rnr.runners.availableToBack[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay)">
+                                                <span class="odds">{{rnr.runners.availableToBack[0].price}}</span>
+                                                <span class="size">{{rnr.runners.availableToBack[0].size}}</span>
+                                            </div>
+                                            <div class="bl_box lay"
+                                                (click)="setValues('Lay',rnr.runners.availableToLay[0].price,rnr.runners.availableToLay[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay)">
+                                                <span class="odds">{{rnr.runners.availableToLay[0].price}}</span>
+                                                <span class="size">{{rnr.runners.availableToLay[0].size}}</span>
+                                            </div>
+                                            <div class="bl_box lay lay_1">
+                                                <span class="odds">{{rnr.runners.availableToLay[1].price}}</span>
+                                                <span class="size">{{rnr.runners.availableToLay[1].size}}</span>
+                                            </div>
+                                            <div class="bl_box lay lay_2">
+                                                <span class="odds">{{rnr.runners.availableToLay[2].price}}</span>
+                                                <span class="size">{{rnr.runners.availableToLay[2].size}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <app-bet-slip *ngIf="uISERVICE.showSlip[i]"></app-bet-slip>
                                 </div>
-                                <app-bet-slip *ngIf="uISERVICE.showSlip[i]"></app-bet-slip>
                             </div>
-                        </div>
-                    </ng-container>
+                        </ng-container>
                     </div>
                 </div>
             </div>
@@ -509,7 +817,7 @@
                 </div>
             </div>
 
-          </div>
+        </div>
     </div>
 </div>
 

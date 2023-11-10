@@ -15,37 +15,14 @@
             <span class="sports-icon all-sports"></span> 
             Sports</a>
         </li>
-        <li (click)="checkLogin('table','1')" *ngIf="!uISERVICE.casinoStatus">
+        <li *ngIf="!uISERVICE.casinoStatus">
           <a class="">
             <span class="sports-icon poker"></span> 
             Casino Games</a>
         </li>
       </ul>
       <ul class="header_details d-flex">
-        <!-- <li class="pl-lg-4 d-none d-xl-flex">
-          <ul class="d-flex justify-content-center main_nav">
-            <li (click)="checkLogin('UpCom','1')">
-              <a><span class="icon"><svg class="svg-icon">
-                    <use href="/assets/img/icons/icons_defs.svg#ball"></use>
-                  </svg></span> Sports Betting</a>
-            </li>
-            <li (click)="checkLogin('Live','1')">
-              <a><span class="icon"><svg class="svg-icon">
-                    <use href="/assets/img/icons/icons_defs.svg#timer"></use>
-                  </svg></span> Live Betting</a>
-            </li>
-            <li (click)="checkLogin('table','1')" *ngIf="!uISERVICE.casinoStatus">
-              <a class="blinkTxt"><span class="icon"><svg class="svg-icon">
-                    <use href="/assets/img/icons/icons_defs.svg#roulette"></use>
-                  </svg></span> Casino</a>
-            </li>
-            <li (click)="checkLogin('live-games','1')" *ngIf="!uISERVICE.liveGameStatus">
-              <a class="blinkTxt"><span class="icon"><svg class="svg-icon">
-                    <use href="/assets/img/icons/icons_defs.svg#live_casino"></use>
-                  </svg></span> <span>Live Casino</span></a>
-            </li>
-          </ul>
-        </li> -->
+        
         <li class="news_marquee d-none d-xl-flex"  *ngIf="uISERVICE.Header">
           <marquee behavior="scroll" direction="left" [scrollDelay]="100">
             <div class="item">

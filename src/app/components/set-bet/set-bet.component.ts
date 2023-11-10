@@ -4,18 +4,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Cookie } from 'ng2-cookies';
 import { AccountService } from 'src/app/service/account-service';
 import { UiService } from 'src/app/service/ui-service';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import { parse } from 'path';
-import * as $ from "jquery";
-// import 'jquery-ui-dist/jquery-ui';
+import { DomSanitizer,SafeResourceUrl } from '@angular/platform-browser';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-set-bet',
   templateUrl: './set-bet.component.html',
   styleUrls: ['./set-bet.component.scss']
 })
 export class SetBetComponent implements OnInit {
-  
+
   sportsId: number;
   eventId: string;
   rtrnObj: any = [];
@@ -40,62 +38,79 @@ export class SetBetComponent implements OnInit {
   modalVisible: boolean = false;
   closeResult = '';
   evtTime: any;
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-  showTimer : boolean = false;
+  days: number = 0;
+  hours: number = 0;
+  minutes: number = 0;
+  seconds: number = 0;
+  showTimer: boolean = false;
   marketType: string = 'all';
 
-  constructor(private router: Router, public sanitizer: DomSanitizer, private http: HttpClient, private accountService: AccountService, private route: ActivatedRoute, public uISERVICE: UiService, private modalService: NgbModal) { }
+  ballFace: any[] = [];
+  overRuns: any[] = [];
+  wicketsFall: any[] = [];
+  boundaries: any[] = [];
+  otherFancy: any[] = [];
+  ballsWicketLost: any[] = [];
+  scoreUrlFrame: SafeResourceUrl;
+
+  constructor(private toastr: ToastrService,public sanitizer: DomSanitizer, private http: HttpClient, private accountService: AccountService, private route: ActivatedRoute, public uISERVICE: UiService, private modalService: NgbModal) { }
   toggleModal() {
     this.modalVisible = !this.modalVisible;
   }
   ngOnInit(): void {
-    this.uISERVICE.sideBar = true;
-    if (Cookie.check("usersCookies")) {
-      this.type = "After";
-      this.uISERVICE.showSlip = [];
-      this.uISERVICE.profit = 0;
-      this.uISERVICE.stake = 0;
-      this.uISERVICE.exposure = 0;
-      this.route.paramMap.subscribe(params => {
-        this.sportsId = parseInt(params.get('sportsId'));
-        this.eventId = params.get('eventId');
-        this.updateCountdown();
-        setInterval(() => this.updateCountdown(), 1000);
-        this.getEventDetail();
-        setTimeout(() => {
-          this.myFunction();
-        }, 2000);
-      });
-    } else {
-      this.uISERVICE.Error = true;
-      this.uISERVICE.Message = "Please Login OR SignUp";
-      this.router.navigate(["games"]);
-      setTimeout(() => {
-        this.uISERVICE.Error = false;
-      }, 2000);
-    }
+    this.setIntialValues();
   }
 
-  selectMarket(value){
+  scoreUrl() {
     debugger;
-if(value == 'all'){
-this.marketType = 'all' 
-}else if(value == 'odds'){
-this.marketType = 'odds'
-}else if(value == 'book'){
-this.marketType = 'book'
-}else{
-this.marketType = 'ssn'
-}
+    this.url = "https://nxbet247.com/live-score-card/" + this.sportsId + "/" + this.eventId;
+    this.scoreUrlFrame = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
+  }
+
+  setIntialValues() {
+    this.type = Cookie.check("usersCookies") ? "After" : "Before";
+    this.uISERVICE.showSlip = [];
+    this.uISERVICE.profit = 0;
+    this.uISERVICE.stake = 0;
+    this.uISERVICE.exposure = 0;
+    this.getRoutesParam();
+  }
+
+  getRoutesParam() {
+    this.route.paramMap.subscribe(params => {
+      this.sportsId = parseInt(params.get('sportsId'));
+      this.eventId = params.get('eventId');
+    });
+    setTimeout(() => {
+      this.initiateIntervals();
+    }, 1000);
+  }
+
+  initiateIntervals() {
+    setInterval(() => this.updateCountdown(), 1000);
+    this.getEventDetail();
+    setTimeout(() => {
+      this.myFunction();
+    }, 2000);
+  }
+
+  selectMarket(value) {
+    debugger;
+    if (value == 'all') {
+      this.marketType = 'all'
+    } else if (value == 'odds') {
+      this.marketType = 'odds'
+    } else if (value == 'book') {
+      this.marketType = 'book'
+    } else {
+      this.marketType = 'ssn'
+    }
   }
 
   updateCountdown() {
     const currentDate = new Date();
     const formattedDateTime = currentDate.toISOString().slice(0, 19);
-    console.log(formattedDateTime); 
+    console.log(formattedDateTime);
     const eventTime = new Date(this.evtTime);
     const timeDifference = eventTime.getTime() - currentDate.getTime();
     if (timeDifference <= 0) {
@@ -105,43 +120,29 @@ this.marketType = 'ssn'
       this.minutes = 0;
       this.seconds = 0;
     } else {
-      this.showTimer = true;
       this.days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
       this.hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       this.minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
       this.seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+      this.showTimer = true;
     }
   }
-  
+
 
   GetAllBets() {
-    this.uISERVICE.backUpBets=[];
+    this.uISERVICE.backUpBets = [];
     this.accountService.getPendingBets('Null', this.sportsId, this.marketName, this.BetType, 0, 0).then((response) => {
       if (response.Status) {
-        
-        this.uISERVICE.backUpBets = response.Result.filter(x=>x.EventName==this.rtrnObj.EventName);
+
+        this.uISERVICE.backUpBets = response.Result.filter(x => x.EventName == this.rtrnObj.EventName);
       } else {
         this.uISERVICE.backUpBets = [];
       }
     });
   }
-  open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
 
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
+
+
   async myFunction() {
     return await new Promise(resolve => {
       this._setInterval1 = setInterval(() => {
@@ -200,7 +201,7 @@ this.marketType = 'ssn'
         }
       });
     }
-    
+
   }
 
   getSessionPl(runnerId): number {
@@ -264,7 +265,7 @@ this.marketType = 'ssn'
   async getScore() {
     this.http.get(this.rtrnObj.apiUrls.ScoreUrl + this.eventId).subscribe(data => {
       this.scoreData = data;
-      
+
       if (this.scoreData.length > 0) {
         this.scoreApi = true;
       } else {
@@ -287,7 +288,7 @@ this.marketType = 'ssn'
           if (element.marketName == "Match Odds") {
             this.MtchMrkt = element.MarketId;
           }
-          
+
           if (element.marketName == "To Win the Toss") {
             element.runners.forEach(data => {
               data.runners = {
@@ -296,12 +297,12 @@ this.marketType = 'ssn'
               }
             });
           } else {
-              element.runners.forEach(data => {
-                data.runners = {
-                  'availableToBack': [{ 'price': 0, 'size': 0 }, { 'price': 0, 'size': 0 }, { 'price': 0, 'size': 0 }],
-                  'availableToLay': [{ 'price': 0, 'size': 0 }, { 'price': 0, 'size': 0 }, { 'price': 0, 'size': 0 }]
-                }
-              });
+            element.runners.forEach(data => {
+              data.runners = {
+                'availableToBack': [{ 'price': 0, 'size': 0 }, { 'price': 0, 'size': 0 }, { 'price': 0, 'size': 0 }],
+                'availableToLay': [{ 'price': 0, 'size': 0 }, { 'price': 0, 'size': 0 }, { 'price': 0, 'size': 0 }]
+              }
+            });
           }
         });
         this.uISERVICE.loader = false;
@@ -309,6 +310,10 @@ this.marketType = 'ssn'
         this.uISERVICE.betSlip = this.rtrnObj.chips;
         this.getAPIData();
         this.checkToss();
+        debugger;
+        if(this.rtrnObj.Inplay){
+          this.scoreUrl();
+        }
       } else {
         this.uISERVICE.loader = false;
         this.rtrnObj = [];
@@ -334,7 +339,7 @@ this.marketType = 'ssn'
         break;
       case 4:
         this.matchData = this.rtrnObj.markets.find(x => x.marketName === "Match Odds");
-        console.log("oddsssss",this.rtrnObj.markets)
+        console.log("oddsssss", this.rtrnObj.markets)
 
         const BookData = this.rtrnObj.markets.find(x => x.marketName === "BookMaker");
         if (this.matchData != null) {
@@ -342,8 +347,9 @@ this.marketType = 'ssn'
             await this.http.get(this.rtrnObj.apiUrls.DaimondUrl + this.MtchMrkt + "/" + this.eventId).subscribe(data => {
               this.apiData = data;
               if (this.apiData.market != null && this.apiData.market?.length > 0) {
-                this.sesnObj = this.apiData.session;
-                console.log("session",this.sesnObj)
+                this.sesnObj = this.apiData.session.filter(x => !x.RunnerName.includes(".3"));
+
+                this.categorizeData();
                 this.updateRunnerData(this.matchData.runners, this.apiData.market[0].events, this.sportsId);
               }
             });
@@ -371,16 +377,44 @@ this.marketType = 'ssn'
     }
 
     if (this.rtrnObj.Inplay && this.scoreApi) {
-      this.getScore();
+      //this.getScore();
     }
     this.calculateBook();
+  }
+
+  categorizeData() {
+    this.wicketsFall = [];
+    this.overRuns = [];
+    this.boundaries = [];
+    this.ballFace = [];
+    this.ballsWicketLost = [];
+    this.otherFancy = [];
+    this.sesnObj.forEach(item => {
+      if (item.RunnerName.includes('Fall of') || item.RunnerName.includes('1st')) {
+        this.wicketsFall.push(item);
+      } else if (item.RunnerName.includes('over runs') || item.RunnerName.includes('over run')) {
+        this.overRuns.push(item);
+        this.overRuns.sort((a, b) => a.RunnerName.localeCompare(b.RunnerName));
+      } else if (item.RunnerName.includes('Boundaries') || item.RunnerName.includes('boundaries')) {
+        this.boundaries.push(item);
+      } else if (item.RunnerName.includes('face by')) {
+        this.ballFace.push(item);
+      } else if (item.RunnerName.includes('lost to')) {
+        this.ballsWicketLost.push(item);
+      }
+      else {
+        this.otherFancy.push(item);
+      }
+      // Add similar conditions for other categories
+    });
+
   }
 
   updateRunnerData(runners, apiRunners, sportsId) {
 
     runners.forEach(element => {
       if (sportsId == 4) {
-        const runner =apiRunners.find(x => x.SelectionId == element.RunnerId.toString());
+        const runner = apiRunners.find(x => x.SelectionId == element.RunnerId.toString());
         element.runners.availableToBack[0].price = runner.BackPrice1;
         element.runners.availableToBack[0].size = runner.BackPrice2;
         element.runners.availableToBack[1].price = runner.BackPrice3;
@@ -534,7 +568,7 @@ this.marketType = 'ssn'
 
 
   setValues(betType, odds, price, mId, rId, rName, maxMrkt, minMrkt, rIndx, mrktName, mainIndex, betDly) {
-
+    debugger;
     if (odds > 0) {
       this.checkLogin();
       if (!this.uISERVICE.logIn) {
@@ -578,26 +612,16 @@ this.marketType = 'ssn'
         this.uISERVICE.sportsId = this.sportsId;
         this.uISERVICE.eventId = this.eventId;
         this.uISERVICE.EventName = this.rtrnObj.EventName;
+      } else {
+        this.toastr.error('Please login to access all features.', 'LOGIN!');
       }
 
     }
 
   }
 
-  // fancyBook(mrkId, sId, name) {
-  //   this.ssnBook = [];
-  //   this.fancy = name;
-  //   this.accountService.getFancyBook(sId, mrkId).then((response) => {
-  //     if (response.Status) {
-  //       this.ssnBook = response.Result;
-  //     } else {
-  //     }
-  //   });
-  // }
-
 
   checkToss() {
-    
     this.date = new Date();
     let crntDate = this.date.toString();
     const diffInMs = Date.parse(this.rtrnObj.EventTime) - Date.parse(crntDate);
@@ -606,27 +630,26 @@ this.marketType = 'ssn'
       var tossMrkt = this.rtrnObj.markets.find(x => x.marketName == "To Win the Toss");
       if (tossMrkt != null) {
         tossMrkt.status = true;
-
-        this.rtrnObj.markets.splice(this.rtrnObj.markets.indexOf(tossMrkt),1);
+        this.rtrnObj.markets.splice(this.rtrnObj.markets.indexOf(tossMrkt), 1);
       }
     }
   }
-  // ngAfterViewInit() {
-   
-    
 
+  // open(content) {
+  //   this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+  //     this.closeResult = `Closed with: ${result}`;
+  //   }, (reason) => {
+  //     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  //   });
+  // }
 
-  //   $('.tvModal .modal-content').resizable({
-  //     alsoResize: ".tvModal .modal-dialog",
-  //     minHeight: 300,
-  //     minWidth: 300
-  // });
-  // $('.tvModal ').draggable();
-  
-  // $('#myModal').on('show.bs.modal', function () {
-  //     $(this).find('.tvModal ').css({
-  //         'max-height':'100%'
-  //     });
-  // });
+  // private getDismissReason(reason: any): string {
+  //   if (reason === ModalDismissReasons.ESC) {
+  //     return 'by pressing ESC';
+  //   } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+  //     return 'by clicking on a backdrop';
+  //   } else {
+  //     return `with: ${reason}`;
+  //   }
   // }
 }

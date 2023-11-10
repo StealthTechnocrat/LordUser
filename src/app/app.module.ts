@@ -58,6 +58,10 @@ const cookieConfig:NgcCookieConsentConfig = {
   theme: 'edgeless',
   type: 'opt-out'
 };
+
+import { ToastrModule } from 'ngx-toastr';
+
+
 @NgModule({
   declarations: [
 
@@ -96,7 +100,7 @@ const cookieConfig:NgcCookieConsentConfig = {
     CarouselModule,
     BrowserAnimationsModule,
     NgIdleKeepaliveModule.forRoot(),
-    NgcCookieConsentModule.forRoot(cookieConfig),
+    ToastrModule.forRoot(),
     NgbModule,
     DragDropModule,
   ],

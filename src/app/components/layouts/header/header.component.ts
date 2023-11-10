@@ -592,9 +592,9 @@ export class HeaderComponent implements OnInit {
 
     // });
 
-    // $('.sidebar_toggle_btn').click(function () {
-    //   $('body').toggleClass('overDown');
-    // });
+    $('.liveTv').click(function () {
+      $('.livetvSec').toggleClass('d-block');
+    });
 
     $("ul.list a.main_drop").click(function () {
       var $step1 = $(this).parent().find("ul.step_1");

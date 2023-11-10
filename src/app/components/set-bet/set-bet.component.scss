@@ -45,10 +45,10 @@
 }
 
 .scrore_area {
-    min-height: 120px;
+    min-height: 220px;
     margin-bottom: 10px;
     border-radius: 3px;
-    padding: 0px 0px 15px;
+    padding: 0px 0px 0px;
     position: sticky;
     // top: 76px;
     z-index: 9999;
@@ -56,21 +56,23 @@
     @media (max-width:1199.9px) {
         top: 65px;
         min-height: 50px;
-        padding: 0px 0px 3px;
+        padding: 0px 0px 0px;
         margin-bottom: 2px;
     }
 
     @media (min-width:992px) {
-        padding: 0px 0px 15px;
+        padding: 0px 0px 0px;
     }
+iframe{
+    height: 220px;
+}
 
-
-    &.cricket_score {
-        background-image: url('/assets/score_bg/cricket.jpg');
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-    }
+    // &.cricket_score {
+    //     background-image: url('/assets/score_bg/cricket.jpg');
+    //     background-repeat: no-repeat;
+    //     background-position: center;
+    //     background-size: cover;
+    // }
 
     .event_info {
         display: flex;
@@ -786,6 +788,9 @@
             font-weight: 500;
             line-height: 17px;
             text-transform: uppercase;
+            @media(max-width:575px){
+                font-size: 16px;
+            }
         }
     }
 
