@@ -40,14 +40,7 @@ export class CupRateComponent implements OnInit {
       });
       this.getEventDetail();
       this.myFunction();
-    } else {
-      this.uISERVICE.Error=true;
-      this.uISERVICE.Message="Please Login OR SignUp";
-      this.router.navigate(["games"]);
-      setTimeout(() => {        
-      this.uISERVICE.Error=false;
-      }, 2000);
-    }
+    } 
   }
 
 

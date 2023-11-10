@@ -41,23 +41,10 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FooterComponent } from './components/layouts/footer/footer.component';
 import { TimeCountdownComponent } from './components/time-countdown/time-countdown.component';
 import { ResultsComponent } from './components/results/results.component';
-// import { SetBetComponent } from './components/set-bet/set-bet.component';
 
-const cookieConfig:NgcCookieConsentConfig = {
-  cookie: {
-    domain: 'http://fix2club.com' // or 'your.domain.com' // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
-  },
-  palette: {
-    popup: {
-      background: '#000'
-    },
-    button: {
-      background: '#f1d600'
-    }
-  },
-  theme: 'edgeless',
-  type: 'opt-out'
-};
+import { ToastrModule } from 'ngx-toastr';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,7 +81,7 @@ const cookieConfig:NgcCookieConsentConfig = {
     CarouselModule,
     BrowserAnimationsModule,
     NgIdleKeepaliveModule.forRoot(),
-    NgcCookieConsentModule.forRoot(cookieConfig),
+    ToastrModule.forRoot(),
     NgbModule,
     DragDropModule,
   ],

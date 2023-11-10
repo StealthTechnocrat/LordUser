@@ -32,7 +32,8 @@
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
               "src/styles.scss",
-              "src/assets/scss/theme_color.scss"
+              "src/assets/scss/theme_color.scss",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -100,7 +101,9 @@
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css",
               "src/styles.scss",
-              "src/assets/scss/theme_color.scss"
+              "src/assets/scss/theme_color.scss",
+              "node_modules/ngx-toastr/toastr.css"
+
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

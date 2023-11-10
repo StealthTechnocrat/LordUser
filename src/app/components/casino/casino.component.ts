@@ -38,13 +38,6 @@ export class CasinoComponent implements OnInit {
       } else {
         this.getTableGames();
       }
-    } else {
-      this.uISERVICE.Error = true;
-      this.uISERVICE.Message = "Please Login OR SignUp";
-      this.router.navigate(["games"]);
-      setTimeout(() => {
-        this.uISERVICE.Error = false;
-      }, 2000);
     }
   }
 

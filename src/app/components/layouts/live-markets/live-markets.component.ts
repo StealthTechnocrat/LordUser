@@ -38,9 +38,7 @@ export class LiveMarketsComponent implements OnInit {
       this.uISERVICE.Header = false;
       this.GetDetail();
     }
-    setInterval(() => {
-      this.changeFunc();
-    }, 2000);
+   
   }
 
   GetDetail() {
@@ -89,76 +87,8 @@ export class LiveMarketsComponent implements OnInit {
     }
     this.GetDetail();
   }
-  changeFunc() {
-    //----
-    this.SrNo1 = Math.floor(Math.random() * this.totalBets1);
-    this.SrNo2 = Math.floor(Math.random() * this.totalBets1);
-    this.SrNo3 = Math.floor(Math.random() * this.totalBets1);
-    //----
-    this.SrNo4 = Math.floor(Math.random() * this.totalBets2);
-    this.SrNo5 = Math.floor(Math.random() * this.totalBets2);
-    this.SrNo6 = Math.floor(Math.random() * this.totalBets2);
-    //----
+ 
 
-  }
-
-  checkLogin(type, systemId) {
-    if (!Cookie.get("usersCookies")) {
-      if (type == "Live") {
-        this.uISERVICE.live = true;
-        this.router.navigate(["games"]);
-      } else if (type == "UpCom") {
-        this.uISERVICE.live = false;
-        this.router.navigate(["games"]);
-      } else {
-        switch (type) {
-          case 'table':
-            this.router.navigate(["/casino/", type]);
-            break;
-          case 'live-games':
-            this.router.navigate(["/casino/", type]);
-            break;
-          case 'SatkaMatka':
-            this.router.navigate(["/satka-matka/"]);
-            break;
-          case 'CupRate':
-            this.router.navigate(["/cup-rate/", 4, 28127348]);
-            break;
-          case 'Live':
-            this.uISERVICE.live = true;
-            this.router.navigate(["games"]);
-            break;
-          case 'UpCom':
-            this.uISERVICE.live = false;
-            this.router.navigate(["games"]);
-            break;
-        }
-      }
-    } else {
-      switch (type) {
-        case 'table':
-          this.router.navigate(["/casino/", type]);
-          break;
-        case 'live-games':
-          this.router.navigate(["/casino/", type]);
-          break;
-        case 'SatkaMatka':
-          this.router.navigate(["/satka-matka/"]);
-          break;
-        case 'CupRate':
-          this.router.navigate(["/cup-rate/", 4, 28127348]);
-          break;
-        case 'Live':
-          this.uISERVICE.live = true;
-          this.router.navigate(["games"]);
-          break;
-        case 'UpCom':
-          this.uISERVICE.live = false;
-          this.router.navigate(["games"]);
-          break;
-      }
-
-    }
-  }
+  
 
 }

@@ -22,14 +22,7 @@ export class CasinoGameComponent implements OnInit {
         this.systemId = params.get('systemId');
       });
       this.getGameList();
-    } else {
-      this.uISERVICE.Error = true;
-      this.uISERVICE.Message = "Please Login OR SignUp";
-      this.router.navigate(["games"]);
-      setTimeout(() => {
-        this.uISERVICE.Error = false;
-      }, 2000);
-    }
+    } 
   }
 
   getGameList() {

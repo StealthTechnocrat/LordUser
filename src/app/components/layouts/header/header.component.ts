@@ -63,11 +63,6 @@ export class HeaderComponent implements OnInit {
       this.GetDetail();
       this.myFunction();
 
-    } else {
-      this.uISERVICE.Header = false;
-      Cookie.deleteAll();
-      localStorage.clear();
-      this.router.navigate(['/games']);
     }
     this.signInModel = <SignInModel>{
       LoginID: "",
@@ -412,66 +407,7 @@ export class HeaderComponent implements OnInit {
     this.Hide = value;
   }
 
-  checkLogin(type, systemId) {
-
-    if (!Cookie.get("usersCookies")) {
-      if (type == "Live") {
-        this.uISERVICE.live = true;
-        this.router.navigate(["games"]);
-      } else if (type == "UpCom") {
-        this.uISERVICE.live = false;
-        this.router.navigate(["games"]);
-      } else {
-        switch (type) {
-          case 'table':
-            this.router.navigate(["/casino/", type]);
-            break;
-          case 'live-games':
-            this.router.navigate(["/casino/", type]);
-            break;
-          case 'SatkaMatka':
-            this.router.navigate(["/satka-matka/"]);
-            break;
-          case 'CupRate':
-            this.router.navigate(["/cup-rate/", 4, 28127348]);
-            break;
-          case 'Live':
-            this.uISERVICE.live = true;
-            this.router.navigate(["games"]);
-            break;
-          case 'UpCom':
-            this.uISERVICE.live = false;
-            this.router.navigate(["games"]);
-            break;
-        }
-      }
-    } else {
-      switch (type) {
-        case 'table':
-          this.router.navigate(["/casino/", type]);
-          break;
-        case 'live-games':
-          this.router.navigate(["/casino/", type]);
-          break;
-        case 'SatkaMatka':
-          this.router.navigate(["/satka-matka/"]);
-          break;
-        case 'CupRate':
-          this.router.navigate(["/cup-rate/", 4, 28127348]);
-          break;
-        case 'Live':
-          this.uISERVICE.live = true;
-          this.router.navigate(["games"]);
-          break;
-        case 'UpCom':
-          this.uISERVICE.live = false;
-          this.router.navigate(["games"]);
-          break;
-      }
-
-    }
-  }
-
+  
   onChange(type, value) {
     if (type == "Sports") {
       this.sportsId = value;
@@ -558,9 +494,9 @@ export class HeaderComponent implements OnInit {
     // });
     
 
-    // $('.sidebar_toggle_btn').click(function () {
-    //   $('body').toggleClass('overDown');
-    // });
+    $('.liveTv').click(function () {
+      $('.livetvSec').toggleClass('d-block');
+    });
 
 
 
