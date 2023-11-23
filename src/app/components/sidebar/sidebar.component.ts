@@ -11,11 +11,16 @@ import { TimepipeService } from "src/app/service/timepipe.service";
   styleUrls: ["./sidebar.component.scss"],
 })
 export class SidebarComponent implements OnInit {
+  activeTab = 'allSports';
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
+  }
   inplayList: any = [];
   upcomingList: any = [];
   seriesList: any = [];
   eventList: any = [];
-  sidebarType: number = 1;
+  sidebarType: boolean = false;
+  list: any = [];
   constructor(
     private accountService: AccountService,
     public timePipe: TimepipeService,
@@ -27,31 +32,32 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {}
 
   allSportsTab() {
-    this.sidebarType = 1;
+    this.sidebarType = false;
   }
+  
 
   inplayTab() {
-    this.sidebarType = 2;
-    this.inplayList = [];
+    this.list = [];
+    this.sidebarType = true;
     this.accountService.getAllInplay().then((response) => {
       if (response) {
-        this.inplayList = response.Result;
-        console.log("comp", this.inplayList);
+        this.list = response.Result;
+        console.log("comp", this.list);
       } else {
-        this.inplayList = [];
+        this.list = [];
       }
     });
   }
 
   upcomingTab() {
-    this.sidebarType = 3;
-    this.upcomingList = [];
+    this.list = [];
+    this.sidebarType = true;
     this.accountService.getAllUpcoming().then((response) => {
       if (response) {
-        this.upcomingList = response.Result;
-        console.log("comp", this.upcomingList);
+        this.list = response.Result;
+        console.log("compUpcoming", this.list);
       } else {
-        this.upcomingList = [];
+        this.list = [];
       }
     });
   }
@@ -64,6 +70,8 @@ export class SidebarComponent implements OnInit {
   }
 
   getCompList(sportsId) {
+    debugger;
+    this.sidebarType = false;
     this.seriesList = [];
     this.accountService.getCompList(sportsId).then((response) => {
       if (response) {
@@ -77,6 +85,7 @@ export class SidebarComponent implements OnInit {
 
   getEventList(sportsId, seriesId) {
     debugger;
+    this.sidebarType = false;
     this.eventList = [];
     this.accountService.getEventList(sportsId, seriesId).then((response) => {
       if (response) {
@@ -90,15 +99,11 @@ export class SidebarComponent implements OnInit {
 
   ngAfterViewInit() {
     $(document).ready(function () {
-      // Add 'active' class to the first child by default
       $(".slideHoverUl li:first-child a").addClass("active");
 
-      // Variable to keep track of the last clicked child
       var lastClickedChild = $(".slideHoverUl li:first-child a");
 
-      // Handle hover for all children
       $(".slideHoverUl li a").hover(function () {
-        // Remove 'active' class when hovered over
         $(".slideHoverUl li a").removeClass("active");
       });
 
@@ -107,17 +112,9 @@ export class SidebarComponent implements OnInit {
         $(this).addClass("active");
         lastClickedChild = $(this);
       });
-
-      // When not hovering in any child, add 'active' class back to the last clicked child
       $(".slideHoverUl").mouseleave(function () {
         lastClickedChild.addClass("active");
       });
     });
   }
-  // toggleMenu() {
-  //   this.menulist = !this.menulist;
-  // }
-  // toggleSubMenu(){
-  //   this.menuSublist = !this.menuSublist;
-  // }
 }

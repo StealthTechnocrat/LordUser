@@ -39,7 +39,12 @@ export class HeaderComponent implements OnInit {
   CnfPwd: string = "";
   OldPwd: string = "";
   rtrnObj: any = [];
-
+  usrDtl: any = [];
+  chipData : any = [];
+  Balance: number;
+  Exposure: number;
+  News: any = [];
+  Name: string = "";
   constructor(
     private accountService: AccountService,
     public uISERVICE: UiService,
@@ -53,19 +58,17 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.user();
     this.sharedService.getSportsId().subscribe((data) => {
       this.sportid = data;
     });
     this.getLogos();
     this.uISERVICE.tv = false;
-    this.uISERVICE.News = JSON.parse(localStorage.getItem("News"));
-    this.uISERVICE.TopEvents = JSON.parse(localStorage.getItem("TopEvents"));
-    this.uISERVICE.TopInplay = JSON.parse(localStorage.getItem("TopInplay"));
     if (Cookie.check("usersCookies")) {
       this.uISERVICE.Header = true;
       this.uISERVICE.Bets = JSON.parse(localStorage.getItem("Bets"));
 
-      this.GetDetail();
+     // this.GetDetail();
       this.myFunction();
     } else {
       this.uISERVICE.Header = false;
@@ -152,11 +155,64 @@ export class HeaderComponent implements OnInit {
     this.uISERVICE.inplay = true;
     this.getInplayEvents();
   }
-  
+
   restInplay() {
     this.uISERVICE.inplay = false;
     this.getEvents();
   }
+
+  user() {
+    this.accountService.userDetails().then((response) => {
+      if (response) {
+        this.News = response.Result.News;
+        this.Balance = response.Result.Balance;
+        this.Exposure = response.Result.Exposure;
+        this.Name = response.Result.Name;
+        this.uISERVICE.take = response.Result.Take;
+        console.log("this.uISERVICE.take",this.uISERVICE.take)
+      } else {
+        this.usrDtl = [];
+      }
+    });
+  }
+
+  getChips() {
+    this.uISERVICE.loader=true;
+    this.accountService.getChips().then((response) => {
+      if (response.Status) {
+        this.uISERVICE.loader=false;
+        this.chipData = response.Result;
+        console.log("chipdata",this.chipData)
+      }else{
+        this.chipData =[];
+        this.uISERVICE.loader=false;
+      }
+    });
+  }
+
+  updateChips() {
+    this.uISERVICE.loader=true;
+    this.accountService.updateChip(this.chipData).then((response) => {
+      if (response.Status) {
+        this.uISERVICE.loader=false;
+        this.uISERVICE.Success = true;
+        this.uISERVICE.Message = "Executed Successfully";
+        setTimeout(() => {
+          this.uISERVICE.Success = false;
+        }, 3000);
+        document.getElementById("chipsettingBtn").click();
+      } else {
+        this.uISERVICE.loader=false;
+        this.uISERVICE.Error = true;
+        this.uISERVICE.Message = response.Result;
+        setTimeout(() => {
+          this.uISERVICE.Error = false;
+        }, 3000);
+      }
+    });
+  }
+
+
 
   getEvents() {
     debugger;
@@ -185,11 +241,10 @@ export class HeaderComponent implements OnInit {
       });
   }
 
-
   getInplayEvents() {
     debugger;
-    if(this.sportid == null || this.sportid == undefined){
-this.sportid = 4;
+    if (this.sportid == null || this.sportid == undefined) {
+      this.sportid = 4;
     }
     this.rtrnObj = [];
     this.accountService
@@ -214,8 +269,6 @@ this.sportid = 4;
       });
   }
 
- 
-
   isTokenExpired(token: string): boolean {
     try {
       const decodedToken = jwt_decode(token);
@@ -234,7 +287,7 @@ this.sportid = 4;
   async myFunction() {
     return await new Promise((resolve) => {
       const interval = setInterval(() => {
-        this.GetDetail();
+        this.user();
       }, 10000);
     });
   }
@@ -431,46 +484,46 @@ this.sportid = 4;
     });
   }
 
-  GetDetail() {
-    try {
-      this.loader = true;
-      this.accountService
-        .getUsrDtl(Cookie.get("c_id"), "Client", Cookie.get("usersCookies"))
-        .then((response) => {
-          if (response.Status) {
-            if (response.Result.IsPwd == false) {
-              document.getElementById("cnfrmPwd").click();
-            } else {
-              this.loader = false;
-              this.userName = response.Result.UserId;
-              this.uISERVICE.casinoStatus = response.Result.casinoStatus;
-              this.uISERVICE.liveGameStatus = response.Result.liveGameStatus;
-              this.uISERVICE.UserName = response.Result.UserId;
-              this.uISERVICE.Bal = response.Result.Bal;
-              this.uISERVICE.Exp = response.Result.Exp;
-              this.uISERVICE.take = response.Result.Take;
-              this.uISERVICE.News = response.Result.News;
+  // GetDetail() {
+  //   try {
+  //     this.loader = true;
+  //     this.accountService
+  //       .getUsrDtl(Cookie.get("c_id"), "Client", Cookie.get("usersCookies"))
+  //       .then((response) => {
+  //         if (response.Status) {
+  //           if (response.Result.IsPwd == false) {
+  //             document.getElementById("cnfrmPwd").click();
+  //           } else {
+  //             this.loader = false;
+  //             this.userName = response.Result.UserId;
+  //             this.uISERVICE.casinoStatus = response.Result.casinoStatus;
+  //             this.uISERVICE.liveGameStatus = response.Result.liveGameStatus;
+  //             this.uISERVICE.UserName = response.Result.UserId;
+  //             this.uISERVICE.Bal = response.Result.Bal;
+  //             this.uISERVICE.Exp = response.Result.Exp;
+  //             this.uISERVICE.take = response.Result.Take;
+  //             this.uISERVICE.News = response.Result.News;
 
-              console.log("news", response.Result.News);
-              localStorage.setItem(
-                "UserDetail",
-                JSON.stringify(response.Result)
-              );
-              localStorage.setItem("take", this.uISERVICE.take.toString());
-            }
-          } else {
-            this.uISERVICE.loader = false;
-            this.LogOut();
-          }
-        });
-    } catch (error) {
-      this.loader = false;
-      this.uISERVICE.Header = false;
-      Cookie.deleteAll();
-      localStorage.clear();
-      this.router.navigate(["/games"]);
-    }
-  }
+  //             console.log("news", response.Result.News);
+  //             localStorage.setItem(
+  //               "UserDetail",
+  //               JSON.stringify(response.Result)
+  //             );
+  //             localStorage.setItem("take", this.uISERVICE.take.toString());
+  //           }
+  //         } else {
+  //           this.uISERVICE.loader = false;
+  //           this.LogOut();
+  //         }
+  //       });
+  //   } catch (error) {
+  //     this.loader = false;
+  //     this.uISERVICE.Header = false;
+  //     Cookie.deleteAll();
+  //     localStorage.clear();
+  //     this.router.navigate(["/games"]);
+  //   }
+  // }
 
   pwdShowHide(value) {
     this.Hide = value;
@@ -624,8 +677,8 @@ this.sportid = 4;
 
     // });
 
-    $('.liveTv').click(function () {
-      $('.livetvSec').toggleClass('d-block');
+    $(".liveTv").click(function () {
+      $(".livetvSec").toggleClass("d-block");
     });
 
     $("ul.list a.main_drop").click(function () {
@@ -650,6 +703,16 @@ this.sportid = 4;
             $(this).addClass("drop_open");
             $(this).parent().find("ul.step_2").addClass("d-block");
           }
+
+          
+          
+
+
+          
+          
+
+          
+
         });
       }, 1000);
     });

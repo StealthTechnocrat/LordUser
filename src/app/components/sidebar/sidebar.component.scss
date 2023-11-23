@@ -48,6 +48,7 @@
             z-index: 1;
             overflow: hidden;
             white-space: nowrap;
+            cursor: pointer;
 
             &:before {
                 position: absolute;
@@ -362,7 +363,7 @@
         }
     }
 
-    #collapseThree {
+    // #collapseThree {
         .card-body {
             padding: 0;
         }
@@ -586,7 +587,7 @@
                 }
             }
         }
-    }
+    // }
 }
 
 .toggle_btn {
@@ -675,7 +676,7 @@
   
       .date_time {
         position: relative;
-        width: 50px;
+        width: auto;
         min-width: 50px;
         height: 35px;
         border-radius: 5px;

@@ -26,10 +26,11 @@
         <li class="news_marquee d-none d-xl-flex"  *ngIf="uISERVICE.Header">
           <marquee behavior="scroll" direction="left" [scrollDelay]="100">
             <div class="item">
-              <i class="fas fa-circle"></i>
               <span class="marquee-news-text">
-                <p *ngFor="let news of uISERVICE.News">
-                    <span class="date">{{news.createdOn | date:'M/d/yy,
+                <p *ngFor="let news of News">
+                    <span class="date">
+                      <i class="fas fa-circle"></i>
+                      {{news.createdOn | date:'M/d/yy,
                       h:mm a'}}</span>:-  {{news.News}}
                   </p>
                 </span>
@@ -39,7 +40,7 @@
         <li class="user-menus ml-auto" *ngIf="uISERVICE.Header">
           <ul class="d-flex list-unstyled p-0 m-0 mobSmrev">
             <li class="ac_bal refresh_ic" [ngClass]="{'rotate':loader}">
-              <svg (click)="GetDetail()" xmlns="http://www.w3.org/2000/svg" version="1.0" width="15" height="15"
+              <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="15" height="15"
                 viewBox="0 0 460.000000 503.000000" preserveAspectRatio="xMidYMid meet" class="">
                 <g transform="translate(0.000000,503.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
                   <path
@@ -75,7 +76,7 @@
                   </path>
                 </g>
               </svg>
-              <span class="d-none d-sm-block">Balance:</span> {{uISERVICE.Bal | number:'1.2-2'}}
+              <span class="d-none d-sm-block">Balance:</span> {{Balance | number:'1.2-2'}}
             </li>
             <li class="liability" >
               <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 13.333" width="15" height="13.333">
@@ -83,7 +84,7 @@
                   d="M 7.059 3.758 l 1.413 0.372 a 0.224 0.224 0 0 1 0.173 0.211 a 0.229 0.229 0 0 1 -0.237 0.219 H 7.48 A 0.781 0.781 0 0 1 7.189 4.5 a 0.373 0.373 0 0 0 -0.4 0.052 L 6.3 5.01 a 0.3 0.3 0 0 0 -0.059 0.069 a 0.3 0.3 0 0 0 0.1 0.41 a 2.181 2.181 0 0 0 0.9 0.3 V 6.25 a 0.437 0.437 0 0 0 0.452 0.417 h 0.452 a 0.437 0.437 0 0 0 0.453 -0.417 V 5.792 A 1.5 1.5 0 0 0 9.987 4.151 A 1.579 1.579 0 0 0 8.775 2.909 L 7.361 2.536 a 0.224 0.224 0 0 1 -0.173 -0.211 a 0.229 0.229 0 0 1 0.237 -0.219 h 0.927 a 0.781 0.781 0 0 1 0.292 0.057 a 0.373 0.373 0 0 0 0.4 -0.052 l 0.495 -0.456 A 0.3 0.3 0 0 0 9.6 1.589 a 0.3 0.3 0 0 0 -0.1 -0.411 a 2.183 2.183 0 0 0 -0.9 -0.3 V 0.417 A 0.437 0.437 0 0 0 8.144 0 H 7.692 a 0.437 0.437 0 0 0 -0.452 0.417 V 0.875 A 1.5 1.5 0 0 0 5.846 2.516 A 1.581 1.581 0 0 0 7.059 3.758 Z M 14.72 8.544 a 0.862 0.862 0 0 0 -1.109 0 L 11.2 10.469 a 1.657 1.657 0 0 1 -1.042 0.365 H 7.083 a 0.417 0.417 0 1 1 0 -0.833 H 9.122 a 0.864 0.864 0 0 0 0.866 -0.693 A 0.812 0.812 0 0 0 10 9.165 a 0.833 0.833 0 0 0 -0.833 -0.832 H 5 a 3.064 3.064 0 0 0 -1.93 0.685 L 1.859 10 H 0.417 A 0.417 0.417 0 0 0 0 10.416 v 2.5 a 0.417 0.417 0 0 0 0.417 0.417 H 9.707 a 1.667 1.667 0 0 0 1.042 -0.365 l 3.938 -3.151 a 0.833 0.833 0 0 0 0.033 -1.273 Z">
                 </path>
               </svg>
-              <span class="d-none d-sm-block">Liability:</span> {{uISERVICE.Exp | number:'1.2-2'}}
+              <span class="d-none d-sm-block">Liability:</span> {{Exposure | number:'1.2-2'}}
             </li>
             <li class="userDrop d-none d-xl-flex" *ngIf="uISERVICE.Header">
               <div class="dropdown">
@@ -93,18 +94,18 @@
                       d="M 12 12 A 4 4 0 1 0 8 8 A 4 4 0 0 0 12 12 Z m 0 2 c -2.67 0 -8 1.34 -8 4 v 2 H 20 V 18 C 20 15.34 14.67 14 12 14 Z">
                     </path>
                   </svg>
-                  {{userName}}
+                  {{Name}}
                   <i class="fas fa-caret-down right"></i>
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="javascript:void(0)"><i class="fas fa-user mr-2"></i> Welcome, {{userName}}</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0)"><i class="fas fa-user mr-2"></i> Welcome, {{Name}}</a></li>
                   <li><a class="dropdown-item" href="javascript:void(0)" routerLink="/statement"><i class="fas fa-chart-area mr-2"></i> Account
                       Statement</a></li>
                   <li><a class="dropdown-item" href="javascript:void(0)" routerLink="/profit-loss"><i class="fas fa-chart-line mr-2"></i> Profit Loss</a>
                   </li>
                   <li><a class="dropdown-item" href="javascript:void(0)" routerLink="/results"><i class="fas fa-trophy mr-2"></i> Results</a></li>
                   <li><a class="dropdown-item" href="javascript:void(0)" routerLink="/bets"><i class="fas fa-history mr-2"></i> My Bets</a></li>
-                  <li><a class="dropdown-item" href="javascript:void(0)" data-toggle="modal"
+                  <li><a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" (click)="getChips()"
                       data-target="#chipsetting"><i class="fas fa-cog mr-2"></i> Chip Setting</a></li>
                   <li><a class="dropdown-item" href="javascript:void(0)" data-toggle="modal"
                       data-target="#changepassword"><i class="fas fa-key mr-2"></i> Change Password</a></li>
@@ -663,121 +664,29 @@
               </div>
               <div class="modal-body">
                 <form>
-                  <div class="row ">
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Chips Name</label>
-                        <input type="text" placeholder="Enter Chip Name" class="form-control">
+                  <div *ngFor="let chips of chipData; let i = index">
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="form-field">
+                          <label>Chips Name</label>
+                          <input type="text" placeholder="Enter Chip Name" class="form-control" name="ChipName_{{ i }}" [(ngModel)]="chips.ChipName">
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Your Chips</label>
-                        <input type="text" placeholder="Enter Chip Value" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Chips Name</label>
-                        <input type="text" placeholder="Enter Chip Name" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Your Chips</label>
-                        <input type="text" placeholder="Enter Chip Value" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Chips Name</label>
-                        <input type="text" placeholder="Enter Chip Name" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Your Chips</label>
-                        <input type="text" placeholder="Enter Chip Value" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Chips Name</label>
-                        <input type="text" placeholder="Enter Chip Name" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Your Chips</label>
-                        <input type="text" placeholder="Enter Chip Value" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Chips Name</label>
-                        <input type="text" placeholder="Enter Chip Name" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Your Chips</label>
-                        <input type="text" placeholder="Enter Chip Value" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Chips Name</label>
-                        <input type="text" placeholder="Enter Chip Name" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Your Chips</label>
-                        <input type="text" placeholder="Enter Chip Value" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Chips Name</label>
-                        <input type="text" placeholder="Enter Chip Name" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Your Chips</label>
-                        <input type="text" placeholder="Enter Chip Value" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Chips Name</label>
-                        <input type="text" placeholder="Enter Chip Name" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Your Chips</label>
-                        <input type="text" placeholder="Enter Chip Value" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Chips Name</label>
-                        <input type="text" placeholder="Enter Chip Name" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Your Chips</label>
-                        <input type="text" placeholder="Enter Chip Value" class="form-control">
+                      <div class="col-6">
+                        <div class="form-field">
+                          <label>Your Chips</label>
+                          <input type="text" placeholder="Enter Chip Value" class="form-control" name="ChipValue_{{ i }}" [(ngModel)]="chips.ChipValue">
+                        </div>
                       </div>
                     </div>
                   </div>
+                  
+                  
                 </form>
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-primary modSubmit"><span class="animate-btn">Submit</span></button>
+              <button type="button" class="btn btn-primary modSubmit" (click)="updateChips()"><span class="animate-btn">Submit</span></button>
               <button type="button" class="btn btn-secondary modCancel" data-dismiss="modal" ><span class="animate-btn">Close</span></button>
             </div>
           </div>

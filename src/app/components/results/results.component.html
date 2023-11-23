@@ -21,53 +21,63 @@
                                     <div class="col-6 col-sm-3 col-md-2 mb-2">
                                         <div class="form-field">
                                             <label for="">Select Sport</label>
-                                            <select class="form-control">
-                                                <option selected value=0>All</option>
-                                                <option value=1>Soccer</option>
-                                                <option value=2>Tennis</option>
-                                                <option value=4>Cricket</option>
-                                                <option value=5>Table Games</option>
+                                            <select class="form-control"
+                                                (change)="onSportSelection($event.target.value)">
+                                                <option selected [value]="0">All</option>
+                                                <option [value]="1">Soccer</option>
+                                                <option [value]="2">Tennis</option>
+                                                <option [value]="4">Cricket</option>
+                                                <option [value]="5">Table Games</option>
                                             </select>
                                         </div>
+
                                     </div>
                                     <div class="col-6 col-sm-3 col-md-2 mb-2">
                                         <div class="form-field">
                                             <label for=""> Tournaments</label>
-                                            <select class="form-control">
+                                            <select class="form-control"
+                                                (change)="onSeriesSelection($event.target.value)">
                                                 <option selected value=0>All</option>
-                                                <option value=1>Soccer</option>
-                                                <option value=2>Tennis</option>
-                                                <option value=4>Cricket</option>
-                                                <option value=5>Table Games</option>
+                                                <option *ngFor="let src of seriesList" [value]="src.SeriesId">
+                                                    {{src.SeriesName}}</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-6 col-sm-3 col-md-2 mb-2">
                                         <div class="form-field">
                                             <label for=""> Matches</label>
-                                            <select class="form-control">
+                                            <select class="form-control"
+                                                (change)="onEventSelection($event.target.value)">
                                                 <option selected value=0>All</option>
+                                                <option *ngFor="let evt of eventList" [value]="evt.EventId">
+                                                    {{evt.EventName}}</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-6 col-sm-3 col-md-2 mb-2">
                                         <div class="form-field">
                                             <label for=""> Market</label>
-                                            <select class="form-control">
+                                            <select class="form-control"
+                                                (change)="onMarketSelection($event.target.value)">
                                                 <option selected value=0>All</option>
+                                                <option *ngFor="let mrkt of marketList" [value]="mrkt.MarketId">
+                                                    {{mrkt.marketName}}</option>
+                                                <option *ngIf="sportsId==4" [value]="1">Fancy</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-6 col-sm-3 col-md-2 mb-2">
+                                    <div class="col-6 col-sm-3 col-md-2">
                                         <div class="form-field">
-                                            <label for="">Start Date</label>
-                                            <input type="date" name="sdate" class="form-control mr-2">
+                                            <label>Start Date</label>
+                                            <input type="date" name="sdate" [(ngModel)]="latest_date" (blur)="getStartDate($event.target.value)"
+                                            class="form-control mr-2" id="sdate">
                                         </div>
                                     </div>
-                                    <div class="col-6 col-sm-3 col-md-2 mb-2">
+                                    <div class="col-6 col-sm-3 col-md-2">
                                         <div class="form-field">
-                                            <label for="">End Date</label>
-                                            <input type="date" class="form-control" name="edate">
+                                            <label>End Date</label>
+                                            <input type="date" name="edate" [(ngModel)]="last" (blur)="getEndDate($event.target.value)"
+                                                class="form-control mr-2" id="edate">
                                         </div>
                                     </div>
                                     <div class="col-6 col-sm-3 col-md-2 mb-2">
@@ -84,20 +94,14 @@
                                     </div>
                                     <div class="col-6 col-sm-3 col-md-2 mb-2">
                                         <div class="form-field customCheckBx">
-                                            <input type="checkbox" class="form-check-input" id="ManualOdds">
-                                            <label class="form-check-label" for="ManualOdds">Manual Odds</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-sm-3 col-md-2 mb-2">
-                                        <div class="form-field customCheckBx">
-                                            <input type="checkbox" class="form-check-input" id="LineMarket">
-                                            <label class="form-check-label" for="LineMarket">Line Market</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-sm-3 col-md-2 mb-2">
-                                        <div class="form-field customCheckBx">
                                             <input type="checkbox" class="form-check-input" id="AdvSession">
-                                            <label class="form-check-label" for="AdvSession">Adv Session</label>
+                                            <label class="form-check-label" for="AdvSession">Fancy</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 col-sm-3 col-md-2 mb-2">
+                                        <div class="form-field customCheckBx">
+                                            <input type="checkbox" class="form-check-input" id="Toss">
+                                            <label class="form-check-label" for="Toss">Toss</label>
                                         </div>
                                     </div>
                                 </div>
@@ -132,14 +136,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>02/11/2023, 11:30 PM</td>
-                                <td>Market</td>
-                                <td>Soccer / Spanish Copa del Rey / Arosa FC v Granada / Match Odds</td>
-                                <td>Granada</td>
+                            <tr *ngFor="let data of resultList | paginate: { itemsPerPage:uISERVICE.take, currentPage:pageNo,totalItems: totalRec }">
+                                <td>{{data.EventTime}}</td>
+                                <td>{{data.MarketName}}</td>
+                                <td>{{data.SportsName}}/{{data.SeriesName}}/{{data.EventName}}/{{data.MarketName}}</td>
+                                <td>{{data.Result}}</td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
+                <div class="pagination_filter pt-3 d-flex justify-content-end">
+                    <select (change)="updateRecValue($event.target.value)" class="form-control mr-2" id="">
+                        <option value="uISERVICE.take" selected>{{uISERVICE.take}}</option>
+                        <option value="10" *ngIf="uISERVICE.take!=10">10</option>
+                        <option value="20" *ngIf="uISERVICE.take!=20">20</option>
+                        <option value="30" *ngIf="uISERVICE.take!=30">30</option>
+                        <option value="40" *ngIf="uISERVICE.take!=40">40</option>
+                        <option value="50" *ngIf="uISERVICE.take!=50">50</option>
+                    </select>
+                    <pagination-controls class="pagination" maxSize="9" directionLinks="true" 
+                        (pageChange)="pageChanged($event)">
+                    </pagination-controls>
                 </div>
             </div>
         </div>

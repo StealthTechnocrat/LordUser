@@ -8,10 +8,9 @@ import { SignUpModel } from "../Model/Sign_Up_Model";
 import { promise } from "protractor";
 import { promises } from "dns";
 
-
 @Injectable()
 export class AccountService {
-  constructor(private baseHttpService: BaseHttpService) { }
+  constructor(private baseHttpService: BaseHttpService) {}
   private signInUrl = environment.apiBaseUrl + "SignUp/Valid_Login";
   private getSrsListUrl = environment.apiBaseUrl + "Event/GetSeriesList";
   private getUsrDtlUrl = environment.apiBaseUrl + "SignUp/GetUserDetails";
@@ -20,7 +19,8 @@ export class AccountService {
   private placeBetUrl = environment.apiBaseUrl + "Bets/CreateBet";
   private placeFancyBetUrl = environment.apiBaseUrl + "Bets/CreateFancyBet";
   private getBetHistoryUrl = environment.apiBaseUrl + "Bets/GetBetsHistory";
-  private getTransactionHistoryUrl = environment.apiBaseUrl + "Transaction/TranHistory";
+  private getTransactionHistoryUrl =
+    environment.apiBaseUrl + "Transaction/TranHistory";
   private updateUserUrl = environment.apiBaseUrl + "SignUp/Update_User";
   private updateRecValUrl = environment.apiBaseUrl + "Chip/Update_TakeRecord";
   private getCsnoDtlUrl = environment.apiBaseUrl + "Event/getCasinoDetail";
@@ -38,20 +38,62 @@ export class AccountService {
   private addUserUrl = environment.apiBaseUrl + "SignUp/Create_User";
   private getLobbyUrl = environment.apiBaseUrl + "balance/getLobby";
   private GetBannerUrl = environment.apiBaseUrl + "Chip/GetBanners";
-  private GetCasinoProviderUrl = environment.apiBaseUrl + "CasinoSettings/GetCasinoProviders";
-  private GetCasinoGamesUrl = environment.apiBaseUrl + "CasinoSettings/GetCasinoGames";
-  private GetCasinoDetailsUrl = environment.apiBaseUrl + "CasinoSettings/GetCasinoSettings";
-  private GetTableGamesUrl = environment.apiBaseUrl + "CasinoSettings/GetTableGames";
+  private GetCasinoProviderUrl =
+    environment.apiBaseUrl + "CasinoSettings/GetCasinoProviders";
+  private GetCasinoGamesUrl =
+    environment.apiBaseUrl + "CasinoSettings/GetCasinoGames";
+  private GetCasinoDetailsUrl =
+    environment.apiBaseUrl + "CasinoSettings/GetCasinoSettings";
+  private GetTableGamesUrl =
+    environment.apiBaseUrl + "CasinoSettings/GetTableGames";
   private GetLogoUrl = environment.apiBaseUrl + "Chip/GetLogo";
   private GetApiUrlsUrl = environment.apiBaseUrl + "Event/GetApiUrls";
-  private changePwdUrl=environment.apiBaseUrl + "SignUp/changePassword";
+  private changePwdUrl = environment.apiBaseUrl + "SignUp/changePassword";
   private getCompListUrl = environment.apiBaseUrl + "Event/GetCompetitionList";
-  private getEventListUrl = environment.apiBaseUrl + "Event/GetEventListBySportsId";
+  private getEventListUrl =
+    environment.apiBaseUrl + "Event/GetEventListBySportsId";
   private getAllInplayUrl = environment.apiBaseUrl + "Event/GetInplayEvents";
-  private getUpcomingEventsUrl = environment.apiBaseUrl + "Event/GetUpcomingEvents";
-  private GetAllEventsBySportsIdUrl = environment.apiBaseUrl + "Event/GetAllEventsBySportsId";
-  private GetInplayEventsBySportsIdUrl = environment.apiBaseUrl + "Event/GetInplayEventsBySportsId";
+  private getUpcomingEventsUrl =
+    environment.apiBaseUrl + "Event/GetUpcomingEvents";
+  private GetAllEventsBySportsIdUrl =
+    environment.apiBaseUrl + "Event/GetAllEventsBySportsId";
+  private GetInplayEventsBySportsIdUrl =
+    environment.apiBaseUrl + "Event/GetInplayEventsBySportsId";
+  private GetAllMarketsUrl = environment.apiBaseUrl + "Event/GetAllMarkets";
+  private GetAllResultsUrl = environment.apiBaseUrl + "Event/GetAllResultList";
 
+  private usrDtlUrl = environment.apiBaseUrl + "SignUp/UsersDetails";
+
+  userDetails(): Promise<any> {
+    return this.baseHttpService.Get(this.usrDtlUrl).then(function (response) {
+      return response.json();
+    });
+  }
+  GetAllResults(skip, takeRec, sDate, eDate): Promise<any> {
+    return this.baseHttpService
+      .Get(
+        this.GetAllResultsUrl +
+          "?skip=" +
+          skip +
+          "&takeRec=" +
+          takeRec +
+          "&sDate=" +
+          sDate +
+          "&eDate=" +
+          eDate
+      )
+      .then(function (response) {
+        return response.json();
+      });
+  }
+
+  GetAllMarkets(eventId): Promise<any> {
+    return this.baseHttpService
+      .Get(this.GetAllMarketsUrl + "?eventId=" + eventId)
+      .then(function (response) {
+        return response.json();
+      });
+  }
 
   GetInplayEventsBySportsId(sportsId): Promise<any> {
     return this.baseHttpService
@@ -68,7 +110,7 @@ export class AccountService {
         return response.json();
       });
   }
-  
+
   getAllInplay(): Promise<any> {
     return this.baseHttpService
       .Get(this.getAllInplayUrl)
@@ -112,10 +154,9 @@ export class AccountService {
   }
 
   GetLogo(): Promise<any> {
-    return this.baseHttpService.Get(this.GetLogoUrl)
-      .then(function (response) {
-        return response.json();
-      })
+    return this.baseHttpService.Get(this.GetLogoUrl).then(function (response) {
+      return response.json();
+    });
   }
 
   getSrsList(sportsId): Promise<any> {
@@ -128,7 +169,9 @@ export class AccountService {
 
   getUsrDtl(id, role, token): Promise<any> {
     return this.baseHttpService
-      .Get(this.getUsrDtlUrl + "?id=" + id + "&role=" + role + "&token=" + token)
+      .Get(
+        this.getUsrDtlUrl + "?id=" + id + "&role=" + role + "&token=" + token
+      )
       .then(function (response) {
         return response.json();
       });
@@ -138,12 +181,12 @@ export class AccountService {
     return this.baseHttpService
       .Get(
         this.getDetailLstUrl +
-        "?sportsId=" +
-        sportsId +
-        "&reqType=" +
-        reqType +
-        "&chckCnd=" +
-        chckCnd
+          "?sportsId=" +
+          sportsId +
+          "&reqType=" +
+          reqType +
+          "&chckCnd=" +
+          chckCnd
       )
       .then(function (response) {
         return response.json();
@@ -195,24 +238,24 @@ export class AccountService {
     return this.baseHttpService
       .Get(
         this.getBetHistoryUrl +
-        "?skipRec=" +
-        skipRec +
-        "&takeRecord=" +
-        takeRec +
-        "&sportsId=" +
-        sportsId +
-        "&marketName=" +
-        mrktName +
-        "&betStatus=" +
-        betType +
-        "&role=" +
-        role +
-        "&userId=" +
-        usrName +
-        "&startDate=" +
-        startDate +
-        "&endDate=" +
-        endDate
+          "?skipRec=" +
+          skipRec +
+          "&takeRecord=" +
+          takeRec +
+          "&sportsId=" +
+          sportsId +
+          "&marketName=" +
+          mrktName +
+          "&betStatus=" +
+          betType +
+          "&role=" +
+          role +
+          "&userId=" +
+          usrName +
+          "&startDate=" +
+          startDate +
+          "&endDate=" +
+          endDate
       )
       .then(function (response) {
         return response.json();
@@ -233,24 +276,24 @@ export class AccountService {
     return this.baseHttpService
       .Get(
         this.getTransactionHistoryUrl +
-        "?role=" +
-        role +
-        "&userId=" +
-        userId +
-        "&skipRec=" +
-        skipRec +
-        "&take=" +
-        take +
-        "&type=" +
-        type +
-        "&sportsId=" +
-        sportsId +
-        "&marketName=" +
-        marketName +
-        "&sDate=" +
-        sDate +
-        "&eDate=" +
-        eDate
+          "?role=" +
+          role +
+          "&userId=" +
+          userId +
+          "&skipRec=" +
+          skipRec +
+          "&take=" +
+          take +
+          "&type=" +
+          type +
+          "&sportsId=" +
+          sportsId +
+          "&marketName=" +
+          marketName +
+          "&sDate=" +
+          sDate +
+          "&eDate=" +
+          eDate
       )
       .then(function (response) {
         return response.json();
@@ -258,22 +301,23 @@ export class AccountService {
   }
 
   GetApiUrls(sportId): Promise<any> {
-    return this.baseHttpService.Get(this.GetApiUrlsUrl + "?sportsId=" + sportId + "&role=" + true)
+    return this.baseHttpService
+      .Get(this.GetApiUrlsUrl + "?sportsId=" + sportId + "&role=" + true)
       .then(function (response) {
         return response.json();
-      })
+      });
   }
 
   UpdateUser(type, value, userId): Promise<any> {
     return this.baseHttpService
       .Get(
         this.updateUserUrl +
-        "?type=" +
-        type +
-        "&Value=" +
-        value +
-        "&userId=" +
-        userId
+          "?type=" +
+          type +
+          "&Value=" +
+          value +
+          "&userId=" +
+          userId
       )
       .then(function (response) {
         return response.json();
@@ -292,88 +336,92 @@ export class AccountService {
     return this.baseHttpService
       .Get(
         this.getProfitLossUrl +
-        "?role=" +
-        role +
-        "&userId=" +
-        userId +
-        "&sportsId=" +
-        sportsId +
-        "&sDate=" +
-        sDate +
-        "&eDate=" +
-        eDate
+          "?role=" +
+          role +
+          "&userId=" +
+          userId +
+          "&sportsId=" +
+          sportsId +
+          "&sDate=" +
+          sDate +
+          "&eDate=" +
+          eDate
       )
       .then(function (response) {
         return response.json();
       });
   }
-
 
   GetEventBets(userName, role, userId, marketName, eventId) {
     return this.baseHttpService
       .Get(
         this.getEventBetsUrl +
-        "?userName=" +
-        userName +
-        "&role=" +
-        role +
-        "&userId=" +
-        userId +
-        "&marketName=" +
-        marketName +
-        "&eventId=" +
-        eventId + "&skipRec=0&take=0"
+          "?userName=" +
+          userName +
+          "&role=" +
+          role +
+          "&userId=" +
+          userId +
+          "&marketName=" +
+          marketName +
+          "&eventId=" +
+          eventId +
+          "&skipRec=0&take=0"
       )
       .then(function (response) {
         return response.json();
       });
   }
 
-  GetMarketBets(userName, role, userId, marketName, eventId, runId, marketId): Promise<any> {
-    return this.baseHttpService
-      .Get(
-        this.getMarketBetsUrl +
-        "?userName=" +
-        userName +
-        "&role=" +
-        role +
-        "&userId=" +
-        userId +
-        "&marketName=" +
-        marketName +
-        "&eventId=" +
-        eventId +
-        "&runId=" +
-        runId + "&skipRec=0&take=0" + "&marketId=" + marketId
-      )
-      .then(function (response) {
-        return response.json();
-      });
-  }
-
-  GetCasinoBets(
+  GetMarketBets(
+    userName,
     role,
     userId,
-    marketId,
-    systemId,
-    sDate,
-    eDate
+    marketName,
+    eventId,
+    runId,
+    marketId
   ): Promise<any> {
     return this.baseHttpService
       .Get(
+        this.getMarketBetsUrl +
+          "?userName=" +
+          userName +
+          "&role=" +
+          role +
+          "&userId=" +
+          userId +
+          "&marketName=" +
+          marketName +
+          "&eventId=" +
+          eventId +
+          "&runId=" +
+          runId +
+          "&skipRec=0&take=0" +
+          "&marketId=" +
+          marketId
+      )
+      .then(function (response) {
+        return response.json();
+      });
+  }
+
+  GetCasinoBets(role, userId, marketId, systemId, sDate, eDate): Promise<any> {
+    return this.baseHttpService
+      .Get(
         this.getCasinoBetsUrl +
-        "?role=" +
-        role +
-        "&userId=" +
-        userId +
-        "&marketId=" +
-        marketId +
-        "&systemId=" +
-        systemId +
-        "&sDate=" +
-        sDate +
-        "&eDate=" +
-        eDate
+          "?role=" +
+          role +
+          "&userId=" +
+          userId +
+          "&marketId=" +
+          marketId +
+          "&systemId=" +
+          systemId +
+          "&sDate=" +
+          sDate +
+          "&eDate=" +
+          eDate
       )
       .then(function (response) {
         return response.json();
@@ -381,35 +429,59 @@ export class AccountService {
   }
 
   getChips(): Promise<any> {
-    return this.baseHttpService.Get(this.getChipsUrl)
-      .then(function (response) {
-        return response.json();
-      });
+    return this.baseHttpService.Get(this.getChipsUrl).then(function (response) {
+      return response.json();
+    });
   }
 
   getFancyBook(selId, mrktId): Promise<any> {
-    return this.baseHttpService.Get(this.fancyBookUrl + "?RunnerId=" + selId + "&marketId=" + mrktId)
+    return this.baseHttpService
+      .Get(this.fancyBookUrl + "?RunnerId=" + selId + "&marketId=" + mrktId)
       .then(function (response) {
         return response.json();
       });
   }
 
-  getPendingBets(usrName, sportId, marketName, betType, skip, take): Promise<any> {
-    return this.baseHttpService.Get(this.pendingBetUrl + "?usrName=" + usrName + "&sportsId=" + sportId + "&mrktName=" + marketName + "&betType=" + betType + "&skipRec=" + skip + "&takeRec=" + take)
+  getPendingBets(
+    usrName,
+    sportId,
+    marketName,
+    betType,
+    skip,
+    take
+  ): Promise<any> {
+    return this.baseHttpService
+      .Get(
+        this.pendingBetUrl +
+          "?usrName=" +
+          usrName +
+          "&sportsId=" +
+          sportId +
+          "&mrktName=" +
+          marketName +
+          "&betType=" +
+          betType +
+          "&skipRec=" +
+          skip +
+          "&takeRec=" +
+          take
+      )
       .then(function (response) {
         return response.json();
       });
   }
 
   updateChip(chipData): Promise<any> {
-    return this.baseHttpService.Post(this.updateChipUrl, chipData)
+    return this.baseHttpService
+      .Post(this.updateChipUrl, chipData)
       .then(function (response) {
         return response.json();
       });
   }
 
   saveCard(cardModel: CardDetails): Promise<any> {
-    return this.baseHttpService.Post(this.saveCardsUrl, cardModel)
+    return this.baseHttpService
+      .Post(this.saveCardsUrl, cardModel)
       .then(function (response) {
         return response.json();
       });
@@ -422,7 +494,6 @@ export class AccountService {
         return response.json();
       });
   }
-
 
   changePwd(oldpwd, newpwd): Promise<any> {
     return this.baseHttpService
@@ -449,39 +520,44 @@ export class AccountService {
   }
 
   GetBanner(type: string): Promise<any> {
-    return this.baseHttpService.Get(this.GetBannerUrl + "?type=" + type)
+    return this.baseHttpService
+      .Get(this.GetBannerUrl + "?type=" + type)
       .then(function (response) {
         return response.json();
-      })
+      });
   }
 
   GetCasinoProviders(): Promise<any> {
-    return this.baseHttpService.Get(this.GetCasinoProviderUrl + "?role=" + "Client")
+    return this.baseHttpService
+      .Get(this.GetCasinoProviderUrl + "?role=" + "Client")
       .then(function (response) {
         return response.json();
-      })
+      });
   }
 
   GetCasinoGames(systemId: string): Promise<any> {
-    return this.baseHttpService.Get(this.GetCasinoGamesUrl + "?systemId=" + systemId + "&role=" + "Client")
+    return this.baseHttpService
+      .Get(
+        this.GetCasinoGamesUrl + "?systemId=" + systemId + "&role=" + "Client"
+      )
       .then(function (response) {
         return response.json();
-      })
+      });
   }
 
   GetCasinoDetails(): Promise<any> {
-    return this.baseHttpService.Get(this.GetCasinoDetailsUrl)
+    return this.baseHttpService
+      .Get(this.GetCasinoDetailsUrl)
       .then(function (response) {
         return response.json();
-      })
+      });
   }
-
 
   GetTableGames(): Promise<any> {
-    return this.baseHttpService.Get(this.GetTableGamesUrl + "?role=" + "Client")
+    return this.baseHttpService
+      .Get(this.GetTableGamesUrl + "?role=" + "Client")
       .then(function (response) {
         return response.json();
-      })
+      });
   }
-
 }

@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LiveMarketsComponent } from './live-markets.component';
+import { LiveMarketsComponent } from "./LiveMarketsComponent";
 
 describe('LiveMarketsComponent', () => {
   let component: LiveMarketsComponent;
