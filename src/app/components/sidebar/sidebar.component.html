@@ -2,30 +2,38 @@
     <div class="tab_title blue_bg">
         <ul class="nav slideHoverUl" id="sportsTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <a class="nav-link" (click)="allSportsTab()"  [ngClass]="{ 'active': activeTab === 'allSports', 'show': activeTab === 'allSports' }" (click)="setActiveTab('allSports')">
+                <a class="nav-link" (click)="allSportsTab()"
+                    [ngClass]="{ 'active': activeTab === 'allSports', 'show': activeTab === 'allSports' }"
+                    (click)="setActiveTab('allSports')">
                     <div class="sports-icon all-sports"></div> <span class="link-title">All Sports </span>
                 </a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link" (click)="inplayTab()"  [ngClass]="{ 'active': activeTab === 'inPlay', 'show': activeTab === 'inPlay' }" (click)="setActiveTab('inPlay')">
+                <a class="nav-link" (click)="inplayTab()"
+                    [ngClass]="{ 'active': activeTab === 'inPlay', 'show': activeTab === 'inPlay' }"
+                    (click)="setActiveTab('inPlay')">
                     <div class="sports-icon inplay"></div> <span class="link-title"> In Play </span>
                 </a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link" (click)="upcomingTab()"  [ngClass]="{ 'active': activeTab === 'upComing', 'show': activeTab === 'upComing' }" (click)="setActiveTab('upComing')">
+                <a class="nav-link" (click)="upcomingTab()"
+                    [ngClass]="{ 'active': activeTab === 'upComing', 'show': activeTab === 'upComing' }"
+                    (click)="setActiveTab('upComing')">
                     <div class="sports-icon upcoming"></div> <span class="link-title"> Upcoming</span>
                 </a>
             </li>
         </ul>
     </div>
     <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" [ngClass]="{ 'show': activeTab === 'allSports', 'active': activeTab === 'allSports' }" id="pills-allSports" role="tabpanel">
+        <div class="tab-pane fade show active"
+            [ngClass]="{ 'show': activeTab === 'allSports', 'active': activeTab === 'allSports' }" id="pills-allSports"
+            role="tabpanel">
             <div class="side_cards">
                 <div class="card-body">
-                    <div  class="upcoming_games_list appSports" >
+                    <div class="upcoming_games_list appSports">
                         <ul class="list">
                             <li>
-                                <a (click)="getCompList(4)" class="main_drop">
+                                <a (click)="getCompList(4)" class="main_drop" >
                                     <span class="clickmain">
                                         <span class="sports-icon cricket"></span>
                                         Cricket
@@ -34,26 +42,28 @@
                                         </span>
                                     </span>
                                 </a>
-                                <ul class="step_1">
+                                <ul class="step_1" id="accordion" >
                                     <li *ngFor="let lst of seriesList">
-                                        <a class="dropInner" (click)="getEventList(4,lst.SeriesId)">
-                                            {{lst.SeriesName}}
-                                            <span class="arrow">
-                                                <i class="fa fa-plus"></i>
-                                            </span>
-                                        </a>
-                                        <ul class="step_2">
-                                            <li *ngFor="let evnt of eventList">
-                                                <a (click)="redirectfun(evnt.SportsId, evnt.EventId)">
-                                                    <p>
-                                                         {{evnt.Runner1}} 
-                                                         <span>V</span>
-                                                         {{evnt.Runner2}} 
+                                        <div class="item">
+                                            <a class="dropInner" (click)="getEventList(4,lst.SeriesId)" >
+                                                {{lst.SeriesName}}
+                                                <span class="arrow">
+                                                    <i class="fa fa-plus"></i>
+                                                </span>
+                                            </a>
+                                            <ul class="step_2"  *ngIf="showStep2Map[lst.SeriesId]">
+                                                <li *ngFor="let evnt of eventList">
+                                                    <a (click)="redirectfun(evnt.SportsId, evnt.EventId)">
+                                                        <p>
+                                                            {{evnt.Runner1}}
+                                                            <span>V</span>
+                                                            {{evnt.Runner2}}
                                                         </p>
-                                                   
-                                                </a>
-                                            </li>
-                                        </ul>
+
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </li>
                                 </ul>
                             </li>
@@ -77,11 +87,11 @@
                                             <li *ngFor="let evnt of eventList">
                                                 <a (click)="redirectfun(evnt.SportsId, evnt.EventId)">
                                                     <p>
-                                                         {{evnt.Runner1}} 
-                                                         <span>V</span>
-                                                         {{evnt.Runner2}} 
-                                                        </p>
-                                                   
+                                                        {{evnt.Runner1}}
+                                                        <span>V</span>
+                                                        {{evnt.Runner2}}
+                                                    </p>
+
                                                 </a>
                                             </li>
                                         </ul>
@@ -95,28 +105,28 @@
                                     <span class="arrow">
                                         <i class="fa fa-plus"></i>
                                     </span></a>
-                                    <ul class="step_1">
-                                        <li *ngFor="let lst of seriesList">
-                                            <a class="dropInner" (click)="getEventList(2,lst.SeriesId)">
-                                                {{lst.SeriesName}}
-                                                <span class="arrow">
-                                                    <i class="fa fa-plus"></i>
-                                                </span>
-                                            </a>
-                                            <ul class="step_2">
-                                                <li *ngFor="let evnt of eventList">
-                                                    <a (click)="redirectfun(evnt.SportsId, evnt.EventId)">
-                                                        <p>
-                                                             {{evnt.Runner1}} 
-                                                             <span>V</span>
-                                                             {{evnt.Runner2}} 
-                                                            </p>
-                                                       
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                <ul class="step_1">
+                                    <li *ngFor="let lst of seriesList">
+                                        <a class="dropInner" (click)="getEventList(2,lst.SeriesId)">
+                                            {{lst.SeriesName}}
+                                            <span class="arrow">
+                                                <i class="fa fa-plus"></i>
+                                            </span>
+                                        </a>
+                                        <ul class="step_2">
+                                            <li *ngFor="let evnt of eventList">
+                                                <a (click)="redirectfun(evnt.SportsId, evnt.EventId)">
+                                                    <p>
+                                                        {{evnt.Runner1}}
+                                                        <span>V</span>
+                                                        {{evnt.Runner2}}
+                                                    </p>
+
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </li>
                             <li *ngIf="!uISERVICE.casinoStatus">
                                 <a class="main_drop">
@@ -133,14 +143,15 @@
                             </li>
                         </ul>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade " [ngClass]="{ 'show': activeTab === 'inPlay', 'active': activeTab === 'inPlay' }" id="pills-inPlay" role="tabpanel">
+        <div class="tab-pane fade " [ngClass]="{ 'show': activeTab === 'inPlay', 'active': activeTab === 'inPlay' }"
+            id="pills-inPlay" role="tabpanel">
             <div class="side_cards">
-                 <div class="card-body">
-                    <div class="upcoming_games_list inply" >
+                <div class="card-body">
+                    <div class="upcoming_games_list inply">
                         <ul class="list-unstyled p-0 m-0">
                             <li class=" game_item" *ngFor="let evnt of list">
                                 <a href="javascript:void(0)">
@@ -212,7 +223,7 @@
                                                 <div *ngIf="evnt.SportsId==1" class="sports-icon soccer"></div>
                                                 <div *ngIf="evnt.SportsId==4" class="sports-icon cricket"></div>
                                                 <div *ngIf="evnt.SportsId==2" class="sports-icon tennis"></div>
-                                              {{evnt.SportsName}} | {{evnt.SeriesName}}
+                                                {{evnt.SportsName}} | {{evnt.SeriesName}}
                                             </div>
                                         </div>
                                     </div>
@@ -220,13 +231,14 @@
                             </li>
                         </ul>
                     </div>
-                 </div>
+                </div>
             </div>
         </div>
-        <div class="tab-pane fade " [ngClass]="{ 'show': activeTab === 'upComing', 'active': activeTab === 'upComing' }" id="pills-upComing" role="tabpanel">
+        <div class="tab-pane fade " [ngClass]="{ 'show': activeTab === 'upComing', 'active': activeTab === 'upComing' }"
+            id="pills-upComing" role="tabpanel">
             <div class="side_cards">
-                 <div class="card-body">
-                    <div class="upcoming_games_list inply" >
+                <div class="card-body">
+                    <div class="upcoming_games_list inply">
                         <ul class="list-unstyled p-0 m-0">
                             <li class=" game_item" *ngFor="let evnt of list">
                                 <a href="javascript:void(0)">
@@ -298,7 +310,7 @@
                                                 <div *ngIf="evnt.SportsId==1" class="sports-icon soccer"></div>
                                                 <div *ngIf="evnt.SportsId==4" class="sports-icon cricket"></div>
                                                 <div *ngIf="evnt.SportsId==2" class="sports-icon tennis"></div>
-                                              {{evnt.SportsName}} | {{evnt.SeriesName}}
+                                                {{evnt.SportsName}} | {{evnt.SeriesName}}
                                             </div>
                                         </div>
                                     </div>
@@ -306,7 +318,7 @@
                             </li>
                         </ul>
                     </div>
-                 </div>
+                </div>
             </div>
         </div>
     </div>

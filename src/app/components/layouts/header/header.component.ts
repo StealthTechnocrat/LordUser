@@ -681,44 +681,42 @@ export class HeaderComponent implements OnInit {
       $(".livetvSec").toggleClass("d-block");
     });
 
+
+
+    
     $("ul.list a.main_drop").click(function () {
       var $step1 = $(this).parent().find("ul.step_1");
       $("ul.list ul.step_1").not($step1).slideUp();
-      $("ul.list a.main_drop").removeClass("drop_open");
+      $("ul.list a.main_drop").removeClass("drop_open");  
 
       $(this).toggleClass("drop_open");
       $step1.slideToggle();
 
-      setTimeout(function () {
-        $step1.find("a").click(function (event) {
-          event.stopPropagation();
-
-          if ($(".dropInner").hasClass("drop_open")) {
-            $(".dropInner").removeClass("drop_open");
-            $("ul.step_2").removeClass("d-block");
-
-            $(this).addClass("drop_open");
-            $(this).parent().find("ul.step_2").addClass("d-block");
-          } else {
-            $(this).addClass("drop_open");
-            $(this).parent().find("ul.step_2").addClass("d-block");
-          }
-
-          
-          
 
 
-          
-          
 
-          
+      // setTimeout(function () {
+      //   $step1.find("a").click(function (event) {
+      //     event.stopPropagation();
 
-        });
-      }, 1000);
+      //     if ($(".dropInner").hasClass("drop_open")) {
+      //       $(".dropInner").removeClass("drop_open");
+      //       $("ul.step_2").removeClass("d-block");
+
+      //       $(this).addClass("drop_open");
+      //       $(this).parent().find("ul.step_2").addClass("d-block");
+      //     } else {
+      //       $(this).addClass("drop_open");
+      //       $(this).parent().find("ul.step_2").addClass("d-block");
+      //     }
+      //   });
+      // }, 1000);
     });
 
-    // $(".main_drop").click(function () {
-    //   $(".main_drop").toggleClass("drop_open");
+    // $(".dropInner").click(function () {
+    //   $(".dropInner").toggleClass("drop_open");
     // });
+
+    
   }
 }

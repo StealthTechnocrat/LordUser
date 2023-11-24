@@ -21,20 +21,23 @@ export class SidebarComponent implements OnInit {
   eventList: any = [];
   sidebarType: boolean = false;
   list: any = [];
+  showStep2Map: { [key: number]: boolean } = {};
+  lastOpenedSeriesId: number | null = null;
+
   constructor(
     private accountService: AccountService,
     public timePipe: TimepipeService,
     public uISERVICE: UiService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   allSportsTab() {
     this.sidebarType = false;
   }
-  
+
 
   inplayTab() {
     this.list = [];
@@ -95,6 +98,11 @@ export class SidebarComponent implements OnInit {
         this.eventList = [];
       }
     });
+    if (this.lastOpenedSeriesId !== null && this.lastOpenedSeriesId !== seriesId) {
+      this.showStep2Map[this.lastOpenedSeriesId] = false;
+    }
+    this.showStep2Map[seriesId] = !this.showStep2Map[seriesId];
+    this.lastOpenedSeriesId = seriesId;
   }
 
   ngAfterViewInit() {
@@ -116,5 +124,12 @@ export class SidebarComponent implements OnInit {
         lastClickedChild.addClass("active");
       });
     });
+
+
+
+    // $(".dropInner").click(function () {
+    //   $(".arrow").toggleClass("drop_open");
+    // });
+
   }
 }

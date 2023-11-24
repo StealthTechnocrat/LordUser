@@ -548,7 +548,7 @@
             }
 
             &.step_2 {
-                display: none;
+                // display: none;
                 margin-bottom:10px;
 
                 a {
@@ -658,7 +658,7 @@
             transition: all .5s;
         }
         &:nth-child(odd){
-            background: rgba(196,196,196,.1);
+            // background: rgba(196,196,196,.1);
         }
       a {
         display: flex !important;
