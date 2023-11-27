@@ -21,7 +21,7 @@ export class ResultsComponent implements OnInit {
   sportsId: number = 0;
   seriesId: string = "";
   eventId: string = "";
-  marketId: string = "";
+  marketName: string = "";
   last: string;
   latest_date: any;
   startDate: string = "";
@@ -72,9 +72,9 @@ export class ResultsComponent implements OnInit {
   onMarketSelection(selectedValue: string) {
     debugger;
     if (selectedValue != "1") {
-      this.marketId = selectedValue;
+      this.marketName = selectedValue;
     } else {
-      this.marketId = "Fancy";
+      this.marketName = "Fancy";
     }
   }
 
@@ -92,6 +92,32 @@ export class ResultsComponent implements OnInit {
       }
     });
   }
+
+  getFilteredResults() {
+    debugger;
+    if(this.uISERVICE.take == null || this.uISERVICE.take == undefined){
+      this.uISERVICE.take = 10
+    }
+    this.resultList = [];
+    this.accountService
+      .GetResults(
+        this.eventId,
+        this.marketName,
+        this.skipRec,
+        this.uISERVICE.take,
+        this.startDate,
+        this.endDate
+      )
+      .then((response) => {
+        if (response) {
+          this.resultList = response.Result;
+          console.log("rslt", this.resultList);
+        } else {
+          this.resultList = [];
+        }
+      });
+  }
+
 
   getAllResultList() {
     debugger;

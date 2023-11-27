@@ -61,6 +61,8 @@ export class AccountService {
     environment.apiBaseUrl + "Event/GetInplayEventsBySportsId";
   private GetAllMarketsUrl = environment.apiBaseUrl + "Event/GetAllMarkets";
   private GetAllResultsUrl = environment.apiBaseUrl + "Event/GetAllResultList";
+  private GetResultListUrl = environment.apiBaseUrl + "Event/GetResultList";
+
 
   private usrDtlUrl = environment.apiBaseUrl + "SignUp/UsersDetails";
 
@@ -69,6 +71,30 @@ export class AccountService {
       return response.json();
     });
   }
+
+  GetResults(eventId, marketName ,skip, takeRec, sDate, eDate): Promise<any> {
+    return this.baseHttpService
+      .Get(
+        this.GetResultListUrl +
+        "?eventId=" +
+        eventId +
+        "&marketName=" +
+        marketName +
+          "&skip=" +
+          skip +
+          "&takeRec=" +
+          takeRec +
+          "&sDate=" +
+          sDate +
+          "&eDate=" +
+          eDate
+      )
+      .then(function (response) {
+        return response.json();
+      });
+  }
+
+
   GetAllResults(skip, takeRec, sDate, eDate): Promise<any> {
     return this.baseHttpService
       .Get(

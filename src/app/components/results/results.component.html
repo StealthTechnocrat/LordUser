@@ -59,8 +59,8 @@
                                             <label for=""> Market</label>
                                             <select class="form-control"
                                                 (change)="onMarketSelection($event.target.value)">
-                                                <option selected value=0>All</option>
-                                                <option *ngFor="let mrkt of marketList" [value]="mrkt.MarketId">
+                                                <option selected [value]="All">All</option>
+                                                <option *ngFor="let mrkt of marketList" [value]="mrkt.marketName">
                                                     {{mrkt.marketName}}</option>
                                                 <option *ngIf="sportsId==4" [value]="1">Fancy</option>
                                             </select>
@@ -108,7 +108,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-field d-flex justify-content-between align-items-center">
-                                    <button type="submit" class="btn btn-primary">Load</button>
+                                    <button type="submit" class="btn btn-primary" (click)="getFilteredResults()">Load</button>
                                     <div class="d-flex align-items-center">
                                         <button type="button" class="btn btn-primary file_btn ">
                                             Excel
@@ -137,7 +137,7 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let data of resultList | paginate: { itemsPerPage:uISERVICE.take, currentPage:pageNo,totalItems: totalRec }">
-                                <td>{{data.EventTime}}</td>
+                                <td>{{data.EventTime  | date:'MMM d, y, h:mm:ss a'}}</td>
                                 <td>{{data.MarketName}}</td>
                                 <td>{{data.SportsName}}/{{data.SeriesName}}/{{data.EventName}}/{{data.MarketName}}</td>
                                 <td>{{data.Result}}</td>
