@@ -59,7 +59,7 @@
                                             <label for=""> Market</label>
                                             <select class="form-control"
                                                 (change)="onMarketSelection($event.target.value)">
-                                                <option selected [value]="All">All</option>
+                                                <option selected [value]="0">All</option>
                                                 <option *ngFor="let mrkt of marketList" [value]="mrkt.marketName">
                                                     {{mrkt.marketName}}</option>
                                                 <option *ngIf="sportsId==4" [value]="1">Fancy</option>
@@ -82,28 +82,29 @@
                                     </div>
                                     <div class="col-6 col-sm-3 col-md-2 mb-2">
                                         <div class="form-field customCheckBx">
-                                            <input type="checkbox" class="form-check-input" id="Market">
+                                            <input type="radio" class="form-check-input" name="filterType" id="Market" (click)="selectFilterType('Match Odds')">
                                             <label class="form-check-label" for="Market">Market</label>
                                         </div>
                                     </div>
                                     <div class="col-6 col-sm-3 col-md-2 mb-2">
                                         <div class="form-field customCheckBx">
-                                            <input type="checkbox" class="form-check-input" id="BookMaker">
+                                            <input type="radio" class="form-check-input" name="filterType" id="BookMaker" (click)="selectFilterType('BookMaker')">
                                             <label class="form-check-label" for="BookMaker">BookMaker</label>
                                         </div>
                                     </div>
                                     <div class="col-6 col-sm-3 col-md-2 mb-2">
                                         <div class="form-field customCheckBx">
-                                            <input type="checkbox" class="form-check-input" id="AdvSession">
+                                            <input type="radio" class="form-check-input" name="filterType" id="AdvSession" (click)="selectFilterType('Fancy')">
                                             <label class="form-check-label" for="AdvSession">Fancy</label>
                                         </div>
                                     </div>
                                     <div class="col-6 col-sm-3 col-md-2 mb-2">
                                         <div class="form-field customCheckBx">
-                                            <input type="checkbox" class="form-check-input" id="Toss">
+                                            <input type="radio" class="form-check-input" name="filterType" id="Toss" (click)="selectFilterType('To Win The Toss')">
                                             <label class="form-check-label" for="Toss">Toss</label>
                                         </div>
                                     </div>
+                                    
                                 </div>
                             </div>
                             <div class="col-md-12">

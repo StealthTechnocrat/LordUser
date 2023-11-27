@@ -71,10 +71,12 @@ export class ResultsComponent implements OnInit {
 
   onMarketSelection(selectedValue: string) {
     debugger;
-    if (selectedValue != "1") {
-      this.marketName = selectedValue;
-    } else {
+    if (selectedValue == "1") {
       this.marketName = "Fancy";
+    }else if(selectedValue == "0"){
+      this.marketName = "All";
+    } else {
+      this.marketName = selectedValue;
     }
   }
 
@@ -95,14 +97,42 @@ export class ResultsComponent implements OnInit {
 
   getFilteredResults() {
     debugger;
+    if(this.eventId == "" || this.eventId == undefined || this.sportsId == undefined || this.sportsId == 0){
+      this.getAllResultList();
+    }else{
+      if(this.uISERVICE.take == null || this.uISERVICE.take == undefined){
+        this.uISERVICE.take = 10
+      }
+      this.resultList = [];
+      this.accountService
+        .GetResults(
+          this.eventId,
+          this.marketName,
+          this.skipRec,
+          this.uISERVICE.take,
+          this.startDate,
+          this.endDate
+        )
+        .then((response) => {
+          if (response) {
+            this.resultList = response.Result;
+            console.log("rslt", this.resultList);
+          } else {
+            this.resultList = [];
+          }
+        });
+    }
+  }
+
+
+  getAllResultList() {
+    debugger;
     if(this.uISERVICE.take == null || this.uISERVICE.take == undefined){
       this.uISERVICE.take = 10
     }
     this.resultList = [];
     this.accountService
-      .GetResults(
-        this.eventId,
-        this.marketName,
+      .GetAllResults(
         this.skipRec,
         this.uISERVICE.take,
         this.startDate,
@@ -118,15 +148,15 @@ export class ResultsComponent implements OnInit {
       });
   }
 
-
-  getAllResultList() {
-    debugger;
+  selectFilterType(value : string){
+    this.marketName = value;
     if(this.uISERVICE.take == null || this.uISERVICE.take == undefined){
       this.uISERVICE.take = 10
     }
     this.resultList = [];
     this.accountService
-      .GetAllResults(
+      .filteredResult(
+        this.marketName,
         this.skipRec,
         this.uISERVICE.take,
         this.startDate,

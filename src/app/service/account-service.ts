@@ -19,6 +19,7 @@ export class AccountService {
   private placeBetUrl = environment.apiBaseUrl + "Bets/CreateBet";
   private placeFancyBetUrl = environment.apiBaseUrl + "Bets/CreateFancyBet";
   private getBetHistoryUrl = environment.apiBaseUrl + "Bets/GetBetsHistory";
+  private GetUserBetsHistoryUrl = environment.apiBaseUrl + "Bets/GetUserBetsHistory";
   private getTransactionHistoryUrl =
     environment.apiBaseUrl + "Transaction/TranHistory";
   private updateUserUrl = environment.apiBaseUrl + "SignUp/Update_User";
@@ -62,7 +63,7 @@ export class AccountService {
   private GetAllMarketsUrl = environment.apiBaseUrl + "Event/GetAllMarkets";
   private GetAllResultsUrl = environment.apiBaseUrl + "Event/GetAllResultList";
   private GetResultListUrl = environment.apiBaseUrl + "Event/GetResultList";
-
+private filteredResultUrl = environment.apiBaseUrl + "Event/GetFilteredResultList";
 
   private usrDtlUrl = environment.apiBaseUrl + "SignUp/UsersDetails";
 
@@ -70,6 +71,26 @@ export class AccountService {
     return this.baseHttpService.Get(this.usrDtlUrl).then(function (response) {
       return response.json();
     });
+  }
+
+  filteredResult(marketName ,skip, takeRec, sDate, eDate): Promise<any> {
+    return this.baseHttpService
+      .Get(
+        this.filteredResultUrl +
+        "?marketName=" +
+        marketName +
+          "&skip=" +
+          skip +
+          "&takeRec=" +
+          takeRec +
+          "&sDate=" +
+          sDate +
+          "&eDate=" +
+          eDate
+      )
+      .then(function (response) {
+        return response.json();
+      });
   }
 
   GetResults(eventId, marketName ,skip, takeRec, sDate, eDate): Promise<any> {
@@ -249,6 +270,37 @@ export class AccountService {
           return response.json();
         });
     }
+  }
+  GetUserBetsHistory(
+    skipRec,
+    takeRec,
+    sportsId,
+    betType,
+    mrktName,
+    startDate,
+    endDate
+  ): Promise<any> {
+    return this.baseHttpService
+      .Get(
+        this.GetUserBetsHistoryUrl +
+          "?skipRec=" +
+          skipRec +
+          "&takeRecord=" +
+          takeRec +
+          "&sportsId=" +
+          sportsId +
+          "&betType=" +
+          betType + 
+          "&marketName=" +
+          mrktName +
+          "&startDate=" +
+          startDate +
+          "&endDate=" +
+          endDate
+      )
+      .then(function (response) {
+        return response.json();
+      });
   }
   GetBetHistory(
     usrName,
