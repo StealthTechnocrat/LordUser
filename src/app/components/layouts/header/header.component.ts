@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
   OldPwd: string = "";
   rtrnObj: any = [];
   usrDtl: any = [];
-  chipData : any = [];
+  chipData: any = [];
   Balance: number;
   Exposure: number;
   News: any = [];
@@ -68,7 +68,7 @@ export class HeaderComponent implements OnInit {
       this.uISERVICE.Header = true;
       this.uISERVICE.Bets = JSON.parse(localStorage.getItem("Bets"));
 
-     // this.GetDetail();
+      // this.GetDetail();
       this.myFunction();
     } else {
       this.uISERVICE.Header = false;
@@ -169,7 +169,7 @@ export class HeaderComponent implements OnInit {
         this.Exposure = response.Result.Exposure;
         this.Name = response.Result.Name;
         this.uISERVICE.take = response.Result.Take;
-        console.log("this.uISERVICE.take",this.uISERVICE.take)
+        console.log("this.uISERVICE.take", this.uISERVICE.take)
       } else {
         this.usrDtl = [];
       }
@@ -177,24 +177,24 @@ export class HeaderComponent implements OnInit {
   }
 
   getChips() {
-    this.uISERVICE.loader=true;
+    this.uISERVICE.loader = true;
     this.accountService.getChips().then((response) => {
       if (response.Status) {
-        this.uISERVICE.loader=false;
+        this.uISERVICE.loader = false;
         this.chipData = response.Result;
-        console.log("chipdata",this.chipData)
-      }else{
-        this.chipData =[];
-        this.uISERVICE.loader=false;
+        console.log("chipdata", this.chipData)
+      } else {
+        this.chipData = [];
+        this.uISERVICE.loader = false;
       }
     });
   }
 
   updateChips() {
-    this.uISERVICE.loader=true;
+    this.uISERVICE.loader = true;
     this.accountService.updateChip(this.chipData).then((response) => {
       if (response.Status) {
-        this.uISERVICE.loader=false;
+        this.uISERVICE.loader = false;
         this.uISERVICE.Success = true;
         this.uISERVICE.Message = "Executed Successfully";
         setTimeout(() => {
@@ -202,7 +202,7 @@ export class HeaderComponent implements OnInit {
         }, 3000);
         document.getElementById("chipsettingBtn").click();
       } else {
-        this.uISERVICE.loader=false;
+        this.uISERVICE.loader = false;
         this.uISERVICE.Error = true;
         this.uISERVICE.Message = response.Result;
         setTimeout(() => {
@@ -683,40 +683,35 @@ export class HeaderComponent implements OnInit {
 
 
 
-    
-    $("ul.list a.main_drop").click(function () {
-      var $step1 = $(this).parent().find("ul.step_1");
-      $("ul.list ul.step_1").not($step1).slideUp();
-      $("ul.list a.main_drop").removeClass("drop_open");  
 
-      $(this).toggleClass("drop_open");
-      $step1.slideToggle();
+    // $("ul.list a.main_drop").click(function () {
+    //   var $step1 = $(this).parent().find("ul.step_1");
+    //   $("ul.list ul.step_1").not($step1).slideUp();
+    //   $("ul.list a.main_drop").removeClass("drop_open");
 
+    //   $(this).toggleClass("drop_open");
+    //   $step1.slideToggle();
 
-
-
-      // setTimeout(function () {
-      //   $step1.find("a").click(function (event) {
-      //     event.stopPropagation();
-
-      //     if ($(".dropInner").hasClass("drop_open")) {
-      //       $(".dropInner").removeClass("drop_open");
-      //       $("ul.step_2").removeClass("d-block");
-
-      //       $(this).addClass("drop_open");
-      //       $(this).parent().find("ul.step_2").addClass("d-block");
-      //     } else {
-      //       $(this).addClass("drop_open");
-      //       $(this).parent().find("ul.step_2").addClass("d-block");
-      //     }
-      //   });
-      // }, 1000);
-    });
-
-    // $(".dropInner").click(function () {
-    //   $(".dropInner").toggleClass("drop_open");
     // });
 
+
+    // $("ul.list a.main_drop").click(function (e) {
+    //   e.preventDefault();
+    //   var $step1 = $(this).parent().find("ul.step_1");
+    //   $("ul.list ul.step_1").not($step1).slideUp();
+    //   $("ul.list a.main_drop").removeClass("drop_open");
+    //   $(this).toggleClass("drop_open").next("ul.step_1").slideToggle();
+    // });
+
+
+
+
     
+
+
+
+
+
+
   }
 }

@@ -33,7 +33,7 @@
                     <div class="upcoming_games_list appSports">
                         <ul class="list">
                             <li>
-                                <a (click)="getCompList(4)" class="main_drop" >
+                                <a (click)="getCompList(4)" class="main_drop" [ngClass]="{ 'drop_open': selectedSportsId === 4 }">
                                     <span class="clickmain">
                                         <span class="sports-icon cricket"></span>
                                         Cricket
@@ -42,10 +42,10 @@
                                         </span>
                                     </span>
                                 </a>
-                                <ul class="step_1" id="accordion" >
+                                <ul class="step_1" *ngIf="selectedSportsId === 4">
                                     <li *ngFor="let lst of seriesList">
                                         <div class="item">
-                                            <a class="dropInner" (click)="getEventList(4,lst.SeriesId)" >
+                                            <a class="dropInner" (click)="getEventList(4,lst.SeriesId)" [ngClass]="{ 'drop_open': showStep2Map[lst.SeriesId] }">
                                                 {{lst.SeriesName}}
                                                 <span class="arrow">
                                                     <i class="fa fa-plus"></i>
@@ -59,7 +59,6 @@
                                                             <span>V</span>
                                                             {{evnt.Runner2}}
                                                         </p>
-
                                                     </a>
                                                 </li>
                                             </ul>
@@ -68,22 +67,22 @@
                                 </ul>
                             </li>
                             <li>
-                                <a (click)="getCompList(1)" class="main_drop">
+                                <a (click)="getCompList(1)" class="main_drop" [ngClass]="{ 'drop_open': selectedSportsId === 1 }">
                                     <span class="sports-icon soccer"></span>
                                     Footabll
                                     <span class="arrow">
                                         <i class="fa fa-plus"></i>
                                     </span>
                                 </a>
-                                <ul class="step_1">
+                                <ul class="step_1" *ngIf="selectedSportsId === 1">
                                     <li *ngFor="let lst of seriesList">
-                                        <a class="dropInner" (click)="getEventList(1,lst.SeriesId)">
+                                        <a class="dropInner" (click)="getEventList(1,lst.SeriesId)" [ngClass]="{ 'drop_open': showStep2Map[lst.SeriesId] }">
                                             {{lst.SeriesName}}
                                             <span class="arrow">
                                                 <i class="fa fa-plus"></i>
                                             </span>
                                         </a>
-                                        <ul class="step_2">
+                                        <ul class="step_2" *ngIf="showStep2Map[lst.SeriesId]">
                                             <li *ngFor="let evnt of eventList">
                                                 <a (click)="redirectfun(evnt.SportsId, evnt.EventId)">
                                                     <p>
@@ -99,21 +98,21 @@
                                 </ul>
                             </li>
                             <li>
-                                <a (click)="getCompList(2)" class="main_drop">
+                                <a (click)="getCompList(2)" class="main_drop" [ngClass]="{ 'drop_open': selectedSportsId === 2 }">
                                     <span class="sports-icon tennis"></span>
                                     Tennis
                                     <span class="arrow">
                                         <i class="fa fa-plus"></i>
                                     </span></a>
-                                <ul class="step_1">
+                                <ul class="step_1" *ngIf="selectedSportsId === 2">
                                     <li *ngFor="let lst of seriesList">
-                                        <a class="dropInner" (click)="getEventList(2,lst.SeriesId)">
+                                        <a class="dropInner" (click)="getEventList(2,lst.SeriesId)" [ngClass]="{ 'drop_open': showStep2Map[lst.SeriesId] }">
                                             {{lst.SeriesName}}
                                             <span class="arrow">
                                                 <i class="fa fa-plus"></i>
                                             </span>
                                         </a>
-                                        <ul class="step_2">
+                                        <ul class="step_2" *ngIf="showStep2Map[lst.SeriesId]">
                                             <li *ngFor="let evnt of eventList">
                                                 <a (click)="redirectfun(evnt.SportsId, evnt.EventId)">
                                                     <p>

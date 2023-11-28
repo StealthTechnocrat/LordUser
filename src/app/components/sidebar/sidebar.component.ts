@@ -23,6 +23,7 @@ export class SidebarComponent implements OnInit {
   list: any = [];
   showStep2Map: { [key: number]: boolean } = {};
   lastOpenedSeriesId: number | null = null;
+  selectedSportsId: number | null = null;
 
   constructor(
     private accountService: AccountService,
@@ -73,7 +74,7 @@ export class SidebarComponent implements OnInit {
   }
 
   getCompList(sportsId) {
-    debugger;
+    // debugger;
     this.sidebarType = false;
     this.seriesList = [];
     this.accountService.getCompList(sportsId).then((response) => {
@@ -84,10 +85,15 @@ export class SidebarComponent implements OnInit {
         this.seriesList = [];
       }
     });
+    if (this.selectedSportsId === sportsId) {
+      this.selectedSportsId = null; // Close the currently open one
+    } else {
+        this.selectedSportsId = sportsId; // Open the clicked one
+    }
   }
 
   getEventList(sportsId, seriesId) {
-    debugger;
+    // debugger;
     this.sidebarType = false;
     this.eventList = [];
     this.accountService.getEventList(sportsId, seriesId).then((response) => {
