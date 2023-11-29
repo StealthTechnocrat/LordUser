@@ -12,20 +12,28 @@ export class FooterComponent implements OnInit {
   ngOnInit(): void {
   }
   ngAfterViewInit() {
-    var btn = $('#backToTop');
-    $('.center_sec').on('scroll', function () {
-      if ($('.center_sec').scrollTop() > 250) {
-        btn.addClass('show');
-      } else {
-        btn.removeClass('show');
-      }
-    });
-    btn.on('click', function (e) {
-      e.preventDefault();
-      $('html, body').animate({
-        scrollTop: 0
-      }, '250');
-    });
+  //   var btn = $('#backToTop');
+  //   $('.center_sec').on('scroll', function () {
+  //     if ($('.center_sec').scrollTop() > 250) {
+  //       btn.addClass('show');
+  //     } else {
+  //       btn.removeClass('show');
+  //     }
+  //   });
+
+
+    
+  //   btn.on('click', function (e) {
+  //     e.preventDefault();
+  //     $('html, body').animate({
+  //         scrollTop: 0
+  //     }, 250);
+  // });
+  
+
+
+
+
 
 
     $(document).ready(function(){
