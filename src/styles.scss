@@ -2905,4 +2905,57 @@ body.dark-theme {
       color: #b9b9b9 !important;
     }
   }
+  .sidebar_toggle_btn{
+    img{
+      filter: invert(1);
+    }
+  }
+  .mobMarquee{
+    color: #b9b9b9 !important;
+  }
+  .bottom_nav {
+    background-color: #242424 !important;
+    color: #000 !important;
+    ul {
+      li{
+        &.all-items{
+          .menu-item{
+            box-shadow: 3px 3px 5px #1b1a1a, -3px -3px 5px #2b2b2b !important;
+            background-color: #242424 !important;
+          }
+          .bottom-circle{
+            .circle-nav{
+              .circle-nav-open{
+                background-color: #242424 !important; 
+              }
+            }
+          }
+        }
+        &.big{
+          &:before{
+            box-shadow: 3px 3px 5px #1b1a1a, -3px -3px 5px #2b2b2b !important;
+            background-color: #242424 !important;
+          }
+        }
+        .noneAllit{
+          svg{
+            path{
+              fill: #fff !important;
+            }
+          }
+        }
+        a{
+          color: #b9b9b9 !important;
+          svg{
+            path{
+              fill: #b9b9b9 !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  .m_left_sidebar{
+    background: #181818 !important;
+  }
 }

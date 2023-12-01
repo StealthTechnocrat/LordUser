@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import * as $ from "jquery";
 @Component({
   selector: 'app-footer',
@@ -6,10 +6,25 @@ import * as $ from "jquery";
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-
-  constructor() { }
+  isDarkMode = false;
+  constructor(private renderer: Renderer2) {
+    const isDarkModeStorage = localStorage.getItem('darkMode');
+    this.isDarkMode = isDarkModeStorage === 'true';
+    if (this.isDarkMode) {
+      this.renderer.addClass(document.body, 'dark-theme');
+    }
+   }
 
   ngOnInit(): void {
+  }
+  toggleDarkMode() {
+    this.isDarkMode = !this.isDarkMode;
+    localStorage.setItem('darkMode', this.isDarkMode.toString());
+    if (this.isDarkMode) {
+      this.renderer.addClass(document.body, 'dark-theme');
+    } else {
+      this.renderer.removeClass(document.body, 'dark-theme');
+    }
   }
   ngAfterViewInit() {
   //   var btn = $('#backToTop');
