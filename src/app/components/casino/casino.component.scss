@@ -186,18 +186,19 @@ span.bet_open_tag {
 
 .tab_ul {
   ul {
-    background: #fff;
-    border-bottom: 1px solid #204878;
-
+    // background: #fff;
+    // border-bottom: 1px solid #204878;
+    margin-bottom: 10px;
+    border:0;
     li {
+      border: 0 !important;
       a {
-        background-color: #0f9652;
-        color: #fff;
-        padding: 8px 10px;
+        // background-color: #0f9652;
+        color: #000;
         display: flex;
         width: 100%;
-        font-size: 18px;
-        padding: 8px 18px;
+        font-size: 14px;
+        padding: 8px 10px;
 
         &:hover {
           text-decoration: none;
@@ -205,8 +206,9 @@ span.bet_open_tag {
       }
 
       a.active {
-        background-color: #204878;
-        color: #fff;
+        // background-color: #204878;
+        color: #000;
+        border-bottom: 2px solid #ffcb2f;
       }
     }
   }

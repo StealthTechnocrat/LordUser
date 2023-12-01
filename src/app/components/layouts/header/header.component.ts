@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Renderer2 } from "@angular/core";
 import * as $ from "jquery";
 import { Cookie } from "ng2-cookies";
 import { AccountService } from "src/app/service/account-service";
@@ -16,6 +16,7 @@ import { SharedService } from "src/app/service/shared.service";
   styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent implements OnInit {
+  isDarkMode = false;
   public signInModel: SignInModel;
   public sign_Up_Model: SignUpModel;
   Hide: boolean;
@@ -49,11 +50,18 @@ export class HeaderComponent implements OnInit {
     private accountService: AccountService,
     public uISERVICE: UiService,
     private router: Router,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private renderer: Renderer2
   ) {
     const isExpired = this.isTokenExpired(Cookie.get("usersCookies"));
     if (isExpired) {
       this.LogOut();
+    }
+
+    const isDarkModeStorage = localStorage.getItem('darkMode');
+    this.isDarkMode = isDarkModeStorage === 'true';
+    if (this.isDarkMode) {
+      this.renderer.addClass(document.body, 'dark-theme');
     }
   }
 
@@ -629,7 +637,15 @@ export class HeaderComponent implements OnInit {
     XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
     XLSX.writeFile(wb, "AllBets.xlsx");
   }
-
+  toggleDarkMode() {
+    this.isDarkMode = !this.isDarkMode;
+    localStorage.setItem('darkMode', this.isDarkMode.toString());
+    if (this.isDarkMode) {
+      this.renderer.addClass(document.body, 'dark-theme');
+    } else {
+      this.renderer.removeClass(document.body, 'dark-theme');
+    }
+  }
   ngAfterViewInit() {
     $(".account_drop button").click(function (e) {
       $(".account_drop ul").toggleClass("open");
