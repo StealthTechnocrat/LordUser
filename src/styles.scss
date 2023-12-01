@@ -2887,4 +2887,22 @@ body.dark-theme {
       }
     }
   }
+  .content_disable{
+    color: #b9b9b9 !important; 
+  }
+  .pagination_filter {
+    .pagination {
+      a{
+        color: #b9b9b9 !important; 
+      }
+    }
+  }
+  .ngx-pagination a:hover, .ngx-pagination button:hover{
+    background: #3a3939 !important;
+  }
+  .market {
+    .market-title{
+      color: #b9b9b9 !important;
+    }
+  }
 }
