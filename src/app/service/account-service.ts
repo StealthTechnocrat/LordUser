@@ -75,6 +75,8 @@ private filteredResultUrl = environment.apiBaseUrl + "Event/GetFilteredResultLis
     });
   }
 
+  
+
   logout(): Promise<any> {
     return this.baseHttpService.Get(this.LogoutUrl ).then(function (response) {
       return response.json();
