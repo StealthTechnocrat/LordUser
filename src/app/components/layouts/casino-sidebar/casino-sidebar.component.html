@@ -1,106 +1,10 @@
 <!-- class="casino_hide" -->
 <div class="casino_bar">
-    <!-- <div>
-        <div class="title blue_bg">
-            <ul class="nav" id="casinoTab" role="tablist">
-                <li class="nav-item mr-3" role="presentation" *ngIf="!uISERVICE.casinoStatus">
-                    <a class="nav-link active" id="casino-tab" data-toggle="tab" href="#casino" role="tab"
-                        aria-controls="casino" aria-selected="true">casino</a>
-                </li>
-                <li class="nav-item" role="presentation" *ngIf="!uISERVICE.liveGameStatus">
-                    <a class="nav-link" id="liveCasino-tab" data-toggle="tab" href="#liveCasino" role="tab"
-                        aria-controls="liveCasino" aria-selected="false">live Casino</a>
-                </li>
-            </ul>
-        </div>
-        <div class="tab-content" id="casinoTab" *ngIf="!uISERVICE.casinoStatus">
-            <div class="tab-pane fade show active" id="casino" role="tabpanel" aria-labelledby="casino-tab">
-                <div class="row">
-                    <div class="col-md-6" *ngFor="let games of tableGamesList;let i=index" > 
-                        <a class="game">
-                            <img [src]="games.ImagePath" alt="">
-                            <div class="overlay">
-                                <div class="game-title">{{games.GameName}}</div>
-                                <div class="play_btn"><button class="btn btn-primary" type="button">Play</button></div>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    
     
-                </div>
-            </div>
-            <div class="tab-pane fade" id="liveCasino" role="tabpanel" aria-labelledby="liveCasino-tab" *ngIf="!uISERVICE.liveGameStatus">
-                <div class="tab-pane fade show active" id="casino" role="tabpanel" aria-labelledby="casino-tab">
-                    <div class="row">
-                        <div class="col-md-6" *ngFor="let data of uISERVICE.casinoProvidersList;let i=index"> 
-                            <a class="game">
-                                <img [src]="data.ImagePath" alt="">
-                                <div class="overlay">
-                                    <div class="game-title">{{data.ProviderName}}</div>
-                                    <div class="play_btn"><button class="btn btn-primary" type="button" routerLink="casino/live-games/{{i}}/{{data.SystemId}}">Play</button></div>
-                                </div>
-                            </a>
-                        </div>
-                       
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
     <div class="rightGames">
         <div class="tab-content" id="casinoTab" *ngIf="!uISERVICE.casinoStatus">
-            <div class="px-2 livetvSec d-none">
-                <div class="mobile_tv">
-                    <div class="d-flex align-items-center justify-content-between">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 311.106 228.333">
-                            <g id="live-streaming" transform="translate(-92.234 0.001)">
-                                <path id="Path_2" data-name="Path 2"
-                                    d="M247.828,160.641a46.485,46.485,0,1,0-32.914-13.586,46.485,46.485,0,0,0,32.914,13.586Zm-11.723-58.129a16.462,16.462,0,1,1-4.839,11.657,16.617,16.617,0,0,1,4.839-11.657Zm0,0"
-                                    fill="#242424"></path>
-                                <path id="Path_3" data-name="Path 3"
-                                    d="M302.637,179.762a15,15,0,0,0,21.215.023,92.674,92.674,0,0,0,0-131.234A15,15,0,1,0,302.66,69.785a62.675,62.675,0,0,1,0,88.766,15,15,0,0,0-.023,21.211Zm0,0"
-                                    fill="#242424"></path>
-                                <path id="Path_4" data-name="Path 4"
-                                    d="M171.723,179.785a15,15,0,1,0,21.191-21.234,62.68,62.68,0,0,1,0-88.77,15,15,0,1,0-21.192-21.234,92.679,92.679,0,0,0,0,131.238Zm0,0"
-                                    fill="#242424"></path>
-                                <path id="Path_9" data-name="Path 9"
-                                    d="M373.34,114.168a124.284,124.284,0,0,1-36.75,88.547,15,15,0,1,0,21.191,21.234,155.047,155.047,0,0,0,0-219.562A15,15,0,1,0,336.59,25.622a124.278,124.278,0,0,1,36.75,88.547Zm0,0"
-                                    fill="#242424"></path>
-                                <path id="Path_10" data-name="Path 10"
-                                    d="M148.391,228.332a15,15,0,0,0,10.594-25.617,125.054,125.054,0,0,1,0-177.1A15,15,0,1,0,137.792,4.382a155.052,155.052,0,0,0,0,219.566,14.957,14.957,0,0,0,10.6,4.383Zm0,0"
-                                    fill="#242424"></path>
-                            </g>
-                        </svg>
-                        Live Match
-                    </h3>
-                        <svg title="Theator Mode" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="16px" height="30px" viewBox="0 0 556.92 556.92" xml:space="preserve" class="theator-mode" style="enable-background: new 0 0 556.92 556.92;"><g><g><rect y="18.857" width="556.92" height="354.96"></rect><path d="M51.472,478.834c0.587,0.7,1.411,1.089,2.316,1.089H124.3c0.906,0,1.729-0.389,2.316-1.093    c1.888-2.258,4.048-4.21,6.38-5.899c0.248-1.897,0.419-3.818,0.419-5.783c0-24.505-19.866-44.37-44.37-44.37    s-44.37,19.865-44.37,44.37c0,1.965,0.171,3.886,0.419,5.786C47.424,474.623,49.584,476.575,51.472,478.834z"></path><path d="M240.886,478.834c0.587,0.7,1.411,1.089,2.316,1.089h70.511c0.906,0,1.729-0.389,2.32-1.093    c1.888-2.258,4.045-4.21,6.373-5.896c0.248-1.896,0.42-3.818,0.42-5.783c0-24.505-19.866-44.37-44.37-44.37    c-24.504,0-44.37,19.865-44.37,44.37c0,1.965,0.171,3.887,0.419,5.783C236.841,474.62,238.998,476.575,240.886,478.834z"></path><path d="M432.62,479.923h70.511c0.906,0,1.729-0.389,2.32-1.093c2.695-3.222,5.911-5.859,9.458-7.9    c0.107-1.249,0.189-2.503,0.189-3.779c0-24.505-19.865-44.37-44.37-44.37c-24.504,0-44.369,19.865-44.369,44.37    c0,2.892,0.296,5.71,0.826,8.448c1.092,1.014,2.142,2.075,3.111,3.235C430.888,479.534,431.711,479.923,432.62,479.923z"></path><path d="M24.468,478.46c-5.193,0-10.419,1.754-14.712,5.35c-9.722,8.13-11.013,22.606-2.879,32.325    c11.655,13.938,28.754,21.928,46.913,21.928H124.3c18.158,0,35.254-7.992,46.913-21.931c8.134-9.722,6.842-24.195-2.879-32.326    c-4.296-3.589-9.52-5.343-14.712-5.343c-6.561,0-13.075,2.797-17.616,8.226c-2.601,3.109-6.282,5.021-10.263,5.397    c-0.478,0.046-0.958,0.08-1.441,0.08H53.789c-0.483,0-0.964-0.034-1.438-0.08c-3.981-0.376-7.666-2.288-10.263-5.395    C37.543,481.26,31.028,478.46,24.468,478.46z"></path><path d="M229.794,484.868c-0.196-0.19-0.407-0.355-0.606-0.536c-0.407-0.367-0.817-0.728-1.246-1.062    c-0.251-0.192-0.511-0.37-0.771-0.554c-0.398-0.285-0.799-0.563-1.212-0.817c-0.281-0.174-0.572-0.333-0.86-0.495    c-0.407-0.229-0.817-0.447-1.236-0.649c-0.303-0.144-0.605-0.281-0.912-0.413c-0.422-0.181-0.848-0.349-1.279-0.502    c-0.312-0.113-0.624-0.223-0.939-0.321c-0.443-0.138-0.89-0.254-1.337-0.367c-0.312-0.076-0.621-0.155-0.934-0.22    c-0.477-0.095-0.958-0.165-1.441-0.232c-0.291-0.04-0.582-0.092-0.875-0.12c-0.56-0.055-1.123-0.076-1.683-0.092    c-0.192-0.003-0.385-0.03-0.578-0.03c-0.019,0-0.037,0.003-0.055,0.003c-1.166,0.003-2.332,0.116-3.488,0.297    c-0.184,0.031-0.367,0.052-0.551,0.083c-1.114,0.202-2.218,0.492-3.302,0.862c-0.199,0.067-0.398,0.142-0.594,0.215    c-1.083,0.403-2.148,0.881-3.179,1.459c-0.147,0.083-0.291,0.178-0.435,0.264c-1.074,0.634-2.121,1.337-3.109,2.163    c-9.722,8.131-11.013,22.607-2.879,32.326c11.655,13.938,28.755,21.928,46.913,21.928h70.512c18.154,0,35.254-7.992,46.909-21.928    c8.134-9.722,6.846-24.195-2.873-32.326c-0.988-0.826-2.035-1.529-3.109-2.163c-0.146-0.086-0.287-0.184-0.435-0.264    c-1.031-0.575-2.096-1.056-3.179-1.459c-0.196-0.073-0.392-0.145-0.591-0.211c-1.086-0.371-2.191-0.664-3.308-0.866    c-0.181-0.034-0.364-0.056-0.545-0.083c-1.16-0.181-2.326-0.294-3.494-0.297c-0.019,0-0.037-0.003-0.056-0.003    c-0.184,0-0.367,0.024-0.551,0.03c-0.572,0.016-1.145,0.034-1.714,0.092c-0.287,0.028-0.572,0.08-0.856,0.12    c-0.486,0.067-0.973,0.138-1.457,0.235c-0.309,0.064-0.614,0.144-0.921,0.217c-0.452,0.11-0.905,0.229-1.353,0.371    c-0.312,0.098-0.621,0.204-0.93,0.317c-0.435,0.156-0.863,0.325-1.288,0.505c-0.304,0.132-0.606,0.267-0.906,0.41    c-0.419,0.202-0.832,0.423-1.242,0.652c-0.288,0.159-0.575,0.318-0.854,0.492c-0.413,0.254-0.814,0.536-1.212,0.817    c-0.26,0.184-0.521,0.361-0.774,0.557c-0.425,0.331-0.835,0.691-1.239,1.056c-0.202,0.181-0.413,0.349-0.612,0.539    c-0.593,0.572-1.165,1.175-1.704,1.817c-2.604,3.112-6.285,5.024-10.267,5.4c-0.477,0.046-0.957,0.08-1.44,0.08h-70.515    c-0.483,0-0.964-0.034-1.438-0.08c-3.981-0.376-7.666-2.288-10.264-5.395C230.959,486.043,230.387,485.44,229.794,484.868z"></path><path d="M420.912,486.686c-4.541-5.426-11.056-8.226-17.616-8.226c-5.193,0-10.416,1.757-14.713,5.353    c-9.722,8.13-11.01,22.606-2.873,32.325c11.655,13.936,28.752,21.925,46.91,21.925h70.511c18.155,0,35.255-7.992,46.91-21.928    c8.134-9.722,6.846-24.195-2.873-32.326c-4.297-3.595-9.52-5.349-14.716-5.349c-6.561,0-13.072,2.797-17.61,8.226    c-1.866,2.23-4.293,3.843-6.979,4.722c-1.509,0.492-3.1,0.759-4.729,0.759h-69.042h-1.472    C428.091,492.163,423.825,490.165,420.912,486.686z"></path></g></g></svg>
-                </div>
-                    <div class="collapse" id="liveTv" *ngIf="uISERVICE.tv">
-                        <div class="inner_tv">
-                            <iframe width="100%" height="200" [src]="uISERVICE.IframeUrl" title="YouTube video player"
-                                frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <h3>Casino</h3>
-            <div class="tab-pane fade show active" id="casino" role="tabpanel" aria-labelledby="casino-tab">
-                <div class="row">
-                    <div class="col-md-6" *ngFor="let games of tableGamesList;let i=index">
-                        <a class="game">
-                            <img [src]="games.ImagePath" alt="">
-                            <div class="overlay">
-                                <div class="game-title">{{games.GameName}}</div>
-                                <!-- <div class="play_btn"><button class="btn btn-primary" type="button">Play</button></div> -->
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
+           
+           
             <div class="tab-pane fade show active mt-4" id="liveCasino" role="tabpanel" aria-labelledby="liveCasino-tab"
                 *ngIf="!uISERVICE.liveGameStatus">
                 <h3>live Casino</h3>

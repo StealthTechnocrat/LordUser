@@ -46,7 +46,7 @@ import { TimepipeService } from './service/timepipe.service';
 import { SharedService } from './service/shared.service';
 const cookieConfig:NgcCookieConsentConfig = {
   cookie: {
-    domain: 'http://fix2club.com' // or 'your.domain.com' // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
+    domain: 'http://Testing.com' // or 'your.domain.com' // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
   },
   palette: {
     popup: {

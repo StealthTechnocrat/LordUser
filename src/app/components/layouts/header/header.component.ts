@@ -61,10 +61,10 @@ export class HeaderComponent implements OnInit {
     this.uISERVICE.News = JSON.parse(localStorage.getItem("News"));
     this.uISERVICE.TopEvents = JSON.parse(localStorage.getItem("TopEvents"));
     this.uISERVICE.TopInplay = JSON.parse(localStorage.getItem("TopInplay"));
+    debugger;
     if (Cookie.check("usersCookies")) {
       this.uISERVICE.Header = true;
       this.uISERVICE.Bets = JSON.parse(localStorage.getItem("Bets"));
-
       this.GetDetail();
       this.myFunction();
     } else {
@@ -437,6 +437,7 @@ this.sportid = 4;
       this.accountService
         .getUsrDtl(Cookie.get("c_id"), "Client", Cookie.get("usersCookies"))
         .then((response) => {
+          debugger;
           if (response.Status) {
             if (response.Result.IsPwd == false) {
               document.getElementById("cnfrmPwd").click();
