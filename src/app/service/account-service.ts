@@ -11,7 +11,9 @@ import { promises } from "dns";
 @Injectable()
 export class AccountService {
   constructor(private baseHttpService: BaseHttpService) {}
-  private signInUrl = environment.apiBaseUrl + "SignUp/Valid_Login";
+  private signInUrl = environment.apiBaseUrl + "Admin/Login";
+  private LogoutUrl = environment.apiBaseUrl + "Admin/Logout";
+
   private getSrsListUrl = environment.apiBaseUrl + "Event/GetSeriesList";
   private getUsrDtlUrl = environment.apiBaseUrl + "SignUp/GetUserDetails";
   private getDetailLstUrl = environment.apiBaseUrl + "Event/GetDetail";
@@ -69,6 +71,14 @@ private filteredResultUrl = environment.apiBaseUrl + "Event/GetFilteredResultLis
 
   userDetails(): Promise<any> {
     return this.baseHttpService.Get(this.usrDtlUrl).then(function (response) {
+      return response.json();
+    });
+  }
+
+  
+
+  logout(): Promise<any> {
+    return this.baseHttpService.Get(this.LogoutUrl ).then(function (response) {
       return response.json();
     });
   }

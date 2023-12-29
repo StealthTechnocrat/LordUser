@@ -72,6 +72,7 @@ export class HeaderComponent implements OnInit {
     });
     this.getLogos();
     this.uISERVICE.tv = false;
+<<<<<<< HEAD
     this.uISERVICE.News = JSON.parse(localStorage.getItem("News"));
     this.uISERVICE.TopEvents = JSON.parse(localStorage.getItem("TopEvents"));
     this.uISERVICE.TopInplay = JSON.parse(localStorage.getItem("TopInplay"));
@@ -80,6 +81,13 @@ export class HeaderComponent implements OnInit {
       this.uISERVICE.Header = true;
       this.uISERVICE.Bets = JSON.parse(localStorage.getItem("Bets"));
       this.GetDetail();
+=======
+    if (Cookie.check("usersCookies")) {
+      this.uISERVICE.Header = true;
+      this.uISERVICE.Bets = JSON.parse(localStorage.getItem("Bets"));
+
+      // this.GetDetail();
+>>>>>>> 09602e1337040959abf04e5173883d4440ba91be
       this.myFunction();
     } else {
       this.uISERVICE.Header = false;
@@ -495,26 +503,25 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  GetDetail() {
-    try {
-      this.loader = true;
-      this.accountService
-        .getUsrDtl(Cookie.get("c_id"), "Client", Cookie.get("usersCookies"))
-        .then((response) => {
-          debugger;
-          if (response.Status) {
-            if (response.Result.IsPwd == false) {
-              document.getElementById("cnfrmPwd").click();
-            } else {
-              this.loader = false;
-              this.userName = response.Result.UserId;
-              this.uISERVICE.casinoStatus = response.Result.casinoStatus;
-              this.uISERVICE.liveGameStatus = response.Result.liveGameStatus;
-              this.uISERVICE.UserName = response.Result.UserId;
-              this.uISERVICE.Bal = response.Result.Bal;
-              this.uISERVICE.Exp = response.Result.Exp;
-              this.uISERVICE.take = response.Result.Take;
-              this.uISERVICE.News = response.Result.News;
+  // GetDetail() {
+  //   try {
+  //     this.loader = true;
+  //     this.accountService
+  //       .getUsrDtl(Cookie.get("c_id"), "Client", Cookie.get("usersCookies"))
+  //       .then((response) => {
+  //         if (response.Status) {
+  //           if (response.Result.IsPwd == false) {
+  //             document.getElementById("cnfrmPwd").click();
+  //           } else {
+  //             this.loader = false;
+  //             this.userName = response.Result.UserId;
+  //             this.uISERVICE.casinoStatus = response.Result.casinoStatus;
+  //             this.uISERVICE.liveGameStatus = response.Result.liveGameStatus;
+  //             this.uISERVICE.UserName = response.Result.UserId;
+  //             this.uISERVICE.Bal = response.Result.Bal;
+  //             this.uISERVICE.Exp = response.Result.Exp;
+  //             this.uISERVICE.take = response.Result.Take;
+  //             this.uISERVICE.News = response.Result.News;
 
   //             console.log("news", response.Result.News);
   //             localStorage.setItem(

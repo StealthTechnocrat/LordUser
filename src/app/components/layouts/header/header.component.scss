@@ -1514,6 +1514,10 @@ header {
     margin-right: 10px;
     font-size: 13px;
     font-weight: 600;
+    span.marquee-news-text{
+      display: flex;
+      gap: 26px;
+    }
   }
 }
 

@@ -132,6 +132,7 @@ export class BetSlipComponent implements OnInit {
 
 
   placeBet() {
+    debugger;
     this.placeBetModel.SportsId = this.uISERVICE.sportsId;
     this.placeBetModel.EventName = this.uISERVICE.EventName;
     this.placeBetModel.EventId = this.uISERVICE.eventId == undefined ? "321654" : this.uISERVICE.eventId;
@@ -161,6 +162,7 @@ export class BetSlipComponent implements OnInit {
             this.uISERVICE.Message = "";
           }, 2500);
         } else {
+          debugger;
           this.uISERVICE.betLoader = false;
           this.uISERVICE.Error = true;
           this.uISERVICE.Message = response.Result;
