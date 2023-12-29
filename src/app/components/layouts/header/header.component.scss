@@ -1547,8 +1547,10 @@ header {
 
     &:hover {
       &:after {
-        width: 100%;
-        transition: all ease 0.4s;
+        @media(min-width:575px) {
+          width: 100%;
+          transition: all ease 0.4s;
+        }
       }
     }
 
@@ -1646,4 +1648,3 @@ header {
     gap: 4px;
   }
 }
-
