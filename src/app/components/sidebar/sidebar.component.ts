@@ -11,47 +11,57 @@ import { TimepipeService } from "src/app/service/timepipe.service";
   styleUrls: ["./sidebar.component.scss"],
 })
 export class SidebarComponent implements OnInit {
+  activeTab = 'allSports';
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
+  }
   inplayList: any = [];
   upcomingList: any = [];
   seriesList: any = [];
   eventList: any = [];
-  sidebarType: number = 1;
+  sidebarType: boolean = false;
+  list: any = [];
+  showStep2Map: { [key: number]: boolean } = {};
+  lastOpenedSeriesId: number | null = null;
+  selectedSportsId: number | null = null;
+
   constructor(
     private accountService: AccountService,
     public timePipe: TimepipeService,
     public uISERVICE: UiService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   allSportsTab() {
-    this.sidebarType = 1;
+    this.sidebarType = false;
   }
 
+
   inplayTab() {
-    this.sidebarType = 2;
-    this.inplayList = [];
+    this.list = [];
+    this.sidebarType = true;
     this.accountService.getAllInplay().then((response) => {
       if (response) {
-        this.inplayList = response.Result;
-        console.log("comp", this.inplayList);
+        this.list = response.Result;
+        console.log("comp", this.list);
       } else {
-        this.inplayList = [];
+        this.list = [];
       }
     });
   }
 
   upcomingTab() {
-    this.sidebarType = 3;
-    this.upcomingList = [];
+    this.list = [];
+    this.sidebarType = true;
     this.accountService.getAllUpcoming().then((response) => {
       if (response) {
-        this.upcomingList = response.Result;
-        console.log("comp", this.upcomingList);
+        this.list = response.Result;
+        console.log("compUpcoming", this.list);
       } else {
-        this.upcomingList = [];
+        this.list = [];
       }
     });
   }
@@ -64,6 +74,8 @@ export class SidebarComponent implements OnInit {
   }
 
   getCompList(sportsId) {
+    // debugger;
+    this.sidebarType = false;
     this.seriesList = [];
     this.accountService.getCompList(sportsId).then((response) => {
       if (response) {
@@ -73,10 +85,16 @@ export class SidebarComponent implements OnInit {
         this.seriesList = [];
       }
     });
+    if (this.selectedSportsId === sportsId) {
+      this.selectedSportsId = null; // Close the currently open one
+    } else {
+        this.selectedSportsId = sportsId; // Open the clicked one
+    }
   }
 
   getEventList(sportsId, seriesId) {
-    debugger;
+    // debugger;
+    this.sidebarType = false;
     this.eventList = [];
     this.accountService.getEventList(sportsId, seriesId).then((response) => {
       if (response) {
@@ -86,19 +104,20 @@ export class SidebarComponent implements OnInit {
         this.eventList = [];
       }
     });
+    if (this.lastOpenedSeriesId !== null && this.lastOpenedSeriesId !== seriesId) {
+      this.showStep2Map[this.lastOpenedSeriesId] = false;
+    }
+    this.showStep2Map[seriesId] = !this.showStep2Map[seriesId];
+    this.lastOpenedSeriesId = seriesId;
   }
 
   ngAfterViewInit() {
     $(document).ready(function () {
-      // Add 'active' class to the first child by default
       $(".slideHoverUl li:first-child a").addClass("active");
 
-      // Variable to keep track of the last clicked child
       var lastClickedChild = $(".slideHoverUl li:first-child a");
 
-      // Handle hover for all children
       $(".slideHoverUl li a").hover(function () {
-        // Remove 'active' class when hovered over
         $(".slideHoverUl li a").removeClass("active");
       });
 
@@ -107,17 +126,16 @@ export class SidebarComponent implements OnInit {
         $(this).addClass("active");
         lastClickedChild = $(this);
       });
-
-      // When not hovering in any child, add 'active' class back to the last clicked child
       $(".slideHoverUl").mouseleave(function () {
         lastClickedChild.addClass("active");
       });
     });
+
+
+
+    // $(".dropInner").click(function () {
+    //   $(".arrow").toggleClass("drop_open");
+    // });
+
   }
-  // toggleMenu() {
-  //   this.menulist = !this.menulist;
-  // }
-  // toggleSubMenu(){
-  //   this.menuSublist = !this.menuSublist;
-  // }
 }

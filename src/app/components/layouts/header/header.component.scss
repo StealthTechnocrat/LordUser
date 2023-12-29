@@ -14,12 +14,13 @@ header {
   @media(max-width:1199.9px) {
     padding: 11px 10px 11px;
   }
+
   @media(max-width:399px) {
     padding: 10px 10px 10px;
   }
 
   .logo_area {
-    max-width: 100px;
+    max-width: 110px;
     width: 100%;
     outline: none;
     cursor: pointer;
@@ -400,8 +401,10 @@ header {
           transition: all .5s ease-out;
         }
 
-        &:hover, &.active {
+        &:hover,
+        &.active {
           text-decoration: none;
+
           &:after {
             right: 0;
             background-color: #d9bd2c;
@@ -600,7 +603,9 @@ header {
   // cursor: pointer;
 
   &.rotate {
-    i, svg {
+
+    i,
+    svg {
       animation: 1s linear 2 refresh_animation;
 
       @keyframes refresh_animation {
@@ -804,7 +809,7 @@ header {
     overflow: visible;
   }
 
-   
+
 
   // .close_btn {
   //   position: absolute;
@@ -1511,6 +1516,7 @@ header {
     font-weight: 600;
   }
 }
+
 .user-menus {
   li {
     // height: 40px;
@@ -1537,8 +1543,10 @@ header {
 
     &:hover {
       &:after {
-        width: 100%;
-        transition: all ease 0.4s;
+        @media(min-width:575px) {
+          width: 100%;
+          transition: all ease 0.4s;
+        }
       }
     }
 
@@ -1579,7 +1587,7 @@ header {
         border-radius: 0;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
         min-width: 190px;
-        top: 40px!important;
+        top: 40px !important;
         right: 0px;
         left: auto !important;
         transition: all .3s;
@@ -1606,7 +1614,8 @@ header {
             display: flex;
             align-items: center;
             transform: all ease 0.2s;
-            i{
+
+            i {
               font-size: 15px;
               text-align: center;
               width: 20px;
@@ -1623,12 +1632,14 @@ header {
     }
   }
 }
-.mobSmrev{
-  @media(max-width:575.9px){
+
+.mobSmrev {
+  @media(max-width:575.9px) {
     flex-flow: row-reverse;
     gap: 10px;
   }
-  @media(max-width:399px){
+
+  @media(max-width:399px) {
     flex-flow: column;
     gap: 4px;
   }

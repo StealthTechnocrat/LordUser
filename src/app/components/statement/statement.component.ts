@@ -53,7 +53,6 @@ export class StatementComponent implements OnInit {
     this.uISERVICE.sideBar = true;    
     
     if (Cookie.check("usersCookies")) {
-      this.uISERVICE.take=parseInt(localStorage.getItem('take'));
       this.getDate();
     } else {
       this.uISERVICE.Header = false;
@@ -103,6 +102,8 @@ export class StatementComponent implements OnInit {
     this.mrktName = ""
   }
 
+
+
    /* desiable date work start */
    desabledate(){
     this.dtToday = new Date();
@@ -121,12 +122,18 @@ export class StatementComponent implements OnInit {
 
   pageChanged(pageNo) {
     this.pageNo = pageNo;
+    if(this.uISERVICE.take == null || this.uISERVICE.take == undefined){
+      this.uISERVICE.take = 10
+    }
     this.skipRec = (pageNo - 1) * this.uISERVICE.take;
     this.getTransactionHistory();
   }
 
   getTransactionHistory() {
     this.TransactionObj=[];
+    if(this.uISERVICE.take == null || this.uISERVICE.take == undefined){
+      this.uISERVICE.take = 10
+    }
     if (this.startDate != "" && this.endDate != "") {
       this.uISERVICE.loader = true;
       this.accountService.GetTransactionHistory(

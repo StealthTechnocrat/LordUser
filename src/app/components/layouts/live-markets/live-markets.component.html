@@ -78,16 +78,18 @@
                                 <!-- First section -->
                                 <div *ngIf="!uISERVICE.inplay">
                                     <div class="event_l" *ngFor="let evnt of topEvents; let i = index">
-                                        <div class="row m-0 align-items-center w-100 p-2 marketList">
+                                        <div class="row m-0 align-items-center w-100 px-0 px-md-2 py-2 marketList">
                                             <div class="col-lg-8 px-0">
-                                                <div class="event_league_name d-flex align-items-center eventLiveInplay">
+                                                <div *ngIf="evnt.Inplay"
+                                                    class="event_league_name d-flex align-items-center eventLiveInplay">
                                                     <div class="d-flex">
-                                                        <div *ngIf="evnt.Inplay" class="timeCol inplayBlink">
+                                                        <div class="timeCol inplayBlink">
                                                             <div class="animate">
                                                                 <ul class="flip-animation">
                                                                     <li class="time_date ">
-                                                                        <span
-                                                                            class="time">{{evnt.EventTime | date:'h:mm a'}}</span>
+                                                                        <span class="day-name">{{ evnt.EventTime | todayTomorrow }}
+                                                                            {{ evnt.EventTime | date:'h:mm a' }}
+                                                                        </span>
                                                                     </li>
                                                                     <li class="">
                                                                         <span class="in-play-light"><i
@@ -97,12 +99,68 @@
                                                                 </ul>
                                                             </div>
                                                         </div>
-                                                        <div class="timeCol" *ngIf="!evnt.Inplay">
+
+                                                        <div class="event_teams"
+                                                            routerLink="/set-bet/{{evnt.SportsId}}/{{evnt.EventId}}">
+                                                            <div class="d-flex align-items-center  live_blinking">
+                                                                <div class="teamNameVs ellipscont">
+                                                                    <p>{{evnt.Runner1}}</p>
+                                                                    <span class="vrs"><svg fill="#5c6060"
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                            width="18" height="18"
+                                                                            viewBox="0 0 65.141 65.34">
+                                                                            <defs>
+                                                                                <clipPath id="clip-path">
+                                                                                    <rect width="65.141" height="65.34"
+                                                                                        fill="none">
+                                                                                    </rect>
+                                                                                </clipPath>
+                                                                            </defs>
+                                                                            <g id="Repeat_Grid_1"
+                                                                                data-name="Repeat Grid 1"
+                                                                                clip-path="url(#clip-path)">
+                                                                                <g id="Group_3" data-name="Group 3"
+                                                                                    transform="translate(-757.532 -436.426)">
+                                                                                    <path id="Subtraction_2"
+                                                                                        data-name="Subtraction 2"
+                                                                                        d="M27,54A27.007,27.007,0,0,1,16.49,2.122,27.007,27.007,0,0,1,37.51,51.878,26.832,26.832,0,0,1,27,54Zm5.451-22.123L28.6,32.7a6.748,6.748,0,0,0,3.262,4.27,11.626,11.626,0,0,0,5.729,1.37,10.188,10.188,0,0,0,6.324-1.861,6.086,6.086,0,0,0,2.442-5.1A6.335,6.335,0,0,0,45.2,27.7c-.77-1.106-2.3-1.955-4.56-2.522L36.9,24.24c-2.031-.5-3.061-1.392-3.061-2.643a2.414,2.414,0,0,1,.975-1.966,4.488,4.488,0,0,1,2.828-.773c2.117,0,3.483.84,4.061,2.5l3.77-.935a5.612,5.612,0,0,0-2.844-3.513,10.3,10.3,0,0,0-5.068-1.24,8.643,8.643,0,0,0-5.607,1.78,5.813,5.813,0,0,0-2.191,4.73,6.448,6.448,0,0,0,.62,2.787,5.048,5.048,0,0,0,1.651,2.022,10.4,10.4,0,0,0,3.191,1.281l4.206,1.1a3.722,3.722,0,0,1,2.208,1.2,2.938,2.938,0,0,1,.516,1.668,2.512,2.512,0,0,1-1.136,2.078,5.426,5.426,0,0,1-3.247.838,6.961,6.961,0,0,1-3.641-.818A3.639,3.639,0,0,1,32.451,31.877ZM9.065,16.006,15.848,38h4.028l6.881-21.994h-3.3L18.3,32.86,13.254,16.006Z"
+                                                                                        transform="translate(763 442)">
+                                                                                    </path>
+                                                                                    <path id="Path_2" data-name="Path 2"
+                                                                                        d="M768.4,489.5l2.639,2.463-9.473,9.438h0s-1.527,1.734-3.042.172a1.77,1.77,0,0,1,.2-2.8Z"
+                                                                                        transform="translate(1580.574 938.646) rotate(180)">
+                                                                                    </path>
+                                                                                    <path id="Path_3" data-name="Path 3"
+                                                                                        d="M768.4,489.5l2.639,2.463-9.473,9.438h0s-1.527,1.734-3.042.172a1.77,1.77,0,0,1,.2-2.8Z"
+                                                                                        transform="translate(-0.369 -0.455)">
+                                                                                    </path>
+                                                                                </g>
+                                                                            </g>
+                                                                        </svg></span>
+                                                                    <p>{{evnt.Runner2}}</p>
+                                                                </div>
+                                                            </div>
+                                                            <span class="game-subtitle">{{evnt.SeriesName}}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="event_info badge-right ml-auto">
+                                                        <a href="javascript:void(0);"><i class="fas fa-tv"></i></a>
+                                                        <a title="ManualODD: 1"> MO<span class="badges">1</span></a>
+                                                        <a title="Fancy: 19"> F<span class="badges">19</span></a>
+                                                        <a title="Market: 2"> M<span class="badges">2</span></a>
+                                                    </div>
+                                                </div>
+                                                <div *ngIf="!evnt.Inplay"
+                                                    class="event_league_name d-flex align-items-center ">
+                                                    <div class="d-flex">
+                                                        <div class="timeCol">
                                                             <div class="animate">
                                                                 <ul class="flip-animation">
                                                                     <li class="time_date d-flex flex-column">
-                                                                        <span class="time">{{evnt.EventTime |
-                                                                            date:'dd/MM/yy'}}</span>
+                                                                        <span class="day-name">{{ evnt.EventTime | todayTomorrow }}
+                                                                            {{ evnt.EventTime | date:'h:mm a' }}
+                                                                        </span>
                                                                     </li>
                                                                     <li>
                                                                         <span class="time"> {{evnt.EventTime | date:'h:mm
@@ -199,16 +257,18 @@
                                 <!-- Second section -->
                                 <div *ngIf="uISERVICE.inplay">
                                     <div class="event_l" *ngFor="let evnt of topEvents ; let i = index">
-                                        <div class="row m-0 align-items-center w-100 p-2 marketList">
+                                        <div class="row m-0 align-items-center w-100 px-0 px-md-2 p-2 marketList">
                                             <div class="col-lg-8 px-0">
-                                                <div class="event_league_name d-flex align-items-center  eventLiveInplay">
+                                                <div
+                                                    class="event_league_name d-flex align-items-center  eventLiveInplay">
                                                     <div class="d-flex">
                                                         <div class="timeCol inplayBlink">
                                                             <div class="animate">
                                                                 <ul class="flip-animation">
                                                                     <li class="time_date ">
-                                                                        <span class="time">{{evnt.EventTime | date:'h:mm
-                                                                            a'}}</span>
+                                                                        <span class="day-name">{{ evnt.EventTime | todayTomorrow }}
+                                                                            {{ evnt.EventTime | date:'h:mm a' }}
+                                                                        </span>
                                                                     </li>
                                                                     <li class="">
                                                                         <span class="in-play-light"><i
@@ -305,7 +365,7 @@
                                 <!-- Third section -->
                                 <!-- <div >
                                     <div class="event_l" *ngFor="let evnt of rtrnObj.TopEvents; let i = index">
-                                        <div class="row m-0 align-items-center w-100 p-2 marketList">
+                                        <div class="row m-0 align-items-center w-100 px-0 px-md-2 p-2 marketList">
                                             <div class="col-lg-8 px-0">
                                                 <div class="event_league_name d-flex align-items-center">
                                                     <div class="d-flex">

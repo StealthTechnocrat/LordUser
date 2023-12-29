@@ -48,23 +48,25 @@ button.btn {
     outline: none;
   }
 }
+
 @mixin scrollBarnew {
   &::-webkit-scrollbar {
-      width: 0px;
+    width: 0px;
   }
 
   &::-webkit-scrollbar-track {
-      background: #E5E8ED;
+    background: #E5E8ED;
   }
 
   &::-webkit-scrollbar-thumb {
-      background: #ffcb2f;
+    background: #ffcb2f;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-      background: #ffcb2f;
+    background: #ffcb2f;
   }
 }
+
 .btn-primary {
   color: #5c6060 !important;
   background-color: #ffcb2f;
@@ -2155,6 +2157,11 @@ $m_box_width: 15%;
           font-size: 12px;
           color: #5c6060;
           font-weight: 600;
+          background-color: transparent;
+          border-radius: 0px;
+          &:focus{
+            border-bottom:1px solid #ffcb2f !important;
+          }
 
           &::placeholder {
             color: #d6d6d6;
@@ -2166,6 +2173,7 @@ $m_box_width: 15%;
 
     .modal-footer {
       flex-wrap: nowrap;
+
       button {
         position: relative;
         cursor: pointer;
@@ -2229,9 +2237,11 @@ $m_box_width: 15%;
             }
           }
         }
-        &.modCancel{
-          background-color: #f44336!important;
-          &:before{
+
+        &.modCancel {
+          background-color: #f44336 !important;
+
+          &:before {
             opacity: 0;
             transform-origin: center center 0 50%;
             transition: all .5s ease-out;
@@ -2241,7 +2251,8 @@ $m_box_width: 15%;
             top: 0;
             left: 0;
           }
-          &:after{
+
+          &:after {
             content: attr(data-effect);
             opacity: 1;
             position: absolute;
@@ -2253,9 +2264,10 @@ $m_box_width: 15%;
             z-index: 0;
             border-radius: 30px;
           }
-          &:hover{
-            &:after{
-              background-color: #a21c12!important;
+
+          &:hover {
+            &:after {
+              background-color: #a21c12 !important;
               transition: all ease-in .4s;
               right: 0;
             }
@@ -2263,40 +2275,687 @@ $m_box_width: 15%;
         }
       }
     }
+
     .termConWrap {
       height: calc(320px - 26px);
       max-height: 100%;
       width: 100%;
       overflow: auto;
       @include scrollBarnew;
-  }
+    }
   }
 }
+
 .changepasswordModal {
   max-width: 450px;
+
   .modal-content {
-    .termConWrap{
+    .termConWrap {
       height: calc(230px - 26px);
     }
   }
 }
 
 .chipsetting {
-  .btn-close{
+  .btn-close {
     color: #5c6060 !important;
   }
 }
 
 .termcond {
-  .modal-body{
-    li, p{
+  .modal-body {
+
+    li,
+    p {
       margin: 10px 0;
       color: #999999;
       font-size: 12px;
       font-weight: 500;
     }
   }
-  .termConWrap{
+
+  .termConWrap {
     height: calc(450px - 26px) !important;
+  }
+}
+
+body {
+  .colorMood {
+    button {
+      svg {
+        width: 22px;
+      }
+
+      .dark {
+        display: none;
+      }
+
+      .light {
+        display: inline-flex;
+      }
+    }
+  }
+
+  &.dark-theme {
+    .colorMood {
+      button {
+        .light {
+          display: none;
+        }
+
+        .dark {
+          display: inline-flex;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+// dark mode css
+body.dark-theme {
+  background-color: #000;
+  color: #b9b9b9;
+
+  header {
+    background: #242424;
+
+    .logo_area {
+      img {
+        filter: invert(1);
+      }
+    }
+
+    .main_nav {
+      li {
+        a {
+          border: 1px solid #646464 !important;
+          color: #b9b9b9 !important;
+
+          &.active {
+            &:after {
+              background-color: #646464 !important;
+            }
+          }
+
+          &:hover {
+            &:after {
+              background-color: #646464 !important;
+            }
+          }
+        }
+      }
+    }
+
+    .header_details {
+      .login_btns {
+        button.btn-primary {
+          background: #424242 !important;
+          color: #b9b9b9 !important;
+
+          &:hover {
+            background-color: #ffcb2f !important;
+            color: #000 !important;
+          }
+        }
+      }
+    }
+
+    .bottom-header {
+      ul {
+        li {
+          a {
+            color: #b9b9b9 !important;
+
+            &:before {
+              background-color: #b9b9b9 !important;
+            }
+          }
+
+          .logo-search {
+            input {
+              background-color: #ffcb2f !important;
+              color: #273a47 !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .side_tabs {
+    background-color: #181818;
+
+    .tab_title {
+      ul {
+        li {
+          a {
+
+            &.active,
+            &:hover {
+              color: #fff !important;
+            }
+
+            &:before {
+              background-color: #646464 !important;
+            }
+          }
+        }
+      }
+    }
+
+    .side_cards {
+      ul {
+        li {
+          a {
+            color: #b9b9b9 !important;
+
+            &:hover {
+              background-color: transparent !important;
+            }
+
+            &.main_drop.drop_open {
+              background-color: transparent !important;
+
+              &:hover {
+                background-color: transparent !important;
+              }
+            }
+
+            &.main_drop {
+              .icon {
+                svg {
+                  fill: #fff;
+                }
+              }
+            }
+          }
+
+          .step_1 {
+            li {
+              .item {
+                a {
+                  border-left: 2px solid #ffffff !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .market_area {
+    background: #181818;
+  }
+
+  .tabs_nav {
+    ul {
+      border-bottom: 1px solid #404040 !important;
+
+      li {
+        a {
+          border-right: 1px solid #404040 !important;
+
+          .txt {
+            color: #b9b9b9;
+          }
+        }
+      }
+    }
+  }
+
+  .market {
+    .event_l {
+      &:nth-child(odd) {
+        background: rgba(100, 100, 100, .1) !important;
+      }
+
+      &:hover {
+        &:before {
+          background-color: #454646 !important;
+        }
+      }
+
+      .event_teams {
+        p {
+          color: #b9b9b9 !important;
+        }
+
+        .vrs {
+          svg {
+            fill: #b9b9b9;
+          }
+        }
+      }
+
+      .event_info {
+        a {
+          color: #b9b9b9 !important;
+        }
+      }
+
+      .timeCol {
+        background-color: #4c4c4c;
+        color: #b9b9b9;
+      }
+
+      .eventLiveInplay {
+        .timeCol {
+          color: #a13f7c;
+        }
+      }
+    }
+  }
+
+  .casino_bar {
+    .rightGames {
+      h3 {
+        color: #b9b9b9 !important;
+      }
+
+      .tab-content {
+        background: #181818;
+
+        .game {
+          .overlay {
+            .game-title {
+              color: #b9b9b9 !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .footer-main {
+    ul.links {
+      li {
+        a {
+          color: #b9b9b9 !important;
+          border-color: #fff !important;
+        }
+      }
+    }
+
+    .copyright {
+      color: #b9b9b9 !important;
+    }
+  }
+
+  .scrollToTop {
+    background: #fff;
+    color: #000;
+  }
+
+  .match_head {
+    background-color: #242424 !important;
+    color: #b9b9b9 !important;
+
+    .animate_bx {
+      ul {
+        li {
+          .vs_img {
+            svg {
+              path {
+                fill: #b9b9b9 !important;
+              }
+            }
+          }
+        }
+
+        li.times-n-date {
+          .date-time {
+            box-shadow: rgba(255, 255, 255, .3) 0 0 0, rgba(255, 255, 255, .4) 0 1px 6px !important;
+
+            .time {
+              color: #b9b9b9 !important;
+            }
+          }
+        }
+      }
+    }
+
+    .series_name {
+      h6 {
+        box-shadow: rgba(255, 255, 255, .3) 0 0 0, rgba(255, 255, 255, .4) 0 1px 6px !important;
+        color: #fff;
+        background-color: #424242 !important;
+
+        &:after,
+        &:before {
+          background-color: #4c4c4c !important;
+        }
+      }
+    }
+
+    .market_assets {
+      ul {
+        li {
+          button {
+            svg {
+              path {
+                fill: #b9b9b9 !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .match_bx {
+    background: #181818;
+
+    .accordianods {
+      ul.nav-pills {
+        background-color: #181818 !important;
+
+        li {
+          button {
+            color: #b9b9b9 !important;
+
+            &.active {
+              &:after {
+                background-color: #ffffff !important;
+              }
+            }
+          }
+        }
+      }
+
+      .tab-content {
+        .tab_accordion {
+          button.accor_btn {
+            background: #292a2a !important;
+            color: rgb(255 255 255 / 80%) !important;
+
+            .txt {
+              color: rgb(255 255 255 / 80%) !important;
+            }
+
+            svg {
+              fill: #b9b9b9 !important;
+            }
+          }
+
+          .inner_bet_table {
+            .bet_table_row {
+              .bl_boxMain {
+                &:before {
+                  background: none repeat scroll 0 0 rgba(89, 89, 89, .9) !important;
+                }
+
+                &:after {
+                  color: #fff;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .main_wrap {
+    .cstm_row {
+      .nav {
+        li {
+          a {
+            color: #fff !important;
+          }
+        }
+      }
+    }
+  }
+
+  .user-menus {
+    li.userDrop {
+      ul.dropdown-menu {
+        background-color: #242424;
+
+        li {
+          a {
+            color: #b9b9b9 !important;
+
+            &:hover {
+              background-color: #ffcb2f !important;
+              color: #000 !important;
+            }
+          }
+        }
+      }
+    }
+
+    li {
+      color: #b9b9b9 !important;
+
+      &:hover {
+        &:after {
+          background-color: #b9b9b9;
+        }
+      }
+
+      svg {
+        path {
+          fill: #b9b9b9 !important;
+        }
+      }
+
+      &.userDrop {
+        .dropdown {
+          button {
+            i {
+              color: #b9b9b9 !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .page_title {
+    h3 {
+      color: #b9b9b9 !important;
+    }
+  }
+
+  .center_inner {
+    background-color: #181818;
+  }
+
+  .middle_area {
+    .mid_inner {
+      background-color: #181818;
+    }
+  }
+
+  .my_bets_table {
+    .filter {
+
+      .form-select,
+      .form-control {
+        border: 1px solid #919191;
+        background-color: transparent;
+        color: #ccc;
+      }
+    }
+  }
+
+  .pagination_filter {
+    select {
+      color: #b9b9b9 !important;
+    }
+  }
+
+  .ngx-pagination {
+    .disabled {
+      color: #cacaca !important;
+    }
+  }
+
+  .table {
+    thead {
+      th {
+        color: #b9b9b9 !important;
+      }
+    }
+
+    tbody {
+      tr {
+        background-color: #181818;
+
+        td {
+          border-bottom: 1px solid rgb(117 117 117 / 67%);
+        }
+      }
+    }
+  }
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+  .my_bets_table {
+    .filter {
+      button {
+        &:hover {
+          border: 1px solid #fff !important;
+          background: #fff !important;
+          box-shadow: 0 0 8px 0 #fff !important;
+          color: #000 !important;
+        }
+      }
+    }
+  }
+
+  .modal {
+    // background-color: #3c444b !important;
+
+    .modal-content {
+      .modal-body {
+        background-color: #3c444b !important;
+      }
+    }
+  }
+
+  .termsCondition {
+    .termConWrap {
+      h3 {}
+    }
+  }
+
+
+  .modal-content{
+    background-color: #3c444b;
+  }
+  .chipSettingModal {
+    .modal-content {
+      form {
+        .form-field {
+          label, input{
+            color: #b9b9b9;
+          }
+          input{
+            border-bottom: 1px solid #6a6a6a !important;
+          }
+        }
+      }
+    }
+  }
+  .login_form {
+    button.btn-close{
+      color: #b9b9b9 !important;
+    }
+  }
+  .upcoming_games_list {
+    li {
+      .game_name {
+        h5{
+          color: #b9b9b9 !important;
+          .versis_img{
+            svg{
+              fill: #b9b9b9 !important;
+            }
+          }
+        }
+      }
+      .date_time{
+        .time{
+          color: #b9b9b9 !important;
+        }
+      }
+    }
+  }
+  .content_disable{
+    color: #b9b9b9 !important; 
+  }
+  .pagination_filter {
+    .pagination {
+      a{
+        color: #b9b9b9 !important; 
+      }
+    }
+  }
+  .ngx-pagination a:hover, .ngx-pagination button:hover{
+    background: #3a3939 !important;
+  }
+  .market {
+    .market-title{
+      color: #b9b9b9 !important;
+    }
+  }
+  .sidebar_toggle_btn{
+    img{
+      filter: invert(1);
+    }
+  }
+  .mobMarquee{
+    color: #b9b9b9 !important;
+  }
+  .bottom_nav {
+    background-color: #242424 !important;
+    color: #000 !important;
+    ul {
+      li{
+        &.all-items{
+          .menu-item{
+            box-shadow: 3px 3px 5px #1b1a1a, -3px -3px 5px #2b2b2b !important;
+            background-color: #242424 !important;
+          }
+          .bottom-circle{
+            .circle-nav{
+              .circle-nav-open{
+                background-color: #242424 !important; 
+              }
+            }
+          }
+        }
+        &.big{
+          &:before{
+            box-shadow: 3px 3px 5px #1b1a1a, -3px -3px 5px #2b2b2b !important;
+            background-color: #242424 !important;
+          }
+        }
+        .noneAllit{
+          svg{
+            path{
+              fill: #fff !important;
+            }
+          }
+        }
+        a{
+          color: #b9b9b9 !important;
+          svg{
+            path{
+              fill: #b9b9b9 !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  .m_left_sidebar{
+    background: #181818 !important;
   }
 }

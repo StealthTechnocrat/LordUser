@@ -677,7 +677,7 @@ iframe{
 
         h6 {
             background: #fef7b1;
-            padding: 2px 2px 4px;
+            padding: 4px 8px 4px;
             margin-bottom: 0;
             font-size: 12px;
             font-weight: 500;
@@ -688,6 +688,7 @@ iframe{
             display: flex;
             align-items: center;
             justify-content: center;
+            height: 32px;
 
             &::before {
                 content: "";
@@ -753,7 +754,15 @@ iframe{
                         text-align: center;
                         font-weight: 700;
                         box-shadow: rgba(0, 0, 0, .15) 0 1px 3px, rgba(0, 0, 0, .21) 0 2px 3px;
-
+                        overflow: hidden;
+                        .day-name {
+                            background-color: #484848b3;
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            padding: 1px 0px;
+                        }
                         .date {
                             font-size: 9px;
                             white-space: nowrap;
@@ -773,7 +782,7 @@ iframe{
                             text-align: center;
                             display: block;
                             font-weight: 600;
-                            color: rgba(72, 72, 72, 0.7) !important;
+                            color: rgba(72, 72, 72, 0.7);
                             line-height: 20px;
                         }
                     }

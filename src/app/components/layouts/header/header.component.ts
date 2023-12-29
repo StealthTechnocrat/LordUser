@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Renderer2 } from "@angular/core";
 import * as $ from "jquery";
 import { Cookie } from "ng2-cookies";
 import { AccountService } from "src/app/service/account-service";
@@ -16,6 +16,7 @@ import { SharedService } from "src/app/service/shared.service";
   styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent implements OnInit {
+  isDarkMode = false;
   public signInModel: SignInModel;
   public sign_Up_Model: SignUpModel;
   Hide: boolean;
@@ -39,20 +40,33 @@ export class HeaderComponent implements OnInit {
   CnfPwd: string = "";
   OldPwd: string = "";
   rtrnObj: any = [];
-
+  usrDtl: any = [];
+  chipData: any = [];
+  Balance: number;
+  Exposure: number;
+  News: any = [];
+  Name: string = "";
   constructor(
     private accountService: AccountService,
     public uISERVICE: UiService,
     private router: Router,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private renderer: Renderer2
   ) {
     const isExpired = this.isTokenExpired(Cookie.get("usersCookies"));
     if (isExpired) {
       this.LogOut();
     }
+
+    const isDarkModeStorage = localStorage.getItem('darkMode');
+    this.isDarkMode = isDarkModeStorage === 'true';
+    if (this.isDarkMode) {
+      this.renderer.addClass(document.body, 'dark-theme');
+    }
   }
 
   ngOnInit(): void {
+    this.user();
     this.sharedService.getSportsId().subscribe((data) => {
       this.sportid = data;
     });
@@ -152,11 +166,64 @@ export class HeaderComponent implements OnInit {
     this.uISERVICE.inplay = true;
     this.getInplayEvents();
   }
-  
+
   restInplay() {
     this.uISERVICE.inplay = false;
     this.getEvents();
   }
+
+  user() {
+    this.accountService.userDetails().then((response) => {
+      if (response) {
+        this.News = response.Result.News;
+        this.Balance = response.Result.Balance;
+        this.Exposure = response.Result.Exposure;
+        this.Name = response.Result.Name;
+        this.uISERVICE.take = response.Result.Take;
+        console.log("this.uISERVICE.take", this.uISERVICE.take)
+      } else {
+        this.usrDtl = [];
+      }
+    });
+  }
+
+  getChips() {
+    this.uISERVICE.loader = true;
+    this.accountService.getChips().then((response) => {
+      if (response.Status) {
+        this.uISERVICE.loader = false;
+        this.chipData = response.Result;
+        console.log("chipdata", this.chipData)
+      } else {
+        this.chipData = [];
+        this.uISERVICE.loader = false;
+      }
+    });
+  }
+
+  updateChips() {
+    this.uISERVICE.loader = true;
+    this.accountService.updateChip(this.chipData).then((response) => {
+      if (response.Status) {
+        this.uISERVICE.loader = false;
+        this.uISERVICE.Success = true;
+        this.uISERVICE.Message = "Executed Successfully";
+        setTimeout(() => {
+          this.uISERVICE.Success = false;
+        }, 3000);
+        document.getElementById("chipsettingBtn").click();
+      } else {
+        this.uISERVICE.loader = false;
+        this.uISERVICE.Error = true;
+        this.uISERVICE.Message = response.Result;
+        setTimeout(() => {
+          this.uISERVICE.Error = false;
+        }, 3000);
+      }
+    });
+  }
+
+
 
   getEvents() {
     debugger;
@@ -185,11 +252,10 @@ export class HeaderComponent implements OnInit {
       });
   }
 
-
   getInplayEvents() {
     debugger;
-    if(this.sportid == null || this.sportid == undefined){
-this.sportid = 4;
+    if (this.sportid == null || this.sportid == undefined) {
+      this.sportid = 4;
     }
     this.rtrnObj = [];
     this.accountService
@@ -214,8 +280,6 @@ this.sportid = 4;
       });
   }
 
- 
-
   isTokenExpired(token: string): boolean {
     try {
       const decodedToken = jwt_decode(token);
@@ -234,7 +298,7 @@ this.sportid = 4;
   async myFunction() {
     return await new Promise((resolve) => {
       const interval = setInterval(() => {
-        this.GetDetail();
+        this.user();
       }, 10000);
     });
   }
@@ -452,26 +516,26 @@ this.sportid = 4;
               this.uISERVICE.take = response.Result.Take;
               this.uISERVICE.News = response.Result.News;
 
-              console.log("news", response.Result.News);
-              localStorage.setItem(
-                "UserDetail",
-                JSON.stringify(response.Result)
-              );
-              localStorage.setItem("take", this.uISERVICE.take.toString());
-            }
-          } else {
-            this.uISERVICE.loader = false;
-            this.LogOut();
-          }
-        });
-    } catch (error) {
-      this.loader = false;
-      this.uISERVICE.Header = false;
-      Cookie.deleteAll();
-      localStorage.clear();
-      this.router.navigate(["/games"]);
-    }
-  }
+  //             console.log("news", response.Result.News);
+  //             localStorage.setItem(
+  //               "UserDetail",
+  //               JSON.stringify(response.Result)
+  //             );
+  //             localStorage.setItem("take", this.uISERVICE.take.toString());
+  //           }
+  //         } else {
+  //           this.uISERVICE.loader = false;
+  //           this.LogOut();
+  //         }
+  //       });
+  //   } catch (error) {
+  //     this.loader = false;
+  //     this.uISERVICE.Header = false;
+  //     Cookie.deleteAll();
+  //     localStorage.clear();
+  //     this.router.navigate(["/games"]);
+  //   }
+  // }
 
   pwdShowHide(value) {
     this.Hide = value;
@@ -577,7 +641,15 @@ this.sportid = 4;
     XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
     XLSX.writeFile(wb, "AllBets.xlsx");
   }
-
+  toggleDarkMode() {
+    this.isDarkMode = !this.isDarkMode;
+    localStorage.setItem('darkMode', this.isDarkMode.toString());
+    if (this.isDarkMode) {
+      this.renderer.addClass(document.body, 'dark-theme');
+    } else {
+      this.renderer.removeClass(document.body, 'dark-theme');
+    }
+  }
   ngAfterViewInit() {
     $(".account_drop button").click(function (e) {
       $(".account_drop ul").toggleClass("open");
@@ -625,38 +697,41 @@ this.sportid = 4;
 
     // });
 
-    $('.liveTv').click(function () {
-      $('.livetvSec').toggleClass('d-block');
+    $(".liveTv").click(function () {
+      $(".livetvSec").toggleClass("d-block");
     });
 
-    $("ul.list a.main_drop").click(function () {
-      var $step1 = $(this).parent().find("ul.step_1");
-      $("ul.list ul.step_1").not($step1).slideUp();
-      $("ul.list a.main_drop").removeClass("drop_open");
 
-      $(this).toggleClass("drop_open");
-      $step1.slideToggle();
 
-      setTimeout(function () {
-        $step1.find("a").click(function (event) {
-          event.stopPropagation();
 
-          if ($(".dropInner").hasClass("drop_open")) {
-            $(".dropInner").removeClass("drop_open");
-            $("ul.step_2").removeClass("d-block");
+    // $("ul.list a.main_drop").click(function () {
+    //   var $step1 = $(this).parent().find("ul.step_1");
+    //   $("ul.list ul.step_1").not($step1).slideUp();
+    //   $("ul.list a.main_drop").removeClass("drop_open");
 
-            $(this).addClass("drop_open");
-            $(this).parent().find("ul.step_2").addClass("d-block");
-          } else {
-            $(this).addClass("drop_open");
-            $(this).parent().find("ul.step_2").addClass("d-block");
-          }
-        });
-      }, 1000);
-    });
+    //   $(this).toggleClass("drop_open");
+    //   $step1.slideToggle();
 
-    // $(".main_drop").click(function () {
-    //   $(".main_drop").toggleClass("drop_open");
     // });
+
+
+    // $("ul.list a.main_drop").click(function (e) {
+    //   e.preventDefault();
+    //   var $step1 = $(this).parent().find("ul.step_1");
+    //   $("ul.list ul.step_1").not($step1).slideUp();
+    //   $("ul.list a.main_drop").removeClass("drop_open");
+    //   $(this).toggleClass("drop_open").next("ul.step_1").slideToggle();
+    // });
+
+
+
+
+    
+
+
+
+
+
+
   }
 }

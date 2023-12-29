@@ -12,34 +12,35 @@
       <ul class="main_nav casGm ml-3 d-none d-xl-flex">
         <li>
           <a class="active" routerLink="/" (click)="restInplay()">
-            <span class="sports-icon all-sports"></span> 
+            <span class="sports-icon all-sports"></span>
             Sports</a>
         </li>
         <li *ngIf="!uISERVICE.casinoStatus">
           <a class="">
-            <span class="sports-icon poker"></span> 
+            <span class="sports-icon poker"></span>
             Casino Games</a>
         </li>
       </ul>
       <ul class="header_details d-flex">
-        
-        <li class="news_marquee d-none d-xl-flex"  *ngIf="uISERVICE.Header">
+
+        <li class="news_marquee d-none d-xl-flex" *ngIf="uISERVICE.Header">
           <marquee behavior="scroll" direction="left" [scrollDelay]="100">
             <div class="item">
-              <i class="fas fa-circle"></i>
               <span class="marquee-news-text">
-                <p *ngFor="let news of uISERVICE.News">
-                    <span class="date">{{news.createdOn | date:'M/d/yy,
-                      h:mm a'}}</span>:-  {{news.News}}
-                  </p>
-                </span>
+                <p *ngFor="let news of News">
+                  <span class="date">
+                    <i class="fas fa-circle"></i>
+                    {{news.createdOn | date:'M/d/yy,
+                    h:mm a'}}</span>:- {{news.News}}
+                </p>
+              </span>
             </div>
           </marquee>
         </li>
         <li class="user-menus ml-auto" *ngIf="uISERVICE.Header">
           <ul class="d-flex list-unstyled p-0 m-0 mobSmrev">
             <li class="ac_bal refresh_ic" [ngClass]="{'rotate':loader}">
-              <svg (click)="GetDetail()" xmlns="http://www.w3.org/2000/svg" version="1.0" width="15" height="15"
+              <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="15" height="15"
                 viewBox="0 0 460.000000 503.000000" preserveAspectRatio="xMidYMid meet" class="">
                 <g transform="translate(0.000000,503.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
                   <path
@@ -48,7 +49,8 @@
                   <path
                     d="M2075 3785 c-45 -8 -127 -30 -184 -49 -432 -147 -748 -507 -848 -968 -26 -121 -23 -358 6 -495 70 -334 240 -592 531 -805 120 -88 340 -176 508 -204 134 -22 392 -14 512 16 574 143 980 654 980 1234 0 341 -124 654 -352 892 -175 182 -369 296 -617 361 -82 22 -122 26 -276 29 -124 2 -205 -1 -260 -11z m485 -113 c47 -11 106 -29 132 -39 l47 -18 -80 -123 c-43 -67 -79 -124 -79 -127 0 -2 73 -48 163 -101 89 -53 176 -105 194 -115 l31 -19 69 106 c37 59 71 112 75 118 17 26 153 -139 226 -274 45 -82 107 -257 117 -332 l7 -48 -126 0 -126 0 0 -230 0 -230 115 0 c75 0 115 -4 115 -11 0 -6 -12 -45 -26 -87 -53 -158 -159 -326 -281 -445 l-60 -59 -48 81 c-26 45 -51 84 -56 87 -6 4 -354 -195 -388 -222 -2 -2 18 -40 44 -84 27 -46 44 -85 39 -90 -5 -4 -52 -18 -104 -31 -137 -34 -383 -34 -517 0 -51 12 -93 27 -93 33 0 6 20 44 45 85 25 40 45 77 45 81 -1 13 -382 234 -390 226 -5 -5 -31 -47 -59 -94 l-51 -85 -80 83 c-128 133 -219 284 -273 452 l-24 75 123 3 124 3 0 229 0 230 -136 0 -136 0 7 43 c23 136 115 350 203 470 51 69 141 167 153 167 4 0 40 -56 80 -125 39 -68 74 -123 78 -121 62 34 360 213 370 222 13 12 -6 50 -121 241 l-19 31 51 17 c130 43 219 55 380 51 106 -3 182 -11 240 -24z">
                   </path>
-                  <path d="M2207 3523 c-4 -3 -7 -48 -7 -100 l0 -93 100 0 100 0 0 100 0 100 -93 0 c-52 0 -97 -3 -100 -7z">
+                  <path
+                    d="M2207 3523 c-4 -3 -7 -48 -7 -100 l0 -93 100 0 100 0 0 100 0 100 -93 0 c-52 0 -97 -3 -100 -7z">
                   </path>
                   <path
                     d="M2215 3251 c-304 -38 -542 -251 -627 -561 -21 -78 -16 -263 10 -354 73 -255 265 -448 516 -516 69 -19 97 -22 215 -17 114 3 148 9 210 31 241 85 422 288 477 533 20 93 15 279 -11 363 -106 344 -440 564 -790 521z m230 -116 c475 -112 645 -705 301 -1048 -153 -153 -366 -217 -576 -173 -224 47 -417 234 -475 461 -19 76 -19 224 0 300 57 222 241 406 461 459 77 19 213 19 289 1z">
@@ -68,22 +70,23 @@
                   <path
                     d="M3030 2065 c-29 -47 -50 -87 -49 -89 19 -14 162 -96 167 -96 6 0 85 127 100 161 2 4 -25 24 -60 45 -35 21 -73 44 -85 51 -20 13 -23 10 -73 -72z">
                   </path>
-                  <path d="M2207 1643 c-4 -3 -7 -48 -7 -100 l0 -93 100 0 100 0 0 100 0 100 -93 0 c-52 0 -97 -3 -100 -7z">
+                  <path
+                    d="M2207 1643 c-4 -3 -7 -48 -7 -100 l0 -93 100 0 100 0 0 100 0 100 -93 0 c-52 0 -97 -3 -100 -7z">
                   </path>
                   <path
                     d="M90 2838 c-80 -41 -85 -59 -84 -313 0 -295 31 -483 121 -755 88 -266 257 -554 456 -781 152 -172 465 -403 710 -523 697 -342 1648 -290 2273 123 49 32 90 58 91 57 2 -1 -36 -103 -82 -226 -47 -123 -85 -236 -85 -250 0 -40 41 -112 78 -137 71 -47 171 -35 229 28 13 14 102 240 217 554 162 437 196 538 196 581 0 66 -13 100 -52 141 -37 39 -83 56 -147 55 -25 -1 -288 -44 -584 -96 -489 -86 -542 -97 -573 -121 -41 -32 -74 -92 -74 -137 1 -77 62 -153 132 -164 18 -3 157 15 308 40 151 25 276 43 278 42 6 -6 -157 -106 -247 -151 -226 -113 -473 -187 -720 -216 -151 -17 -438 -7 -565 21 -347 74 -718 257 -967 475 -139 123 -298 329 -402 525 -85 158 -165 379 -202 560 -21 98 -34 330 -26 447 7 105 1 144 -26 182 -47 63 -168 82 -253 39z">
                   </path>
                 </g>
               </svg>
-              <span class="d-none d-sm-block">Balance:</span> {{uISERVICE.Bal | number:'1.2-2'}}
+              <span class="d-none d-sm-block">Balance:</span> {{Balance | number:'1.2-2'}}
             </li>
-            <li class="liability" >
-              <svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 13.333" width="15" height="13.333">
+            <li class="liability">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 13.333" width="15" height="13.333">
                 <path id="hand-holding-usd-solid" fill="#333" transform="translate(0)"
                   d="M 7.059 3.758 l 1.413 0.372 a 0.224 0.224 0 0 1 0.173 0.211 a 0.229 0.229 0 0 1 -0.237 0.219 H 7.48 A 0.781 0.781 0 0 1 7.189 4.5 a 0.373 0.373 0 0 0 -0.4 0.052 L 6.3 5.01 a 0.3 0.3 0 0 0 -0.059 0.069 a 0.3 0.3 0 0 0 0.1 0.41 a 2.181 2.181 0 0 0 0.9 0.3 V 6.25 a 0.437 0.437 0 0 0 0.452 0.417 h 0.452 a 0.437 0.437 0 0 0 0.453 -0.417 V 5.792 A 1.5 1.5 0 0 0 9.987 4.151 A 1.579 1.579 0 0 0 8.775 2.909 L 7.361 2.536 a 0.224 0.224 0 0 1 -0.173 -0.211 a 0.229 0.229 0 0 1 0.237 -0.219 h 0.927 a 0.781 0.781 0 0 1 0.292 0.057 a 0.373 0.373 0 0 0 0.4 -0.052 l 0.495 -0.456 A 0.3 0.3 0 0 0 9.6 1.589 a 0.3 0.3 0 0 0 -0.1 -0.411 a 2.183 2.183 0 0 0 -0.9 -0.3 V 0.417 A 0.437 0.437 0 0 0 8.144 0 H 7.692 a 0.437 0.437 0 0 0 -0.452 0.417 V 0.875 A 1.5 1.5 0 0 0 5.846 2.516 A 1.581 1.581 0 0 0 7.059 3.758 Z M 14.72 8.544 a 0.862 0.862 0 0 0 -1.109 0 L 11.2 10.469 a 1.657 1.657 0 0 1 -1.042 0.365 H 7.083 a 0.417 0.417 0 1 1 0 -0.833 H 9.122 a 0.864 0.864 0 0 0 0.866 -0.693 A 0.812 0.812 0 0 0 10 9.165 a 0.833 0.833 0 0 0 -0.833 -0.832 H 5 a 3.064 3.064 0 0 0 -1.93 0.685 L 1.859 10 H 0.417 A 0.417 0.417 0 0 0 0 10.416 v 2.5 a 0.417 0.417 0 0 0 0.417 0.417 H 9.707 a 1.667 1.667 0 0 0 1.042 -0.365 l 3.938 -3.151 a 0.833 0.833 0 0 0 0.033 -1.273 Z">
                 </path>
               </svg>
-              <span class="d-none d-sm-block">Liability:</span> {{uISERVICE.Exp | number:'1.2-2'}}
+              <span class="d-none d-sm-block">Liability:</span> {{Exposure | number:'1.2-2'}}
             </li>
             <li class="userDrop d-none d-xl-flex" *ngIf="uISERVICE.Header">
               <div class="dropdown">
@@ -93,24 +96,30 @@
                       d="M 12 12 A 4 4 0 1 0 8 8 A 4 4 0 0 0 12 12 Z m 0 2 c -2.67 0 -8 1.34 -8 4 v 2 H 20 V 18 C 20 15.34 14.67 14 12 14 Z">
                     </path>
                   </svg>
-                  {{userName}}
+                  {{Name}}
                   <i class="fas fa-caret-down right"></i>
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="javascript:void(0)"><i class="fas fa-user mr-2"></i> Welcome, {{userName}}</a></li>
-                  <li><a class="dropdown-item" href="javascript:void(0)" routerLink="/statement"><i class="fas fa-chart-area mr-2"></i> Account
+                  <li><a class="dropdown-item" href="javascript:void(0)"><i class="fas fa-user mr-2"></i> Welcome,
+                      {{Name}}</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0)" routerLink="/statement"><i
+                        class="fas fa-chart-area mr-2"></i> Account
                       Statement</a></li>
-                  <li><a class="dropdown-item" href="javascript:void(0)" routerLink="/profit-loss"><i class="fas fa-chart-line mr-2"></i> Profit Loss</a>
+                  <li><a class="dropdown-item" href="javascript:void(0)" routerLink="/profit-loss"><i
+                        class="fas fa-chart-line mr-2"></i> Profit Loss</a>
                   </li>
-                  <li><a class="dropdown-item" href="javascript:void(0)" routerLink="/results"><i class="fas fa-trophy mr-2"></i> Results</a></li>
-                  <li><a class="dropdown-item" href="javascript:void(0)" routerLink="/bets"><i class="fas fa-history mr-2"></i> My Bets</a></li>
-                  <li><a class="dropdown-item" href="javascript:void(0)" data-toggle="modal"
+                  <li><a class="dropdown-item" href="javascript:void(0)" routerLink="/results"><i
+                        class="fas fa-trophy mr-2"></i> Results</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0)" routerLink="/bets"><i
+                        class="fas fa-history mr-2"></i> My Bets</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" (click)="getChips()"
                       data-target="#chipsetting"><i class="fas fa-cog mr-2"></i> Chip Setting</a></li>
                   <li><a class="dropdown-item" href="javascript:void(0)" data-toggle="modal"
                       data-target="#changepassword"><i class="fas fa-key mr-2"></i> Change Password</a></li>
                   <li><a class="dropdown-item" href="javascript:void(0)" data-toggle="modal"
                       data-target="#termscondition"><i class="fas fa-info-circle mr-2"></i> Terms and Condition</a></li>
-                  <li><a class="dropdown-item" href="javascript:void(0)" (click)="LogOut()"><i class="fas fa-sign-out-alt mr-2"></i> Sign Out</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0)" (click)="LogOut()"><i
+                        class="fas fa-sign-out-alt mr-2"></i> Sign Out</a></li>
                 </ul>
               </div>
             </li>
@@ -221,11 +230,61 @@
         </li>
         <li class="mr-2">
           <div class="colorMood">
-            <button class="p-0 border-0 bg-transparent light d-none">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.24 25.178" width="25.24" height="25.178"><g id="Group_3" transform="translate(-1073.83 -675.943)" data-name="Group 3"><path id="Path_1" fill="#ff9b09" transform="translate(-45.888 400.063) rotate(3)" d="M 1141.64 223.276 l -3.852 -3.944 l -1.547 1.393 l 4.01 4.025 Z" data-name="Path 1"></path><path id="Path_2" fill="#ff9b09" transform="translate(-168.174 500.976)" d="M 1253.96 180.713 l 0.032 -5.746 h 1.968 v 5.746 Z" data-name="Path 2"></path><path id="Path_3" fill="#ff9b09" transform="translate(-218.06 390.752) rotate(3)" d="M 1322.36 223.379 l 3.844 -3.988 l 1.53 1.422 l -3.893 3.928 Z" data-name="Path 3"></path><path id="Path_4" fill="#ff9b09" transform="matrix(0.998 0.07 -0.07 0.998 -233.764 256.876)" d="M 1353.91 337.163 h 5.756 v 1.966 h -5.756 Z" data-name="Path 4"></path><path id="Path_5" fill="#ff9b09" transform="translate(-206.814 219.648) rotate(3)" d="M 1321.94 404.826 l 4.019 4.007 l -1.386 1.431 l -4.057 -3.965 Z" data-name="Path 5"></path><path id="Path_6" fill="#ff9b09" transform="matrix(0.995 0.105 -0.105 0.995 -116.358 129.195)" d="M 1256.27 443.038 h -2.045 v -5.7 h 2.045 Z" data-name="Path 6"></path><path id="Path_7" fill="#ff9b09" transform="translate(-36.146 229.555) rotate(3)" d="M 1135.53 407.825 l 4.144 -4 l 1.391 1.443 l -4.045 4.03 Z" data-name="Path 7"></path><path id="Path_8" fill="#ff9b09" transform="matrix(0.998 0.07 -0.07 0.998 8.164 274.816)" d="M 1097.66 337 v 1.858 h -5.7 v -1.94 l 5.7 -0.012 Z" data-name="Path 8"></path><path id="Path_9" fill="#ff9b09" transform="translate(-117.404 400.953)" d="M 1203.86 282.988 a 3.81 3.81 0 0 1 0.559 4.651 c -1.567 2.586 -5.076 0.971 -5.076 0.971 a 4.568 4.568 0 0 1 0.959 -3.983 A 4.231 4.231 0 0 1 1203.86 282.988 Z" data-name="Path 9"></path><path id="Path_10" fill="#ff9b09" transform="translate(-127.572 397.159)" d="M 1210.21 293.825 a 5.35 5.35 0 0 0 2.72 0.085 a 4.853 4.853 0 0 0 2.659 -2.076 a 4.441 4.441 0 0 0 -0.061 -4.76 a 4.573 4.573 0 0 1 1.688 1.032 c 1.117 1.062 2.2 3.043 0.607 5.8 a 4.757 4.757 0 0 1 -5.9 1.53 A 3.356 3.356 0 0 1 1210.21 293.825 Z" data-name="Path 10"></path></g></svg>
-            </button>
-            <button class="p-0 border-0 bg-transparent dark">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20.492 20.213" width="20.492" height="20.213"><g id="Group_5" transform="translate(-1048.44 -677.007)" data-name="Group 5"><path id="Path_1" fill="#7397aa" transform="matrix(0.999 -0.035 0.035 0.999 -105.356 486.692)" d="M 1152.5 236.076 l -2.836 -2.865 l -1.395 1.5 l 2.906 2.75 Z" data-name="Path 1"></path><path id="Path_2" fill="#7397aa" transform="translate(-196.846 502.039)" d="M 1253.96 179.027 l 0.032 -4.06 h 1.962 v 4.06 Z" data-name="Path 2"></path><path id="Path_3" fill="#7397aa" transform="translate(-260.071 446.202)" d="M 1321.85 235.486 l 2.922 -2.719 l 1.382 1.337 l -2.824 2.816 Z" data-name="Path 3"></path><path id="Path_4" fill="#7397aa" transform="translate(-276.49 302.27) rotate(2)" d="M 1353.91 337.163 h 4.114 v 2.017 h -4.114 Z" data-name="Path 4"></path><path id="Path_5" fill="#7397aa" transform="translate(-278.116 356.904) rotate(-3)" d="M 1322.23 403.9 l 2.734 2.891 l -1.347 1.306 l -2.828 -2.937 Z" data-name="Path 5"></path><path id="Path_6" fill="#7397aa" transform="translate(-172.051 190.723) rotate(3)" d="M 1256.29 441.353 h -2.068 v -4.01 h 2.068 Z" data-name="Path 6"></path><path id="Path_7" fill="#7397aa" transform="translate(-97.844 287.169)" d="M 1148.58 406.362 l 2.859 -2.672 l 1.375 1.391 l -2.891 2.75 Z" data-name="Path 7"></path><path id="Path_8" fill="#7397aa" transform="translate(-43.516 349.672)" d="M 1096.03 336.995 v 1.847 h -4.067 v -1.929 l 4.067 -0.012 Z" data-name="Path 8"></path><path id="Path_9" fill="#7397aa" transform="translate(-145.675 399.078)" d="M 1204.45 282.989 a 4.294 4.294 0 0 1 0.63 5.242 c -1.766 2.915 -5.721 1.095 -5.721 1.095 a 5.148 5.148 0 0 1 1.081 -4.489 A 4.769 4.769 0 0 1 1204.45 282.989 Z" data-name="Path 9"></path><path id="Path_10" fill="#7397aa" transform="translate(-155.716 395.389)" d="M 1210.21 294.473 a 5.864 5.864 0 0 0 2.981 0.093 a 5.32 5.32 0 0 0 2.915 -2.276 a 4.867 4.867 0 0 0 -0.066 -5.217 a 5.013 5.013 0 0 1 1.85 1.131 c 1.224 1.164 2.413 3.336 0.665 6.362 a 5.214 5.214 0 0 1 -6.469 1.677 A 3.678 3.678 0 0 1 1210.21 294.473 Z" data-name="Path 10"></path></g></svg>
+            <button class="p-0 border-0 bg-transparent" (click)="toggleDarkMode()">
+              <svg class="light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20.492 20.213" width="20.492"
+                height="20.213">
+                <g id="Group_5" transform="translate(-1048.44 -677.007)" data-name="Group 5">
+                  <path id="Path_1" fill="#7397aa" transform="matrix(0.999 -0.035 0.035 0.999 -105.356 486.692)"
+                    d="M 1152.5 236.076 l -2.836 -2.865 l -1.395 1.5 l 2.906 2.75 Z" data-name="Path 1"></path>
+                  <path id="Path_2" fill="#7397aa" transform="translate(-196.846 502.039)"
+                    d="M 1253.96 179.027 l 0.032 -4.06 h 1.962 v 4.06 Z" data-name="Path 2"></path>
+                  <path id="Path_3" fill="#7397aa" transform="translate(-260.071 446.202)"
+                    d="M 1321.85 235.486 l 2.922 -2.719 l 1.382 1.337 l -2.824 2.816 Z" data-name="Path 3"></path>
+                  <path id="Path_4" fill="#7397aa" transform="translate(-276.49 302.27) rotate(2)"
+                    d="M 1353.91 337.163 h 4.114 v 2.017 h -4.114 Z" data-name="Path 4"></path>
+                  <path id="Path_5" fill="#7397aa" transform="translate(-278.116 356.904) rotate(-3)"
+                    d="M 1322.23 403.9 l 2.734 2.891 l -1.347 1.306 l -2.828 -2.937 Z" data-name="Path 5"></path>
+                  <path id="Path_6" fill="#7397aa" transform="translate(-172.051 190.723) rotate(3)"
+                    d="M 1256.29 441.353 h -2.068 v -4.01 h 2.068 Z" data-name="Path 6"></path>
+                  <path id="Path_7" fill="#7397aa" transform="translate(-97.844 287.169)"
+                    d="M 1148.58 406.362 l 2.859 -2.672 l 1.375 1.391 l -2.891 2.75 Z" data-name="Path 7"></path>
+                  <path id="Path_8" fill="#7397aa" transform="translate(-43.516 349.672)"
+                    d="M 1096.03 336.995 v 1.847 h -4.067 v -1.929 l 4.067 -0.012 Z" data-name="Path 8"></path>
+                  <path id="Path_9" fill="#7397aa" transform="translate(-145.675 399.078)"
+                    d="M 1204.45 282.989 a 4.294 4.294 0 0 1 0.63 5.242 c -1.766 2.915 -5.721 1.095 -5.721 1.095 a 5.148 5.148 0 0 1 1.081 -4.489 A 4.769 4.769 0 0 1 1204.45 282.989 Z"
+                    data-name="Path 9"></path>
+                  <path id="Path_10" fill="#7397aa" transform="translate(-155.716 395.389)"
+                    d="M 1210.21 294.473 a 5.864 5.864 0 0 0 2.981 0.093 a 5.32 5.32 0 0 0 2.915 -2.276 a 4.867 4.867 0 0 0 -0.066 -5.217 a 5.013 5.013 0 0 1 1.85 1.131 c 1.224 1.164 2.413 3.336 0.665 6.362 a 5.214 5.214 0 0 1 -6.469 1.677 A 3.678 3.678 0 0 1 1210.21 294.473 Z"
+                    data-name="Path 10"></path>
+                </g>
+              </svg>
+              <svg class="dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.24 25.178" width="25.24"
+                height="25.178">
+                <g id="Group_3" transform="translate(-1073.83 -675.943)" data-name="Group 3">
+                  <path id="Path_1" fill="#ff9b09" transform="translate(-45.888 400.063) rotate(3)"
+                    d="M 1141.64 223.276 l -3.852 -3.944 l -1.547 1.393 l 4.01 4.025 Z" data-name="Path 1"></path>
+                  <path id="Path_2" fill="#ff9b09" transform="translate(-168.174 500.976)"
+                    d="M 1253.96 180.713 l 0.032 -5.746 h 1.968 v 5.746 Z" data-name="Path 2"></path>
+                  <path id="Path_3" fill="#ff9b09" transform="translate(-218.06 390.752) rotate(3)"
+                    d="M 1322.36 223.379 l 3.844 -3.988 l 1.53 1.422 l -3.893 3.928 Z" data-name="Path 3"></path>
+                  <path id="Path_4" fill="#ff9b09" transform="matrix(0.998 0.07 -0.07 0.998 -233.764 256.876)"
+                    d="M 1353.91 337.163 h 5.756 v 1.966 h -5.756 Z" data-name="Path 4"></path>
+                  <path id="Path_5" fill="#ff9b09" transform="translate(-206.814 219.648) rotate(3)"
+                    d="M 1321.94 404.826 l 4.019 4.007 l -1.386 1.431 l -4.057 -3.965 Z" data-name="Path 5"></path>
+                  <path id="Path_6" fill="#ff9b09" transform="matrix(0.995 0.105 -0.105 0.995 -116.358 129.195)"
+                    d="M 1256.27 443.038 h -2.045 v -5.7 h 2.045 Z" data-name="Path 6"></path>
+                  <path id="Path_7" fill="#ff9b09" transform="translate(-36.146 229.555) rotate(3)"
+                    d="M 1135.53 407.825 l 4.144 -4 l 1.391 1.443 l -4.045 4.03 Z" data-name="Path 7"></path>
+                  <path id="Path_8" fill="#ff9b09" transform="matrix(0.998 0.07 -0.07 0.998 8.164 274.816)"
+                    d="M 1097.66 337 v 1.858 h -5.7 v -1.94 l 5.7 -0.012 Z" data-name="Path 8"></path>
+                  <path id="Path_9" fill="#ff9b09" transform="translate(-117.404 400.953)"
+                    d="M 1203.86 282.988 a 3.81 3.81 0 0 1 0.559 4.651 c -1.567 2.586 -5.076 0.971 -5.076 0.971 a 4.568 4.568 0 0 1 0.959 -3.983 A 4.231 4.231 0 0 1 1203.86 282.988 Z"
+                    data-name="Path 9"></path>
+                  <path id="Path_10" fill="#ff9b09" transform="translate(-127.572 397.159)"
+                    d="M 1210.21 293.825 a 5.35 5.35 0 0 0 2.72 0.085 a 4.853 4.853 0 0 0 2.659 -2.076 a 4.441 4.441 0 0 0 -0.061 -4.76 a 4.573 4.573 0 0 1 1.688 1.032 c 1.117 1.062 2.2 3.043 0.607 5.8 a 4.757 4.757 0 0 1 -5.9 1.53 A 3.356 3.356 0 0 1 1210.21 293.825 Z"
+                    data-name="Path 10"></path>
+                </g>
+              </svg>
             </button>
           </div>
         </li>
@@ -336,7 +395,7 @@
 
 <div class="m_left_sidebar">
   <app-sidebar></app-sidebar>
-    <!-- <button class="btn p-0 close_btn" type="button">
+  <!-- <button class="btn p-0 close_btn" type="button">
       <svg class="svg-icon">
         <use href="/assets/img/icons/icons_defs.svg#svg_close"></use>
       </svg>
@@ -514,16 +573,19 @@
                   </div>
                 </div>
                 <div class="sub_btn_area">
-                  <button class="btn btn-primary btnPrimaryCstm" (click)="LogIn()" type="button"><span class="animate-btn">Sign in</span></button>
+                  <button class="btn btn-primary btnPrimaryCstm" (click)="LogIn()" type="button"><span
+                      class="animate-btn">Sign in</span></button>
                   <button class="btn btn-primary btnPrimaryCstm" id="term" type="button" data-toggle="modal"
-                    data-target="#termsCondition" style="display: none;"><span class="animate-btn">Sign in</span></button>
+                    data-target="#termsCondition" style="display: none;"><span class="animate-btn">Sign
+                      in</span></button>
 
                   <div class="">
                     <p class="my-2 text-center apkCont">Easy bet place on multiple sports,casino with our mobile
                       application</p>
                     <a class="d-flex hover-text-decoration-none" href="https://futurelearn.co.in/apk-down/Lords.apk"
                       download="link">
-                      <button class="btn btn-primary downloadApk btnPrimaryCstm"><span class="animate-btn">Download APK</span>
+                      <button class="btn btn-primary downloadApk btnPrimaryCstm"><span class="animate-btn">Download
+                          APK</span>
                         <span class="icon">
                           <svg xmlns="http://www.w3.org/2000/svg" width="18.814" height="22.578"
                             viewBox="0 0 18.814 22.578">
@@ -547,7 +609,7 @@
               <img src="/assets/img/login-img.png" alt="img" class="img-fluid">
             </div>
           </div>
-          
+
         </div>
       </div>
       <!-- <div class="modal-footer">
@@ -656,131 +718,43 @@
     <div class="modal-content">
       <div class="login_form ">
         <button type="button" id="chipsettingBtn" class="btn-close" data-dismiss="modal" aria-label="Close">X</button>
-          <div class="position-relative">
-            <div class="termConWrap">
-              <div class="page_title">
-                <h3>Chip Setting</h3>
-              </div>
-              <div class="modal-body">
-                <form>
-                  <div class="row ">
+        <div class="position-relative">
+          <div class="termConWrap">
+            <div class="page_title">
+              <h3>Chip Setting</h3>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div *ngFor="let chips of chipData; let i = index">
+                  <div class="row">
                     <div class="col-6">
                       <div class="form-field">
                         <label>Chips Name</label>
-                        <input type="text" placeholder="Enter Chip Name" class="form-control">
+                        <input type="text" placeholder="Enter Chip Name" class="form-control" name="ChipName_{{ i }}"
+                          [(ngModel)]="chips.ChipName">
                       </div>
                     </div>
                     <div class="col-6">
                       <div class="form-field">
                         <label>Your Chips</label>
-                        <input type="text" placeholder="Enter Chip Value" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Chips Name</label>
-                        <input type="text" placeholder="Enter Chip Name" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Your Chips</label>
-                        <input type="text" placeholder="Enter Chip Value" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Chips Name</label>
-                        <input type="text" placeholder="Enter Chip Name" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Your Chips</label>
-                        <input type="text" placeholder="Enter Chip Value" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Chips Name</label>
-                        <input type="text" placeholder="Enter Chip Name" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Your Chips</label>
-                        <input type="text" placeholder="Enter Chip Value" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Chips Name</label>
-                        <input type="text" placeholder="Enter Chip Name" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Your Chips</label>
-                        <input type="text" placeholder="Enter Chip Value" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Chips Name</label>
-                        <input type="text" placeholder="Enter Chip Name" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Your Chips</label>
-                        <input type="text" placeholder="Enter Chip Value" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Chips Name</label>
-                        <input type="text" placeholder="Enter Chip Name" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Your Chips</label>
-                        <input type="text" placeholder="Enter Chip Value" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Chips Name</label>
-                        <input type="text" placeholder="Enter Chip Name" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Your Chips</label>
-                        <input type="text" placeholder="Enter Chip Value" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Chips Name</label>
-                        <input type="text" placeholder="Enter Chip Name" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-6">
-                      <div class="form-field">
-                        <label>Your Chips</label>
-                        <input type="text" placeholder="Enter Chip Value" class="form-control">
+                        <input type="text" placeholder="Enter Chip Value" class="form-control" name="ChipValue_{{ i }}"
+                          [(ngModel)]="chips.ChipValue">
                       </div>
                     </div>
                   </div>
-                </form>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary modSubmit"><span class="animate-btn">Submit</span></button>
-              <button type="button" class="btn btn-secondary modCancel" data-dismiss="modal" ><span class="animate-btn">Close</span></button>
+                </div>
+
+
+              </form>
             </div>
           </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary modSubmit" (click)="updateChips()"><span
+                class="animate-btn">Submit</span></button>
+            <button type="button" class="btn btn-secondary modCancel" data-dismiss="modal"><span
+                class="animate-btn">Close</span></button>
+          </div>
+        </div>
 
       </div>
 
@@ -789,49 +763,53 @@
 </div>
 
 <!--change password Modal -->
-<div class="modal chipsetting changepassword  pr-0 fade" id="changepassword" tabindex="-1" aria-labelledby="changepasswordLabel"
-  aria-hidden="true">
+<div class="modal chipsetting changepassword  pr-0 fade" id="changepassword" tabindex="-1"
+  aria-labelledby="changepasswordLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered chipSettingModal changepasswordModal">
     <div class="modal-content">
       <div class="login_form ">
         <button type="button" id="cls1" class="btn-close" data-dismiss="modal" aria-label="Close">X</button>
-          <div class="position-relative">
-            <div class="termConWrap">
-              <div class="page_title">
-                <h3>Change Password</h3>
-              </div>
-              <div class="modal-body">
-                <form>
-                  <div class="row ">
-                    <div class="col-12">
-                      <div class="form-field">
-                        <label>New Password</label>
-                        <input  type="password" class="form-control"
-                        placeholder="New Password" name="NewPwd" [(ngModel)]="NewPwd">  
-                      </div>                    
-                    </div>
-                    <div class="col-12">
-                      <div class="form-field">
-                        <label>Enter New Password</label>
-                        <input  type="password"
-                        class="form-control" placeholder="Confirm New Password" name="CnfPwd" [(ngModel)]="CnfPwd">                      </div>
-                    </div>
-                    <div class="col-12">
-                      <div class="form-field">
-                        <label>Old Password</label>
-                        <input  type="password"
-                        class="form-control" placeholder="Enter Old Password" name="oldpwd" [(ngModel)]="OldPwd">                      </div>
-                    </div>
-                    
-                  </div>
-                </form>
-              </div>
+        <div class="position-relative">
+          <div class="termConWrap">
+            <div class="page_title">
+              <h3>Change Password</h3>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary modSubmit"><span class="animate-btn" (click)="ChangePwd()" > Change</span></button>
-              <button type="button" class="btn btn-secondary modCancel" data-dismiss="modal" ><span class="animate-btn">Clear</span></button>
+            <div class="modal-body">
+              <form>
+                <div class="row ">
+                  <div class="col-12">
+                    <div class="form-field">
+                      <label>Old Password</label>
+                      <input type="password" class="form-control" placeholder="Enter Old Password" name="oldpwd"
+                        [(ngModel)]="OldPwd">
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-field">
+                      <label>New Password</label>
+                      <input type="password" class="form-control" placeholder="New Password" name="NewPwd"
+                        [(ngModel)]="NewPwd">
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-field">
+                      <label>Confirm New Password</label>
+                      <input type="password" class="form-control" placeholder="Confirm New Password" name="CnfPwd"
+                        [(ngModel)]="CnfPwd">
+                    </div>
+                  </div>
+
+                </div>
+              </form>
             </div>
           </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary modSubmit"><span class="animate-btn" (click)="ChangePwd()">
+                Change</span></button>
+            <button type="button" class="btn btn-secondary modCancel" data-dismiss="modal"><span
+                class="animate-btn">Clear</span></button>
+          </div>
+        </div>
 
       </div>
 
@@ -840,18 +818,19 @@
 </div>
 
 <!--terma and condition Modal -->
-<div class="modal chipsetting changepassword termcond pr-0 fade" id="termscondition" tabindex="-1" aria-labelledby="termsconditionLabel"
-  aria-hidden="true">
+<div class="modal chipsetting changepassword termcond pr-0 fade" id="termscondition" tabindex="-1"
+  aria-labelledby="termsconditionLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered chipSettingModal termsconditionModal">
     <div class="modal-content">
       <div class="login_form ">
-        <button type="button" id="termsconditionBtn" class="btn-close" data-dismiss="modal" aria-label="Close">X</button>
-          <div class="position-relative">
-            <div class="termConWrap">
-              <div class="page_title">
-                <h3>Terms and Condition</h3>
-              </div>
-              <div class="modal-body">
+        <button type="button" id="termsconditionBtn" class="btn-close" data-dismiss="modal"
+          aria-label="Close">X</button>
+        <div class="position-relative">
+          <div class="termConWrap">
+            <div class="page_title">
+              <h3>Terms and Condition</h3>
+            </div>
+            <div class="modal-body">
               <div class="tcContent">
                 <p>AAJ SE TIED MATCH<br>
                   ME FANCY KA LEN<br>
@@ -914,16 +893,16 @@
                 </ul>
               </div>
             </div>
-            </div>
-            <div class="modal-footer">
-              <!-- <button type="button" class="btn btn-primary modSubmit"><span class="animate-btn">Accept</span></button> -->
-              <button type="button" class="btn btn-secondary modCancel" data-dismiss="modal" ><span class="animate-btn">Close</span></button>
-            </div>
           </div>
+          <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-primary modSubmit"><span class="animate-btn">Accept</span></button> -->
+            <button type="button" class="btn btn-secondary modCancel" data-dismiss="modal"><span
+                class="animate-btn">Close</span></button>
+          </div>
+        </div>
 
       </div>
 
     </div>
   </div>
 </div>
-
