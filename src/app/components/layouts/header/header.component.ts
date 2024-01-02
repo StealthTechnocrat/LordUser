@@ -72,22 +72,11 @@ export class HeaderComponent implements OnInit {
     });
     this.getLogos();
     this.uISERVICE.tv = false;
-<<<<<<< HEAD
-    this.uISERVICE.News = JSON.parse(localStorage.getItem("News"));
-    this.uISERVICE.TopEvents = JSON.parse(localStorage.getItem("TopEvents"));
-    this.uISERVICE.TopInplay = JSON.parse(localStorage.getItem("TopInplay"));
-    debugger;
-    if (Cookie.check("usersCookies")) {
-      this.uISERVICE.Header = true;
-      this.uISERVICE.Bets = JSON.parse(localStorage.getItem("Bets"));
-      this.GetDetail();
-=======
     if (Cookie.check("usersCookies")) {
       this.uISERVICE.Header = true;
       this.uISERVICE.Bets = JSON.parse(localStorage.getItem("Bets"));
 
       // this.GetDetail();
->>>>>>> 09602e1337040959abf04e5173883d4440ba91be
       this.myFunction();
     } else {
       this.uISERVICE.Header = false;
