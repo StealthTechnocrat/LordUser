@@ -66,15 +66,13 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.user();
     this.sharedService.getSportsId().subscribe((data) => {
       this.sportid = data;
     });
     this.getLogos();
     this.uISERVICE.tv = false;
     if (Cookie.check("usersCookies")) {
-      setInterval(() => {
-        this.user();
-      }, 8000);
       this.uISERVICE.Header = true;
       this.uISERVICE.Bets = JSON.parse(localStorage.getItem("Bets"));
 
@@ -100,8 +98,6 @@ export class HeaderComponent implements OnInit {
     };
     console.log("bal", this.uISERVICE.Bal);
   }
-
-
 
   ChangePwd() {
     debugger;
@@ -173,11 +169,9 @@ export class HeaderComponent implements OnInit {
     this.getEvents();
   }
 
-
-  
   user() {
     this.accountService.userDetails().then((response) => {
-      if (response.Status) {
+      if (response) {
         this.News = response.Result.News;
         this.Balance = response.Result.Balance;
         this.Exposure = response.Result.Exposure;
@@ -322,24 +316,16 @@ export class HeaderComponent implements OnInit {
   }
 
   LogOut() {
-    debugger;
-      this.accountService.logout().then((response) => {
-        if (response.Status) {
-          Cookie.deleteAll();
-          this.router.navigate(["/games"]);
-          if (localStorage.getItem("logout") == "false") {
-            localStorage.clear();
-            localStorage.setItem("logout", "true");
-            setTimeout(() => {
-              window.location.reload();
-            }, 200);
-          }
-            } else {
-            }
-          });
-        }
-
-
+    Cookie.deleteAll();
+    this.router.navigate(["/games"]);
+    if (localStorage.getItem("logout") == "false") {
+      localStorage.clear();
+      localStorage.setItem("logout", "true");
+      setTimeout(() => {
+        window.location.reload();
+      }, 200);
+    }
+  }
 
   LogIn() {
     if (

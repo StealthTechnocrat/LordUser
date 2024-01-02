@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: "https://freedomains.life/"
+  apiBaseUrl: "https://782world.com/"
 }; 

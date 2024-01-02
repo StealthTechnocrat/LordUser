@@ -339,8 +339,7 @@ export class SetBetComponent implements OnInit {
         break;
       case 4:
         this.matchData = this.rtrnObj.markets.find(x => x.marketName === "Match Odds");
-        console.log("oddsssss", this.rtrnObj.markets)
-
+        
         const BookData = this.rtrnObj.markets.find(x => x.marketName === "BookMaker");
         if (this.matchData != null) {
           if (this.matchData.ApiUrlType == 1) {
@@ -567,7 +566,7 @@ export class SetBetComponent implements OnInit {
   }
 
 
-  setValues(betType, odds, price, mId, rId, rName, maxMrkt, minMrkt, rIndx, mrktName, mainIndex, betDly) {
+  setValues(betType, odds, price, mId, rId, rName, maxMrkt, minMrkt, rIndx, mrktName, mainIndex, betDly,filterName) {
     debugger;
     if (odds > 0) {
       this.checkLogin();
@@ -581,21 +580,172 @@ export class SetBetComponent implements OnInit {
           this.uISERVICE.showSlip[mainIndex] = true;
         } else {
           this.uISERVICE.showSlip = [false, false, false, false];
-          if (this.uISERVICE.fancySlip.length > 0) {
-            let j = 0;
-            this.uISERVICE.fancySlip.forEach((element, id) => {
-              if (mainIndex == id) {
-                this.uISERVICE.fancySlip[id] = true;
+          switch (filterName) {
+            case "overRuns":
+              this.uISERVICE.otherFancySlip=[];
+                this.uISERVICE.ballsWicketLostSlip=[];
+                this.uISERVICE.ballFaceSlip=[];
+                this.uISERVICE.boundariesSlip=[];
+                this.uISERVICE.wicketsFallSlip=[];
+                this.uISERVICE.fancySlip=[];
+              if (this.uISERVICE.overRunsSlip.length > 0) {
+                let j = 0;
+                this.uISERVICE.overRunsSlip.forEach((element, id) => {
+                  if (mainIndex == id) {
+                    this.uISERVICE.overRunsSlip[id] = true;
+                  } else {
+                    this.uISERVICE.overRunsSlip[id] = false;
+                  }
+                });
+                if (j == 0) {
+                  this.uISERVICE.overRunsSlip[mainIndex] = true;
+                }
               } else {
-                this.uISERVICE.fancySlip[id] = false;
+                this.uISERVICE.overRunsSlip[mainIndex] = true;
               }
-            });
-            if (j == 0) {
-              this.uISERVICE.fancySlip[mainIndex] = true;
-            }
-          } else {
-            this.uISERVICE.fancySlip[mainIndex] = true;
+              break;
+              case "wicketsFall":
+                this.uISERVICE.otherFancySlip=[];
+                this.uISERVICE.ballsWicketLostSlip=[];
+                this.uISERVICE.ballFaceSlip=[];
+                this.uISERVICE.boundariesSlip=[];
+                this.uISERVICE.fancySlip=[];
+                this.uISERVICE.overRunsSlip=[];
+                if (this.uISERVICE.wicketsFallSlip.length > 0) {
+                  let j = 0;
+                  this.uISERVICE.wicketsFallSlip.forEach((element, id) => {
+                    if (mainIndex == id) {
+                      this.uISERVICE.wicketsFallSlip[id] = true;
+                    } else {
+                      this.uISERVICE.wicketsFallSlip[id] = false;
+                    }
+                  });
+                  if (j == 0) {
+                    this.uISERVICE.wicketsFallSlip[mainIndex] = true;
+                  }
+                } else {
+                  this.uISERVICE.wicketsFallSlip[mainIndex] = true;
+                }
+              break;
+              case "boundaries":
+                this.uISERVICE.otherFancySlip=[];
+                this.uISERVICE.ballsWicketLostSlip=[];
+                this.uISERVICE.ballFaceSlip=[];
+                this.uISERVICE.fancySlip=[];
+                this.uISERVICE.wicketsFallSlip=[];
+                this.uISERVICE.overRunsSlip=[];
+                if (this.uISERVICE.boundariesSlip.length > 0) {
+                  let j = 0;
+                  this.uISERVICE.boundariesSlip.forEach((element, id) => {
+                    if (mainIndex == id) {
+                      this.uISERVICE.boundariesSlip[id] = true;
+                    } else {
+                      this.uISERVICE.boundariesSlip[id] = false;
+                    }
+                  });
+                  if (j == 0) {
+                    this.uISERVICE.boundariesSlip[mainIndex] = true;
+                  }
+                } else {
+                  this.uISERVICE.boundariesSlip[mainIndex] = true;
+                }
+              break;
+              case "ballFace":
+                this.uISERVICE.otherFancySlip=[];
+                this.uISERVICE.ballsWicketLostSlip=[];
+                this.uISERVICE.fancySlip=[];
+                this.uISERVICE.boundariesSlip=[];
+                this.uISERVICE.wicketsFallSlip=[];
+                this.uISERVICE.overRunsSlip=[];
+                if (this.uISERVICE.ballFaceSlip.length > 0) {
+                  let j = 0;
+                  this.uISERVICE.ballFaceSlip.forEach((element, id) => {
+                    if (mainIndex == id) {
+                      this.uISERVICE.ballFaceSlip[id] = true;
+                    } else {
+                      this.uISERVICE.ballFaceSlip[id] = false;
+                    }
+                  });
+                  if (j == 0) {
+                    this.uISERVICE.ballFaceSlip[mainIndex] = true;
+                  }
+                } else {
+                  this.uISERVICE.ballFaceSlip[mainIndex] = true;
+                }
+              break;
+              case "ballsWicketLost":
+                this.uISERVICE.otherFancySlip=[];
+                this.uISERVICE.fancySlip=[];
+                this.uISERVICE.ballFaceSlip=[];
+                this.uISERVICE.boundariesSlip=[];
+                this.uISERVICE.wicketsFallSlip=[];
+                this.uISERVICE.overRunsSlip=[];
+                if (this.uISERVICE.ballsWicketLostSlip.length > 0) {
+                  let j = 0;
+                  this.uISERVICE.ballsWicketLostSlip.forEach((element, id) => {
+                    if (mainIndex == id) {
+                      this.uISERVICE.ballsWicketLostSlip[id] = true;
+                    } else {
+                      this.uISERVICE.ballsWicketLostSlip[id] = false;
+                    }
+                  });
+                  if (j == 0) {
+                    this.uISERVICE.ballsWicketLostSlip[mainIndex] = true;
+                  }
+                } else {
+                  this.uISERVICE.ballsWicketLostSlip[mainIndex] = true;
+                }
+              break;
+              case "otherFancy":
+                this.uISERVICE.otherFancySlip=[];
+                this.uISERVICE.ballsWicketLostSlip=[];
+                this.uISERVICE.ballFaceSlip=[];
+                this.uISERVICE.boundariesSlip=[];
+                this.uISERVICE.wicketsFallSlip=[];
+                this.uISERVICE.fancySlip=[];
+                if (this.uISERVICE.otherFancySlip.length > 0) {
+                  let j = 0;
+                  this.uISERVICE.otherFancySlip.forEach((element, id) => {
+                    if (mainIndex == id) {
+                      this.uISERVICE.otherFancySlip[id] = true;
+                    } else {
+                      this.uISERVICE.otherFancySlip[id] = false;
+                    }
+                  });
+                  if (j == 0) {
+                    this.uISERVICE.otherFancySlip[mainIndex] = true;
+                  }
+                } else {
+                  this.uISERVICE.otherFancySlip[mainIndex] = true;
+                }
+              break;
+
+              case "All":
+                this.uISERVICE.otherFancySlip=[];
+                this.uISERVICE.ballsWicketLostSlip=[];
+                this.uISERVICE.ballFaceSlip=[];
+                this.uISERVICE.boundariesSlip=[];
+                this.uISERVICE.wicketsFallSlip=[];
+                this.uISERVICE.overRunsSlip=[];
+
+                if (this.uISERVICE.fancySlip.length > 0) {
+                  let j = 0;
+                  this.uISERVICE.fancySlip.forEach((element, id) => {
+                    if (mainIndex == id) {
+                      this.uISERVICE.fancySlip[id] = true;
+                    } else {
+                      this.uISERVICE.fancySlip[id] = false;
+                    }
+                  });
+                  if (j == 0) {
+                    this.uISERVICE.fancySlip[mainIndex] = true;
+                  }
+                } else {
+                  this.uISERVICE.fancySlip[mainIndex] = true;
+                }
+              break;
           }
+          
         }
 
         this.uISERVICE.betType = betType;

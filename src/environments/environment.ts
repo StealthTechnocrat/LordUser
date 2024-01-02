@@ -4,9 +4,8 @@
 
 export const environment = {
   production: false,
-      apiBaseUrl: "http://localhost:49658/"
-   // apiBaseUrl: "https://freedomains.life/"
-     //apiBaseUrl: "https://growmybusines.com/"
+  //apiBaseUrl: "https://782world.com/",
+  apiBaseUrl:"http://localhost:49658/"
 };
 
 /*

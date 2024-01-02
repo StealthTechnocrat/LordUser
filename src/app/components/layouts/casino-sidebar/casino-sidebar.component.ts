@@ -17,7 +17,7 @@ export class CasinoSidebarComponent implements OnInit {
   constructor(private accountService: AccountService,public uISERVICE:UiService,private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.getTableGames();
+   //this.getTableGames();
     this.getCasinoProviders();
   }
 

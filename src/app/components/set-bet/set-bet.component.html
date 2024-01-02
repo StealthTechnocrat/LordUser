@@ -222,12 +222,12 @@
                                             <span class="size">{{rnr.runners.availableToBack[1].size}}</span>
                                         </div>
                                         <div class="bl_box back"
-                                            (click)="setValues('Back',rnr.runners.availableToBack[0].price,rnr.runners.availableToBack[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay)">
+                                            (click)="setValues('Back',rnr.runners.availableToBack[0].price,rnr.runners.availableToBack[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay,'')">
                                             <span class="odds">{{rnr.runners.availableToBack[0].price}}</span>
                                             <span class="size">{{rnr.runners.availableToBack[0].size}}</span>
                                         </div>
                                         <div class="bl_box lay"
-                                            (click)="setValues('Lay',rnr.runners.availableToLay[0].price,rnr.runners.availableToLay[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay)">
+                                            (click)="setValues('Lay',rnr.runners.availableToLay[0].price,rnr.runners.availableToLay[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay,'')">
                                             <span class="odds">{{rnr.runners.availableToLay[0].price}}</span>
                                             <span class="size">{{rnr.runners.availableToLay[0].size}}</span>
                                         </div>
@@ -284,12 +284,12 @@
                                     </div>
                                     <div class="bl_boxMain">
                                         <div class="bl_box lay"
-                                            (click)="setValues('No',ssn.LayPrice1,ssn.LaySize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            (click)="setValues('No',ssn.LayPrice1,ssn.LaySize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay,'overRuns')">
                                             <span class="odds">{{ssn.LayPrice1}}</span>
                                             <span class="size">{{ssn.LaySize1}}</span>
                                         </div>
                                         <div class="bl_box back"
-                                            (click)="setValues('Yes',ssn.BackPrice1,ssn.BackSize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            (click)="setValues('Yes',ssn.BackPrice1,ssn.BackSize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay,'overRuns')">
                                             <span class="odds">{{ssn.BackPrice1}}</span>
                                             <span class="size">{{ssn.BackSize1}}</span>
                                         </div>
@@ -301,7 +301,7 @@
                                     </div>
                                 </div>
                                 <div class="w-100 mt-1 betslip_hide"
-                                    [ngClass]="{'betSlip_show': uISERVICE.fancySlip[s]}">
+                                    [ngClass]="{'betSlip_show': uISERVICE.overRunsSlip[s]}">
                                     <app-bet-slip></app-bet-slip>
                                 </div>
                             </div>
@@ -345,12 +345,12 @@
                                     </div>
                                     <div class="bl_boxMain">
                                         <div class="bl_box lay"
-                                            (click)="setValues('No',ssn.LayPrice1,ssn.LaySize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            (click)="setValues('No',ssn.LayPrice1,ssn.LaySize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay,'wicketsFall')">
                                             <span class="odds">{{ssn.LayPrice1}}</span>
                                             <span class="size">{{ssn.LaySize1}}</span>
                                         </div>
                                         <div class="bl_box back"
-                                            (click)="setValues('Yes',ssn.BackPrice1,ssn.BackSize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            (click)="setValues('Yes',ssn.BackPrice1,ssn.BackSize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay,'wicketsFall')">
                                             <span class="odds">{{ssn.BackPrice1}}</span>
                                             <span class="size">{{ssn.BackSize1}}</span>
                                         </div>
@@ -362,7 +362,7 @@
                                     </div>
                                 </div>
                                 <div class="w-100 mt-1 betslip_hide"
-                                    [ngClass]="{'betSlip_show': uISERVICE.fancySlip[s]}">
+                                    [ngClass]="{'betSlip_show': uISERVICE.wicketsFallSlip[s]}">
                                     <app-bet-slip></app-bet-slip>
                                 </div>
                             </div>
@@ -407,12 +407,12 @@
                                     </div>
                                     <div class="bl_boxMain">
                                         <div class="bl_box lay"
-                                            (click)="setValues('No',ssn.LayPrice1,ssn.LaySize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            (click)="setValues('No',ssn.LayPrice1,ssn.LaySize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay,'boundaries')">
                                             <span class="odds">{{ssn.LayPrice1}}</span>
                                             <span class="size">{{ssn.LaySize1}}</span>
                                         </div>
                                         <div class="bl_box back"
-                                            (click)="setValues('Yes',ssn.BackPrice1,ssn.BackSize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            (click)="setValues('Yes',ssn.BackPrice1,ssn.BackSize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay,'boundaries')">
                                             <span class="odds">{{ssn.BackPrice1}}</span>
                                             <span class="size">{{ssn.BackSize1}}</span>
                                         </div>
@@ -424,7 +424,7 @@
                                     </div>
                                 </div>
                                 <div class="w-100 mt-1 betslip_hide"
-                                    [ngClass]="{'betSlip_show': uISERVICE.fancySlip[s]}">
+                                    [ngClass]="{'betSlip_show': uISERVICE.boundariesSlip[s]}">
                                     <app-bet-slip></app-bet-slip>
                                 </div>
                             </div>
@@ -468,12 +468,12 @@
                                     </div>
                                     <div class="bl_boxMain">
                                         <div class="bl_box lay"
-                                            (click)="setValues('No',ssn.LayPrice1,ssn.LaySize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            (click)="setValues('No',ssn.LayPrice1,ssn.LaySize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay,'ballFace')">
                                             <span class="odds">{{ssn.LayPrice1}}</span>
                                             <span class="size">{{ssn.LaySize1}}</span>
                                         </div>
                                         <div class="bl_box back"
-                                            (click)="setValues('Yes',ssn.BackPrice1,ssn.BackSize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            (click)="setValues('Yes',ssn.BackPrice1,ssn.BackSize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay,'ballFace')">
                                             <span class="odds">{{ssn.BackPrice1}}</span>
                                             <span class="size">{{ssn.BackSize1}}</span>
                                         </div>
@@ -485,7 +485,7 @@
                                     </div>
                                 </div>
                                 <div class="w-100 mt-1 betslip_hide"
-                                    [ngClass]="{'betSlip_show': uISERVICE.fancySlip[s]}">
+                                    [ngClass]="{'betSlip_show': uISERVICE.ballFaceSlip[s]}">
                                     <app-bet-slip></app-bet-slip>
                                 </div>
                             </div>
@@ -530,12 +530,12 @@
                                     </div>
                                     <div class="bl_boxMain">
                                         <div class="bl_box lay"
-                                            (click)="setValues('No',ssn.LayPrice1,ssn.LaySize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            (click)="setValues('No',ssn.LayPrice1,ssn.LaySize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay,'ballsWicketLost')">
                                             <span class="odds">{{ssn.LayPrice1}}</span>
                                             <span class="size">{{ssn.LaySize1}}</span>
                                         </div>
                                         <div class="bl_box back"
-                                            (click)="setValues('Yes',ssn.BackPrice1,ssn.BackSize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            (click)="setValues('Yes',ssn.BackPrice1,ssn.BackSize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay,'ballsWicketLost')">
                                             <span class="odds">{{ssn.BackPrice1}}</span>
                                             <span class="size">{{ssn.BackSize1}}</span>
                                         </div>
@@ -547,7 +547,7 @@
                                     </div>
                                 </div>
                                 <div class="w-100 mt-1 betslip_hide"
-                                    [ngClass]="{'betSlip_show': uISERVICE.fancySlip[s]}">
+                                    [ngClass]="{'betSlip_show': uISERVICE.ballsWicketLostSlip[s]}">
                                     <app-bet-slip></app-bet-slip>
                                 </div>
                             </div>
@@ -592,12 +592,12 @@
                                     </div>
                                     <div class="bl_boxMain">
                                         <div class="bl_box lay"
-                                            (click)="setValues('No',ssn.LayPrice1,ssn.LaySize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            (click)="setValues('No',ssn.LayPrice1,ssn.LaySize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay,'otherFancy')">
                                             <span class="odds">{{ssn.LayPrice1}}</span>
                                             <span class="size">{{ssn.LaySize1}}</span>
                                         </div>
                                         <div class="bl_box back"
-                                            (click)="setValues('Yes',ssn.BackPrice1,ssn.BackSize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            (click)="setValues('Yes',ssn.BackPrice1,ssn.BackSize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay,'otherFancy')">
                                             <span class="odds">{{ssn.BackPrice1}}</span>
                                             <span class="size">{{ssn.BackSize1}}</span>
                                         </div>
@@ -609,7 +609,7 @@
                                     </div>
                                 </div>
                                 <div class="w-100 mt-1 betslip_hide"
-                                    [ngClass]="{'betSlip_show': uISERVICE.fancySlip[s]}">
+                                    [ngClass]="{'betSlip_show': uISERVICE.otherFancySlip[s]}">
                                     <app-bet-slip></app-bet-slip>
                                 </div>
                             </div>
@@ -660,12 +660,12 @@
                                                 <span class="size">{{rnr.runners.availableToBack[1].size}}</span>
                                             </div>
                                             <div class="bl_box back"
-                                                (click)="setValues('Back',rnr.runners.availableToBack[0].price,rnr.runners.availableToBack[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay)">
+                                                (click)="setValues('Back',rnr.runners.availableToBack[0].price,rnr.runners.availableToBack[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay,'')">
                                                 <span class="odds">{{rnr.runners.availableToBack[0].price}}</span>
                                                 <span class="size">{{rnr.runners.availableToBack[0].size}}</span>
                                             </div>
                                             <div class="bl_box lay"
-                                                (click)="setValues('Lay',rnr.runners.availableToLay[0].price,rnr.runners.availableToLay[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay)">
+                                                (click)="setValues('Lay',rnr.runners.availableToLay[0].price,rnr.runners.availableToLay[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay,'')">
                                                 <span class="odds">{{rnr.runners.availableToLay[0].price}}</span>
                                                 <span class="size">{{rnr.runners.availableToLay[0].size}}</span>
                                             </div>
@@ -727,12 +727,12 @@
                                                 <span class="size">{{rnr.runners.availableToBack[1].size}}</span>
                                             </div>
                                             <div class="bl_box back"
-                                                (click)="setValues('Back',rnr.runners.availableToBack[0].price,rnr.runners.availableToBack[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay)">
+                                                (click)="setValues('Back',rnr.runners.availableToBack[0].price,rnr.runners.availableToBack[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay,'')">
                                                 <span class="odds">{{rnr.runners.availableToBack[0].price}}</span>
                                                 <span class="size">{{rnr.runners.availableToBack[0].size}}</span>
                                             </div>
                                             <div class="bl_box lay"
-                                                (click)="setValues('Lay',rnr.runners.availableToLay[0].price,rnr.runners.availableToLay[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay)">
+                                                (click)="setValues('Lay',rnr.runners.availableToLay[0].price,rnr.runners.availableToLay[0].size,mrkt.MarketId,rnr.id,rnr.RunnerName,mrkt.MaxStake,mrkt.MinStake,r,mrkt.marketName,i,mrkt.Betdelay,'')">
                                                 <span class="odds">{{rnr.runners.availableToLay[0].price}}</span>
                                                 <span class="size">{{rnr.runners.availableToLay[0].size}}</span>
                                             </div>
@@ -790,12 +790,12 @@
                                     </div>
                                     <div class="bl_boxMain">
                                         <div class="bl_box lay"
-                                            (click)="setValues('No',ssn.LayPrice1,ssn.LaySize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            (click)="setValues('No',ssn.LayPrice1,ssn.LaySize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay,'All')">
                                             <span class="odds">{{ssn.LayPrice1}}</span>
                                             <span class="size">{{ssn.LaySize1}}</span>
                                         </div>
                                         <div class="bl_box back"
-                                            (click)="setValues('Yes',ssn.BackPrice1,ssn.BackSize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay)">
+                                            (click)="setValues('Yes',ssn.BackPrice1,ssn.BackSize1,matchData.MarketId,ssn.SelectionId,ssn.RunnerName,matchData.MaxStake,matchData.MinStake,s,'Fancy',s,matchData.Fancydelay,'All')">
                                             <span class="odds">{{ssn.BackPrice1}}</span>
                                             <span class="size">{{ssn.BackSize1}}</span>
                                         </div>
