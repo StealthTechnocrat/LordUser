@@ -253,15 +253,16 @@ export class SetBetComponent implements OnInit {
   }
 
   LiveTv() {
-    if (this.uISERVICE.tv) {
-      this.uISERVICE.tv = false;
-      this.url = "";
-      this.uISERVICE.IframeUrl = "";
-    } else {
-      this.uISERVICE.tv = true;
+    debugger;
+  //  if (this.uISERVICE.tv) {
+     // this.uISERVICE.tv = false;
+    //this.url = "";
+     // this.uISERVICE.IframeUrl = "";
+    //} else {
+     // this.uISERVICE.tv = true;
       this.url = this.rtrnObj.apiUrls.TvUrl + this.eventId;
       this.uISERVICE.IframeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
-    }
+   // }
   }
 
   counter(i: number) {

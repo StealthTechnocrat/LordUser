@@ -1,5 +1,5 @@
 .center_inner {
-  border: 1px solid rgba(0,0,0,.12);
+  border: 1px solid rgba(0, 0, 0, .12);
   background-color: rgb(255 255 255 / 40%);
   border-radius: 20px;
 }
@@ -18,19 +18,23 @@
     background: #a7d8fd;
   }
 }
-.show{
+
+.show {
   display: block;
 }
-.hide{
-  display:none ;
+
+.hide {
+  display: none;
 }
-.red{
+
+.red {
   color: red;
 }
 
-.green{
+.green {
   color: green;
 }
+
 .content_disable {
   pointer-events: none;
   color: #000;
@@ -40,26 +44,108 @@
   padding: 0px !important;
 
   @media (min-width:1200px) {
-      padding-right: 30px !important;
+    padding-right: 30px !important;
   }
 
   .modal-dialog {
-      margin-top: 123px;
+    margin-top: 123px;
   }
 
   .modal-header {
-      padding: 5px 15px;
+    padding: 5px 15px;
 
-      h5 {
-          font-size: 16px;
-          margin: 0px;
-      }
+    h5 {
+      font-size: 16px;
+      margin: 0px;
+    }
   }
 
   .modal-body {
-      .table-responsive {
-          overflow-y: auto;
-          height: 350px;
+    .table-responsive {
+      overflow-y: auto;
+      height: 350px;
+    }
+  }
+}
+
+.pagination_filter {
+  color: #5c6060;
+  font-size: 12px;
+  // padding-left: 15px;
+  font-weight: 600;
+
+  select {
+    margin-left: 5px;
+    color: #000;
+    font-weight: 600;
+  }
+}
+
+.tableSearch {
+  display: flex;
+  justify-content: flex-end;
+
+  label {
+    color: #5c6060;
+    font-size: 12px;
+    font-weight: 600;
+
+    input {
+      border: none;
+      border-bottom: 1px solid #9e9e9e;
+      border-radius: 0;
+      font-size: 12px;
+      font-weight: 600;
+      background-color: transparent;
+      border-radius: 0;
+      margin-left: 2px;
+
+      &:focus {
+        border-bottom: 1px solid #ffcb2f !important;
+        box-shadow: 0 1px 0 0 #ffcb2f !important;
       }
+
+      &:focus-visible {
+        outline: 0;
+      }
+    }
+  }
+}
+
+table {
+  tr {
+    td {
+      a {
+        color: #999999;
+        max-width: 100%;
+        display: inline-block;
+        width: 100%;
+        white-space: pre-wrap;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+
+      .label-success {
+        background-color: #337ab7;
+        padding: 0.2em 0.6em 0.3em;
+        font-size: 75%;
+        line-height: 1;
+        color: #fff;
+        white-space: nowrap;
+        border-radius: 0.25em;
+      }
+
+      .label-info {
+        background-color: #5bc0de;
+        padding: 0.2em 0.6em 0.3em;
+        font-size: 75%;
+        line-height: 1;
+        color: #fff;
+        white-space: nowrap;
+        border-radius: 0.25em;
+      }
+    }
   }
 }

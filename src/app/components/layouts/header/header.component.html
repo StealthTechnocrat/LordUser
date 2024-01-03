@@ -30,8 +30,7 @@
                 <p *ngFor="let news of News">
                   <span class="date">
                     <i class="fas fa-circle"></i>
-                    {{news.createdOn | date:'M/d/yy,
-                    h:mm a'}}</span>:- {{news.News}}
+                    {{news.createdOn | date:'M/d/yy, h:mm a'}}</span>:- {{news.News}}
                 </p>
               </span>
             </div>
@@ -488,7 +487,8 @@
     <div id="nav-icon1">
       <span></span>
       <span></span>
-      <span></span></div>
+      <span></span>
+    </div>
   </a>
 </div>
 
@@ -736,7 +736,7 @@
             <div class="modal-body">
               <form>
                 <div *ngFor="let chips of chipData; let i = index">
-                  <div class="row">
+                  <div class="row position-relative">
                     <div class="col-6">
                       <div class="form-field">
                         <label>Chips Name</label>
@@ -751,6 +751,7 @@
                           [(ngModel)]="chips.ChipValue">
                       </div>
                     </div>
+                    <button class="deleteChipBtn"><i class="fa fa-trash" aria-hidden="true"></i></button>
                   </div>
                 </div>
 
@@ -830,17 +831,19 @@
 <!--terma and condition Modal -->
 <div class="modal chipsetting changepassword termcond pr-0 fade" id="termscondition" tabindex="-1"
   aria-labelledby="termsconditionLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered chipSettingModal termsconditionModal">
+  <div class="modal-dialog  modal-dialog-centered chipSettingModal tandcMod termsconditionModal">
     <div class="modal-content">
-      <div class="login_form ">
-        <button type="button" id="termsconditionBtn" class="btn-close" data-dismiss="modal"
-          aria-label="Close">X</button>
-        <div class="position-relative">
-          <div class="termConWrap">
-            <div class="page_title">
-              <h3>Terms and Condition</h3>
-            </div>
-            <div class="modal-body">
+      <div class="modal-header border-0 py-1">
+      <div class="page_title">
+        <h3 class="mb-0">Terms and Condition</h3>
+      </div>
+      <button type="button" id="termsconditionBtn" class="btn-close" data-dismiss="modal" aria-label="Close">X</button>
+    </div>
+
+      <div class="modal-body">
+        <div class="login_form ">
+          <div class="position-relative">
+            <div class="termConWrap">
               <div class="tcContent">
                 <p>AAJ SE TIED MATCH<br>
                   ME FANCY KA LEN<br>
@@ -924,10 +927,10 @@
       <div class="modal-header">
         <!-- <h5 class="modal-title" id="allbetsmodalLabel">All Bets</h5> -->
         <h5 class="modal-title" id="allbetsmodalLabel">Matched</h5>
-        
+
       </div>
       <div class="modal-body pt-2 px-0">
-        
+
         <div class="matchedTable">
           <div class="bet-start">
             <div class="theader">
@@ -947,23 +950,26 @@
               </div>
             </div>
             <div class="mainTableMtch" *ngFor="let bets of uISERVICE.backUpBets;let i=index">
-            <div class="odd-title" >
-              <span> {{bets.MarketName}}</span>
-              <div class="match-name">{{bets.EventName}}</div>
-            </div>
-            <div class="bet-record" [ngClass]="{'back':bets.BetType=='Back' || bets.BetType=='Yes','lay':bets.BetType=='Lay' || bets.BetType=='No'}">
-              <div class="row m-0">
-                <div class="col-6 px-1 left-align">
-                  <div class="beatteam">{{bets.RunnerName}}</div>
-                  <small>{{bets.createdOn | date:'MMM d, y, h:mm:ss a'}}</small>
+              <div class="odd-title">
+                <span> {{bets.MarketName}}</span>
+                <div class="match-name">{{bets.EventName}}</div>
+              </div>
+              <div class="bet-record"
+                [ngClass]="{'back':bets.BetType=='Back' || bets.BetType=='Yes','lay':bets.BetType=='Lay' || bets.BetType=='No'}">
+                <div class="row m-0">
+                  <div class="col-6 px-1 left-align">
+                    <div class="beatteam">{{bets.RunnerName}}</div>
+                    <small>{{bets.createdOn | date:'MMM d, y, h:mm:ss a'}}</small>
+                  </div>
+                  <div class="col-2 px-1 text-center">{{bets.Odds}}</div>
+                  <div class="col-2 px-1 text-center">{{bets.Stake}}</div>
+                  <div class="col-2 px-1 text-center" *ngIf="bets.BetType=='Back' || bets.BetType=='Yes'"
+                    style="color: green;">{{bets.Profit}}</div>
+                  <div class="col-2 px-1 text-center" *ngIf="bets.BetType=='Lay' || bets.BetType=='No'"
+                    style="color: red;">{{bets.Exposure}}</div>
                 </div>
-                <div class="col-2 px-1 text-center">{{bets.Odds}}</div>
-                <div class="col-2 px-1 text-center">{{bets.Stake}}</div>
-                <div class="col-2 px-1 text-center" *ngIf="bets.BetType=='Back' || bets.BetType=='Yes'" style="color: green;">{{bets.Profit}}</div>
-                <div class="col-2 px-1 text-center" *ngIf="bets.BetType=='Lay' || bets.BetType=='No'" style="color: red;">{{bets.Exposure}}</div>
               </div>
             </div>
-          </div>
           </div>
         </div>
       </div>

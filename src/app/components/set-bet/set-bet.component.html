@@ -49,10 +49,10 @@
                         </button>
                     </li>
                     <li>
-                        <button class="nav-link bg-transparent border-0 p-0" id="pills-livematch-tab" data-toggle="pill"
+                        <button  class="nav-link bg-transparent border-0 p-0" id="pills-livematch-tab" data-toggle="pill"
                             data-target="#pills-livematch" type="button" role="tab" aria-controls="pills-livematch"
                             aria-selected="false">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 90.403 90.403">
+                            <svg  (click)="LiveTv()" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 90.403 90.403">
                                 <path id="Subtraction_10" data-name="Subtraction 10"
                                     d="M45.2,90.4A45.214,45.214,0,0,1,27.607,3.552,45.213,45.213,0,0,1,62.8,86.851,44.92,44.92,0,0,1,45.2,90.4ZM25.865,67.137v4.329H66.26V67.137H52.993V61.7H70.248a3.268,3.268,0,0,0,3.265-3.265V25.763A3.268,3.268,0,0,0,70.248,22.5h-49.6a3.268,3.268,0,0,0-3.265,3.265V58.432A3.268,3.268,0,0,0,20.649,61.7H37.937v5.44ZM69.39,57.372H21.509V26.822H69.39V57.371ZM37.717,32.509V51.685l16.2-9.587Z"
                                     fill="#7f7533"></path>
@@ -123,9 +123,10 @@
         </div>
         <div class="tab-pane px-2 fade " id="pills-livematch" role="tabpanel" aria-labelledby="pills-livematch-tab">
             <div class="mobile_tv">
-                <div class="collapse" id="liveTv" *ngIf="uISERVICE.tv">
+                <!-- <div class=" " id="liveTv" *ngIf="uISERVICE.tv"> -->
+                    <div class=" " id="liveTv" >
                     <div class="inner_tv">
-                        <div class="d-flex align-items-center justify-content-between mb-2">
+                        <!-- <div class="d-flex align-items-center justify-content-between mb-2">
                             <h6>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 311.106 228.333">
                                     <g id="live-streaming" transform="translate(-92.234 0.001)">
@@ -148,7 +149,7 @@
                                 </svg>
                                 Live Match
                             </h6>
-                        </div>
+                        </div> -->
                         <iframe width="100%" height="200" [src]="uISERVICE.IframeUrl" title="YouTube video player"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
