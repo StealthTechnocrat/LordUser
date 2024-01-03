@@ -74,7 +74,7 @@ export class SidebarComponent implements OnInit {
   }
 
   getCompList(sportsId) {
-    // debugger;
+    // 
     this.sidebarType = false;
     this.seriesList = [];
     this.accountService.getCompList(sportsId).then((response) => {
@@ -93,7 +93,7 @@ export class SidebarComponent implements OnInit {
   }
 
   getEventList(sportsId, seriesId) {
-    // debugger;
+    // 
     this.sidebarType = false;
     this.eventList = [];
     this.accountService.getEventList(sportsId, seriesId).then((response) => {

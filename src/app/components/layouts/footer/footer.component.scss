@@ -355,6 +355,7 @@
                 .loginWrap {
                     top: 15%;
                     position: relative;
+
                     .input-field {
                         margin: 30px 10px;
                         display: flex;
@@ -371,7 +372,8 @@
                             border-top-left-radius: 8px;
                             border-bottom-left-radius: 8px;
                             border: 0;
-                            &:focus{
+
+                            &:focus {
                                 outline: 0;
                                 box-shadow: none;
                             }
@@ -392,6 +394,57 @@
                     }
                 }
             }
+        }
+    }
+}
+
+.backdrpmain {
+    display: none;
+    background-color: #3c3c3c;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    height: 100%;
+    padding-top: 40%;
+    z-index: 2;
+
+    .mobMenuCol {
+        height: 100%;
+        overflow: auto;
+        padding-bottom: 60px;
+
+        ul {
+            li {
+                a {
+                    color: #fff;
+                    font-size: 16px;
+                    padding: 10px 14px;
+                    font-weight: 500;
+                }
+            }
+        }
+
+        .btnCloseMenu {
+            cursor: pointer;
+            position: absolute;
+            bottom: 100px;
+            left: 50px;
+            right: 0;
+            margin: 0 auto;
+            color: #202323;
+            font-size: 20px;
+            padding: 0;
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            background-color: #ffcb2f;
+            text-align: center;
+            border-radius: 50%;
+            box-shadow: rgba(0, 0, 0, 0.16) 0 2px 5px, rgba(0, 0, 0, 0.23) 0 2px 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 0;
         }
     }
 }

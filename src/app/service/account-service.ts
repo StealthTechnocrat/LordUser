@@ -210,7 +210,7 @@ private filteredResultUrl = environment.apiBaseUrl + "Event/GetFilteredResultLis
       });
   }
 
-  GetLogo(domain: string): Promise<any> {
+  GetLogo(): Promise<any> {
     return this.baseHttpService.Get(this.GetLogoUrl + "?doamin=" + window.location.origin).then(function (response) {
       return response.json();
     });
@@ -607,7 +607,7 @@ private filteredResultUrl = environment.apiBaseUrl + "Event/GetFilteredResultLis
       });
   }
 
-  GetBanner(type: string,domain:string): Promise<any> {
+  GetBanner(type: string): Promise<any> {
     return this.baseHttpService
       .Get(this.GetBannerUrl + "?type=" + type + "&domain=" + window.location.origin)
       .then(function (response) {

@@ -112,7 +112,7 @@
             </div>
         </div>
     </div>
-    <div class="tab-content" id="pills-tabContent">
+    <div class="tab-content stikyCont" id="pills-tabContent">
         <div class="tab-pane px-2 fade active show" id="pills-scorecard" role="tabpanel" aria-labelledby="pills-scorecard-tab">
             <div class="scrore_area cricket_score" *ngIf="rtrnObj!=null && rtrnObj.Inplay">
                 <iframe width="100%" height="200" [src]="scoreUrlFrame" title="YouTube video player" frameborder="0"
@@ -211,7 +211,17 @@
                                     [ngClass]="{'bet_locked':rtrnObj.status || mrkt.status || (rnr.runners.availableToLay[0].price==0 && rnr.runners.availableToBack[0].price==0)}">
                                     <div class="nation_name">
                                         <p>{{rnr.RunnerName}}</p>
+                                        <span class="btm">
+                                            <div class="d-flex align-items-center">
+                                                <!-- <i class="fa fa-arrow-right mr-1 profitloss" [ngClass]="{'negative':rnr.Book<0}"
+                                                    aria-hidden="true"></i> -->
+                                                <span class="profitloss" [ngClass]="{'negative':rnr.Book<0}">{{rnr.Book |
+                                                    number:'1.2-2'}}
+                                                </span>
+                                            </div>
+                                        </span>
                                     </div>
+                                    
                                     <div class="bl_boxMain">
                                         <div class="bl_box back back_2">
                                             <span class="odds">{{rnr.runners.availableToBack[2].price}}</span>

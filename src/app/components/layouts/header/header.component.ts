@@ -72,7 +72,7 @@ export class HeaderComponent implements OnInit {
     });
     this.getLogos();
     this.uISERVICE.tv = false;
-    if (Cookie.check("usersCookies")) {
+    if (Cookie.check("usersCookies")) { 
       this.uISERVICE.Header = true;
       this.uISERVICE.Bets = JSON.parse(localStorage.getItem("Bets"));
 
@@ -100,7 +100,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ChangePwd() {
-    debugger;
+    
     if (this.NewPwd == "") {
       this.uISERVICE.Error = true;
       this.uISERVICE.Message = "Enter New Password";
@@ -176,6 +176,7 @@ export class HeaderComponent implements OnInit {
         this.Balance = response.Result.Balance;
         this.Exposure = response.Result.Exposure;
         this.Name = response.Result.Name;
+        this.uISERVICE.UserName=this.Name;
         this.uISERVICE.take = response.Result.Take;
         console.log("this.uISERVICE.take", this.uISERVICE.take)
       } else {
@@ -223,7 +224,7 @@ export class HeaderComponent implements OnInit {
 
 
   getEvents() {
-    debugger;
+    
     this.rtrnObj = [];
     this.accountService
       .GetAllEventsBySportsId(this.sportid)
@@ -250,7 +251,7 @@ export class HeaderComponent implements OnInit {
   }
 
   getInplayEvents() {
-    debugger;
+    
     if (this.sportid == null || this.sportid == undefined) {
       this.sportid = 4;
     }
@@ -350,12 +351,8 @@ export class HeaderComponent implements OnInit {
           if (response.Status) {
             var decodedToken = jwt_decode(response.Result);
             if (decodedToken["Role"] == "Client") {
-              localStorage.setItem("IsPwd", this.IsPwd.toString());
-              // if (!response.Ispwd) {
-              //   document.getElementById("cnfrmPwd").click();
-              // } else {
+              localStorage.setItem("IsPwd", this.IsPwd.toString());              
               document.getElementById("term").click();
-              // }
               localStorage.setItem("logout", "false");
               Cookie.set("usersCookies", response.Result);
               Cookie.set("c_id", decodedToken["UserId"]);

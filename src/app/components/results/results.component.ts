@@ -52,25 +52,25 @@ export class ResultsComponent implements OnInit {
   }
 
   onSportSelection(selectedValue: number) {
-    debugger;
+    
     this.sportsId = selectedValue;
     this.getCompList(this.sportsId);
   }
 
   onSeriesSelection(selectedValue: string) {
-    debugger;
+    
     this.seriesId = selectedValue;
     this.getEventList(this.sportsId, this.seriesId);
   }
 
   onEventSelection(selectedValue: string) {
-    debugger;
+    
     this.eventId = selectedValue;
     this.getAllMarketList(this.eventId);
   }
 
   onMarketSelection(selectedValue: string) {
-    debugger;
+    
     if (selectedValue == "1") {
       this.marketName = "Fancy";
     }else if(selectedValue == "0"){
@@ -96,7 +96,7 @@ export class ResultsComponent implements OnInit {
   }
 
   getFilteredResults() {
-    debugger;
+    
     if(this.eventId == "" || this.eventId == undefined || this.sportsId == undefined || this.sportsId == 0){
       this.getAllResultList();
     }else{
@@ -126,7 +126,7 @@ export class ResultsComponent implements OnInit {
 
 
   getAllResultList() {
-    debugger;
+    
     if(this.uISERVICE.take == null || this.uISERVICE.take == undefined){
       this.uISERVICE.take = 10
     }
@@ -185,7 +185,7 @@ export class ResultsComponent implements OnInit {
   }
 
   getEventList(sportsId, seriesId) {
-    debugger;
+    
     this.eventList = [];
     this.accountService.getEventList(sportsId, seriesId).then((response) => {
       if (response) {
@@ -198,7 +198,7 @@ export class ResultsComponent implements OnInit {
   }
 
   getAllMarketList(eventId) {
-    debugger;
+    
     this.marketList = [];
     this.accountService.GetAllMarkets(eventId).then((response) => {
       if (response) {

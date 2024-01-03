@@ -53,7 +53,7 @@ export class SetBetComponent implements OnInit {
   ballsWicketLost: any[] = [];
   scoreUrlFrame: SafeResourceUrl;
 
-  constructor(private toastr: ToastrService,public sanitizer: DomSanitizer, private http: HttpClient, private accountService: AccountService, private route: ActivatedRoute, public uISERVICE: UiService, private modalService: NgbModal) { }
+  constructor(private router: Router,private toastr: ToastrService,public sanitizer: DomSanitizer, private http: HttpClient, private accountService: AccountService, private route: ActivatedRoute, public uISERVICE: UiService, private modalService: NgbModal) { }
   toggleModal() {
     this.modalVisible = !this.modalVisible;
   }
@@ -62,18 +62,24 @@ export class SetBetComponent implements OnInit {
   }
 
   scoreUrl() {
-    debugger;
+    
     this.url = "https://nxbet247.com/live-score-card/" + this.sportsId + "/" + this.eventId;
     this.scoreUrlFrame = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
   }
 
   setIntialValues() {
     this.type = Cookie.check("usersCookies") ? "After" : "Before";
-    this.uISERVICE.showSlip = [];
-    this.uISERVICE.profit = 0;
-    this.uISERVICE.stake = 0;
-    this.uISERVICE.exposure = 0;
-    this.getRoutesParam();
+    if(this.type=="Before"){
+      this.router.navigate(["/games"]);
+      this.toastr.error('Please login to access all features.', 'LOGIN!');
+    }else{
+      this.uISERVICE.showSlip = [];
+      this.uISERVICE.profit = 0;
+      this.uISERVICE.stake = 0;
+      this.uISERVICE.exposure = 0;
+      this.getRoutesParam();
+    }
+   
   }
 
   getRoutesParam() {
@@ -95,7 +101,7 @@ export class SetBetComponent implements OnInit {
   }
 
   selectMarket(value) {
-    debugger;
+    
     if (value == 'all') {
       this.marketType = 'all'
     } else if (value == 'odds') {
@@ -310,7 +316,7 @@ export class SetBetComponent implements OnInit {
         this.uISERVICE.betSlip = this.rtrnObj.chips;
         this.getAPIData();
         this.checkToss();
-        debugger;
+        
         if(this.rtrnObj.Inplay){
           this.scoreUrl();
         }

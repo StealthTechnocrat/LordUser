@@ -37,7 +37,7 @@ export class LiveMarketsComponent implements OnInit {
   
     ngOnInit(): void {
       this.getEvents();
-      debugger;
+      
       this.sharedService.getEventData().subscribe((data) => {
         this.topEvents = data;
       });
@@ -58,7 +58,7 @@ export class LiveMarketsComponent implements OnInit {
       }
     }
     getRelativeDate(eventTime: Date): string {
-      debugger;
+      
       const today = new Date();
       const eventDate = new Date(eventTime);
       const diffTime = eventDate.getTime() - today.getTime();
@@ -76,7 +76,7 @@ export class LiveMarketsComponent implements OnInit {
       }
     }
     getInplayEvents() {
-      debugger;
+      
       this.rtrnObj = [];
       this.accountService
         .GetInplayEventsBySportsId(this.sportsId)
@@ -113,7 +113,7 @@ export class LiveMarketsComponent implements OnInit {
     }
   
     getEvents() {
-      debugger;
+      
       this.rtrnObj = [];
       this.accountService
         .GetAllEventsBySportsId(this.sportsId)
