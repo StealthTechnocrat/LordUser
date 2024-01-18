@@ -371,7 +371,9 @@ export class HeaderComponent implements OnInit {
             var decodedToken = jwt_decode(response.Result);
             if (decodedToken["Role"] == "Client") {
               localStorage.setItem("IsPwd", this.IsPwd.toString());              
-              document.getElementById("term").click();
+              // document.getElementById("term").click();
+              document.getElementById("changepass").click();
+              
               localStorage.setItem("logout", "false");
               Cookie.set("usersCookies", response.Result);
               Cookie.set("c_id", decodedToken["UserId"]);
@@ -436,7 +438,8 @@ export class HeaderComponent implements OnInit {
   }
 
   accept() {
-    document.getElementById("termsConditionBtn").click();
+    // document.getElementById("termsConditionBtn").click();
+    document.getElementById("changepassClose").click();
     window.location.reload();
   }
 

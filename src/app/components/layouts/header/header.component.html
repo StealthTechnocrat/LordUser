@@ -588,7 +588,7 @@
                             <button class="btn btn-primary btnPrimaryCstm" id="term" type="button" data-toggle="modal"
                     data-target="#termsCondition" style="display: none;"><span class="animate-btn">Sign
                       in</span></button>
-                      <button class="btn btn-primary btnPrimaryCstm" id="changepassword" data-toggle="modal" data-target="#changepassword"
+                      <button class="btn btn-primary btnPrimaryCstm" id="changepass" data-toggle="modal" data-target="#changepassword"
                       type="button" style="display: none;"><span class="animate-btn">Sign
                         in</span></button>
 
@@ -610,7 +610,7 @@
                       </button>
                     </a>
                   </div>
-                  <button class="btn btn-primary mt-2" id="changePassword" data-toggle="modal" data-target="#changePassword"
+                  <button class="btn btn-primary mt-2" id="ChkPwd" data-toggle="modal" data-target="#changepassword"
                     type="button" style="display: none;">Change Password</button>
                 </div>
 
@@ -777,12 +777,11 @@
 </div>
 
 <!--change password Modal -->
-<div class="modal    pr-0 fade" id="changepassword" tabindex="-1"
-  aria-labelledby="changepasswordLabel" aria-hidden="true">
+<div class="modal pr-0 fade" id="changepassword" tabindex="-1" aria-labelledby="changepasswordLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered chipSettingModal changepasswordModal">
     <div class="modal-content">
       <div class="login_form ">
-        <button type="button" id="cls1" class="btn-close" data-dismiss="modal" aria-label="Close">X</button>
+        <button type="button"  class="btn-close text-dark" data-dismiss="modal" aria-label="Close">X</button>
         <div class="position-relative">
           <div class="termConWrap">
             <div class="page_title">
@@ -818,7 +817,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary modSubmit"><span class="animate-btn" (click)="ChangePwd()">
+            <button type="button" id="changepassClose" class="btn btn-primary modSubmit"><span class="animate-btn" (click)="ChangePwd()">
                 Change</span></button>
             <button type="button" class="btn btn-secondary modCancel" data-dismiss="modal"><span
                 class="animate-btn">Clear</span></button>
@@ -830,14 +829,15 @@
     </div>
   </div>
 </div>
+
 
 <!--change password Modal -->
-<div class="modal ChkPwd  pr-0 fade" id="ChkPwd" tabindex="-1"
+<!-- <div class="modal chipsetting ChkPwd pr-0 pl-0 fade" id="ChkPwd" tabindex="-1"
   aria-labelledby="ChkPwdLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered  ChkPwdModal">
+  <div class="modal-dialog modal-lg modal-dialog-centered chipSettingModal ChkPwdModal">
     <div class="modal-content">
       <div class="login_form ">
-        <button type="button" id="ChkPwdCls" class="btn-close" data-dismiss="modal" aria-label="Close">X</button>
+        <button type="button" id="cls1" class="btn-close text-dark" data-dismiss="modal" aria-label="Close">X</button>
         <div class="position-relative">
           <div class="termConWrap">
             <div class="page_title">
@@ -884,10 +884,10 @@
 
     </div>
   </div>
-</div>
+</div> -->
 
 <!--terma and condition Modal -->
-<div class="modal chipsetting  termcond pr-0 fade" id="termscondition" tabindex="-1"
+<div class="modal chipsetting termcond pr-0 fade" id="termscondition" tabindex="-1"
   aria-labelledby="termsconditionLabel" aria-hidden="true">
   <div class="modal-dialog  modal-dialog-centered chipSettingModal tandcMod termsconditionModal">
     <div class="modal-content">
