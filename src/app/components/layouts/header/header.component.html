@@ -190,7 +190,7 @@
               </button>
             </div>
             <div class="sub_btn_area">
-              <button class="btn btn-primary" (click)="LogIn()" type="button">Log in</button>
+              <button class="btn btn-primary" (click)="usrPWDchk()" type="button">Log in</button>
             </div>
           </div>
         </div>
@@ -583,12 +583,12 @@
                   </div>
                 </div>
                 <div class="sub_btn_area">
-                  <button class="btn btn-primary btnPrimaryCstm" (click)="LogIn()" type="button"><span
+                  <button class="btn btn-primary btnPrimaryCstm" (click)="usrPWDchk()" type="button"><span
                       class="animate-btn">Sign in</span></button>
                             <button class="btn btn-primary btnPrimaryCstm" id="term" type="button" data-toggle="modal"
                     data-target="#termsCondition" style="display: none;"><span class="animate-btn">Sign
                       in</span></button>
-                      <button class="btn btn-primary btnPrimaryCstm" id="changepass" data-toggle="modal" data-target="#changepassword"
+                      <button class="btn btn-primary btnPrimaryCstm" id="changepass" data-toggle="modal" data-target="#setPassword"
                       type="button" style="display: none;"><span class="animate-btn">Sign
                         in</span></button>
 
@@ -830,14 +830,12 @@
   </div>
 </div>
 
-
-<!--change password Modal -->
-<!-- <div class="modal chipsetting ChkPwd pr-0 pl-0 fade" id="ChkPwd" tabindex="-1"
-  aria-labelledby="ChkPwdLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered chipSettingModal ChkPwdModal">
+<!--Set password Modal -->
+<div class="modal pr-0 fade" id="setPassword" tabindex="-1" aria-labelledby="setPasswordLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered chipSettingModal setPasswordModal">
     <div class="modal-content">
       <div class="login_form ">
-        <button type="button" id="cls1" class="btn-close text-dark" data-dismiss="modal" aria-label="Close">X</button>
+        <button type="button" id="setpwdcls"  class="btn-close text-dark" data-dismiss="modal" aria-label="Close">X</button>
         <div class="position-relative">
           <div class="termConWrap">
             <div class="page_title">
@@ -873,7 +871,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary modSubmit"><span class="animate-btn" (click)="ChangePwd()">
+            <button type="button" id="changepassClose" class="btn btn-primary modSubmit"><span class="animate-btn" (click)="SetNewPassword()">
                 Change</span></button>
             <button type="button" class="btn btn-secondary modCancel" data-dismiss="modal"><span
                 class="animate-btn">Clear</span></button>
@@ -884,7 +882,8 @@
 
     </div>
   </div>
-</div> -->
+</div>
+
 
 <!--terma and condition Modal -->
 <div class="modal chipsetting termcond pr-0 fade" id="termscondition" tabindex="-1"

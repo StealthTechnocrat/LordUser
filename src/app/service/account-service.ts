@@ -14,6 +14,7 @@ export class AccountService {
   private signInUrl = environment.apiBaseUrl + "Admin/Login";
   private LogoutUrl = environment.apiBaseUrl + "Admin/Logout";
   private usrPWDchkUrl = environment.apiBaseUrl + "Admin/CheckPwdSts";
+  private SetNewPasswordUrl = environment.apiBaseUrl + "Admin/SetNewPassword";
 
   private getSrsListUrl = environment.apiBaseUrl + "Event/GetSeriesList";
   private getUsrDtlUrl = environment.apiBaseUrl + "SignUp/GetUserDetails";
@@ -71,6 +72,14 @@ export class AccountService {
     environment.apiBaseUrl + "Event/GetFilteredResultList";
 
   private usrDtlUrl = environment.apiBaseUrl + "SignUp/UsersDetails";
+
+  SetNewPassword(userId,oldpwd, newpwd): Promise<any> {
+    return this.baseHttpService
+      .Get(this.SetNewPasswordUrl + "?userId=" + userId + "&oldPwd=" + oldpwd + "&newPwd=" + newpwd)
+      .then(function (response) {
+        return response.json();
+      });
+  }
 
   usrPWDchk(signInModel: SignInModel): Promise<any> {
     return this.baseHttpService

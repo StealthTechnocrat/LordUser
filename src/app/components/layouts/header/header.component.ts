@@ -337,7 +337,7 @@ export class HeaderComponent implements OnInit {
         this.firstTimeLoginChk = response.Result;
         if(this.firstTimeLoginChk){
           document.getElementById("loginClose").click();
-          document.getElementById("changepassword").click();
+          document.getElementById("changepass").click();
         }else{
           this.LogIn();
         }
@@ -371,9 +371,8 @@ export class HeaderComponent implements OnInit {
             var decodedToken = jwt_decode(response.Result);
             if (decodedToken["Role"] == "Client") {
               localStorage.setItem("IsPwd", this.IsPwd.toString());              
-              // document.getElementById("term").click();
-              document.getElementById("changepass").click();
-              
+              document.getElementById("term").click();
+              // document.getElementById("changepass").click();s
               localStorage.setItem("logout", "false");
               Cookie.set("usersCookies", response.Result);
               Cookie.set("c_id", decodedToken["UserId"]);
@@ -402,22 +401,24 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  changePwd() {
+  SetNewPassword() {
     this.uISERVICE.loader = true;
-    if (this.newpwd == this.confrmPwd) {
+    if (this.NewPwd == this.CnfPwd) {
       this.accountService
-        .changePwd(this.oldpwd, this.newpwd)
+        .SetNewPassword(this.signInModel.LoginID, this.OldPwd, this.NewPwd)
         .then((response) => {
           if (response.Status) {
+            debugger;
             this.uISERVICE.loader = false;
             this.uISERVICE.Success = true;
             this.uISERVICE.Message = "Password changed successfully";
-            document.getElementById("term").click();
-            localStorage.setItem("IsPwd", "true");
+             document.getElementById("setpwdcls").click();
+            // localStorage.setItem("IsPwd", "true");
             setTimeout(() => {
               this.uISERVICE.Success = false;
             }, 3000);
           } else {
+            document.getElementById("setpwdcls").click();
             this.uISERVICE.loader = false;
             this.uISERVICE.Error = true;
             this.uISERVICE.Message = response.Result;
@@ -425,6 +426,7 @@ export class HeaderComponent implements OnInit {
               this.uISERVICE.Error = false;
             }, 3000);
           }
+          this.LogOut();
         });
     } else {
       this.uISERVICE.loader = false;
