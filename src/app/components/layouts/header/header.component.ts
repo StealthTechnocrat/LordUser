@@ -9,7 +9,6 @@ import * as XLSX from "xlsx";
 import { SignUpModel } from "src/app/Model/Sign_Up_Model";
 import { SignInModel } from "src/app/Model/signin-model";
 import { SharedService } from "src/app/service/shared.service";
-
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
@@ -46,12 +45,13 @@ export class HeaderComponent implements OnInit {
   Exposure: number;
   News: any = [];
   Name: string = "";
+  firstTimeLoginChk : boolean = false;
   constructor(
     private accountService: AccountService,
     public uISERVICE: UiService,
     private router: Router,
     private sharedService: SharedService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
   ) {
     const isExpired = this.isTokenExpired(Cookie.get("usersCookies"));
     if (isExpired) {
@@ -326,6 +326,25 @@ export class HeaderComponent implements OnInit {
         window.location.reload();
       }, 200);
     }
+  }
+
+
+
+  usrPWDchk() {
+    this.accountService.usrPWDchk(this.signInModel).then((response) => {
+      if (response.Status) {
+        debugger;
+        this.firstTimeLoginChk = response.Result;
+        if(this.firstTimeLoginChk){
+          document.getElementById("loginClose").click();
+          document.getElementById("changepassword").click();
+        }else{
+          this.LogIn();
+        }
+      } else {
+        this.usrDtl = [];
+      }
+    });
   }
 
   LogIn() {

@@ -13,6 +13,7 @@ export class AccountService {
   constructor(private baseHttpService: BaseHttpService) {}
   private signInUrl = environment.apiBaseUrl + "Admin/Login";
   private LogoutUrl = environment.apiBaseUrl + "Admin/Logout";
+  private usrPWDchkUrl = environment.apiBaseUrl + "Admin/CheckPwdSts";
 
   private getSrsListUrl = environment.apiBaseUrl + "Event/GetSeriesList";
   private getUsrDtlUrl = environment.apiBaseUrl + "SignUp/GetUserDetails";
@@ -21,7 +22,8 @@ export class AccountService {
   private placeBetUrl = environment.apiBaseUrl + "Bets/CreateBet";
   private placeFancyBetUrl = environment.apiBaseUrl + "Bets/CreateFancyBet";
   private getBetHistoryUrl = environment.apiBaseUrl + "Bets/GetBetsHistory";
-  private GetUserBetsHistoryUrl = environment.apiBaseUrl + "Bets/GetUserBetsHistory";
+  private GetUserBetsHistoryUrl =
+    environment.apiBaseUrl + "Bets/GetUserBetsHistory";
   private getTransactionHistoryUrl =
     environment.apiBaseUrl + "Transaction/TranHistory";
   private updateUserUrl = environment.apiBaseUrl + "SignUp/Update_User";
@@ -65,9 +67,17 @@ export class AccountService {
   private GetAllMarketsUrl = environment.apiBaseUrl + "Event/GetAllMarkets";
   private GetAllResultsUrl = environment.apiBaseUrl + "Event/GetAllResultList";
   private GetResultListUrl = environment.apiBaseUrl + "Event/GetResultList";
-private filteredResultUrl = environment.apiBaseUrl + "Event/GetFilteredResultList";
+  private filteredResultUrl =
+    environment.apiBaseUrl + "Event/GetFilteredResultList";
 
   private usrDtlUrl = environment.apiBaseUrl + "SignUp/UsersDetails";
+
+  usrPWDchk(signInModel: SignInModel): Promise<any> {
+    return this.baseHttpService
+    .Post(this.usrPWDchkUrl, signInModel).then(function (response) {
+        return response.json();
+      });
+  }
 
   userDetails(): Promise<any> {
     return this.baseHttpService.Get(this.usrDtlUrl).then(function (response) {
@@ -75,20 +85,18 @@ private filteredResultUrl = environment.apiBaseUrl + "Event/GetFilteredResultLis
     });
   }
 
-  
-
   logout(): Promise<any> {
-    return this.baseHttpService.Get(this.LogoutUrl ).then(function (response) {
+    return this.baseHttpService.Get(this.LogoutUrl).then(function (response) {
       return response.json();
     });
   }
 
-  filteredResult(marketName ,skip, takeRec, sDate, eDate): Promise<any> {
+  filteredResult(marketName, skip, takeRec, sDate, eDate): Promise<any> {
     return this.baseHttpService
       .Get(
         this.filteredResultUrl +
-        "?marketName=" +
-        marketName +
+          "?marketName=" +
+          marketName +
           "&skip=" +
           skip +
           "&takeRec=" +
@@ -103,14 +111,14 @@ private filteredResultUrl = environment.apiBaseUrl + "Event/GetFilteredResultLis
       });
   }
 
-  GetResults(eventId, marketName ,skip, takeRec, sDate, eDate): Promise<any> {
+  GetResults(eventId, marketName, skip, takeRec, sDate, eDate): Promise<any> {
     return this.baseHttpService
       .Get(
         this.GetResultListUrl +
-        "?eventId=" +
-        eventId +
-        "&marketName=" +
-        marketName +
+          "?eventId=" +
+          eventId +
+          "&marketName=" +
+          marketName +
           "&skip=" +
           skip +
           "&takeRec=" +
@@ -124,7 +132,6 @@ private filteredResultUrl = environment.apiBaseUrl + "Event/GetFilteredResultLis
         return response.json();
       });
   }
-
 
   GetAllResults(skip, takeRec, sDate, eDate): Promise<any> {
     return this.baseHttpService
@@ -211,9 +218,11 @@ private filteredResultUrl = environment.apiBaseUrl + "Event/GetFilteredResultLis
   }
 
   GetLogo(): Promise<any> {
-    return this.baseHttpService.Get(this.GetLogoUrl + "?doamin=" + window.location.origin).then(function (response) {
-      return response.json();
-    });
+    return this.baseHttpService
+      .Get(this.GetLogoUrl + "?doamin=" + window.location.origin)
+      .then(function (response) {
+        return response.json();
+      });
   }
 
   getSrsList(sportsId): Promise<any> {
@@ -300,7 +309,7 @@ private filteredResultUrl = environment.apiBaseUrl + "Event/GetFilteredResultLis
           "&sportsId=" +
           sportsId +
           "&betType=" +
-          betType + 
+          betType +
           "&marketName=" +
           mrktName +
           "&startDate=" +
@@ -609,7 +618,13 @@ private filteredResultUrl = environment.apiBaseUrl + "Event/GetFilteredResultLis
 
   GetBanner(type: string): Promise<any> {
     return this.baseHttpService
-      .Get(this.GetBannerUrl + "?type=" + type + "&domain=" + window.location.origin)
+      .Get(
+        this.GetBannerUrl +
+          "?type=" +
+          type +
+          "&domain=" +
+          window.location.origin
+      )
       .then(function (response) {
         return response.json();
       });

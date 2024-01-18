@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: "https://782world.com/",
-  //apiBaseUrl:"http://localhost:49658/"
+ // apiBaseUrl: "https://782world.com/",
+  apiBaseUrl:"http://localhost:49658/"
 };
 
 /*
