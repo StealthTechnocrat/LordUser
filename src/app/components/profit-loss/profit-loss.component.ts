@@ -32,6 +32,12 @@ export class ProfitLossComponent implements OnInit {
   minDate:any;
   last:string;
   latest_date:any;
+  pageNo: number = 0;
+  skipRec: number = 0;
+  TransactionObj: any = [];
+  Ttype: string = "All";
+  mrktName: string = "All";
+  totalRec: number;
   constructor(
     private http: HttpClient,
     private accountService: AccountService,
@@ -64,9 +70,54 @@ export class ProfitLossComponent implements OnInit {
      this.last=this.datepipe.transform(date, 'yyyy-MM-dd');
      this.endDate = this.datepipe.transform(date, 'yyyy-MM-dd') + " " + "23:59:59";
      this.getProfitLoss();
-    
+     this.getTransactionHistory();
   }
 
+  pageChanged(pageNo) {
+    this.pageNo = pageNo;
+    if(this.uISERVICE.take == null || this.uISERVICE.take == undefined){
+      this.uISERVICE.take = 10
+    }
+    this.skipRec = (pageNo - 1) * this.uISERVICE.take;
+    this.getTransactionHistory();
+  }
+  getTransactionHistory() {
+    this.TransactionObj=[];
+    if(this.uISERVICE.take == null || this.uISERVICE.take == undefined){
+      this.uISERVICE.take = 10
+    }
+    if (this.startDate != "" && this.endDate != "") {
+      this.uISERVICE.loader = true;
+      this.accountService.GetTransactionHistory(
+        this.role,
+        this.userId,
+        this.skipRec,
+        this.uISERVICE.take,
+        this.Ttype,
+        this.sportsId,
+        this.mrktName,
+        this.startDate,
+        this.endDate
+      )
+      .then((response) => {
+        
+        if (response.Status) {
+          this.TransactionObj = response.Result;         
+          this.totalRec=response.Count;
+          this.uISERVICE.loader = false;
+        } else {
+          this.uISERVICE.loader = false;
+          this.TransactionObj = [];
+        }
+      });
+    } else {
+      this.uISERVICE.Message = "Plase select start date and end date";
+      this.uISERVICE.Error = true;
+      setTimeout(() => {
+        this.uISERVICE.Error = false;
+      }, 2500);
+    }
+  }
   onChange(value) {
     this.sportsId = value;
   }

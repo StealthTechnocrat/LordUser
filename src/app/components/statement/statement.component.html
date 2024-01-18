@@ -14,6 +14,99 @@
             </div>
             <div class="table_area my_bets_table">
                 <div class="filter">
+                    <form class="mb-1 form-inline d-block">
+                        <div class="main_form row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-field d-flex flex-column flex-sm-row mb-1 mb-md-0">
+                                            <div
+                                                class="pagination_filter mr-sm-3 d-flex align-items-center justify-content-center justify-content-sm-start">
+                                                Show
+                                                <select (change)="updateRecValue($event.target.value)"
+                                                    class="form-control mr-2" id="">
+                                                    <option value="uISERVICE.take" selected>{{uISERVICE.take}}</option>
+                                                    <option value="10" *ngIf="uISERVICE.take!=10">10</option>
+                                                    <option value="20" *ngIf="uISERVICE.take!=20">20</option>
+                                                    <option value="30" *ngIf="uISERVICE.take!=30">30</option>
+                                                    <option value="40" *ngIf="uISERVICE.take!=40">40</option>
+                                                    <option value="50" *ngIf="uISERVICE.take!=50">50</option>
+                                                </select>
+                                                entries
+                                            </div>
+                                            <div class="btnsGrp mt-2 mt-sm-0 mb-2 m-sm-0">
+                                                <button (click)="getTransactionHistory()" type="submit"
+                                                    class="btn btn-primary mr-2">CSV</button>
+                                                <button type="button" class="btn btn-primary file_btn mr-2 ml-0"
+                                                    (click)="exportexcel()">
+                                                    Excel
+                                                </button>
+                                                <button type="submit" class="btn btn-primary mr-2">PDF</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="tableSearch  justify-content-center justify-content-sm-end">
+                        <label>Search:<input type="search" class="" placeholder=""></label>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-middle table-striped mb-0 table_design" id="excel-table2"
+                        style="border-bottom: 1px solid #111;">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Descripsion</th>
+                                <th>Dr</th>
+                                <th>Cr</th>
+                                <th>Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    02/01/2024, 8:02 PM
+                                </td>
+                                <td>
+                                    <span class="label-success">P|L Market</span>
+                                </td>
+                                <td><a href="#" data-toggle="modal" data-target="#acc_detail2">Cricket-Womens One Day
+                                        Internationals-India Women v Australia Women-Match Odds</a></td>
+                                <td>20.00</td>
+                                <td>-</td>
+                                <td>4,253.40</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    02/01/2024, 8:02 PM
+                                </td>
+                                <td>
+                                    <span class="label-info">D|W Point</span>
+                                </td>
+                                <td><a href="#" data-toggle="modal" data-target="#acc_detail2">Cricket-Womens One Day
+                                        Internationals-India Women v Australia Women-Match Odds</a></td>
+                                <td>20.00</td>
+                                <td>-</td>
+                                <td>4,253.40</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div
+                    class="pagination_filter pt-3 d-flex align-items-center flex-column flex-sm-row justify-content-center justify-content-sm-between">
+                    <p class="mb-4 mb-sm-0">Showing 1 to 8 of 8 entries</p>
+                    <pagination-controls class="pagination" maxSize="9" directionLinks="true"
+                        (pageChange)="pageChanged($event)">
+                    </pagination-controls>
+                </div>
+            </div>
+            <!-- <div class="table_area my_bets_table">
+                <div class="filter">
                     <form class="mb-3 form-inline d-block">
                         <div class="main_form row">
                             <div class="col-md-12">
@@ -89,26 +182,6 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="row">
-                                    <!-- <div class="col-md-8">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <div class="form-field">
-                                                    <label>Start Date</label>
-                                                    <input type="date" name="sdate" [(ngModel)]="latest_date"
-                                                        (blur)="getStartDate($event.target.value)"
-                                                        class="form-control mr-2" id="sdate">
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="form-field">
-                                                    <label>End Date</label>
-                                                    <input type="date" name="edate" [(ngModel)]="last"
-                                                        (blur)="getEndDate($event.target.value)"
-                                                        class="form-control mr-2" id="edate">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                     <div class="col-sm-6">
                                         <div class="form-field">
                                             <div>
@@ -125,15 +198,8 @@
                                         <div class="form-field d-flex justify-content-end align-items-center">
                                             <button type="button" class="btn btn-primary file_btn "
                                                 (click)="exportexcel()">
-                                                <!-- <i class="fas fa-file-excel"></i> -->
                                                 Excel
                                             </button>
-                                            <!-- <button type="button" class="btn btn-primary file_btn ">
-                                                CSV
-                                            </button>
-                                            <button type="button" class="btn btn-primary file_btn ">
-                                                PDF
-                                            </button> -->
                                         </div>
                                     </div>
                                 </div>
@@ -161,7 +227,6 @@
                                         href="javascript:void(0)" (click)="getMarketBets(data)" data-toggle="modal"
                                         data-target="#acc_detail2">{{data.Discription}}</a></td>
 
-                                <!-- <td><a href="#">{{data.Discription}}</a></td> -->
                                 <td><span [ngClass]="{'red':data.Amount<0,'green':data.Amount>=0}">{{data.Amount |
                                         number :
                                         '1.2-2'}}</span>
@@ -189,25 +254,63 @@
                         (pageChange)="pageChanged($event)">
                     </pagination-controls>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
 
 <!-- Model start -->
-<div class="modal fade all_bets_modal all_modal_design" id="acc_detail2" tabindex="-1"
-    aria-labelledby="acc_detail2Label" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+<div class="modal fade custoModalld" id="acc_detail2" tabindex="-1" aria-labelledby="acc_detail2Label"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-custom-md">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="acc_detail2Label">Market Bets</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <i aria-hidden="true" class="fa fa-times"></i>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="table_area shadow_none">
-                    <div class="table-responsive" *ngIf="sportId!=11">
+                    <div class="table-responsive">
+                        <table class="table back_layclr" id="excel-table2">
+                            <thead role="rowgroup">
+                                <tr>
+                                    <th>Ref.ID </th>
+                                    <th>Market</th>
+                                    <th>Type</th>
+                                    <th>Rate</th>
+                                    <th>Stake</th>
+                                    <th>P|L</th>
+                                    <th>M. Date</th>
+                                    <th>Dr</th>
+                                    <th>Cr</th>
+                                    <th>Net</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">72297152</td>
+                                    <td>
+                                        India Women v Australia Women Match Odds [ ]
+                                    </td>
+                                    <td>
+                                        <div class="type text-center">Back</div>
+                                    </td>
+                                    <td class="text-center">13.5</td>
+                                    <td class="text-center">10</td>
+                                    <td class="text-center">120</td>
+                                    <td class="text-center">02/01/2024</td>
+                                    <td class="text-center">10.00</td>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center"><b>-10.00</b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <!-- <div class="table-responsive" *ngIf="sportId!=11">
                         <table class="table back_layclr" id="excel-table2">
                             <thead role="rowgroup">
                                 <tr>
@@ -264,9 +367,14 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div>
+                    </div> -->
 
                 </div>
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:void(0)" data-dismiss="modal" aria-label="Close" class="modal-close red btn">
+                    <span class="animate-btn">Close</span>
+                </a>
             </div>
         </div>
     </div>
