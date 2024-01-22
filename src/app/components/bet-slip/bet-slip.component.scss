@@ -547,14 +547,18 @@
         font-size: 16px;
         height: 100%;
         justify-content: center;
-
-        .spinner-border {
-            width: 1.6rem;
-            height: 1.6rem;
-            border: 0.20em solid currentColor;
-            border-right-color: transparent;
-            border-radius: 50%;
+        svg{
+            width: 50px;
+            height: 50px;
+            margin: 0 !important;
         }
+        // .spinner-border {
+        //     width: 1.6rem;
+        //     height: 1.6rem;
+        //     border: 0.20em solid currentColor;
+        //     border-right-color: transparent;
+        //     border-radius: 50%;
+        // }
     }
 
     &.loader_show {

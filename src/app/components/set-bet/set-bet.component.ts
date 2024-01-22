@@ -52,7 +52,7 @@ export class SetBetComponent implements OnInit {
   otherFancy: any[] = [];
   ballsWicketLost: any[] = [];
   scoreUrlFrame: SafeResourceUrl;
-
+  isMuted = true;
   constructor(private router: Router,private toastr: ToastrService,public sanitizer: DomSanitizer, private http: HttpClient, private accountService: AccountService, private route: ActivatedRoute, public uISERVICE: UiService, private modalService: NgbModal) { }
   toggleModal() {
     this.modalVisible = !this.modalVisible;
@@ -60,7 +60,9 @@ export class SetBetComponent implements OnInit {
   ngOnInit(): void {
     this.setIntialValues();
   }
-
+  toggleMute() {
+    this.isMuted = !this.isMuted;
+  }
   scoreUrl() {
     
     this.url = "https://nxbet247.com/live-score-card/" + this.sportsId + "/" + this.eventId;

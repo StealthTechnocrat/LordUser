@@ -161,6 +161,7 @@ export class ProfitLossComponent implements OnInit {
         .then((response) => {
           if (response.Status) {
             this.profitLossObj = response.Result;
+            // console.log("pl",this.profitLossObj)
             this.uISERVICE.loader = false;
           } else {
             this.uISERVICE.loader = false;

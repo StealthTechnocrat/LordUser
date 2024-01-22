@@ -1448,10 +1448,16 @@ $m_box_width: 15%;
 .back_layclr {
   .back {
     background: #a7d8fd !important;
+    td{
+      color: #000;
+    }
   }
 
   .lay {
     background: #f9c9d4 !important;
+    td{
+      color: #000;
+    }
   }
 }
 

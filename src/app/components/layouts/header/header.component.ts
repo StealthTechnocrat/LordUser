@@ -374,6 +374,7 @@ export class HeaderComponent implements OnInit {
               document.getElementById("term").click();
               // document.getElementById("changepass").click();s
               localStorage.setItem("logout", "false");
+              localStorage.setItem("alertSound", "false");
               Cookie.set("usersCookies", response.Result);
               Cookie.set("c_id", decodedToken["UserId"]);
               Cookie.set("c_Role", decodedToken["Role"]);

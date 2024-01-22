@@ -151,6 +151,7 @@ export class BetSlipComponent implements OnInit {
     setTimeout(() => {
       this.accountService.placeBet(this.placeBetModel).then((response) => {
         if (response.Status) {
+          this.playAlertTone();
           this.toastr.success('Bet Placed Successfully');
           this.uISERVICE.Bal = response.FreeChips;
           this.uISERVICE.Exp = response.Exp;
@@ -167,6 +168,11 @@ export class BetSlipComponent implements OnInit {
       });
     }, this.uISERVICE.betDelay * 1000);
 
+  }
+
+  playAlertTone() {
+    const alertTone = new Audio("assets/alertTone/IphoneTing1.mp3");
+    alertTone.play();
   }
 
   cancelAll() {

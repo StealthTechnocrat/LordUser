@@ -1397,7 +1397,8 @@ header {
       overflow: auto;
 
       @media(max-width:475px) {
-        height: 380px;
+        // height: 380px;
+        height: calc(100vh - 100px);
         padding: 14px 15px;
       }
 

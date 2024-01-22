@@ -17,6 +17,7 @@
             position: relative;
             margin: 0;
             font-size: 22px;
+            line-height: 20px;
             font-weight: 600;
             color: #5c6060;
             text-align: center;
@@ -677,6 +678,34 @@ iframe{
 
         ul {
             gap: 8px;
+            li{
+                .ringBtn{
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 20px;
+                    background-color: #7f7533;
+                    border: 0;
+                    padding: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    i{
+                        // color: #fff;
+                        color: #ffcb2f;
+                    }
+                    .fa-volume-mute{
+                        display: none;
+                    }
+                    &.mute{
+                        .fa-volume-mute{
+                            display: block;
+                        }
+                        .fa-volume-up{
+                            display: none;
+                        }
+                    }
+                }
+            }
         }
     }
 

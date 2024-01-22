@@ -107,7 +107,7 @@
                         <label>Search:<input type="search" class="" placeholder=""></label>
                     </div>
                 </div>
-                <div class="table-responsive">
+                <!-- <div class="table-responsive">
                     <table class="table align-middle table-striped mb-0 table_design" id="excel-table2"
                         style="border-bottom: 1px solid #111;">
                         <thead>
@@ -121,7 +121,7 @@
                         </thead>
                         <tbody>
 
-                            <tr>
+                            <tr >
                                 <td> Cricket </td>
 
                                 <td><a href="#" data-toggle="modal" data-target="#profitLossModel">Cricket/India Women v
@@ -134,8 +134,8 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
-                <!-- <div class="table-responsive">
+                </div> -->
+                <div class="table-responsive">
                     <table class="table align-middle table-striped mb-0 table_design" id="excel-table2" style="border-bottom: 1px solid #111;">
                         <thead>
                             <tr>
@@ -162,7 +162,7 @@
                             </tr>
                         </tbody>
                     </table>
-                </div> -->
+                </div>
                 <div
                     class="pagination_filter pt-3 d-flex align-items-center flex-column flex-sm-row justify-content-center justify-content-sm-between">
                     <p class="mb-4 mb-sm-0">Showing 1 to 8 of 8 entries</p>
@@ -180,7 +180,8 @@
     <div class="modal-dialog modal-dialog-scrollable modal-custom-md">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="acc_detail2Label">Client Profit And Loss</h5>
+                <!-- <h5 class="modal-title" id="acc_detail2Label">Client Profit And Loss</h5> -->
+                <h5 class="modal-title" id="acc_detail2Label">Market Bets</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <!-- <span aria-hidden="true" (click)="reset()">&times;</span> -->
                     <i (click)="reset()" aria-hidden="true" class="fa fa-times"></i>
@@ -199,7 +200,7 @@
                     </select>
                 </div> -->
                 <div class="table_area shadow_none">
-                    <div class="table-responsive">
+                    <!-- <div class="table-responsive">
                         <table class="table back_layclr">
                             <thead role="rowgroup">
                                 <tr>
@@ -212,7 +213,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr >
                                     <td>India Women</td>
                                     <td>13.5</td>
                                     <td class="text-right">10</td>
@@ -220,22 +221,7 @@
                                     <td class="text-right">01/02/2024 16:44:33 </td>
                                     <td class="text-right">-10 </td>
                                 </tr>
-                                <tr>
-                                    <td>India Women</td>
-                                    <td>13.5</td>
-                                    <td class="text-right">10</td>
-                                    <td>Back</td>
-                                    <td class="text-right">01/02/2024 16:44:33 </td>
-                                    <td class="text-right">-10 </td>
-                                </tr>
-                                <tr>
-                                    <td>India Women</td>
-                                    <td>13.5</td>
-                                    <td class="text-right">10</td>
-                                    <td>Back</td>
-                                    <td class="text-right">01/02/2024 16:44:33 </td>
-                                    <td class="text-right">-10 </td>
-                                </tr>
+                                
                             </tbody>
                             <tbody *ngIf=" !eventBetObj?.length">
                                 <tr>
@@ -244,8 +230,8 @@
                             </tbody>
                             
                         </table>
-                    </div>
-                    <!-- <div class="table-responsive">
+                    </div> -->
+                    <div class="table-responsive">
                         <table class="table back_layclr">
                             <thead role="rowgroup">
                                 <tr>
@@ -281,7 +267,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                    </div> -->
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
