@@ -36,11 +36,13 @@
                                 <a (click)="getCompList(4)" class="main_drop"
                                     [ngClass]="{ 'drop_open': selectedSportsId === 4 }">
                                     <span class="clickmain">
-                                        <span class="sports-icon cricket"></span>
-                                        Cricket
+                                        <!-- <span class="sports-icon cricket"></span> -->
+                                        <!-- Cricket -->
+                                        <img src="./assets/img/img_Cricket.png" alt="img-fluid" alt="img">
                                         <span class="arrow">
                                             <i class="fa fa-plus"></i>
                                         </span>
+                                       
                                     </span>
                                 </a>
                                 <ul class="step_1" *ngIf="selectedSportsId === 4">
@@ -71,8 +73,9 @@
                             <li>
                                 <a (click)="getCompList(1)" class="main_drop"
                                     [ngClass]="{ 'drop_open': selectedSportsId === 1 }">
-                                    <span class="sports-icon soccer"></span>
-                                    Footabll
+                                    <!-- <span class="sports-icon soccer"></span> -->
+                                    <!-- Footabll -->
+                                    <img src="./assets/img/img_Football.png" alt="img-fluid" alt="img">
                                     <span class="arrow">
                                         <i class="fa fa-plus"></i>
                                     </span>
@@ -104,8 +107,9 @@
                             <li>
                                 <a (click)="getCompList(2)" class="main_drop"
                                     [ngClass]="{ 'drop_open': selectedSportsId === 2 }">
-                                    <span class="sports-icon tennis"></span>
-                                    Tennis
+                                    <!-- <span class="sports-icon tennis"></span> -->
+                                    <!-- Tennis -->
+                                    <img src="./assets/img/img_Tennis.png" alt="img-fluid" alt="img">
                                     <span class="arrow">
                                         <i class="fa fa-plus"></i>
                                     </span></a>
@@ -135,16 +139,41 @@
                             </li>
                             <li *ngIf="!uISERVICE.casinoStatus">
                                 <a class="main_drop">
-                                    <span class="icon">
+                                    <!-- <span class="icon">
                                         <svg class="svg-icon">
                                             <use href="/assets/icons/icons_defs.svg#roulette"></use>
                                         </svg>
-                                    </span> Casino</a>
+                                    </span>  -->
+                                    <!-- Casino -->
+                                    <img src="./assets/img/img_Casino.png" alt="img-fluid" alt="img">
+                                </a>
                             </li>
                             <li *ngIf="!uISERVICE.liveGameStatus">
-                                <a class="main_drop"><span class="icon"><svg class="svg-icon">
+                                <a class="main_drop">
+                                    <!-- <span class="icon"><svg class="svg-icon">
                                             <use href="/assets/icons/icons_defs.svg#cards"></use>
-                                        </svg></span> Live Casino</a>
+                                        </svg></span>  -->
+                                        <!-- Live Casino -->
+                                        <img src="./assets/img/img_Livecasino.png" alt="img-fluid" alt="img">
+                                    </a>
+                            </li>
+                            <li >
+                                <a class="main_drop">
+                                    <!-- <span class="icon"><svg class="svg-icon">
+                                            <use href="/assets/icons/icons_defs.svg#cards"></use>
+                                        </svg></span>  -->
+                                        <!-- Live Casino -->
+                                        <img src="./assets/img/img_grayhound.png" alt="img-fluid" alt="img">
+                                    </a>
+                            </li>
+                            <li >
+                                <a class="main_drop">
+                                    <!-- <span class="icon"><svg class="svg-icon">
+                                            <use href="/assets/icons/icons_defs.svg#cards"></use>
+                                        </svg></span>  -->
+                                        <!-- Live Casino -->
+                                        <img src="./assets/img/img_Horseracing.png" alt="img-fluid" alt="img">
+                                    </a>
                             </li>
                         </ul>
                     </div>

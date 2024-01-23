@@ -4,8 +4,11 @@
     box-shadow: rgba(99,99,99,.2) 0 2px 8px 0;
     margin: 15px 0;
     border-radius: 20px;
-    background: whitesmoke;
+    background: #001244;
     padding: 4px 0 16px;
+    // @media(max-width:575.98px){
+    //     margin-top: 0;
+    // }
 }
 
 .market {
@@ -77,7 +80,7 @@
     // }
     .market-title{
         font-size: 14px;
-        color: #5c6060;
+        color: #fff;
         padding: 6px 0;
         text-transform: uppercase;
         font-weight: 600;
@@ -140,7 +143,7 @@
             padding-right: 0px;
 
             &.time {
-                color: #3e4049;
+                color: #fff;
                 font-weight: 500;
                 letter-spacing: 1px;
 
@@ -149,7 +152,7 @@
                 }
 
                 @media(max-width:475px) {
-                    color: #777;
+                    color: #fff;
                     font-weight: 400;
                 }
             }
@@ -174,7 +177,7 @@
                 svg {
                     width: 18px;
                     height: 18px;
-                    fill: #778CA9;
+                    fill: #fff;
 
                     @media(max-width:575px) {
                         width: 15px;
@@ -186,7 +189,7 @@
         &.badge-right{
             a{
                 position: relative;
-                color: #5c6060;
+                color: #fff;
                 font-weight: 700;
                 cursor: pointer;
                 width: 22px;
@@ -237,6 +240,7 @@
                         line-height: .9;
                         min-width: 14px;
                         border-radius: 10px;
+                        text-align: center;
                     }
                     &:after{
                         display: block;
@@ -272,7 +276,7 @@
 
         p {
             font-size: 13px;
-            color: #5c6060;
+            color: #fff;
             font-weight: 700;
             transition: all ease 0.3s;
 
@@ -306,7 +310,7 @@
                 font-size: 12px;
                 margin-top: 2px;
                 font-weight: 400;
-                color: #000;
+                color: #fff;
             }
         }
 
@@ -315,6 +319,7 @@
 
             svg {
                 width: 16px;
+                fill: #ffeb9a;
 
                 // @media(max-width:767px) {
                 //     fill: #2789ce;
@@ -323,7 +328,7 @@
         }
 
         span.game-subtitle {
-            color: #999999;
+            color: #fff;
             font-size: 12px;
             font-weight: 400;
             margin-top: 2px;
@@ -343,7 +348,7 @@
             margin: 0 8px;
         }
         &:nth-child(odd){
-            background: rgba(196,196,196,.1);
+            background: #1d2c57;
         }
        &:before{
         opacity: 1;
@@ -362,7 +367,7 @@
        &:hover{
         &:before{
             right: 0;
-            background-color: #e3e3e3;
+            background-color: rgb(0 27 103);
         }
         .event_teams{
             padding-left: 4px;
@@ -421,7 +426,7 @@
             // }
 
             span.game-subtitle {
-                color: #999999;
+                color: #fff;
                 font-size: 12px;
                 font-weight: 500;
                 margin-top: 2px;
@@ -513,10 +518,10 @@
                     }
 
                     &.back {
-                        background-color: #78d3f2;
+                        background-color: #4cc5ff;
                         border-top-left-radius: 8px;
                         border-bottom-left-radius: 8px;
-                        color: #106481;
+                        color: #03475f;
                         // .inner {
                         //     &:before {
                         //         content: '';
@@ -551,10 +556,10 @@
                     }
 
                     &.lay {
-                        background-color: #ffabaf;
+                        background-color: #ff8f94;
                         border-top-right-radius: 8px;
                         border-bottom-right-radius: 8px;
-                        color: #af4d52;
+                        color: #862f34;
                         // .inner {
                         //     &:before {
                         //         content: '';
@@ -628,7 +633,7 @@
         flex-wrap: nowrap;
         overflow-x: auto;
         margin: 2px 0 0;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid #eeeeee40;
     }
 
     li {
@@ -641,13 +646,13 @@
             // font-size: 13px;
             position: relative;
             text-transform: uppercase;
-            color: #5c6060;
+            color: #fff;
             padding: 5px 20px 6px 20px;
             font-size: 10px;
             font-weight: 600;
             gap: 4px;
             transition: all 0.5s;
-            border-right: 1px solid #eee;
+            border-right: 1px solid #eeeeee40;
 
 
             &:before {
@@ -782,10 +787,10 @@
     width: 68px;
     height: 42px;
     border-radius: 5px;
-    color: #5c6060;
+    color: #000;
     text-align: center;
     font-weight: 500;
-    background-color: #d1d1d1;
+    background-color: #fff;
     padding: 6px 1px;
     float: left;
     margin-right: 8px;
@@ -864,11 +869,12 @@
         width: 68px;
         height: 42px;
         border-radius: 5px;
-        color: #a13f7c;
+        color: #3861c3;
         text-align: center;
         font-weight: 600;
         background-color: #f4f4f4;
-        background: linear-gradient(to right, #e163dc -30%, #c43d5d 20%, #5142c3 130%);
+        // background: linear-gradient(to right, #e163dc -30%, #c43d5d 20%, #5142c3 130%);
+        background-color: #1f4aad;
         padding: 6px 1px;
         float: left;
         margin-right: 8px;

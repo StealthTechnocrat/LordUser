@@ -1,6 +1,6 @@
 .center_inner {
   border: 1px solid rgba(0, 0, 0, .12);
-  background-color: rgb(255 255 255 / 40%);
+  background-color: rgb(0 18 68 / 70%);
   border-radius: 20px;
 }
 
@@ -37,7 +37,7 @@
 
 .content_disable {
   pointer-events: none;
-  color: #000;
+  color: #fff;
 }
 
 .all_bets_modal {
@@ -69,7 +69,7 @@
 }
 
 .pagination_filter {
-  color: #5c6060;
+  color: #fff;
   font-size: 12px;
   // padding-left: 15px;
   font-weight: 600;
@@ -86,7 +86,7 @@
   justify-content: flex-end;
 
   label {
-    color: #5c6060;
+    color: #fff;
     font-size: 12px;
     font-weight: 600;
 
@@ -99,6 +99,7 @@
       background-color: transparent;
       border-radius: 0;
       margin-left: 2px;
+      color: #fff;
 
       &:focus {
         border-bottom: 1px solid #ffcb2f !important;
@@ -114,9 +115,13 @@
 
 table {
   tr {
+    th{
+      color: #fff;
+    }
     td {
+      color: #fff;
       a {
-        color: #999999;
+        color: #fff;
         max-width: 100%;
         display: inline-block;
         width: 100%;
