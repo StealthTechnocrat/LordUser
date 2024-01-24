@@ -661,11 +661,11 @@ iframe{
 }
 
 .match_head {
-    background-color: #ffcb2f;
+    background-color: #d9bd2c;
     position: relative;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    color: rgba(72, 72, 72, 0.7);
+    color: #000;
 
     .upper_row {
         display: flex;
@@ -893,7 +893,7 @@ iframe{
 
 .accordianods {
     ul.nav-pills {
-        background-color: #ffcb2f;
+        background-color: #d9bd2c;
         height: 30px;
 
         li {
@@ -904,7 +904,7 @@ iframe{
                 position: relative;
                 font-size: 11px;
                 font-weight: 500;
-                color: #5c6060;
+                color: #000;
                 padding: 0 8px;
                 text-transform: uppercase;
                 opacity: .8;
@@ -955,12 +955,12 @@ iframe{
 
 .bl_boxMain{
     .back {
-        color: #106481;
+        color: #03475f;
     }
 }
 .bl_boxMain{
     .lay {
-        color: #af4d52;
+        color: #862f34;
     }
 }
 .bl_boxMain{

@@ -135,18 +135,21 @@
 .side_tabs {
     padding: 0;
     border-radius: 0;
-    background-color: transparent;
+    // background-color: transparent;
+    background-color: #01103a;
     box-shadow: none;
     margin: 0 3px;
     height: calc(100% - 50px);
     overflow: auto;
+    border-right: 1px solid hsla(0,0%,100%,.1);
+    box-shadow: 20px 0 20px -20px #00030e;
 
     @media(min-width:1200px) {
         padding: 5px 5px;
         border-radius: 20px;
-        background-color: #f5f5f5;
+        background-color: #001244;
         box-shadow: rgba(99, 99, 99, .2) 0 2px 8px 0;
-        margin: 3px 10px 0;
+        margin: 3px 10px 0 0;
         height: calc(100% - 8px);
         overflow: auto;
         @include scrollBar;
@@ -378,20 +381,24 @@
         li {
             a {
                 font-size: 12px;
-                color: #5c6060;
+                color: #fff;
                 text-decoration: none;
                 transition: all ease 0.4s;
                 display: block;
 
                 &:hover {
-                    background: #eff2f4;
+                    // background: #eff2f4;
                     transition: all ease 0.4s;
+                }
+                &:focus{
+                    background-color: transparent;
                 }
 
                 span.icon {
                     svg {
                         width: 18px;
                         height: 18px;
+                        fill: #fff;
                     }
                 }
             }
@@ -402,12 +409,21 @@
 
             a {
                 position: relative;
-
+                img{
+                    height: 36px;
+                    width: calc(100% - 10px);
+                    border-radius: 10px;
+                }
                 .clickmain {
                     display: flex;
                     align-items: center;
                     // min-height: 35px;
                     width: 100%;
+                    // img{
+                    //     height: 36px;
+                    //     width: calc(100% - 10px);
+                    //     border-radius: 10px;
+                    // }
                 }
 
                 .arrow {
@@ -418,16 +434,17 @@
                         width: 14px;
                         height: 14px;
                         position: absolute;
-                        top: 12px;
+                        top: 50%;
                         // right: 12px;
                         right: 0;
-                        transform: rotate(180deg);
                         transition: all ease 0.4s;
                         // opacity: 0;
+                        transform: rotate(180deg) translate(2px, -50%);
+
                     }
 
                     i {
-                        transform: rotate(0);
+                        transform: rotate(0) translate(2px, -50%);
                     }
                 }
 
@@ -451,7 +468,7 @@
                         }
 
                         i {
-                            transform: rotate(-45deg);
+                            transform: rotate(-45deg)  translate(6px, -50%);
                             transition: transform .5s ease, -webkit-transform .5s ease;
                         }
                     }
@@ -476,7 +493,7 @@
                     }
 
                     &.drop_open {
-                        background: #eff2f4;
+                        background: #0b1e50;
                         // border-color: #cd021c;
                     }
 
@@ -542,8 +559,8 @@
 
                 a.dropInner {
                     padding: 0 0 0 10px;
-                    border-left: 2px solid #202323;
-                    color: #5c6060;
+                    border-left: 2px solid #fff;
+                    color: #fff;
                     font-size: 12px;
                     font-weight: 500;
                     height: 20px;
@@ -588,10 +605,10 @@
                     line-height: 25px;
                     font-size: 12px;
                     font-weight: 500;
-                    color: #5c6060;
+                    color: #fff;
                     transition: all .3s ease-out 0s;
                     text-transform: inherit;
-                    border-left: 2px solid #ffcb2f;
+                    border-left: 2px solid #fff;
                     cursor: pointer;
                 }
 
@@ -632,7 +649,7 @@
 
         span {
             &.time {
-                color: #3e4049;
+                color: #fff;
                 font-weight: 500;
             }
 
@@ -663,6 +680,7 @@
 .upcoming_games_list {
     li {
         transition: all .5s;
+        border-bottom: 1px solid #334169;
 
         .time {
             font-size: 10px;
@@ -713,13 +731,15 @@
                 left: 2px;
                 top: 5px;
                 line-height: 100%;
-                background-image: linear-gradient(to right, #e163dc -30%, #c43d5d 20%, #5142c3 130%);
-                color: #a13f7c;
+                // background-image: linear-gradient(to right, #e163dc -30%, #c43d5d 20%, #5142c3 130%);
+                background-color: #1f4aad;
+                color: #3861c3;
                 font-size: 8px;
                 font-weight: 600;
                 text-align: center;
                 display: inline-block;
                 text-transform: initial;
+                border: 0;
 
                 .animate {
                     overflow: hidden;
@@ -832,7 +852,7 @@
                     text-align: center;
                     display: block;
                     font-weight: 600;
-                    color: #999999;
+                    color: #fff;
                 }
 
                 &.time {
@@ -842,7 +862,7 @@
                     text-align: center;
                     display: block;
                     font-weight: 700;
-                    color: #5c6060;
+                    color: #fff;
                 }
             }
         }
@@ -855,11 +875,11 @@
                 font-weight: 600;
                 text-transform: uppercase;
                 margin: 0;
-                color: #5c6060;
+                color: #fff;
 
                 .versis_img {
                     svg {
-                        fill: #5c6060;
+                        fill: #fff;
                     }
                 }
             }
@@ -868,7 +888,7 @@
         .subtitle {
             font-weight: 500;
             font-size: 11px;
-            color: #999999;
+            color: #e2e2e2;
             text-transform: capitalize;
             margin-top: 1px;
             line-height: 1.3;
