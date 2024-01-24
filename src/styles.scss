@@ -2395,7 +2395,7 @@ body.dark-theme {
   color: #b9b9b9;
 
   header {
-    background: #242424;
+    background: #001244;
 
     .logo_area {
       img {
@@ -2407,9 +2407,15 @@ body.dark-theme {
       li {
         a {
           border: 1px solid #646464 !important;
-          color: #fff !important;
+          color: #b9b9b9 !important;
+
+          &:hover {
+            color: #fff !important;
+          }
 
           &.active {
+            color: #fff !important;
+
             &:after {
               background-color: #646464 !important;
             }
@@ -2428,7 +2434,7 @@ body.dark-theme {
       .login_btns {
         button.btn-primary {
           background: #424242 !important;
-          color: #b9b9b9 !important;
+          color: #dbdbdb !important;
 
           &:hover {
             background-color: #ffcb2f !important;
@@ -2449,19 +2455,23 @@ body.dark-theme {
             }
           }
 
-          .logo-search {
-            input {
-              background-color: #ffcb2f !important;
-              color: #273a47 !important;
-            }
-          }
+          // .logo-search {
+          //   input {
+          //     background-color: #ffcb2f !important;
+          //     color: #273a47 !important;
+          //   }
+          // }
         }
       }
     }
   }
 
+  .news_marquee {
+    color: #b9b9b9;
+  }
+
   .side_tabs {
-    background-color: #181818;
+    background-color: #000a2c;
 
     .tab_title {
       ul {
@@ -2523,7 +2533,7 @@ body.dark-theme {
   }
 
   .market_area {
-    background: #181818;
+    background: #000a2c;
   }
 
   .tabs_nav {
@@ -2545,12 +2555,12 @@ body.dark-theme {
   .market {
     .event_l {
       &:nth-child(odd) {
-        background: rgba(100, 100, 100, .1) !important;
+        background: #1d222f !important;
       }
 
       &:hover {
         &:before {
-          background-color: #454646 !important;
+          background-color: rgb(0 15 64) !important;
         }
       }
 
@@ -2559,9 +2569,13 @@ body.dark-theme {
           color: #b9b9b9 !important;
         }
 
+        .game-subtitle {
+          color: #b9b9b9 !important;
+        }
+
         .vrs {
           svg {
-            fill: #b9b9b9;
+            fill: #b9b9b9 !important;
           }
         }
       }
@@ -2574,6 +2588,7 @@ body.dark-theme {
 
       .timeCol {
         background-color: #ffeeb9;
+
         &.inplayBlink {
           background-color: #ffcb2f;
           color: #ffcb2f !important;
@@ -2588,22 +2603,86 @@ body.dark-theme {
         }
       }
 
-      .eventLiveInplay {
-        .timeCol {
-          color: #a13f7c;
+      .event_rates_title {
+        .point_title {
+          .rate_div {
+            &.back {
+              background-color: #bceeff !important;
+            }
+
+            &.lay {
+              background-color: #ffaaae !important;
+            }
+          }
         }
       }
+
+      // .eventLiveInplay {
+      //   .timeCol {
+      //     color: #a13f7c;
+      //   }
+      // }
     }
   }
 
+  .bet_table_row {
+    .nation_name {
+      p {
+        color: #d4d4d4;
+      }
+
+      .profitloss {
+        color: #00e500;
+      }
+
+      .negative {
+        color: #ff7575;
+      }
+    }
+
+    .bl_boxMain {
+      .bl_box {}
+    }
+  }
+  .pagination_filter{
+    color: #b9b9b9 !important;
+  }
+  .tableSearch {
+    label{
+      color: #b9b9b9 !important;
+    }
+  }
+  .prlsFilter {
+    .form-field {
+      label{
+        color: #b9b9b9 !important;
+      }
+      input{
+        color: #b9b9b9 !important;
+        &[type="date"]::-webkit-calendar-picker-indicator {
+          filter: invert(.8);
+        }
+        &.text-danger{
+          color: #dc3545!important;
+        }
+      }
+      select{
+        color: #b9b9b9 !important;
+      }
+    }
+  }
   .casino_bar {
     .rightGames {
       h3 {
         color: #b9b9b9 !important;
+        &:after{
+          border-bottom: 2px solid #b9b9b9;
+        }
       }
 
       .tab-content {
-        background: #181818;
+        background: #000a2c;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
 
         .game {
           .overlay {
@@ -2615,7 +2694,90 @@ body.dark-theme {
       }
     }
   }
-
+  .upcoming_games_list {
+    li {
+      .timeCol{
+        .animate{
+          .flip-animation{
+            .time_date{
+              border: 1px solid #ffeeb9;
+              background: #ffeeb9;
+              span{
+                color: #333333 !important;
+              }
+            }
+          }
+        }
+      }
+      .date_time.in-play{
+        .animate{
+          ul.flip-animation{
+            li.date_time.in-play{
+              span.time{
+                color: #333333 !important;
+              }
+            }
+          }
+        }
+      }
+      .date_time{
+        &.in-play{
+          background-color: #ffcb2f !important;
+          color: #ffcb2f !important;
+          .animate{
+            .flip-animation{
+              li{
+                .time{
+                  color: #333333 !important;
+                }
+              }
+            }
+          }
+          ul{
+            li{
+              border: 0 !important;
+              .day-name, .time, .in-play-light{
+                color: #333333 !important;
+              }
+              .sports-icon{
+                filter: invert(1);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .user-menus {
+    li.userDrop {
+      ul.dropdown-menu{
+        background-color: #000e34 !important;
+      }
+    }
+  }
+  .chipSettingModal {
+    .modal-content {
+      .modal-header{
+        background-color: #1f252a !important;
+      }
+      .termConWrap {
+        background-color: #3c444b !important;
+        .page_title{
+          background-color: #1f252a;
+        }
+      }
+      .modal-footer{
+        background-color: #1f252a;
+      }
+    }
+  }
+  .customModaalTheme {
+    .modal-content {
+      .modal-header{
+        background-color: #1f252a !important;
+      }
+    }
+  }
   .footer-main {
     ul.links {
       li {
@@ -2632,8 +2794,8 @@ body.dark-theme {
   }
 
   .scrollToTop {
-    background: #fff;
-    color: #000;
+    background: #4f5051;
+    color: #fff;
   }
 
   .match_head {
@@ -2680,7 +2842,16 @@ body.dark-theme {
     .market_assets {
       ul {
         li {
+          .ringBtn {
+            background-color: #b9b9b9 !important;
+
+            i {
+              color: #242424 !important;
+            }
+          }
+
           button {
+
             svg {
               path {
                 fill: #b9b9b9 !important;
@@ -2744,7 +2915,15 @@ body.dark-theme {
       }
     }
   }
-
+  .mobMatchUnmatch {
+    a {
+      .nav-icon {
+        span{
+          background: #b9b9b9 !important;
+        }
+      }
+    }
+  }
   .main_wrap {
     .cstm_row {
       .nav {
@@ -2777,9 +2956,11 @@ body.dark-theme {
 
     li {
       color: #b9b9b9 !important;
-      .dropdown-toggle{
+
+      .dropdown-toggle {
         color: #b9b9b9 !important;
       }
+
       &:hover {
         &:after {
           background-color: #b9b9b9;
@@ -2804,234 +2985,278 @@ body.dark-theme {
     }
   }
 
-  .page_title {
-    h3 {
-      color: #b9b9b9 !important;
+  .custoModalld {
+    .modal-content {
+      .modal-header {
+        background-color: #1f252a !important;
+      }
+      .modal-body {
+        background-color: #181818 !important;
+        .table {
+          tbody{
+            tr {
+              background-color: #383838;
+              td{
+                color: #c6c6c6;
+              }
+          }
+          }
+        }
+      }
+      .modal-footer{
+        background-color: #1f252a;
+      }
     }
   }
 
-  .center_inner {
+.page_title {
+  h3 {
+    color: #b9b9b9 !important;
+    &:after{
+      border-bottom: 2px solid #b9b9b9;
+    }
+  }
+}
+
+.center_inner {
+  background-color: #000a2c;
+}
+
+.middle_area {
+  .mid_inner {
     background-color: #181818;
   }
+}
 
-  .middle_area {
-    .mid_inner {
-      background-color: #181818;
+.my_bets_table {
+  .filter {
+
+    .form-select,
+    .form-control {
+      border: 1px solid #919191;
+      background-color: transparent;
+      color: #ccc;
     }
   }
+}
 
-  .my_bets_table {
-    .filter {
-
-      .form-select,
-      .form-control {
-        border: 1px solid #919191;
-        background-color: transparent;
-        color: #ccc;
-      }
-    }
+.pagination_filter {
+  select {
+    color: #b9b9b9 !important;
   }
+}
 
-  .pagination_filter {
-    select {
+.ngx-pagination {
+  .disabled {
+    color: #cacaca !important;
+  }
+}
+
+.table {
+  thead {
+    th {
       color: #b9b9b9 !important;
     }
   }
 
-  .ngx-pagination {
-    .disabled {
-      color: #cacaca !important;
-    }
-  }
+  tbody {
+    tr {
+      background-color: #181818;
 
-  .table {
-    thead {
-      th {
+      td {
+        border-bottom: 1px solid rgb(117 117 117 / 67%);
         color: #b9b9b9 !important;
-      }
-    }
-
-    tbody {
-      tr {
-        background-color: #181818;
-
-        td {
-          border-bottom: 1px solid rgb(117 117 117 / 67%);
+        a{
+          color: #b9b9b9 !important;
         }
       }
     }
   }
-
-  input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
+}
+.pagination_filter{
+  p{
+    color: #b9b9b9 !important;
   }
+}
 
-  .my_bets_table {
-    .filter {
-      button {
-        &:hover {
-          border: 1px solid #fff !important;
-          background: #fff !important;
-          box-shadow: 0 0 8px 0 #fff !important;
-          color: #000 !important;
-        }
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+.my_bets_table {
+  .filter {
+    button {
+      &:hover {
+        border: 1px solid #fff !important;
+        background: #fff !important;
+        box-shadow: 0 0 8px 0 #fff !important;
+        color: #000 !important;
       }
     }
   }
+}
 
-  .modal {
-    // background-color: #3c444b !important;
-
-    .modal-content {
-      .modal-body {
-        background-color: #3c444b !important;
-      }
-    }
-  }
-
-  .termsCondition {
-    .termConWrap {
-      h3 {}
-    }
-  }
-
+.modal {
+  // background-color: #3c444b !important;
 
   .modal-content {
-    background-color: #3c444b;
+    .modal-body {
+      background-color: #3c444b !important;
+    }
   }
+}
 
-  .chipSettingModal {
-    .modal-content {
+.termsCondition {
+  .termConWrap {
+    h3 {}
+  }
+}
 
-      form {
-        .form-field {
 
-          label,
-          input {
-            color: #b9b9b9;
-          }
+.modal-content {
+  background-color: #3c444b;
+}
 
-          input {
-            border-bottom: 1px solid #6a6a6a !important;
-          }
+.chipSettingModal {
+  .modal-content {
+
+    form {
+      .form-field {
+
+        label,
+        input {
+          color: #b9b9b9;
+        }
+
+        input {
+          border-bottom: 1px solid #6a6a6a !important;
         }
       }
     }
   }
+}
 
-  .login_form {
-    button.btn-close {
-      color: #b9b9b9 !important;
-    }
-  }
-
-  .upcoming_games_list {
-    li {
-      .game_name {
-        h5 {
-          color: #b9b9b9 !important;
-
-          .versis_img {
-            svg {
-              fill: #b9b9b9 !important;
-            }
-          }
-        }
-      }
-
-      .date_time {
-        .time {
-          color: #b9b9b9 !important;
-        }
-      }
-    }
-  }
-
-  .content_disable {
+.login_form {
+  button.btn-close {
     color: #b9b9b9 !important;
   }
+}
 
-  .pagination_filter {
-    .pagination {
-      a {
+.upcoming_games_list {
+  li {
+    .game_name {
+      h5 {
+        color: #b9b9b9 !important;
+
+        .versis_img {
+          svg {
+            fill: #b9b9b9 !important;
+          }
+        }
+      }
+    }
+
+    .date_time {
+      .time {
         color: #b9b9b9 !important;
       }
     }
   }
+}
 
-  .ngx-pagination a:hover,
-  .ngx-pagination button:hover {
-    background: #3a3939 !important;
-  }
+.content_disable {
+  color: #b9b9b9 !important;
+}
 
-  .market {
-    .market-title {
+.pagination_filter {
+  .pagination {
+    a {
       color: #b9b9b9 !important;
     }
   }
+}
 
-  .sidebar_toggle_btn {
-    img {
-      filter: invert(1);
-    }
-  }
+.ngx-pagination a:hover,
+.ngx-pagination button:hover {
+  background: #3a3939 !important;
+}
 
-  .mobMarquee {
+.market {
+  .market-title {
     color: #b9b9b9 !important;
   }
+}
 
-  .bottom_nav {
-    background-color: #242424 !important;
-    color: #000 !important;
+.sidebar_toggle_btn {
+  img {
+    filter: invert(1);
+  }
+}
 
-    ul {
-      li {
-        &.all-items {
-          .menu-item {
-            box-shadow: 3px 3px 5px #1b1a1a, -3px -3px 5px #2b2b2b !important;
-            background-color: #242424 !important;
-          }
+.mobMarquee {
+  color: #b9b9b9 !important;
+}
 
-          .bottom-circle {
-            .circle-nav {
-              .circle-nav-open {
-                background-color: #242424 !important;
-              }
+::-webkit-scrollbar-thumb {
+  background: #868686 !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #868686 !important;
+}
+
+.bottom_nav {
+  background-color: #242424 !important;
+  color: #000 !important;
+
+  ul {
+    li {
+      &.all-items {
+        .menu-item {
+          box-shadow: 3px 3px 5px #1b1a1a, -3px -3px 5px #2b2b2b !important;
+          background-color: #242424 !important;
+        }
+
+        .bottom-circle {
+          .circle-nav {
+            .circle-nav-open {
+              background-color: #242424 !important;
             }
           }
         }
+      }
 
-        &.big {
-          &:before {
-            box-shadow: 3px 3px 5px #1b1a1a, -3px -3px 5px #2b2b2b !important;
-            background-color: #242424 !important;
+      &.big {
+        &:before {
+          box-shadow: 3px 3px 5px #4a4949, -3px -3px 5px #454444 !important;
+          background-color: #242424 !important;
+        }
+      }
+
+      .noneAllit {
+        svg {
+          path {
+            fill: #fff !important;
           }
         }
+      }
 
-        .noneAllit {
-          svg {
-            path {
-              fill: #fff !important;
-            }
-          }
-        }
+      a {
+        color: #b9b9b9 !important;
 
-        a {
-          color: #b9b9b9 !important;
-
-          svg {
-            path {
-              fill: #b9b9b9 !important;
-            }
+        svg {
+          path {
+            fill: #b9b9b9 !important;
           }
         }
       }
     }
   }
+}
 
-  .m_left_sidebar {
-    background: #181818 !important;
-  }
+.m_left_sidebar {
+  background: #181818 !important;
+}
 }
 
 .custoModalld {

@@ -1826,8 +1826,8 @@ header {
 
     .odd-title {
       padding: 3px 3px 3px 5px;
-      color: #273a47;
-      background-color: #ebebeb;
+      color: #fff;
+      background-color: #001244;
       text-align: left;
 
       span {
@@ -1856,10 +1856,10 @@ header {
       }
 
       &.back {
-        background-image: linear-gradient(187deg, #bbe1ee, rgb(242 242 242 / 40%) 50%);
+        background-image: linear-gradient(187deg, #80dffe, rgb(0 0 0) 50%);
       }
       &.lay {
-        background-image: linear-gradient(187deg,#f6c5c8,rgb(242 242 242 / 40%) 50%);
+        background-image: linear-gradient(187deg, #ff8990, rgb(0 0 0) 50%);
       }
 
       .beatteam {

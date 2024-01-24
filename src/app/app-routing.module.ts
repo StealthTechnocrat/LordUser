@@ -23,6 +23,7 @@ const routes: Routes = [
   {path:'profit-loss', component:ProfitLossComponent},
   {path:'table-games/:marketId', component:TeenpattiComponent},
   {path:'live-games/:page/:system', component:LiveGamesComponent},
+  // {path:'casino/:type', component:CasinoComponent},
   {path:'casino/:type', component:CasinoComponent},
   {path:'casino/:type/:index/:systemId', component:CasinoComponent},
   {path:'cup-rate/:sportsId/:eventId', component:CupRateComponent},

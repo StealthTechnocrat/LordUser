@@ -26,7 +26,7 @@
 <div class="bottom_nav d-block d-xl-none">
     <ul class="list-unstyled d-flex p-0 m-0">
         <li class="truncate">
-            <a [routerLink]="'/games'">
+            <a (click)="restInplay()" [routerLink]="'/games'">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18.372" height="17.153" viewBox="0 0 18.372 17.153">
                     <g id="Group_396" data-name="Group 396" transform="translate(-0.045 0.003)">
                         <g id="Group_395" data-name="Group 395">
@@ -43,7 +43,7 @@
             </a>
         </li>
         <li class="truncate">
-            <a>
+            <a (click)="getInplay()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
                     <path
                         d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 18v-12l10 6-10 6z">

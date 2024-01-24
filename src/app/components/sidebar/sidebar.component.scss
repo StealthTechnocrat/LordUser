@@ -801,12 +801,13 @@
                                 display: block;
                                 top: 9px;
                                 position: relative;
+                                border: 0;
 
                             }
 
                             .date,
                             .time {
-                                color: #fff !important;
+                                color: #fff ;
                             }
 
                             .time {
