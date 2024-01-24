@@ -5,6 +5,8 @@ import { SafeResourceUrl } from '@angular/platform-browser';
 @Injectable()
 export class UiService {
     EventName: string;
+    betSound: boolean = true;
+    betCount: number = 0;
     loader: boolean = false;
     Error: boolean = false;
     Success: boolean = false;

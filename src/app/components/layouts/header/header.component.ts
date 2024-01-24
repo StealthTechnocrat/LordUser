@@ -45,6 +45,7 @@ export class HeaderComponent implements OnInit {
   Exposure: number;
   News: any = [];
   Name: string = "";
+  betCount: number = 0;
   firstTimeLoginChk : boolean = false;
   constructor(
     private accountService: AccountService,
@@ -297,6 +298,7 @@ export class HeaderComponent implements OnInit {
     return await new Promise((resolve) => {
       const interval = setInterval(() => {
         this.user();
+        this.getBetCount();
       }, 10000);
     });
   }
@@ -331,6 +333,7 @@ export class HeaderComponent implements OnInit {
 
 
   usrPWDchk() {
+    debugger;
     this.accountService.usrPWDchk(this.signInModel).then((response) => {
       if (response.Status) {
         debugger;
@@ -348,6 +351,7 @@ export class HeaderComponent implements OnInit {
   }
 
   LogIn() {
+    debugger;
     if (
       this.signInModel.LoginID == "" ||
       this.signInModel.LoginID == undefined
@@ -630,6 +634,21 @@ export class HeaderComponent implements OnInit {
       this.marketName = value;
     }
     this.GetAllBets();
+  }
+
+  getBetCount(){
+    this.uISERVICE.backUpBets = [];
+    this.accountService
+      .GetAllPendingBetsCount(
+      )
+      .then((response) => {
+        if (response.Status) {
+          this.betCount = response.Result;
+          this.uISERVICE.betCount = this.betCount;
+        } else {
+          this.uISERVICE.backUpBets = [];
+        }
+      });
   }
 
   GetAllBets() {

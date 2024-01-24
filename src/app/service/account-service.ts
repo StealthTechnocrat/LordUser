@@ -70,12 +70,22 @@ export class AccountService {
   private GetResultListUrl = environment.apiBaseUrl + "Event/GetResultList";
   private filteredResultUrl =
     environment.apiBaseUrl + "Event/GetFilteredResultList";
+    private GetAllPendingBetsCountUrl =
+    environment.apiBaseUrl + "Admin/GetAllPendingBetsCount";
 
   private usrDtlUrl = environment.apiBaseUrl + "SignUp/UsersDetails";
 
   SetNewPassword(userId,oldpwd, newpwd): Promise<any> {
     return this.baseHttpService
       .Get(this.SetNewPasswordUrl + "?userId=" + userId + "&oldPwd=" + oldpwd + "&newPwd=" + newpwd)
+      .then(function (response) {
+        return response.json();
+      });
+  }
+
+  GetAllPendingBetsCount(): Promise<any> {
+    return this.baseHttpService
+      .Get(this.GetAllPendingBetsCountUrl)
       .then(function (response) {
         return response.json();
       });

@@ -484,7 +484,10 @@
 
 <div class="mobMatchUnmatch" (click)="GetAllBets()">
   <a href="#" data-toggle="modal" data-target="#allbetsmodal">
-    <div id="nav-icon1">
+    <div id="nav-icon1 " class="nav-icon position-relative">
+      <div class="betCount">
+        {{uISERVICE.betCount}}
+      </div>
       <span></span>
       <span></span>
       <span></span>
