@@ -89,8 +89,8 @@
                                 d="M193 671 c-67 -20 -127 -40 -131 -46 -9 -10 19 -301 36 -375 9 -40 -1 -37 322 -95 80 -14 204 -37 275 -50 233 -43 309 -55 348 -55 30 0 117 39 385 174 510 256 492 246 509 284 27 64 -16 132 -83 132 -17 0 -171 -47 -342 -105 -171 -58 -317 -105 -325 -105 -9 0 -17 -15 -21 -41 -5 -28 -18 -53 -40 -75 -51 -51 -66 -50 -331 23 -212 58 -245 75 -226 112 17 30 40 27 239 -29 220 -63 244 -67 265 -45 9 9 17 20 17 25 0 21 -41 50 -105 73 -217 79 -664 237 -667 236 -2 -1 -58 -18 -125 -38z">
                             </path>
                         </g>
-                    </svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.24 25.178" width="25.24"
-                        height="25.178">
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.24 25.178" width="25.24" height="25.178">
                         <g id="Group_3" transform="translate(-1073.83 -675.943)" data-name="Group 3">
                             <path id="Path_1" fill="#ff9b09" transform="translate(-45.888 400.063) rotate(3)"
                                 d="M 1141.64 223.276 l -3.852 -3.944 l -1.547 1.393 l 4.01 4.025 Z" data-name="Path 1">
@@ -123,8 +123,8 @@
                     </svg>
                 </span>
             </a>
-            <span class="menu-item items" data-toggle="modal" data-target="#OneClickBetModal">
-                <a href="javascript:void(0);">
+            <span class="menu-item items" *ngIf="uISERVICE.Header">
+                <a href="javascript:void(0);" data-toggle="modal" data-target="#OneClickBetModal">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 357.058 475.569" width="16" height="21">
                         <g id="tap" transform="translate(-0.284)">
                             <path id="Path_1" fill="#242424"
@@ -137,8 +137,23 @@
                     </svg>
                 </a>
             </span>
-            <span class="menu-item items" >
-                <a href="javascript:void(0);" >
+            <span class="menu-item items" *ngIf="!uISERVICE.Header">
+                <a href="javascript:void(0);" data-toggle="modal" data-target="#loginModal">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 357.058 475.569" width="16" height="21">
+                        <g id="tap" transform="translate(-0.284)">
+                            <path id="Path_1" fill="#242424"
+                                d="M 318.918 187.566 h -0.668 a 36.676 36.676 0 0 0 -24.719 9.4 c -5.492 -15.2 -19.449 -26.125 -35.8 -26.125 A 37.139 37.139 0 0 0 231.2 182.254 c -6.383 -12.922 -19.187 -21.687 -33.91 -21.687 h -0.711 a 34.815 34.815 0 0 0 -21.832 7.273 V 75.718 c 0 -22.262 -17.332 -40.371 -38.414 -40.371 c -21.059 0 -38.3 18.1 -38.313 40.344 l -0.176 182.773 L 87.5 245.9 a 52.171 52.171 0 0 0 -36.867 -19.363 A 51.334 51.334 0 0 0 12.18 240.148 l -9 7.457 a 8 8 0 0 0 -1.992 9.852 l 87.5 168.2 c 16 30.738 46.441 49.914 79.445 49.914 H 266.75 v -0.086 c 50 0 90.539 -43.387 90.59 -96.66 c 0.02 -23.836 -0.07 -41.6 -0.055 -56 c 0.051 -38.523 0.012 -52.738 -0.086 -95.18 c -0.051 -22.211 -17.258 -40.078 -38.281 -40.078 Z m 22.25 135.2 c -0.016 14.4 -0.039 32.238 -0.062 56.074 c -0.043 44.465 -33.609 80.723 -74.824 80.723 H 168.141 c -27.016 0 -52.02 -15.879 -65.25 -41.3 L 18.363 255.839 l 4.172 -3.48 c 0.105 -0.086 0.207 -0.187 0.309 -0.277 A 35.512 35.512 0 0 1 49.508 242.5 a 36.3 36.3 0 0 1 25.609 13.563 l 24.488 29.8 a 8 8 0 0 0 14.18 -5.07 L 113.93 75.7 c 0.008 -13.43 10.164 -24.355 22.414 -24.355 S 158.75 62.28 158.75 75.718 v 123.66 c 0 0.43 -0.02 0.863 -0.02 1.3 c 0 0.188 0.02 0.379 0.02 0.563 v 52.871 a 8 8 0 1 0 16 0 V 199.647 c 0 -12.957 9.9 -23.082 21.832 -23.082 h 0.711 c 12.258 0 22.457 10.684 22.457 24.121 v 48.379 a 8 8 0 1 0 16 0 V 211.108 c 0 -13.441 9.711 -24.375 22.035 -24.375 c 12.254 0 21.965 10.93 21.965 24.375 v 35.809 a 8 8 0 0 0 16 0 V 227.526 c 0 -13.441 10.242 -23.961 22.5 -23.961 h 0.668 c 12.227 0 22.191 10.7 22.223 24.1 c 0.1 42.41 0.078 56.609 0.027 95.105 Z m 0 0"
+                                data-name="Path 1"></path>
+                            <path id="Path_2" fill="#242424"
+                                d="M 72.609 79.172 a 8 8 0 0 0 8 -8 a 55.438 55.438 0 0 1 110.875 0 a 8 8 0 1 0 16 0 a 71.438 71.438 0 0 0 -142.875 0 a 8 8 0 0 0 8 8 Z m 0 0"
+                                data-name="Path 2"></path>
+                        </g>
+                    </svg>
+                </a>
+            </span>
+
+            <span class="menu-item items">
+                <a href="javascript:void(0);">
                     <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="203.000000pt" height="251.000000pt"
                         viewBox="0 0 203.000000 251.000000" preserveAspectRatio="xMidYMid meet">
                         <g transform="translate(0.000000,251.000000) scale(0.100000,-0.100000)" fill="#000000"
@@ -351,18 +366,61 @@
 
 
 
-<div class="modal searchModal p-0 fade" id="OneClickBetModal" data-bs-backdrop="static" tabindex="-1"
-  aria-labelledby="OneClickBetModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-md">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title" id="OneClickBetModalLabel">One Click Bet Stake</h1>
-        <button type="button" class="btn-close" (click)="reset()" id="cls1Click" data-dismiss="modal" aria-label="Close"><i
-            class="fa fa-times"></i></button>
-      </div>
-      <div class="modal-body">
-        <div class="settlementBody">
-          <table class="datatable table dt-responsive nowrap table-bordered">
+<div class="modal p-0 fade" id="OneClickBetModal" data-backdrop="static" tabindex="-1"
+    aria-labelledby="OneClickBetModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered oneClickBet">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="OneClickBetModalLabel">One Click Bet Stake</h1>
+                <button type="button" class="btn-close" (click)="reset()" id="cls1Click" data-dismiss="modal"
+                    aria-label="Close">X</button>
+            </div>
+            <div class="modal-body">
+                <div class="settlementBody">
+                    <div class="d-flex align-items-center">
+                        <h3>
+                            <svg _ngcontent-enp-c54="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 357.058 475.569"
+                                width="16" height="21">
+                                <g _ngcontent-enp-c54="" id="tap" transform="translate(-0.284)">
+                                    <path _ngcontent-enp-c54="" id="Path_1" fill="#242424"
+                                        d="M 318.918 187.566 h -0.668 a 36.676 36.676 0 0 0 -24.719 9.4 c -5.492 -15.2 -19.449 -26.125 -35.8 -26.125 A 37.139 37.139 0 0 0 231.2 182.254 c -6.383 -12.922 -19.187 -21.687 -33.91 -21.687 h -0.711 a 34.815 34.815 0 0 0 -21.832 7.273 V 75.718 c 0 -22.262 -17.332 -40.371 -38.414 -40.371 c -21.059 0 -38.3 18.1 -38.313 40.344 l -0.176 182.773 L 87.5 245.9 a 52.171 52.171 0 0 0 -36.867 -19.363 A 51.334 51.334 0 0 0 12.18 240.148 l -9 7.457 a 8 8 0 0 0 -1.992 9.852 l 87.5 168.2 c 16 30.738 46.441 49.914 79.445 49.914 H 266.75 v -0.086 c 50 0 90.539 -43.387 90.59 -96.66 c 0.02 -23.836 -0.07 -41.6 -0.055 -56 c 0.051 -38.523 0.012 -52.738 -0.086 -95.18 c -0.051 -22.211 -17.258 -40.078 -38.281 -40.078 Z m 22.25 135.2 c -0.016 14.4 -0.039 32.238 -0.062 56.074 c -0.043 44.465 -33.609 80.723 -74.824 80.723 H 168.141 c -27.016 0 -52.02 -15.879 -65.25 -41.3 L 18.363 255.839 l 4.172 -3.48 c 0.105 -0.086 0.207 -0.187 0.309 -0.277 A 35.512 35.512 0 0 1 49.508 242.5 a 36.3 36.3 0 0 1 25.609 13.563 l 24.488 29.8 a 8 8 0 0 0 14.18 -5.07 L 113.93 75.7 c 0.008 -13.43 10.164 -24.355 22.414 -24.355 S 158.75 62.28 158.75 75.718 v 123.66 c 0 0.43 -0.02 0.863 -0.02 1.3 c 0 0.188 0.02 0.379 0.02 0.563 v 52.871 a 8 8 0 1 0 16 0 V 199.647 c 0 -12.957 9.9 -23.082 21.832 -23.082 h 0.711 c 12.258 0 22.457 10.684 22.457 24.121 v 48.379 a 8 8 0 1 0 16 0 V 211.108 c 0 -13.441 9.711 -24.375 22.035 -24.375 c 12.254 0 21.965 10.93 21.965 24.375 v 35.809 a 8 8 0 0 0 16 0 V 227.526 c 0 -13.441 10.242 -23.961 22.5 -23.961 h 0.668 c 12.227 0 22.191 10.7 22.223 24.1 c 0.1 42.41 0.078 56.609 0.027 95.105 Z m 0 0"
+                                        data-name="Path 1"></path>
+                                    <path _ngcontent-enp-c54="" id="Path_2" fill="#242424"
+                                        d="M 72.609 79.172 a 8 8 0 0 0 8 -8 a 55.438 55.438 0 0 1 110.875 0 a 8 8 0 1 0 16 0 a 71.438 71.438 0 0 0 -142.875 0 a 8 8 0 0 0 8 8 Z m 0 0"
+                                        data-name="Path 2"></path>
+                                </g>
+                            </svg>
+                            One click bet
+                        </h3>
+                        <div class="custom-checkbox">
+                            <div class="ml-4 switchCommon">
+                                <label class="switchBtnCommon">
+                                    <input type="checkbox" id="togBtn" (change)="toggleStatus($event)"
+                                        [(ngModel)]="checkedValue">
+                                    <div class="slider round">
+                                        <span class="on" value="False">Active</span>
+                                        <span class="off" value="True">In-Active</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setBetClick">
+                        <div class="d-flex flex-wrap">
+                            <div class="chipSet select" *ngFor="let chips of chipData">
+                                <!-- <button class="setChipsBtn"
+                                    (click)="setDefaultChips(chips.ChipValue)">{{chips.ChipValue}}</button> -->
+                                <!-- Assuming this is your button inside the modal -->
+                                <button class="setChipsBtn" (click)="setDefaultChips(chips.ChipValue)">
+                                    {{chips.ChipValue}}
+                                </button>
+                            </div>
+                            <!-- <div class="text-center" (click)="setDefaultChips(chips.ChipValue)">{{chips.ChipValue}}</div> -->
+                        </div>
+                        <h6 class="add-custom-stake py-2 px-2"> Add Custom stake </h6>
+
+                    </div>
+                    <!-- <table class="datatable table dt-responsive nowrap table-bordered">
             <tbody>
               <tr>
                 <td class="width-xl">Active</td>
@@ -382,11 +440,16 @@
                 <td class="text-center" (click)="setDefaultChips(chips.ChipValue)">{{chips.ChipValue}}</td>
               </tr>
             </tbody>
-          </table>
+          </table> -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-secondary modCancel">
+                    <span class="animate-btn">Close</span>
+                </button>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 
 
@@ -396,8 +459,8 @@
     <div class="modal-dialog modal-lg modal-dialog-centered searchMobMod">
         <div class="modal-content">
             <div class="login_form">
-                <button type="button" class="btn-close" (click)="reset()" id="clsSrch" data-dismiss="modal" aria-label="Close"><i
-                        class="fa fa-times"></i></button>
+                <button type="button" class="btn-close" (click)="reset()" id="clsSrch" data-dismiss="modal"
+                    aria-label="Close"><i class="fa fa-times"></i></button>
                 <div class="loginWrap">
                     <div class="input-field">
                         <input placeholder="Search.." type="text" name="search" autofocus="" autocomplete="off"
@@ -411,7 +474,7 @@
                                 <br>
                                 {{data.EventTime | date:'M/d/yy, h:mm a'}}
                                 <br><br>
-                              </li>
+                            </li>
                         </ul>
                     </div>
                 </div>

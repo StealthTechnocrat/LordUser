@@ -278,6 +278,5 @@ document.getElementById("cls1Click").click();
       });
     });
   }
-
-
+  
 }

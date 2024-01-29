@@ -159,7 +159,8 @@
                         margin: 1px 2px;
                         box-shadow: none;
                         border-radius: 0;
-                        path{
+
+                        path {
                             fill: #fff;
                         }
                     }
@@ -453,27 +454,136 @@
     }
 }
 
-.table tbody td {
-    padding: 7px 8px;
-    line-height: 1.42857143;
-    vertical-align: middle;
-    font-size: 12px;
-    font-weight: 600;
-    color: #e7eaf0;
+
+
+.oneClickBet {
+    max-width: 600px;
+
+    .modal-content {
+        border-radius: 20px 20px 20px 20px;
+        box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12), 0 11px 15px -7px rgba(0, 0, 0, 0.2);
+
+        .modal-header {
+            background-color: #001244;
+            border-bottom: 1px solid #dee2e6;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            align-items: center;
+            padding: 4px 0px;
+
+            h1 {
+                font-size: 15px;
+                display: block;
+                line-height: 30px;
+                margin-bottom: 8px;
+                margin-top: 0;
+                font-weight: 600;
+                position: relative;
+                width: fit-content;
+                color: #fff;
+                margin-left: 15px;
+
+                &:after {
+                    content: "";
+                    position: absolute;
+                    width: 100%;
+                    bottom: 0px;
+                    left: 0px;
+                    border-bottom: 2px solid #fff;
+                }
+            }
+
+            button.btn-close {
+                color: #fff !important;
+                background-color: transparent;
+                width: 40px;
+                height: 40px;
+                border: 0;
+                border-radius: 40px;
+                opacity: 1;
+                z-index: 1;
+                font-size: 20px;
+                color: #fff !important;
+                font-weight: 700;
+            }
+        }
+
+        .modal-body {
+            background-color: #000929;
+            min-height: 130px;
+
+            .settlementBody {
+                h3 {
+                    font-size: 15px;
+
+                    svg {
+                        margin-right: 10px;
+
+                        path {
+                            fill: #fff;
+                        }
+                    }
+                }
+
+                .custom-checkbox {
+                    .switchBtnCommon {
+                        margin-bottom: 0;
+                    }
+                }
+
+                .setBetClick {
+                    background-color: #56575a9c;
+                    .chipSet {
+                        width: 50%;
+                        padding: 5px;
+                        display: inline-block;
+                        &.select{
+                            .setChipsBtn {
+                                background-color: #202323;
+                                color: #fff;
+                                transition: all ease-in .3s;
+                                border-bottom: 1px solid #ffcb2f;
+                                box-shadow: 0 1px 0 0 #ffcb2f;
+                            }
+                        }
+                        .setChipsBtn {
+                            cursor: pointer;
+                            width: 100%;
+                            font-weight: 500;
+                            padding: 6px 5px;
+                            text-align: center;
+                            font-size: 14px;
+                            border: 1px solid transparent;
+                            border-radius: 8px;
+                            background-color: #fff;
+                            color: #273a47;
+                            box-shadow: rgb(255 255 255 / 36%) 0 2px 5px, rgb(255 255 255 / 43%) 0 2px 5px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .modal-footer {
+            padding: 4px 10px;
+            border-radius: 0 0 20px 20px;
+            background-color: #001244;
+
+            .modCancel {
+                background-color: #f44336 !important;
+                border: 0;
+                width: 125px;
+                height: 33px;
+                font-size: 12px;
+                box-shadow: none;
+                font-weight: 600;
+                border-radius: 30px;
+                text-transform: uppercase;
+            }
+        }
+    }
 }
-.modal-content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    pointer-events: auto;
-    background-color: #001244;
-    /* background-color: #fff; */
-    background-clip: padding-box;
-    border: 1px solid rgba(0,0,0,.2);
-    border-radius: 0.3rem;
-    outline: 0;
-}
+
 .switchBtnCommon {
     position: relative;
     display: inline-block;
@@ -481,97 +591,97 @@
     height: 29px;
 
     input {
-      display: none;
+        display: none;
     }
 
     input:checked+.slider {
-      background-color: #2ab934;
+        background-color: #2ab934;
     }
 
     input:focus+.slider {
-      box-shadow: 0 0 1px #2196F3;
+        box-shadow: 0 0 1px #2196F3;
     }
 
     .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #f1556c;
-      -webkit-transition: .4s;
-      transition: .4s;
-
-      &:before {
         position: absolute;
-        content: "";
-        height: 20px;
-        width: 20px;
-        left: 4px;
-        top: 50%;
-        transform: translate(0px, -50%);
-        background-color: white;
-        transition: 0.4s;
-      }
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #f1556c;
+        -webkit-transition: .4s;
+        transition: .4s;
+
+        &:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            top: 50%;
+            transform: translate(0px, -50%);
+            background-color: white;
+            transition: 0.4s;
+        }
     }
 
     input:checked+.slider:before {
-      right: 4px;
-      left: unset;
-      top: 50%;
-      transform: translate(0px, -50%);
-      transition: 0.4s;
+        right: 4px;
+        left: unset;
+        top: 50%;
+        transform: translate(0px, -50%);
+        transition: 0.4s;
 
     }
 
     /*------ ADDED CSS ---------*/
     .on {
-      display: none;
+        display: none;
     }
 
     .on,
     .off {
-      color: white;
-      position: absolute;
-      /* transform: translate(-50%, -50%); */
-      /* top: 50%; */
-      /* left: 50%; */
-      font-size: 10px;
-      white-space: nowrap;
-      width: calc(100% - 20px);
-      height: 100%;
-      text-align: center;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
+        color: white;
+        position: absolute;
+        /* transform: translate(-50%, -50%); */
+        /* top: 50%; */
+        /* left: 50%; */
+        font-size: 10px;
+        white-space: nowrap;
+        width: calc(100% - 20px);
+        height: 100%;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
     }
 
     .on {
-      left: 0;
+        left: 0;
     }
 
     .off {
-      right: 0;
-      display: flex;
+        right: 0;
+        display: flex;
     }
 
     input:checked+.slider .on {
-      display: flex;
+        display: flex;
     }
 
     input:checked+.slider .off {
-      display: none;
+        display: none;
     }
 
     /*--------- END --------*/
 
     /* Rounded sliders */
     .slider.round {
-      border-radius: 34px;
+        border-radius: 34px;
     }
 
     .slider.round:before {
-      border-radius: 50%;
+        border-radius: 50%;
     }
-  }
+}
