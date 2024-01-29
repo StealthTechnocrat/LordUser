@@ -30,11 +30,11 @@
         <div class="team_name">
           <!-- <h6>{{uISERVICE.rName}} <span class="bet_rate">{{uISERVICE.odds}}</span></h6> -->
         </div>
-          <div class="spin input-group">
-            <button type="button" class="dec btn btn-secondary"><i class="fas fa-minus"></i></button>
-            <input type="number" placeholder="Rate" maxlength="6" class="form-control" value="{{uISERVICE.odds}}">
-            <button type="button" class="inc btn btn-secondary"><i class="fas fa-plus"></i></button>
-          </div>
+        <div class="spin input-group">
+          <button type="button" class="dec btn btn-secondary"><i class="fas fa-minus"></i></button>
+          <input type="number" placeholder="Rate" maxlength="6" class="form-control" value="{{uISERVICE.odds}}">
+          <button type="button" class="inc btn btn-secondary"><i class="fas fa-plus"></i></button>
+        </div>
         <div class="spin input-group ">
           <button type="button" class="dec btn btn-secondary"><i class="fas fa-minus"></i></button>
           <input type="number" class="form-control" placeholder="Stake" name="amount"
@@ -42,9 +42,20 @@
           <button type="button" class="inc btn btn-secondary"><i class="fas fa-plus"></i></button>
         </div>
       </div>
+      <!-- <div  *ngIf="this.uISERVICE.betType == 'Yes' || this.uISERVICE.betType == 'Back'" class="odd-info">
+        <span class="profit mr-1">
+          <span class="ml-4">{{uISERVICE.profit}}</span>
+        </span>
+      </div> -->
+      <!-- <div [ngClass]="{'green-text': uIService.betType === 'Yes'  || uIService.betType == 'Back' , 'red-text': uIService.betType == 'No' || uIService.betType == 'Lay'}">
+        {{uIService.betType === 'Yes' ||  uIService.betType == 'Back' ? uIService.profit : uIService.exposure}}
+      </div> -->
       <div class="odd-info">
         <span class="profit mr-1">
-          <span class="ml-4">69.00</span>
+          <span class="ml-4"
+            [ngClass]="{'green': uISERVICE.betType === 'Yes'  || uISERVICE.betType == 'Back' , 'red': uISERVICE.betType == 'No' || uISERVICE.betType == 'Lay'}">
+            {{ (uISERVICE.betType === 'Yes' || uISERVICE.betType === 'Back') ? (uISERVICE.profit | number:'1.2-2') : (uISERVICE.exposure | number:'1.2-2') }}
+          </span>
         </span>
       </div>
     </div>
@@ -53,7 +64,7 @@
         <li *ngFor="let chp of uISERVICE.betSlip">
           <button class="btn btn-primary" type="button" (click)="getValue(chp.ChipValue)">{{chp.ChipName}}</button>
         </li>
-        <li><button href="javascript:void(0)" class="btn btn-primary clear-btn">Clear</button></li>
+        <li><button href="javascript:void(0)" class="btn btn-primary clear-btn" (click)="reset()">Clear</button></li>
       </ul>
       <div class=" mobOrder">
         <!-- <ul class="number_key">
@@ -100,10 +111,15 @@
             <span class="animate-btn"><i class="fas fa-times"></i> Cancel </span>
           </button>
           <button class="btn btn-bet " type="button" (click)="checkBetCond()">
-            <span class="animate-btn"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><path id="Path_14" data-name="Path 14" d="M11.7,160.3,6.713,155.31a1.008,1.008,0,0,0-1.426,0L.3,160.3a1.008,1.008,0,0,0,0,1.426l4.992,4.992a1.008,1.008,0,0,0,1.426,0l4.992-4.992a1.008,1.008,0,0,0,0-1.426Zm-7.844,1.426a.5.5,0,1,1,0-.713A.5.5,0,0,1,3.861,161.728Zm.713-1.426a.5.5,0,1,1,.713,0A.5.5,0,0,1,4.574,160.3ZM6,163.867a.5.5,0,1,1,0-.713A.5.5,0,0,1,6,163.867Zm0-4.992a.5.5,0,1,1,.713,0A.5.5,0,0,1,6,158.876Zm1.426,3.565a.5.5,0,1,1,0-.713A.5.5,0,0,1,7.426,162.441Zm1.426-1.426a.5.5,0,1,1,0-.713A.5.5,0,0,1,8.852,161.015Z" transform="translate(0 -155.015)" fill="#fff"></path></svg> 
+            <span class="animate-btn"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                viewBox="0 0 12 12">
+                <path id="Path_14" data-name="Path 14"
+                  d="M11.7,160.3,6.713,155.31a1.008,1.008,0,0,0-1.426,0L.3,160.3a1.008,1.008,0,0,0,0,1.426l4.992,4.992a1.008,1.008,0,0,0,1.426,0l4.992-4.992a1.008,1.008,0,0,0,0-1.426Zm-7.844,1.426a.5.5,0,1,1,0-.713A.5.5,0,0,1,3.861,161.728Zm.713-1.426a.5.5,0,1,1,.713,0A.5.5,0,0,1,4.574,160.3ZM6,163.867a.5.5,0,1,1,0-.713A.5.5,0,0,1,6,163.867Zm0-4.992a.5.5,0,1,1,.713,0A.5.5,0,0,1,6,158.876Zm1.426,3.565a.5.5,0,1,1,0-.713A.5.5,0,0,1,7.426,162.441Zm1.426-1.426a.5.5,0,1,1,0-.713A.5.5,0,0,1,8.852,161.015Z"
+                  transform="translate(0 -155.015)" fill="#fff"></path>
+              </svg>
               Place Bet </span>
           </button>
-          
+
         </div>
       </div>
     </div>
@@ -111,17 +127,23 @@
   <div class="betslip_loader " *ngIf="uISERVICE.betLoader">
     <!-- <img src="/assets/img/icons/loader.svg" alt=""> -->
     <button class="btn " type="button" disabled>
-      Placing your bets, please wait... 
-      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: rgba(241, 242, 243, 0); display: block; shape-rendering: auto;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+      Placing your bets, please wait...
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        style="margin: auto; background: rgba(241, 242, 243, 0); display: block; shape-rendering: auto;" width="200px"
+        height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
         <circle cx="30" cy="50" fill="#ffc728" r="20">
-          <animate attributeName="cx" repeatCount="indefinite" dur="1s" keyTimes="0;0.5;1" values="30;70;30" begin="-0.5s"></animate>
+          <animate attributeName="cx" repeatCount="indefinite" dur="1s" keyTimes="0;0.5;1" values="30;70;30"
+            begin="-0.5s"></animate>
         </circle>
         <circle cx="70" cy="50" fill="#434200" r="20">
-          <animate attributeName="cx" repeatCount="indefinite" dur="1s" keyTimes="0;0.5;1" values="30;70;30" begin="0s"></animate>
+          <animate attributeName="cx" repeatCount="indefinite" dur="1s" keyTimes="0;0.5;1" values="30;70;30" begin="0s">
+          </animate>
         </circle>
         <circle cx="30" cy="50" fill="#ffc728" r="20">
-          <animate attributeName="cx" repeatCount="indefinite" dur="1s" keyTimes="0;0.5;1" values="30;70;30" begin="-0.5s"></animate>
-          <animate attributeName="fill-opacity" values="0;0;1;1" calcMode="discrete" keyTimes="0;0.499;0.5;1" dur="1s" repeatCount="indefinite"></animate>
+          <animate attributeName="cx" repeatCount="indefinite" dur="1s" keyTimes="0;0.5;1" values="30;70;30"
+            begin="-0.5s"></animate>
+          <animate attributeName="fill-opacity" values="0;0;1;1" calcMode="discrete" keyTimes="0;0.499;0.5;1" dur="1s"
+            repeatCount="indefinite"></animate>
         </circle>
       </svg>
       <!-- <span class="spinner-border border-dotted ml-2" role="status" aria-hidden="true"></span> -->

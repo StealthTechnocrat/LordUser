@@ -8,7 +8,10 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class SharedService {
   private eventDataSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   private sportsId: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-
+  oneclickBet = new BehaviorSubject<boolean>(false);
+  setOneClick(value: boolean) {
+    this.oneclickBet.next(value);
+  }
   setEventData(data: any): void {
     this.eventDataSubject.next(data);
   }

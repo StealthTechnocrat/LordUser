@@ -27,7 +27,7 @@
           <marquee behavior="scroll" direction="left" [scrollDelay]="100">
             <div class="item">
               <span class="marquee-news-text">
-                <p *ngFor="let news of News">
+                <p *ngFor="let news of uISERVICE.News">
                   <span class="date">
                     <i class="fas fa-circle"></i>
                     {{news.createdOn | date:'M/d/yy, h:mm a'}}</span>:- {{news.News}}

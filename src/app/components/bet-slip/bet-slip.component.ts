@@ -18,29 +18,36 @@ export class BetSlipComponent implements OnInit {
   apiData: any = [];
   betValid: boolean = true;
   public placeBetModel: PlaceBetModel;
+
   constructor(private toastr: ToastrService,public uISERVICE: UiService, private http: HttpClient, private accountService: AccountService) { }
 
   ngOnInit(): void {
-    if (Cookie.check('usersCookies')) {
-      this.placeBetModel = <PlaceBetModel>{
-        SportsId: 0,
-        EventId: '',
-        EventName: '',
-        MarketId: '',
-        MarketName: '',
-        RunnerId: '',
-        RunnerName: '',
-        Stake: 0,
-        Odds: 0,
-        Price: '',
-        BetType: '',
-        BetStatus: 'Pending',
-        ParentId: 0,
-      };
-    } else {
-      this.uISERVICE.Header = false;
+    // if(this.uISERVICE.OneClickBet == false){
+      if (Cookie.check('usersCookies')) {
+        this.placeBetModel = <PlaceBetModel>{
+          SportsId: 0,
+          EventId: '',
+          EventName: '',
+          MarketId: '',
+          MarketName: '',
+          RunnerId: '',
+          RunnerName: '',
+          Stake: 0,
+          Odds: 0,
+          Price: '',
+          BetType: '',
+          BetStatus: 'Pending',
+          ParentId: 0,
+        };
+      } else {
+        this.uISERVICE.Header = false;
+      }
     }
-  }
+    // else{
+    // this.transform();
+    // this.checkBetCond();
+    // }
+ 
 
   getValue(value) {
     this.uISERVICE.stake = this.uISERVICE.stake + value;
@@ -130,7 +137,12 @@ export class BetSlipComponent implements OnInit {
       }, 2000);
     }
   }
-
+  reset(){
+    this.uISERVICE.stake = 0;
+    this.uISERVICE.exposure = 0;
+    this.uISERVICE.stake = 0;
+    this.uISERVICE.odds = 0;
+  }
 
   placeBet() {
     

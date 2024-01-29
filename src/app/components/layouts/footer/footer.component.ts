@@ -36,6 +36,7 @@ export class FooterComponent implements OnInit {
   CnfPwd: string = "";
   OldPwd: string = "";
   rtrnObj: any = [];
+  eventlist: any = [];
   usrDtl: any = [];
   Balance: number;
   Exposure: number;
@@ -43,6 +44,10 @@ export class FooterComponent implements OnInit {
   Name: string = "";
   betCount: number = 0;
   firstTimeLoginChk : boolean = false;
+  keyword: string = "";
+  SportsId: number ;
+  EventId: string;
+  checkedValue: boolean = false;
   constructor(
     private renderer: Renderer2, 
     public uISERVICE: UiService,
@@ -59,6 +64,18 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+    toggleStatus(event: any){
+      if(event.target.checked == true){
+        this.getChips();
+        this.uISERVICE.OneClickBet = true;
+        // this.sharedService.setOneClick(true);
+      }else{
+        // this.sharedService.setOneClick(false);
+        this.chipData = []
+        this.uISERVICE.OneClickBet = false;
+      }
+    }
   toggleDarkMode() {
     this.isDarkMode = !this.isDarkMode;
     localStorage.setItem('darkMode', this.isDarkMode.toString());
@@ -76,6 +93,54 @@ export class FooterComponent implements OnInit {
     this.uISERVICE.inplay = false;
     this.getEvents();
   }
+
+    getEvent(value: any) {
+      this.accountService.SearchEvent((this.keyword = value.target.value)).then((response) => {
+        if (response.Status) {
+          this.eventlist = response.Result;
+        } else {
+          this.eventlist = [];
+        }
+      });
+    }
+    getChips() {
+      this.uISERVICE.loader = true;
+      this.accountService.getChips().then((response) => {
+        if (response.Status) {
+          this.uISERVICE.loader = false;
+          this.chipData = response.Result;
+          console.log("chipdata", this.chipData)
+        } else {
+          this.chipData = [];
+          this.uISERVICE.loader = false;
+        }
+      });
+    }
+
+    getEventData(data: any)
+    {
+      console.log(data)
+      this.SportsId = data.SportsId;
+      this.EventId = data.EventId;
+      this.sharedService.setEventData(data);
+      this.router.navigate([`/set-bet/${this.SportsId}/${this.EventId}`]);
+      this.keyword = ""
+      this.eventlist = []
+      document.getElementById("clsSrch").click();
+      document.getElementById("cloBtnMenuTab").click();
+    }
+
+    setDefaultChips(data: number){
+      debugger;
+this.uISERVICE.stake = data;
+document.getElementById("cls1Click").click();
+    }
+
+    reset(){
+      this.keyword = ""
+      this.eventlist = []
+    }
+
   getInplayEvents() {
     
     if (this.sportid == null || this.sportid == undefined) {
@@ -128,19 +193,6 @@ export class FooterComponent implements OnInit {
           this.rtrnObj = [];
         }
       });
-  }
-  getChips() {
-    this.uISERVICE.loader = true;
-    this.accountService.getChips().then((response) => {
-      if (response.Status) {
-        this.uISERVICE.loader = false;
-        this.chipData = response.Result;
-        console.log("chipdata", this.chipData)
-      } else {
-        this.chipData = [];
-        this.uISERVICE.loader = false;
-      }
-    });
   }
 
   updateChips() {

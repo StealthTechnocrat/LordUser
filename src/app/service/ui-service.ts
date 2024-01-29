@@ -13,6 +13,7 @@ export class UiService {
     Message: string;
     take: number;
     Header: boolean = false;
+    OneClickBet = false;
     News: any = [];
     Bets: any = [];
     casinoProvidersList: any = [];

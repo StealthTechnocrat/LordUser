@@ -7,6 +7,8 @@ import { UiService } from "src/app/service/ui-service";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ToastrService } from "ngx-toastr";
+import { SharedService } from "src/app/service/shared.service";
+import { BetSlipComponent } from "../bet-slip/bet-slip.component";
 @Component({
   selector: "app-set-bet",
   templateUrl: "./set-bet.component.html",
@@ -52,6 +54,8 @@ export class SetBetComponent implements OnInit {
   ballsWicketLost: any[] = [];
   scoreUrlFrame: SafeResourceUrl;
   isMuted = true;
+  eventData: any;
+
   constructor(
     private router: Router,
     private toastr: ToastrService,
@@ -60,8 +64,16 @@ export class SetBetComponent implements OnInit {
     private accountService: AccountService,
     private route: ActivatedRoute,
     public uISERVICE: UiService,
-    private modalService: NgbModal
-  ) {}
+    private modalService: NgbModal,
+    private sharedService: SharedService,
+  
+  ) {
+    this.sharedService.getEventData().subscribe((data) => {
+      this.sportsId = data.SportsId;
+      this.eventId = data.EventId;
+      this.setIntialValues();
+    });
+  }
   toggleModal() {
     this.modalVisible = !this.modalVisible;
   }

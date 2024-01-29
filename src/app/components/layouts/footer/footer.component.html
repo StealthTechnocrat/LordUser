@@ -55,7 +55,7 @@
         <li class="truncate z-0"></li>
         <li class="big">
             <a class="Btnall">
-                <div class="cloBtn">
+                <div id="cloBtnMenuTab" class="cloBtn">
                     <i class="fas fa-times"></i>
                 </div>
                 <span class="noneAllit">
@@ -123,7 +123,7 @@
                     </svg>
                 </span>
             </a>
-            <span class="menu-item items">
+            <span class="menu-item items" data-toggle="modal" data-target="#OneClickBetModal">
                 <a href="javascript:void(0);">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 357.058 475.569" width="16" height="21">
                         <g id="tap" transform="translate(-0.284)">
@@ -137,8 +137,8 @@
                     </svg>
                 </a>
             </span>
-            <span class="menu-item items">
-                <a href="javascript:void(0);">
+            <span class="menu-item items" >
+                <a href="javascript:void(0);" >
                     <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="203.000000pt" height="251.000000pt"
                         viewBox="0 0 203.000000 251.000000" preserveAspectRatio="xMidYMid meet">
                         <g transform="translate(0.000000,251.000000) scale(0.100000,-0.100000)" fill="#000000"
@@ -170,60 +170,73 @@
                 <div class="colorMood h-100 d-flex align-items-center justify-content-center">
                     <button class="p-0 border-0 bg-transparent" (click)="toggleDarkMode()">
                         <svg class="light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20.492 20.213" width="20.492"
-                          height="20.213">
-                          <g id="Group_5" transform="translate(-1048.44 -677.007)" data-name="Group 5">
-                            <path id="Path_1" fill="#7397aa" transform="matrix(0.999 -0.035 0.035 0.999 -105.356 486.692)"
-                              d="M 1152.5 236.076 l -2.836 -2.865 l -1.395 1.5 l 2.906 2.75 Z" data-name="Path 1"></path>
-                            <path id="Path_2" fill="#7397aa" transform="translate(-196.846 502.039)"
-                              d="M 1253.96 179.027 l 0.032 -4.06 h 1.962 v 4.06 Z" data-name="Path 2"></path>
-                            <path id="Path_3" fill="#7397aa" transform="translate(-260.071 446.202)"
-                              d="M 1321.85 235.486 l 2.922 -2.719 l 1.382 1.337 l -2.824 2.816 Z" data-name="Path 3"></path>
-                            <path id="Path_4" fill="#7397aa" transform="translate(-276.49 302.27) rotate(2)"
-                              d="M 1353.91 337.163 h 4.114 v 2.017 h -4.114 Z" data-name="Path 4"></path>
-                            <path id="Path_5" fill="#7397aa" transform="translate(-278.116 356.904) rotate(-3)"
-                              d="M 1322.23 403.9 l 2.734 2.891 l -1.347 1.306 l -2.828 -2.937 Z" data-name="Path 5"></path>
-                            <path id="Path_6" fill="#7397aa" transform="translate(-172.051 190.723) rotate(3)"
-                              d="M 1256.29 441.353 h -2.068 v -4.01 h 2.068 Z" data-name="Path 6"></path>
-                            <path id="Path_7" fill="#7397aa" transform="translate(-97.844 287.169)"
-                              d="M 1148.58 406.362 l 2.859 -2.672 l 1.375 1.391 l -2.891 2.75 Z" data-name="Path 7"></path>
-                            <path id="Path_8" fill="#7397aa" transform="translate(-43.516 349.672)"
-                              d="M 1096.03 336.995 v 1.847 h -4.067 v -1.929 l 4.067 -0.012 Z" data-name="Path 8"></path>
-                            <path id="Path_9" fill="#7397aa" transform="translate(-145.675 399.078)"
-                              d="M 1204.45 282.989 a 4.294 4.294 0 0 1 0.63 5.242 c -1.766 2.915 -5.721 1.095 -5.721 1.095 a 5.148 5.148 0 0 1 1.081 -4.489 A 4.769 4.769 0 0 1 1204.45 282.989 Z"
-                              data-name="Path 9"></path>
-                            <path id="Path_10" fill="#7397aa" transform="translate(-155.716 395.389)"
-                              d="M 1210.21 294.473 a 5.864 5.864 0 0 0 2.981 0.093 a 5.32 5.32 0 0 0 2.915 -2.276 a 4.867 4.867 0 0 0 -0.066 -5.217 a 5.013 5.013 0 0 1 1.85 1.131 c 1.224 1.164 2.413 3.336 0.665 6.362 a 5.214 5.214 0 0 1 -6.469 1.677 A 3.678 3.678 0 0 1 1210.21 294.473 Z"
-                              data-name="Path 10"></path>
-                          </g>
+                            height="20.213">
+                            <g id="Group_5" transform="translate(-1048.44 -677.007)" data-name="Group 5">
+                                <path id="Path_1" fill="#7397aa"
+                                    transform="matrix(0.999 -0.035 0.035 0.999 -105.356 486.692)"
+                                    d="M 1152.5 236.076 l -2.836 -2.865 l -1.395 1.5 l 2.906 2.75 Z" data-name="Path 1">
+                                </path>
+                                <path id="Path_2" fill="#7397aa" transform="translate(-196.846 502.039)"
+                                    d="M 1253.96 179.027 l 0.032 -4.06 h 1.962 v 4.06 Z" data-name="Path 2"></path>
+                                <path id="Path_3" fill="#7397aa" transform="translate(-260.071 446.202)"
+                                    d="M 1321.85 235.486 l 2.922 -2.719 l 1.382 1.337 l -2.824 2.816 Z"
+                                    data-name="Path 3"></path>
+                                <path id="Path_4" fill="#7397aa" transform="translate(-276.49 302.27) rotate(2)"
+                                    d="M 1353.91 337.163 h 4.114 v 2.017 h -4.114 Z" data-name="Path 4"></path>
+                                <path id="Path_5" fill="#7397aa" transform="translate(-278.116 356.904) rotate(-3)"
+                                    d="M 1322.23 403.9 l 2.734 2.891 l -1.347 1.306 l -2.828 -2.937 Z"
+                                    data-name="Path 5"></path>
+                                <path id="Path_6" fill="#7397aa" transform="translate(-172.051 190.723) rotate(3)"
+                                    d="M 1256.29 441.353 h -2.068 v -4.01 h 2.068 Z" data-name="Path 6"></path>
+                                <path id="Path_7" fill="#7397aa" transform="translate(-97.844 287.169)"
+                                    d="M 1148.58 406.362 l 2.859 -2.672 l 1.375 1.391 l -2.891 2.75 Z"
+                                    data-name="Path 7"></path>
+                                <path id="Path_8" fill="#7397aa" transform="translate(-43.516 349.672)"
+                                    d="M 1096.03 336.995 v 1.847 h -4.067 v -1.929 l 4.067 -0.012 Z" data-name="Path 8">
+                                </path>
+                                <path id="Path_9" fill="#7397aa" transform="translate(-145.675 399.078)"
+                                    d="M 1204.45 282.989 a 4.294 4.294 0 0 1 0.63 5.242 c -1.766 2.915 -5.721 1.095 -5.721 1.095 a 5.148 5.148 0 0 1 1.081 -4.489 A 4.769 4.769 0 0 1 1204.45 282.989 Z"
+                                    data-name="Path 9"></path>
+                                <path id="Path_10" fill="#7397aa" transform="translate(-155.716 395.389)"
+                                    d="M 1210.21 294.473 a 5.864 5.864 0 0 0 2.981 0.093 a 5.32 5.32 0 0 0 2.915 -2.276 a 4.867 4.867 0 0 0 -0.066 -5.217 a 5.013 5.013 0 0 1 1.85 1.131 c 1.224 1.164 2.413 3.336 0.665 6.362 a 5.214 5.214 0 0 1 -6.469 1.677 A 3.678 3.678 0 0 1 1210.21 294.473 Z"
+                                    data-name="Path 10"></path>
+                            </g>
                         </svg>
                         <svg class="dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.24 25.178" width="25.24"
-                          height="25.178">
-                          <g id="Group_3" transform="translate(-1073.83 -675.943)" data-name="Group 3">
-                            <path id="Path_1" fill="#ff9b09" transform="translate(-45.888 400.063) rotate(3)"
-                              d="M 1141.64 223.276 l -3.852 -3.944 l -1.547 1.393 l 4.01 4.025 Z" data-name="Path 1"></path>
-                            <path id="Path_2" fill="#ff9b09" transform="translate(-168.174 500.976)"
-                              d="M 1253.96 180.713 l 0.032 -5.746 h 1.968 v 5.746 Z" data-name="Path 2"></path>
-                            <path id="Path_3" fill="#ff9b09" transform="translate(-218.06 390.752) rotate(3)"
-                              d="M 1322.36 223.379 l 3.844 -3.988 l 1.53 1.422 l -3.893 3.928 Z" data-name="Path 3"></path>
-                            <path id="Path_4" fill="#ff9b09" transform="matrix(0.998 0.07 -0.07 0.998 -233.764 256.876)"
-                              d="M 1353.91 337.163 h 5.756 v 1.966 h -5.756 Z" data-name="Path 4"></path>
-                            <path id="Path_5" fill="#ff9b09" transform="translate(-206.814 219.648) rotate(3)"
-                              d="M 1321.94 404.826 l 4.019 4.007 l -1.386 1.431 l -4.057 -3.965 Z" data-name="Path 5"></path>
-                            <path id="Path_6" fill="#ff9b09" transform="matrix(0.995 0.105 -0.105 0.995 -116.358 129.195)"
-                              d="M 1256.27 443.038 h -2.045 v -5.7 h 2.045 Z" data-name="Path 6"></path>
-                            <path id="Path_7" fill="#ff9b09" transform="translate(-36.146 229.555) rotate(3)"
-                              d="M 1135.53 407.825 l 4.144 -4 l 1.391 1.443 l -4.045 4.03 Z" data-name="Path 7"></path>
-                            <path id="Path_8" fill="#ff9b09" transform="matrix(0.998 0.07 -0.07 0.998 8.164 274.816)"
-                              d="M 1097.66 337 v 1.858 h -5.7 v -1.94 l 5.7 -0.012 Z" data-name="Path 8"></path>
-                            <path id="Path_9" fill="#ff9b09" transform="translate(-117.404 400.953)"
-                              d="M 1203.86 282.988 a 3.81 3.81 0 0 1 0.559 4.651 c -1.567 2.586 -5.076 0.971 -5.076 0.971 a 4.568 4.568 0 0 1 0.959 -3.983 A 4.231 4.231 0 0 1 1203.86 282.988 Z"
-                              data-name="Path 9"></path>
-                            <path id="Path_10" fill="#ff9b09" transform="translate(-127.572 397.159)"
-                              d="M 1210.21 293.825 a 5.35 5.35 0 0 0 2.72 0.085 a 4.853 4.853 0 0 0 2.659 -2.076 a 4.441 4.441 0 0 0 -0.061 -4.76 a 4.573 4.573 0 0 1 1.688 1.032 c 1.117 1.062 2.2 3.043 0.607 5.8 a 4.757 4.757 0 0 1 -5.9 1.53 A 3.356 3.356 0 0 1 1210.21 293.825 Z"
-                              data-name="Path 10"></path>
-                          </g>
+                            height="25.178">
+                            <g id="Group_3" transform="translate(-1073.83 -675.943)" data-name="Group 3">
+                                <path id="Path_1" fill="#ff9b09" transform="translate(-45.888 400.063) rotate(3)"
+                                    d="M 1141.64 223.276 l -3.852 -3.944 l -1.547 1.393 l 4.01 4.025 Z"
+                                    data-name="Path 1"></path>
+                                <path id="Path_2" fill="#ff9b09" transform="translate(-168.174 500.976)"
+                                    d="M 1253.96 180.713 l 0.032 -5.746 h 1.968 v 5.746 Z" data-name="Path 2"></path>
+                                <path id="Path_3" fill="#ff9b09" transform="translate(-218.06 390.752) rotate(3)"
+                                    d="M 1322.36 223.379 l 3.844 -3.988 l 1.53 1.422 l -3.893 3.928 Z"
+                                    data-name="Path 3"></path>
+                                <path id="Path_4" fill="#ff9b09"
+                                    transform="matrix(0.998 0.07 -0.07 0.998 -233.764 256.876)"
+                                    d="M 1353.91 337.163 h 5.756 v 1.966 h -5.756 Z" data-name="Path 4"></path>
+                                <path id="Path_5" fill="#ff9b09" transform="translate(-206.814 219.648) rotate(3)"
+                                    d="M 1321.94 404.826 l 4.019 4.007 l -1.386 1.431 l -4.057 -3.965 Z"
+                                    data-name="Path 5"></path>
+                                <path id="Path_6" fill="#ff9b09"
+                                    transform="matrix(0.995 0.105 -0.105 0.995 -116.358 129.195)"
+                                    d="M 1256.27 443.038 h -2.045 v -5.7 h 2.045 Z" data-name="Path 6"></path>
+                                <path id="Path_7" fill="#ff9b09" transform="translate(-36.146 229.555) rotate(3)"
+                                    d="M 1135.53 407.825 l 4.144 -4 l 1.391 1.443 l -4.045 4.03 Z" data-name="Path 7">
+                                </path>
+                                <path id="Path_8" fill="#ff9b09"
+                                    transform="matrix(0.998 0.07 -0.07 0.998 8.164 274.816)"
+                                    d="M 1097.66 337 v 1.858 h -5.7 v -1.94 l 5.7 -0.012 Z" data-name="Path 8"></path>
+                                <path id="Path_9" fill="#ff9b09" transform="translate(-117.404 400.953)"
+                                    d="M 1203.86 282.988 a 3.81 3.81 0 0 1 0.559 4.651 c -1.567 2.586 -5.076 0.971 -5.076 0.971 a 4.568 4.568 0 0 1 0.959 -3.983 A 4.231 4.231 0 0 1 1203.86 282.988 Z"
+                                    data-name="Path 9"></path>
+                                <path id="Path_10" fill="#ff9b09" transform="translate(-127.572 397.159)"
+                                    d="M 1210.21 293.825 a 5.35 5.35 0 0 0 2.72 0.085 a 4.853 4.853 0 0 0 2.659 -2.076 a 4.441 4.441 0 0 0 -0.061 -4.76 a 4.573 4.573 0 0 1 1.688 1.032 c 1.117 1.062 2.2 3.043 0.607 5.8 a 4.757 4.757 0 0 1 -5.9 1.53 A 3.356 3.356 0 0 1 1210.21 293.825 Z"
+                                    data-name="Path 10"></path>
+                            </g>
                         </svg>
-                      </button>
+                    </button>
                 </div>
             </span>
             <span class="bottom-circle">
@@ -295,10 +308,10 @@
                         d="M12,12A4,4,0,1,0,8,8,4,4,0,0,0,12,12Zm0,2c-2.67,0-8,1.34-8,4v2H20V18C20,15.34,14.67,14,12,14Z"
                         transform="translate(-4 -4)"></path>
                 </svg>
-                
+
                 {{uISERVICE.UserName}}
             </a>
-            
+
         </li>
     </ul>
 </div>
@@ -308,56 +321,105 @@
     <div class="mobMenuCol">
         <ul>
             <li><a class="dropdown-item" href="javascript:void(0)"><i class="fas fa-user mr-2"></i> Welcome,
-                {{uISERVICE.UserName}}</a></li>
+                    {{uISERVICE.UserName}}</a></li>
             <li><a class="dropdown-item" href="javascript:void(0)" routerLink="/statement"><i
-                  class="fas fa-chart-area mr-2"></i> Account
-                Statement</a></li>
+                        class="fas fa-chart-area mr-2"></i> Account
+                    Statement</a></li>
             <li><a class="dropdown-item" href="javascript:void(0)" routerLink="/profit-loss"><i
-                  class="fas fa-chart-line mr-2"></i> Profit Loss</a>
+                        class="fas fa-chart-line mr-2"></i> Profit Loss</a>
             </li>
             <li><a class="dropdown-item" href="javascript:void(0)" routerLink="/results"><i
-                  class="fas fa-trophy mr-2"></i> Results</a></li>
+                        class="fas fa-trophy mr-2"></i> Results</a></li>
             <li><a class="dropdown-item" href="javascript:void(0)" routerLink="/bets"><i
-                  class="fas fa-history mr-2"></i> My Bets</a></li>
+                        class="fas fa-history mr-2"></i> My Bets</a></li>
             <li><a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" (click)="getChips()"
-                data-target="#chipsetting"><i class="fas fa-cog mr-2"></i> Chip Setting</a></li>
-            <li><a class="dropdown-item" href="javascript:void(0)" data-toggle="modal"
-                data-target="#changepassword"><i class="fas fa-key mr-2"></i> Change Password</a></li>
-            <li><a class="dropdown-item" href="javascript:void(0)" data-toggle="modal"
-                data-target="#termscondition"><i class="fas fa-info-circle mr-2"></i> Terms and Condition</a></li>
+                    data-target="#chipsetting"><i class="fas fa-cog mr-2"></i> Chip Setting</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#changepassword"><i
+                        class="fas fa-key mr-2"></i> Change Password</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#termscondition"><i
+                        class="fas fa-info-circle mr-2"></i> Terms and Condition</a></li>
             <li><a class="dropdown-item" href="javascript:void(0)" (click)="LogOut()"><i
-                  class="fas fa-sign-out-alt mr-2"></i> Sign Out</a></li>
+                        class="fas fa-sign-out-alt mr-2"></i> Sign Out</a></li>
         </ul>
         <button type="button" class="btnCloseMenu">
             <i _ngcontent-ufp-c60="" class="fas fa-times"></i>
         </button>
-      </div>
+    </div>
 </div>
 
 
 
 
 
+<div class="modal searchModal p-0 fade" id="OneClickBetModal" data-bs-backdrop="static" tabindex="-1"
+  aria-labelledby="OneClickBetModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="OneClickBetModalLabel">One Click Bet Stake</h1>
+        <button type="button" class="btn-close" (click)="reset()" id="cls1Click" data-dismiss="modal" aria-label="Close"><i
+            class="fa fa-times"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="settlementBody">
+          <table class="datatable table dt-responsive nowrap table-bordered">
+            <tbody>
+              <tr>
+                <td class="width-xl">Active</td>
+                <td class="text-center">
+                  <div class="ms-1 switchCommon mb-1">
+                    <label class="switchBtnCommon">
+                        <input type="checkbox" id="togBtn" (change)="toggleStatus($event)" [(ngModel)]="checkedValue">
+                        <div class="slider round">
+                          <span class="on" value="False">Active</span>
+                          <span class="off" value="True">In-Active</span>
+                        </div>
+                      </label>
+                  </div>
+                </td>
+              </tr>
+              <tr *ngFor="let chips of chipData">
+                <td class="text-center" (click)="setDefaultChips(chips.ChipValue)">{{chips.ChipValue}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <!-- Modal -->
 <div class="modal searchModal p-0 fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered searchMobMod">
-    <div class="modal-content">
-      <div class="login_form">
-        <button type="button" class="btn-close" id="loginClose" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
-        <div class="loginWrap">
-            <div class="input-field">
-                <input placeholder="Search.." type="text" name="search" autofocus="" autocomplete="off" class="validate">
-                <button type="submit"><i class="fa fa-search"></i></button>
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered searchMobMod">
+        <div class="modal-content">
+            <div class="login_form">
+                <button type="button" class="btn-close" (click)="reset()" id="clsSrch" data-dismiss="modal" aria-label="Close"><i
+                        class="fa fa-times"></i></button>
+                <div class="loginWrap">
+                    <div class="input-field">
+                        <input placeholder="Search.." type="text" name="search" autofocus="" autocomplete="off"
+                            class="validate" (keyup)="getEvent($event)" [(ngModel)]="keyword">
+                        <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
+                        <ul class="search-list">
+                            <li *ngFor="let data of eventlist" (click)="getEventData(data)">
+                                {{data.SeriesName}}
+                                <br>
+                                {{data.EventName}}
+                                <br>
+                                {{data.EventTime | date:'M/d/yy, h:mm a'}}
+                                <br><br>
+                              </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
-      </div>
-      <!-- <div class="modal-footer">
+            <!-- <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
       </div> -->
+        </div>
     </div>
-  </div>
 </div>

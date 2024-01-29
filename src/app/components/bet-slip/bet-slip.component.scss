@@ -181,10 +181,17 @@
 
         .profit {
             span {
-                color: rgb(0, 100, 0);
+                // color: rgb(0, 100, 0);
                 font-weight: 600;
                 font-size: 14px;
+                &.green{
+                    color: rgb(0, 100, 0);
+                }
+                &.red{
+                    color: rgb(252, 64, 51);
+                }
             }
+
         }
     }
 

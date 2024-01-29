@@ -7,6 +7,7 @@ import { CardDetails } from "../Model/CardsModel";
 import { SignUpModel } from "../Model/Sign_Up_Model";
 import { promise } from "protractor";
 import { promises } from "dns";
+import { domain } from "process";
 
 @Injectable()
 export class AccountService {
@@ -74,6 +75,16 @@ export class AccountService {
     environment.apiBaseUrl + "Admin/GetAllPendingBetsCount";
 
   private usrDtlUrl = environment.apiBaseUrl + "SignUp/UsersDetails";
+  private SearchEventUrl =
+  environment.apiBaseUrl + "Admin/SearchEvent";
+
+  SearchEvent(keyword): Promise<any> {
+    return this.baseHttpService
+      .Get(this.SearchEventUrl + "?keyword=" + keyword)
+      .then(function (response) {
+        return response.json();
+      });
+  }
 
   SetNewPassword(userId,oldpwd, newpwd): Promise<any> {
     return this.baseHttpService

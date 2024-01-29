@@ -9,6 +9,7 @@ import * as XLSX from "xlsx";
 import { SignUpModel } from "src/app/Model/Sign_Up_Model";
 import { SignInModel } from "src/app/Model/signin-model";
 import { SharedService } from "src/app/service/shared.service";
+import { windowFactory } from "ngx-owl-carousel-o/lib/services/window-ref.service";
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
@@ -47,6 +48,7 @@ export class HeaderComponent implements OnInit {
   Name: string = "";
   betCount: number = 0;
   firstTimeLoginChk : boolean = false;
+  domain : string = window.location.origin;
   constructor(
     private accountService: AccountService,
     public uISERVICE: UiService,
@@ -179,6 +181,7 @@ export class HeaderComponent implements OnInit {
         this.Name = response.Result.Name;
         this.uISERVICE.UserName=this.Name;
         this.uISERVICE.take = response.Result.Take;
+        this.uISERVICE.News = this.News;
         console.log("this.uISERVICE.take", this.uISERVICE.take)
       } else {
         this.usrDtl = [];
