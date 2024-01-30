@@ -468,12 +468,9 @@
                         <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
                         <ul class="search-list">
                             <li *ngFor="let data of eventlist" (click)="getEventData(data)">
-                                {{data.SeriesName}}
-                                <br>
-                                {{data.EventName}}
-                                <br>
-                                {{data.EventTime | date:'M/d/yy, h:mm a'}}
-                                <br><br>
+                                <p class="serName">{{data.SeriesName}} <i class="fas fa-caret-right px-2"></i></p>
+                                <p class="eveName">{{data.EventName}}</p>
+                                <p class="eveTime">{{data.EventTime | date:'M/d/yy, h:mm a'}}</p>
                             </li>
                         </ul>
                     </div>
