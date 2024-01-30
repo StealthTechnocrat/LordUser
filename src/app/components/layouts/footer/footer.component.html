@@ -348,7 +348,7 @@
             <li><a class="dropdown-item" href="javascript:void(0)" routerLink="/bets"><i
                         class="fas fa-history mr-2"></i> My Bets</a></li>
             <li><a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" (click)="getChips()"
-                    data-target="#chipsetting"><i class="fas fa-cog mr-2"></i> Chip Setting</a></li>
+                    data-target="#chipsetting1"><i class="fas fa-cog mr-2"></i> Chip Setting</a></li>
             <li><a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#changepassword"><i
                         class="fas fa-key mr-2"></i> Change Password</a></li>
             <li><a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#termscondition"><i
@@ -357,7 +357,7 @@
                         class="fas fa-sign-out-alt mr-2"></i> Sign Out</a></li>
         </ul>
         <button type="button" class="btnCloseMenu">
-            <i _ngcontent-ufp-c60="" class="fas fa-times"></i>
+            <i class="fas fa-times"></i>
         </button>
     </div>
 </div>
@@ -482,4 +482,56 @@
       </div> -->
         </div>
     </div>
+</div>
+
+
+
+<!--chip setting Modal -->
+<div class="modal chipsetting  pr-0 fade" id="chipsetting1" tabindex="-1" aria-labelledby="chipsetting1Label"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered chipSettingModal">
+    <div class="modal-content">
+      <div class="login_form ">
+        <button type="button" id="chipsettingBtn" class="btn-close" data-dismiss="modal" aria-label="Close">X</button>
+        <div class="position-relative">
+          <div class="termConWrap">
+            <div class="page_title">
+              <h3>Chip Setting</h3>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div *ngFor="let chips of chipData; let i = index">
+                  <div class="row position-relative">
+                    <div class="col-6">
+                      <div class="form-field">
+                        <label>Chips Name</label>
+                        <input type="text" placeholder="Enter Chip Name" class="form-control" name="ChipName_{{ i }}"
+                          [(ngModel)]="chips.ChipName">
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-field">
+                        <label>Your Chips</label>
+                        <input type="text" placeholder="Enter Chip Value" class="form-control" name="ChipValue_{{ i }}"
+                          [(ngModel)]="chips.ChipValue">
+                      </div>
+                    </div>
+                    <button class="deleteChipBtn"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary modSubmit" (click)="updateChips()"><span
+                class="animate-btn">Submit</span></button>
+            <button type="button" class="btn btn-secondary modCancel" data-dismiss="modal"><span
+                class="animate-btn">Close</span></button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
 </div>
