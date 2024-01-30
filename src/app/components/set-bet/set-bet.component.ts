@@ -81,7 +81,7 @@ export class SetBetComponent implements OnInit {
     this.setIntialValues();
   }
   toggleMute() {
-    debugger;
+    
     this.isMuted = !this.isMuted;
     this.uISERVICE.betSound = this.isMuted;
   }
@@ -296,7 +296,7 @@ export class SetBetComponent implements OnInit {
   }
 
   LiveTv() {
-    debugger;
+    
     //  if (this.uISERVICE.tv) {
     // this.uISERVICE.tv = false;
     //this.url = "";
@@ -731,7 +731,7 @@ export class SetBetComponent implements OnInit {
     betDly,
     filterName
   ) {
-    debugger;
+    
     if (odds > 0) {
       this.checkLogin();
       if (!this.uISERVICE.logIn) {

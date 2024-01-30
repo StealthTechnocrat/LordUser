@@ -131,7 +131,7 @@ export class FooterComponent implements OnInit {
     }
 
     setDefaultChips(data: number){
-      debugger;
+      
 this.uISERVICE.stake = data;
 document.getElementById("cls1Click").click();
     }

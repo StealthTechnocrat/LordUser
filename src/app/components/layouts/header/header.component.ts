@@ -103,7 +103,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ChangePwd() {
-    
     if (this.NewPwd == "") {
       this.uISERVICE.Error = true;
       this.uISERVICE.Message = "Enter New Password";
@@ -130,17 +129,18 @@ export class HeaderComponent implements OnInit {
             this.accountService
               .changePwd(this.OldPwd, this.NewPwd)
               .then((response) => {
+                
                 if (response.Status) {
                   this.uISERVICE.loader = false;
                   this.uISERVICE.Success = true;
                   this.uISERVICE.Message = "Executed Successfully";
-                  document.getElementById("cls1").click();
-                  this.NewPwd = "";
-                  this.CnfPwd = "";
-                  this.OldPwd = "";
                   setTimeout(() => {
                     this.uISERVICE.Success = false;
                   }, 3000);
+                  document.getElementById("cls1000").click();
+                  this.NewPwd = "";
+                  this.CnfPwd = "";
+                  this.OldPwd = "";
                 } else {
                   this.uISERVICE.loader = false;
                   this.uISERVICE.Error = true;
@@ -220,6 +220,7 @@ export class HeaderComponent implements OnInit {
         this.uISERVICE.Message = response.Result;
         setTimeout(() => {
           this.uISERVICE.Error = false;
+          
         }, 3000);
       }
     });
@@ -336,10 +337,10 @@ export class HeaderComponent implements OnInit {
 
 
   usrPWDchk() {
-    debugger;
+    
     this.accountService.usrPWDchk(this.signInModel).then((response) => {
       if (response.Status) {
-        debugger;
+        
         this.firstTimeLoginChk = response.Result;
         if(this.firstTimeLoginChk){
           document.getElementById("loginClose").click();
@@ -354,7 +355,7 @@ export class HeaderComponent implements OnInit {
   }
 
   LogIn() {
-    debugger;
+    
     if (
       this.signInModel.LoginID == "" ||
       this.signInModel.LoginID == undefined
@@ -416,7 +417,7 @@ export class HeaderComponent implements OnInit {
         .SetNewPassword(this.signInModel.LoginID, this.OldPwd, this.NewPwd)
         .then((response) => {
           if (response.Status) {
-            debugger;
+            
             this.uISERVICE.loader = false;
             this.uISERVICE.Success = true;
             this.uISERVICE.Message = "Password changed successfully";

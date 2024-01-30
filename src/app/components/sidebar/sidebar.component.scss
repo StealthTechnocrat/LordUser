@@ -138,7 +138,7 @@
     // background-color: transparent;
     background-color: #01103a;
     box-shadow: none;
-    margin: 0 3px;
+    margin: 0 0px;
     height: calc(100% - 50px);
     overflow: auto;
     border-right: 1px solid hsla(0,0%,100%,.1);
@@ -444,7 +444,7 @@
                     }
 
                     i {
-                        transform: rotate(0) translate(2px, -50%);
+                        transform: rotate(0) translate(-4px, -50%);
                     }
                 }
 
