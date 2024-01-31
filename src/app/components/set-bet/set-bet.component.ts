@@ -716,6 +716,7 @@ export class SetBetComponent implements OnInit {
     }
   }
 
+  
   setValues(
     betType,
     odds,
@@ -735,201 +736,611 @@ export class SetBetComponent implements OnInit {
     if (odds > 0) {
       this.checkLogin();
       if (!this.uISERVICE.logIn) {
-        this.uISERVICE.profit = 0;
-        this.uISERVICE.exposure = 0;
-        this.uISERVICE.stake = 0;
-        if (mrktName != "Fancy") {
-          this.uISERVICE.fancySlip = [];
-          this.uISERVICE.showSlip = [false, false, false, false];
-          this.uISERVICE.showSlip[mainIndex] = true;
-        } else {
-          this.uISERVICE.showSlip = [false, false, false, false];
-          switch (filterName) {
-            case "overRuns":
-              this.uISERVICE.otherFancySlip = [];
-              this.uISERVICE.ballsWicketLostSlip = [];
-              this.uISERVICE.ballFaceSlip = [];
-              this.uISERVICE.boundariesSlip = [];
-              this.uISERVICE.wicketsFallSlip = [];
-              this.uISERVICE.fancySlip = [];
-              if (this.uISERVICE.overRunsSlip.length > 0) {
-                let j = 0;
-                this.uISERVICE.overRunsSlip.forEach((element, id) => {
-                  if (mainIndex == id) {
-                    this.uISERVICE.overRunsSlip[id] = true;
-                  } else {
-                    this.uISERVICE.overRunsSlip[id] = false;
+        if(this.uISERVICE.OneClickBet){
+          this.uISERVICE.profit = 0;
+          this.uISERVICE.exposure = 0;
+          // this.uISERVICE.stake = this.uISERVICE.sta;
+          if (mrktName != "Fancy") {
+            this.uISERVICE.fancySlip = [];
+            this.uISERVICE.showSlip = [false, false, false, false];
+            this.uISERVICE.showSlip[mainIndex] = true;
+          } else {
+            this.uISERVICE.showSlip = [false, false, false, false];
+            switch (filterName) {
+              case "overRuns":
+                this.uISERVICE.otherFancySlip = [];
+                this.uISERVICE.ballsWicketLostSlip = [];
+                this.uISERVICE.ballFaceSlip = [];
+                this.uISERVICE.boundariesSlip = [];
+                this.uISERVICE.wicketsFallSlip = [];
+                this.uISERVICE.fancySlip = [];
+                if (this.uISERVICE.overRunsSlip.length > 0) {
+                  let j = 0;
+                  this.uISERVICE.overRunsSlip.forEach((element, id) => {
+                    if (mainIndex == id) {
+                      this.uISERVICE.overRunsSlip[id] = true;
+                    } else {
+                      this.uISERVICE.overRunsSlip[id] = false;
+                    }
+                  });
+                  if (j == 0) {
+                    this.uISERVICE.overRunsSlip[mainIndex] = true;
                   }
-                });
-                if (j == 0) {
+                } else {
                   this.uISERVICE.overRunsSlip[mainIndex] = true;
                 }
-              } else {
-                this.uISERVICE.overRunsSlip[mainIndex] = true;
-              }
-              break;
-            case "wicketsFall":
-              this.uISERVICE.otherFancySlip = [];
-              this.uISERVICE.ballsWicketLostSlip = [];
-              this.uISERVICE.ballFaceSlip = [];
-              this.uISERVICE.boundariesSlip = [];
-              this.uISERVICE.fancySlip = [];
-              this.uISERVICE.overRunsSlip = [];
-              if (this.uISERVICE.wicketsFallSlip.length > 0) {
-                let j = 0;
-                this.uISERVICE.wicketsFallSlip.forEach((element, id) => {
-                  if (mainIndex == id) {
-                    this.uISERVICE.wicketsFallSlip[id] = true;
-                  } else {
-                    this.uISERVICE.wicketsFallSlip[id] = false;
+                break;
+              case "wicketsFall":
+                this.uISERVICE.otherFancySlip = [];
+                this.uISERVICE.ballsWicketLostSlip = [];
+                this.uISERVICE.ballFaceSlip = [];
+                this.uISERVICE.boundariesSlip = [];
+                this.uISERVICE.fancySlip = [];
+                this.uISERVICE.overRunsSlip = [];
+                if (this.uISERVICE.wicketsFallSlip.length > 0) {
+                  let j = 0;
+                  this.uISERVICE.wicketsFallSlip.forEach((element, id) => {
+                    if (mainIndex == id) {
+                      this.uISERVICE.wicketsFallSlip[id] = true;
+                    } else {
+                      this.uISERVICE.wicketsFallSlip[id] = false;
+                    }
+                  });
+                  if (j == 0) {
+                    this.uISERVICE.wicketsFallSlip[mainIndex] = true;
                   }
-                });
-                if (j == 0) {
+                } else {
                   this.uISERVICE.wicketsFallSlip[mainIndex] = true;
                 }
-              } else {
-                this.uISERVICE.wicketsFallSlip[mainIndex] = true;
-              }
-              break;
-            case "boundaries":
-              this.uISERVICE.otherFancySlip = [];
-              this.uISERVICE.ballsWicketLostSlip = [];
-              this.uISERVICE.ballFaceSlip = [];
-              this.uISERVICE.fancySlip = [];
-              this.uISERVICE.wicketsFallSlip = [];
-              this.uISERVICE.overRunsSlip = [];
-              if (this.uISERVICE.boundariesSlip.length > 0) {
-                let j = 0;
-                this.uISERVICE.boundariesSlip.forEach((element, id) => {
-                  if (mainIndex == id) {
-                    this.uISERVICE.boundariesSlip[id] = true;
-                  } else {
-                    this.uISERVICE.boundariesSlip[id] = false;
+                break;
+              case "boundaries":
+                this.uISERVICE.otherFancySlip = [];
+                this.uISERVICE.ballsWicketLostSlip = [];
+                this.uISERVICE.ballFaceSlip = [];
+                this.uISERVICE.fancySlip = [];
+                this.uISERVICE.wicketsFallSlip = [];
+                this.uISERVICE.overRunsSlip = [];
+                if (this.uISERVICE.boundariesSlip.length > 0) {
+                  let j = 0;
+                  this.uISERVICE.boundariesSlip.forEach((element, id) => {
+                    if (mainIndex == id) {
+                      this.uISERVICE.boundariesSlip[id] = true;
+                    } else {
+                      this.uISERVICE.boundariesSlip[id] = false;
+                    }
+                  });
+                  if (j == 0) {
+                    this.uISERVICE.boundariesSlip[mainIndex] = true;
                   }
-                });
-                if (j == 0) {
+                } else {
                   this.uISERVICE.boundariesSlip[mainIndex] = true;
                 }
-              } else {
-                this.uISERVICE.boundariesSlip[mainIndex] = true;
-              }
-              break;
-            case "ballFace":
-              this.uISERVICE.otherFancySlip = [];
-              this.uISERVICE.ballsWicketLostSlip = [];
-              this.uISERVICE.fancySlip = [];
-              this.uISERVICE.boundariesSlip = [];
-              this.uISERVICE.wicketsFallSlip = [];
-              this.uISERVICE.overRunsSlip = [];
-              if (this.uISERVICE.ballFaceSlip.length > 0) {
-                let j = 0;
-                this.uISERVICE.ballFaceSlip.forEach((element, id) => {
-                  if (mainIndex == id) {
-                    this.uISERVICE.ballFaceSlip[id] = true;
-                  } else {
-                    this.uISERVICE.ballFaceSlip[id] = false;
+                break;
+              case "ballFace":
+                this.uISERVICE.otherFancySlip = [];
+                this.uISERVICE.ballsWicketLostSlip = [];
+                this.uISERVICE.fancySlip = [];
+                this.uISERVICE.boundariesSlip = [];
+                this.uISERVICE.wicketsFallSlip = [];
+                this.uISERVICE.overRunsSlip = [];
+                if (this.uISERVICE.ballFaceSlip.length > 0) {
+                  let j = 0;
+                  this.uISERVICE.ballFaceSlip.forEach((element, id) => {
+                    if (mainIndex == id) {
+                      this.uISERVICE.ballFaceSlip[id] = true;
+                    } else {
+                      this.uISERVICE.ballFaceSlip[id] = false;
+                    }
+                  });
+                  if (j == 0) {
+                    this.uISERVICE.ballFaceSlip[mainIndex] = true;
                   }
-                });
-                if (j == 0) {
+                } else {
                   this.uISERVICE.ballFaceSlip[mainIndex] = true;
                 }
-              } else {
-                this.uISERVICE.ballFaceSlip[mainIndex] = true;
-              }
-              break;
-            case "ballsWicketLost":
-              this.uISERVICE.otherFancySlip = [];
-              this.uISERVICE.fancySlip = [];
-              this.uISERVICE.ballFaceSlip = [];
-              this.uISERVICE.boundariesSlip = [];
-              this.uISERVICE.wicketsFallSlip = [];
-              this.uISERVICE.overRunsSlip = [];
-              if (this.uISERVICE.ballsWicketLostSlip.length > 0) {
-                let j = 0;
-                this.uISERVICE.ballsWicketLostSlip.forEach((element, id) => {
-                  if (mainIndex == id) {
-                    this.uISERVICE.ballsWicketLostSlip[id] = true;
-                  } else {
-                    this.uISERVICE.ballsWicketLostSlip[id] = false;
+                break;
+              case "ballsWicketLost":
+                this.uISERVICE.otherFancySlip = [];
+                this.uISERVICE.fancySlip = [];
+                this.uISERVICE.ballFaceSlip = [];
+                this.uISERVICE.boundariesSlip = [];
+                this.uISERVICE.wicketsFallSlip = [];
+                this.uISERVICE.overRunsSlip = [];
+                if (this.uISERVICE.ballsWicketLostSlip.length > 0) {
+                  let j = 0;
+                  this.uISERVICE.ballsWicketLostSlip.forEach((element, id) => {
+                    if (mainIndex == id) {
+                      this.uISERVICE.ballsWicketLostSlip[id] = true;
+                    } else {
+                      this.uISERVICE.ballsWicketLostSlip[id] = false;
+                    }
+                  });
+                  if (j == 0) {
+                    this.uISERVICE.ballsWicketLostSlip[mainIndex] = true;
                   }
-                });
-                if (j == 0) {
+                } else {
                   this.uISERVICE.ballsWicketLostSlip[mainIndex] = true;
                 }
-              } else {
-                this.uISERVICE.ballsWicketLostSlip[mainIndex] = true;
-              }
-              break;
-            case "otherFancy":
-              this.uISERVICE.otherFancySlip = [];
-              this.uISERVICE.ballsWicketLostSlip = [];
-              this.uISERVICE.ballFaceSlip = [];
-              this.uISERVICE.boundariesSlip = [];
-              this.uISERVICE.wicketsFallSlip = [];
-              this.uISERVICE.fancySlip = [];
-              if (this.uISERVICE.otherFancySlip.length > 0) {
-                let j = 0;
-                this.uISERVICE.otherFancySlip.forEach((element, id) => {
-                  if (mainIndex == id) {
-                    this.uISERVICE.otherFancySlip[id] = true;
-                  } else {
-                    this.uISERVICE.otherFancySlip[id] = false;
+                break;
+              case "otherFancy":
+                this.uISERVICE.otherFancySlip = [];
+                this.uISERVICE.ballsWicketLostSlip = [];
+                this.uISERVICE.ballFaceSlip = [];
+                this.uISERVICE.boundariesSlip = [];
+                this.uISERVICE.wicketsFallSlip = [];
+                this.uISERVICE.fancySlip = [];
+                if (this.uISERVICE.otherFancySlip.length > 0) {
+                  let j = 0;
+                  this.uISERVICE.otherFancySlip.forEach((element, id) => {
+                    if (mainIndex == id) {
+                      this.uISERVICE.otherFancySlip[id] = true;
+                    } else {
+                      this.uISERVICE.otherFancySlip[id] = false;
+                    }
+                  });
+                  if (j == 0) {
+                    this.uISERVICE.otherFancySlip[mainIndex] = true;
                   }
-                });
-                if (j == 0) {
+                } else {
                   this.uISERVICE.otherFancySlip[mainIndex] = true;
                 }
-              } else {
-                this.uISERVICE.otherFancySlip[mainIndex] = true;
-              }
-              break;
-
-            case "All":
-              this.uISERVICE.otherFancySlip = [];
-              this.uISERVICE.ballsWicketLostSlip = [];
-              this.uISERVICE.ballFaceSlip = [];
-              this.uISERVICE.boundariesSlip = [];
-              this.uISERVICE.wicketsFallSlip = [];
-              this.uISERVICE.overRunsSlip = [];
-
-              if (this.uISERVICE.fancySlip.length > 0) {
-                let j = 0;
-                this.uISERVICE.fancySlip.forEach((element, id) => {
-                  if (mainIndex == id) {
-                    this.uISERVICE.fancySlip[id] = true;
-                  } else {
-                    this.uISERVICE.fancySlip[id] = false;
+                break;
+  
+              case "All":
+                this.uISERVICE.otherFancySlip = [];
+                this.uISERVICE.ballsWicketLostSlip = [];
+                this.uISERVICE.ballFaceSlip = [];
+                this.uISERVICE.boundariesSlip = [];
+                this.uISERVICE.wicketsFallSlip = [];
+                this.uISERVICE.overRunsSlip = [];
+  
+                if (this.uISERVICE.fancySlip.length > 0) {
+                  let j = 0;
+                  this.uISERVICE.fancySlip.forEach((element, id) => {
+                    if (mainIndex == id) {
+                      this.uISERVICE.fancySlip[id] = true;
+                    } else {
+                      this.uISERVICE.fancySlip[id] = false;
+                    }
+                  });
+                  if (j == 0) {
+                    this.uISERVICE.fancySlip[mainIndex] = true;
                   }
-                });
-                if (j == 0) {
+                } else {
                   this.uISERVICE.fancySlip[mainIndex] = true;
                 }
-              } else {
-                this.uISERVICE.fancySlip[mainIndex] = true;
-              }
-              break;
+                break;
+            }
           }
+  
+          this.uISERVICE.betType = betType;
+          this.uISERVICE.odds = odds;
+          this.uISERVICE.price = price;
+          this.uISERVICE.marketId = mId;
+          this.uISERVICE.rnrId = rId;
+          this.uISERVICE.rName = rName;
+          this.uISERVICE.maxMarkt = maxMrkt;
+          this.uISERVICE.minMarkt = minMrkt;
+          this.uISERVICE.betDelay = betDly;
+          this.uISERVICE.rIndx = rIndx;
+          this.uISERVICE.mrktName = mrktName;
+          this.uISERVICE.sportsId = this.sportsId;
+          this.uISERVICE.eventId = this.eventId;
+          this.uISERVICE.EventName = this.rtrnObj.EventName;
         }
-
-        this.uISERVICE.betType = betType;
-        this.uISERVICE.odds = odds;
-        this.uISERVICE.price = price;
-        this.uISERVICE.marketId = mId;
-        this.uISERVICE.rnrId = rId;
-        this.uISERVICE.rName = rName;
-        this.uISERVICE.maxMarkt = maxMrkt;
-        this.uISERVICE.minMarkt = minMrkt;
-        this.uISERVICE.betDelay = betDly;
-        this.uISERVICE.rIndx = rIndx;
-        this.uISERVICE.mrktName = mrktName;
-        this.uISERVICE.sportsId = this.sportsId;
-        this.uISERVICE.eventId = this.eventId;
-        this.uISERVICE.EventName = this.rtrnObj.EventName;
-      } else {
+        }else{
+          this.uISERVICE.profit = 0;
+          this.uISERVICE.exposure = 0;
+          this.uISERVICE.stake = 0;
+          if (mrktName != "Fancy") {
+            this.uISERVICE.fancySlip = [];
+            this.uISERVICE.showSlip = [false, false, false, false];
+            this.uISERVICE.showSlip[mainIndex] = true;
+          } else {
+            this.uISERVICE.showSlip = [false, false, false, false];
+            switch (filterName) {
+              case "overRuns":
+                this.uISERVICE.otherFancySlip = [];
+                this.uISERVICE.ballsWicketLostSlip = [];
+                this.uISERVICE.ballFaceSlip = [];
+                this.uISERVICE.boundariesSlip = [];
+                this.uISERVICE.wicketsFallSlip = [];
+                this.uISERVICE.fancySlip = [];
+                if (this.uISERVICE.overRunsSlip.length > 0) {
+                  let j = 0;
+                  this.uISERVICE.overRunsSlip.forEach((element, id) => {
+                    if (mainIndex == id) {
+                      this.uISERVICE.overRunsSlip[id] = true;
+                    } else {
+                      this.uISERVICE.overRunsSlip[id] = false;
+                    }
+                  });
+                  if (j == 0) {
+                    this.uISERVICE.overRunsSlip[mainIndex] = true;
+                  }
+                } else {
+                  this.uISERVICE.overRunsSlip[mainIndex] = true;
+                }
+                break;
+              case "wicketsFall":
+                this.uISERVICE.otherFancySlip = [];
+                this.uISERVICE.ballsWicketLostSlip = [];
+                this.uISERVICE.ballFaceSlip = [];
+                this.uISERVICE.boundariesSlip = [];
+                this.uISERVICE.fancySlip = [];
+                this.uISERVICE.overRunsSlip = [];
+                if (this.uISERVICE.wicketsFallSlip.length > 0) {
+                  let j = 0;
+                  this.uISERVICE.wicketsFallSlip.forEach((element, id) => {
+                    if (mainIndex == id) {
+                      this.uISERVICE.wicketsFallSlip[id] = true;
+                    } else {
+                      this.uISERVICE.wicketsFallSlip[id] = false;
+                    }
+                  });
+                  if (j == 0) {
+                    this.uISERVICE.wicketsFallSlip[mainIndex] = true;
+                  }
+                } else {
+                  this.uISERVICE.wicketsFallSlip[mainIndex] = true;
+                }
+                break;
+              case "boundaries":
+                this.uISERVICE.otherFancySlip = [];
+                this.uISERVICE.ballsWicketLostSlip = [];
+                this.uISERVICE.ballFaceSlip = [];
+                this.uISERVICE.fancySlip = [];
+                this.uISERVICE.wicketsFallSlip = [];
+                this.uISERVICE.overRunsSlip = [];
+                if (this.uISERVICE.boundariesSlip.length > 0) {
+                  let j = 0;
+                  this.uISERVICE.boundariesSlip.forEach((element, id) => {
+                    if (mainIndex == id) {
+                      this.uISERVICE.boundariesSlip[id] = true;
+                    } else {
+                      this.uISERVICE.boundariesSlip[id] = false;
+                    }
+                  });
+                  if (j == 0) {
+                    this.uISERVICE.boundariesSlip[mainIndex] = true;
+                  }
+                } else {
+                  this.uISERVICE.boundariesSlip[mainIndex] = true;
+                }
+                break;
+              case "ballFace":
+                this.uISERVICE.otherFancySlip = [];
+                this.uISERVICE.ballsWicketLostSlip = [];
+                this.uISERVICE.fancySlip = [];
+                this.uISERVICE.boundariesSlip = [];
+                this.uISERVICE.wicketsFallSlip = [];
+                this.uISERVICE.overRunsSlip = [];
+                if (this.uISERVICE.ballFaceSlip.length > 0) {
+                  let j = 0;
+                  this.uISERVICE.ballFaceSlip.forEach((element, id) => {
+                    if (mainIndex == id) {
+                      this.uISERVICE.ballFaceSlip[id] = true;
+                    } else {
+                      this.uISERVICE.ballFaceSlip[id] = false;
+                    }
+                  });
+                  if (j == 0) {
+                    this.uISERVICE.ballFaceSlip[mainIndex] = true;
+                  }
+                } else {
+                  this.uISERVICE.ballFaceSlip[mainIndex] = true;
+                }
+                break;
+              case "ballsWicketLost":
+                this.uISERVICE.otherFancySlip = [];
+                this.uISERVICE.fancySlip = [];
+                this.uISERVICE.ballFaceSlip = [];
+                this.uISERVICE.boundariesSlip = [];
+                this.uISERVICE.wicketsFallSlip = [];
+                this.uISERVICE.overRunsSlip = [];
+                if (this.uISERVICE.ballsWicketLostSlip.length > 0) {
+                  let j = 0;
+                  this.uISERVICE.ballsWicketLostSlip.forEach((element, id) => {
+                    if (mainIndex == id) {
+                      this.uISERVICE.ballsWicketLostSlip[id] = true;
+                    } else {
+                      this.uISERVICE.ballsWicketLostSlip[id] = false;
+                    }
+                  });
+                  if (j == 0) {
+                    this.uISERVICE.ballsWicketLostSlip[mainIndex] = true;
+                  }
+                } else {
+                  this.uISERVICE.ballsWicketLostSlip[mainIndex] = true;
+                }
+                break;
+              case "otherFancy":
+                this.uISERVICE.otherFancySlip = [];
+                this.uISERVICE.ballsWicketLostSlip = [];
+                this.uISERVICE.ballFaceSlip = [];
+                this.uISERVICE.boundariesSlip = [];
+                this.uISERVICE.wicketsFallSlip = [];
+                this.uISERVICE.fancySlip = [];
+                if (this.uISERVICE.otherFancySlip.length > 0) {
+                  let j = 0;
+                  this.uISERVICE.otherFancySlip.forEach((element, id) => {
+                    if (mainIndex == id) {
+                      this.uISERVICE.otherFancySlip[id] = true;
+                    } else {
+                      this.uISERVICE.otherFancySlip[id] = false;
+                    }
+                  });
+                  if (j == 0) {
+                    this.uISERVICE.otherFancySlip[mainIndex] = true;
+                  }
+                } else {
+                  this.uISERVICE.otherFancySlip[mainIndex] = true;
+                }
+                break;
+  
+              case "All":
+                this.uISERVICE.otherFancySlip = [];
+                this.uISERVICE.ballsWicketLostSlip = [];
+                this.uISERVICE.ballFaceSlip = [];
+                this.uISERVICE.boundariesSlip = [];
+                this.uISERVICE.wicketsFallSlip = [];
+                this.uISERVICE.overRunsSlip = [];
+  
+                if (this.uISERVICE.fancySlip.length > 0) {
+                  let j = 0;
+                  this.uISERVICE.fancySlip.forEach((element, id) => {
+                    if (mainIndex == id) {
+                      this.uISERVICE.fancySlip[id] = true;
+                    } else {
+                      this.uISERVICE.fancySlip[id] = false;
+                    }
+                  });
+                  if (j == 0) {
+                    this.uISERVICE.fancySlip[mainIndex] = true;
+                  }
+                } else {
+                  this.uISERVICE.fancySlip[mainIndex] = true;
+                }
+                break;
+            }
+          }
+  
+          this.uISERVICE.betType = betType;
+          this.uISERVICE.odds = odds;
+          this.uISERVICE.price = price;
+          this.uISERVICE.marketId = mId;
+          this.uISERVICE.rnrId = rId;
+          this.uISERVICE.rName = rName;
+          this.uISERVICE.maxMarkt = maxMrkt;
+          this.uISERVICE.minMarkt = minMrkt;
+          this.uISERVICE.betDelay = betDly;
+          this.uISERVICE.rIndx = rIndx;
+          this.uISERVICE.mrktName = mrktName;
+          this.uISERVICE.sportsId = this.sportsId;
+          this.uISERVICE.eventId = this.eventId;
+          this.uISERVICE.EventName = this.rtrnObj.EventName;
+        }
+      }
+        else {
         this.toastr.error("Please login to access all features.", "LOGIN!");
       }
-    }
   }
+
+
+  // setValues(
+  //   betType,
+  //   odds,
+  //   price,
+  //   mId,
+  //   rId,
+  //   rName,
+  //   maxMrkt,
+  //   minMrkt,
+  //   rIndx,
+  //   mrktName,
+  //   mainIndex,
+  //   betDly,
+  //   filterName
+  // ) {
+    
+  //   if (odds > 0) {
+  //     this.checkLogin();
+  //     if (!this.uISERVICE.logIn) {
+  //       this.uISERVICE.profit = 0;
+  //       this.uISERVICE.exposure = 0;
+  //       this.uISERVICE.stake = 0;
+  //       if (mrktName != "Fancy") {
+  //         this.uISERVICE.fancySlip = [];
+  //         this.uISERVICE.showSlip = [false, false, false, false];
+  //         this.uISERVICE.showSlip[mainIndex] = true;
+  //       } else {
+  //         this.uISERVICE.showSlip = [false, false, false, false];
+  //         switch (filterName) {
+  //           case "overRuns":
+  //             this.uISERVICE.otherFancySlip = [];
+  //             this.uISERVICE.ballsWicketLostSlip = [];
+  //             this.uISERVICE.ballFaceSlip = [];
+  //             this.uISERVICE.boundariesSlip = [];
+  //             this.uISERVICE.wicketsFallSlip = [];
+  //             this.uISERVICE.fancySlip = [];
+  //             if (this.uISERVICE.overRunsSlip.length > 0) {
+  //               let j = 0;
+  //               this.uISERVICE.overRunsSlip.forEach((element, id) => {
+  //                 if (mainIndex == id) {
+  //                   this.uISERVICE.overRunsSlip[id] = true;
+  //                 } else {
+  //                   this.uISERVICE.overRunsSlip[id] = false;
+  //                 }
+  //               });
+  //               if (j == 0) {
+  //                 this.uISERVICE.overRunsSlip[mainIndex] = true;
+  //               }
+  //             } else {
+  //               this.uISERVICE.overRunsSlip[mainIndex] = true;
+  //             }
+  //             break;
+  //           case "wicketsFall":
+  //             this.uISERVICE.otherFancySlip = [];
+  //             this.uISERVICE.ballsWicketLostSlip = [];
+  //             this.uISERVICE.ballFaceSlip = [];
+  //             this.uISERVICE.boundariesSlip = [];
+  //             this.uISERVICE.fancySlip = [];
+  //             this.uISERVICE.overRunsSlip = [];
+  //             if (this.uISERVICE.wicketsFallSlip.length > 0) {
+  //               let j = 0;
+  //               this.uISERVICE.wicketsFallSlip.forEach((element, id) => {
+  //                 if (mainIndex == id) {
+  //                   this.uISERVICE.wicketsFallSlip[id] = true;
+  //                 } else {
+  //                   this.uISERVICE.wicketsFallSlip[id] = false;
+  //                 }
+  //               });
+  //               if (j == 0) {
+  //                 this.uISERVICE.wicketsFallSlip[mainIndex] = true;
+  //               }
+  //             } else {
+  //               this.uISERVICE.wicketsFallSlip[mainIndex] = true;
+  //             }
+  //             break;
+  //           case "boundaries":
+  //             this.uISERVICE.otherFancySlip = [];
+  //             this.uISERVICE.ballsWicketLostSlip = [];
+  //             this.uISERVICE.ballFaceSlip = [];
+  //             this.uISERVICE.fancySlip = [];
+  //             this.uISERVICE.wicketsFallSlip = [];
+  //             this.uISERVICE.overRunsSlip = [];
+  //             if (this.uISERVICE.boundariesSlip.length > 0) {
+  //               let j = 0;
+  //               this.uISERVICE.boundariesSlip.forEach((element, id) => {
+  //                 if (mainIndex == id) {
+  //                   this.uISERVICE.boundariesSlip[id] = true;
+  //                 } else {
+  //                   this.uISERVICE.boundariesSlip[id] = false;
+  //                 }
+  //               });
+  //               if (j == 0) {
+  //                 this.uISERVICE.boundariesSlip[mainIndex] = true;
+  //               }
+  //             } else {
+  //               this.uISERVICE.boundariesSlip[mainIndex] = true;
+  //             }
+  //             break;
+  //           case "ballFace":
+  //             this.uISERVICE.otherFancySlip = [];
+  //             this.uISERVICE.ballsWicketLostSlip = [];
+  //             this.uISERVICE.fancySlip = [];
+  //             this.uISERVICE.boundariesSlip = [];
+  //             this.uISERVICE.wicketsFallSlip = [];
+  //             this.uISERVICE.overRunsSlip = [];
+  //             if (this.uISERVICE.ballFaceSlip.length > 0) {
+  //               let j = 0;
+  //               this.uISERVICE.ballFaceSlip.forEach((element, id) => {
+  //                 if (mainIndex == id) {
+  //                   this.uISERVICE.ballFaceSlip[id] = true;
+  //                 } else {
+  //                   this.uISERVICE.ballFaceSlip[id] = false;
+  //                 }
+  //               });
+  //               if (j == 0) {
+  //                 this.uISERVICE.ballFaceSlip[mainIndex] = true;
+  //               }
+  //             } else {
+  //               this.uISERVICE.ballFaceSlip[mainIndex] = true;
+  //             }
+  //             break;
+  //           case "ballsWicketLost":
+  //             this.uISERVICE.otherFancySlip = [];
+  //             this.uISERVICE.fancySlip = [];
+  //             this.uISERVICE.ballFaceSlip = [];
+  //             this.uISERVICE.boundariesSlip = [];
+  //             this.uISERVICE.wicketsFallSlip = [];
+  //             this.uISERVICE.overRunsSlip = [];
+  //             if (this.uISERVICE.ballsWicketLostSlip.length > 0) {
+  //               let j = 0;
+  //               this.uISERVICE.ballsWicketLostSlip.forEach((element, id) => {
+  //                 if (mainIndex == id) {
+  //                   this.uISERVICE.ballsWicketLostSlip[id] = true;
+  //                 } else {
+  //                   this.uISERVICE.ballsWicketLostSlip[id] = false;
+  //                 }
+  //               });
+  //               if (j == 0) {
+  //                 this.uISERVICE.ballsWicketLostSlip[mainIndex] = true;
+  //               }
+  //             } else {
+  //               this.uISERVICE.ballsWicketLostSlip[mainIndex] = true;
+  //             }
+  //             break;
+  //           case "otherFancy":
+  //             this.uISERVICE.otherFancySlip = [];
+  //             this.uISERVICE.ballsWicketLostSlip = [];
+  //             this.uISERVICE.ballFaceSlip = [];
+  //             this.uISERVICE.boundariesSlip = [];
+  //             this.uISERVICE.wicketsFallSlip = [];
+  //             this.uISERVICE.fancySlip = [];
+  //             if (this.uISERVICE.otherFancySlip.length > 0) {
+  //               let j = 0;
+  //               this.uISERVICE.otherFancySlip.forEach((element, id) => {
+  //                 if (mainIndex == id) {
+  //                   this.uISERVICE.otherFancySlip[id] = true;
+  //                 } else {
+  //                   this.uISERVICE.otherFancySlip[id] = false;
+  //                 }
+  //               });
+  //               if (j == 0) {
+  //                 this.uISERVICE.otherFancySlip[mainIndex] = true;
+  //               }
+  //             } else {
+  //               this.uISERVICE.otherFancySlip[mainIndex] = true;
+  //             }
+  //             break;
+
+  //           case "All":
+  //             this.uISERVICE.otherFancySlip = [];
+  //             this.uISERVICE.ballsWicketLostSlip = [];
+  //             this.uISERVICE.ballFaceSlip = [];
+  //             this.uISERVICE.boundariesSlip = [];
+  //             this.uISERVICE.wicketsFallSlip = [];
+  //             this.uISERVICE.overRunsSlip = [];
+
+  //             if (this.uISERVICE.fancySlip.length > 0) {
+  //               let j = 0;
+  //               this.uISERVICE.fancySlip.forEach((element, id) => {
+  //                 if (mainIndex == id) {
+  //                   this.uISERVICE.fancySlip[id] = true;
+  //                 } else {
+  //                   this.uISERVICE.fancySlip[id] = false;
+  //                 }
+  //               });
+  //               if (j == 0) {
+  //                 this.uISERVICE.fancySlip[mainIndex] = true;
+  //               }
+  //             } else {
+  //               this.uISERVICE.fancySlip[mainIndex] = true;
+  //             }
+  //             break;
+  //         }
+  //       }
+
+  //       this.uISERVICE.betType = betType;
+  //       this.uISERVICE.odds = odds;
+  //       this.uISERVICE.price = price;
+  //       this.uISERVICE.marketId = mId;
+  //       this.uISERVICE.rnrId = rId;
+  //       this.uISERVICE.rName = rName;
+  //       this.uISERVICE.maxMarkt = maxMrkt;
+  //       this.uISERVICE.minMarkt = minMrkt;
+  //       this.uISERVICE.betDelay = betDly;
+  //       this.uISERVICE.rIndx = rIndx;
+  //       this.uISERVICE.mrktName = mrktName;
+  //       this.uISERVICE.sportsId = this.sportsId;
+  //       this.uISERVICE.eventId = this.eventId;
+  //       this.uISERVICE.EventName = this.rtrnObj.EventName;
+  //     } else {
+  //       this.toastr.error("Please login to access all features.", "LOGIN!");
+  //     }
+  //   }
+  // }
 
   checkToss() {
     this.date = new Date();

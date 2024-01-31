@@ -69,10 +69,12 @@ export class FooterComponent implements OnInit {
       if(event.target.checked == true){
         this.getChips();
         this.uISERVICE.OneClickBet = true;
+        this
         // this.sharedService.setOneClick(true);
       }else{
         // this.sharedService.setOneClick(false);
         this.chipData = []
+        this.uISERVICE.stake = 0
         this.uISERVICE.OneClickBet = false;
       }
     }
