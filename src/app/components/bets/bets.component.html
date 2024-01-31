@@ -95,9 +95,19 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-center">
+                                        <div class="form-field customfield mb-0">
+                                            <button (click)="getBetsHistory()" type="submit"
+                                                class="btn btn-primary mr-2">Load</button>
+                                            <div>
+                                                <button type="button" class="btn btn-primary file_btn mr-2 ml-0" (click)="exportexcel()"> Excel </button>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            <!-- <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-field customfield">
@@ -111,7 +121,7 @@
                                         </div>
                                     </div> 
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </form>
                     <!-- <div class="tableSearch  justify-content-center justify-content-sm-end mb-2">

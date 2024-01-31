@@ -63,7 +63,7 @@
                                 *ngFor="let data of TransactionObj  | paginate: { itemsPerPage:uISERVICE.take, currentPage:pageNo,totalItems: totalRec }">
                                 <td> {{data.CreatedOn | date: 'dd/MM/yyyy hh:mm a'}}</td>
                                 <td>
-                                    <span class="label-success">{{data.Type}}</span>
+                                    <span class="label-success" >{{data.Type}}</span>
                                 </td>
                                 <td><a [ngClass]="{'content_disable':data.MarketName=='Cash','content_enable':data.MarketName!='Cash'}"
                                         href="javascript:void(0)" (click)="getMarketBets(data)" data-toggle="modal"
