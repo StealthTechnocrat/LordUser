@@ -695,11 +695,11 @@
             img {
                 width: 160px;
                 height: 38px;
-
+                border-radius: 5px;
                 @media(max-width:767.98px) {
                     width: 110px;
                     height: 32px;
-                    border-radius: 8px;
+                    border-radius: 5px;
                 }
             }
 

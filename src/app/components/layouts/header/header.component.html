@@ -254,7 +254,6 @@
         </li> -->
         <li class="" *ngIf="uISERVICE.Header">
           <a href="javascript:void(0);" data-toggle="modal" data-target="#OneClickBetModal">
-            <span *ngIf="uISERVICE.OneClickBet">{{uISERVICE.stake}}</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 357.058 475.569" width="16" height="21">
               <g id="tap" transform="translate(-0.284)">
                 <path id="Path_1" fill="#fff"
@@ -265,6 +264,7 @@
                   data-name="Path 2"></path>
               </g>
             </svg>
+            <span class="countBedge" *ngIf="uISERVICE.OneClickBet">{{uISERVICE.stake}}</span>
           </a>
         </li>
         <li class="mr-3">
