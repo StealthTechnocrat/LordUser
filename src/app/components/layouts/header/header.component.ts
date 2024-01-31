@@ -50,6 +50,11 @@ export class HeaderComponent implements OnInit {
   firstTimeLoginChk : boolean = false;
   domain : string = window.location.origin;
   pendingBets: any = [];
+  eventlist: any = [];
+  keyword: any ="";
+  eventId: any;
+  sport: any;
+  event: any;
   constructor(
     private accountService: AccountService,
     public uISERVICE: UiService,
@@ -654,6 +659,29 @@ export class HeaderComponent implements OnInit {
           this.uISERVICE.backUpBets = [];
         }
       });
+  }
+
+  getEvent(value: any) {
+    this.accountService.SearchEvent((this.keyword = value.target.value)).then((response) => {
+      if (response.Status) {
+        this.eventlist = response.Result;
+      } else {
+        this.eventlist = [];
+      }
+    });
+  }
+
+  getEventData(data: any)
+  {
+    console.log(data)
+    this.sport= data.SportsId;
+    this.event= data.EventId;
+    this.sharedService.setEventData(data);
+    this.router.navigate([`/set-bet/${this.sport}/${this.event}`]);
+    this.keyword = ""
+    this.eventlist = []
+    document.getElementById("clsSrch").click();
+    document.getElementById("cloBtnMenuTab").click();
   }
 
   GetAllPendingBets() {

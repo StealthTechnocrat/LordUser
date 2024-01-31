@@ -223,8 +223,16 @@
         </li>
         <li class="ml-auto">
           <div class="logo-search mr-2">
-            <input type="text" placeholder="Search" name="search" autocomplete="off">
-            <button type="button"><i class="fa fa-search"></i></button>
+            <input placeholder="Search.." type="text" name="search" autofocus="" autocomplete="off"
+            class="validate" (keyup)="getEvent($event)" [(ngModel)]="keyword">
+        <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
+        <ul class="main-search-list">
+            <li *ngFor="let data of eventlist" (click)="getEventData(data)">
+                <p class="serName">{{data.SeriesName}} <i class="fas fa-caret-right px-2"></i></p>
+                <p class="eveName">{{data.EventName}}</p>
+                <p class="eveTime">{{data.EventTime | date:'M/d/yy, h:mm a'}}</p>
+            </li>
+        </ul>
           </div>
         </li>
         <li class="" *ngIf="uISERVICE.Header">
