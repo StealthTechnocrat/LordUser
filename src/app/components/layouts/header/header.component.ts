@@ -55,6 +55,7 @@ export class HeaderComponent implements OnInit {
   eventId: any;
   sport: any;
   event: any;
+  showMatchListDiv: boolean = false;
   constructor(
     private accountService: AccountService,
     public uISERVICE: UiService,
@@ -664,15 +665,18 @@ export class HeaderComponent implements OnInit {
   getEvent(value: any) {
     this.accountService.SearchEvent((this.keyword = value.target.value)).then((response) => {
       if (response.Status) {
+        this.showMatchListDiv = true;
         this.eventlist = response.Result;
       } else {
         this.eventlist = [];
+        this.showMatchListDiv = false;
       }
     });
   }
 
   getEventData(data: any)
   {
+    debugger;
     console.log(data)
     this.sport= data.SportsId;
     this.event= data.EventId;
