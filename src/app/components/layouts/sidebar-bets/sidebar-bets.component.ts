@@ -12,6 +12,7 @@ export class SidebarBetsComponent implements OnInit {
   sportsId:number=0;
   marketName:string="All";
   BetType:string="All";
+  pendingBets: any = [];
   constructor( public uISERVICE: UiService, private accountService: AccountService) { }
 
   ngOnInit(): void {
@@ -22,6 +23,19 @@ export class SidebarBetsComponent implements OnInit {
     }
   }
 
+  GetAllPendingBets() {
+    this.uISERVICE.backUpBets = [];
+    this.accountService
+      .GetAllPendingBets(
+      )
+      .then((response) => {
+        if (response.Status) {
+          this.pendingBets = response.Result;
+        } else {
+          this.pendingBets = [];
+        }
+      });
+  }
   
 
   GetAllBets() {

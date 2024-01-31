@@ -79,7 +79,7 @@
               </svg>
               <span class="d-none d-sm-block">Balance:</span> {{Balance | number:'1.2-2'}}
             </li>
-            <li class="liability" data-toggle="modal" data-target="#allbetsmodal" (click)="GetAllBets()">
+            <li class="liability" data-toggle="modal" data-target="#allbetsmodal" (click)="GetAllPendingBets()">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 13.333" width="15" height="13.333">
                 <path id="hand-holding-usd-solid" fill="#333" transform="translate(0)"
                   d="M 7.059 3.758 l 1.413 0.372 a 0.224 0.224 0 0 1 0.173 0.211 a 0.229 0.229 0 0 1 -0.237 0.219 H 7.48 A 0.781 0.781 0 0 1 7.189 4.5 a 0.373 0.373 0 0 0 -0.4 0.052 L 6.3 5.01 a 0.3 0.3 0 0 0 -0.059 0.069 a 0.3 0.3 0 0 0 0.1 0.41 a 2.181 2.181 0 0 0 0.9 0.3 V 6.25 a 0.437 0.437 0 0 0 0.452 0.417 h 0.452 a 0.437 0.437 0 0 0 0.453 -0.417 V 5.792 A 1.5 1.5 0 0 0 9.987 4.151 A 1.579 1.579 0 0 0 8.775 2.909 L 7.361 2.536 a 0.224 0.224 0 0 1 -0.173 -0.211 a 0.229 0.229 0 0 1 0.237 -0.219 h 0.927 a 0.781 0.781 0 0 1 0.292 0.057 a 0.373 0.373 0 0 0 0.4 -0.052 l 0.495 -0.456 A 0.3 0.3 0 0 0 9.6 1.589 a 0.3 0.3 0 0 0 -0.1 -0.411 a 2.183 2.183 0 0 0 -0.9 -0.3 V 0.417 A 0.437 0.437 0 0 0 8.144 0 H 7.692 a 0.437 0.437 0 0 0 -0.452 0.417 V 0.875 A 1.5 1.5 0 0 0 5.846 2.516 A 1.581 1.581 0 0 0 7.059 3.758 Z M 14.72 8.544 a 0.862 0.862 0 0 0 -1.109 0 L 11.2 10.469 a 1.657 1.657 0 0 1 -1.042 0.365 H 7.083 a 0.417 0.417 0 1 1 0 -0.833 H 9.122 a 0.864 0.864 0 0 0 0.866 -0.693 A 0.812 0.812 0 0 0 10 9.165 a 0.833 0.833 0 0 0 -0.833 -0.832 H 5 a 3.064 3.064 0 0 0 -1.93 0.685 L 1.859 10 H 0.417 A 0.417 0.417 0 0 0 0 10.416 v 2.5 a 0.417 0.417 0 0 0 0.417 0.417 H 9.707 a 1.667 1.667 0 0 0 1.042 -0.365 l 3.938 -3.151 a 0.833 0.833 0 0 0 0.033 -1.273 Z">
@@ -198,7 +198,7 @@
           <div class="m_bal pr-2 pr-sm-3">
             <p>Total Balance : <strong>{{uISERVICE.Bal | number:'1.2-2'}}</strong></p>
             <p class="exposure_head">Exposure : <a href="javascript:void(0)" data-toggle="modal"
-                data-target="#allbetsmodal" (click)="GetAllBets()">{{uISERVICE.Exp | number:'1.2-2'}}</a></p>
+                data-target="#allbetsmodal" (click)="GetAllPendingBets()">{{uISERVICE.Exp | number:'1.2-2'}}</a></p>
           </div>
           <button class="btn p-0 user_btn_m" type="button">
             <svg class="svg-icon">
@@ -496,7 +496,7 @@
 
 
 
-<div class="mobMatchUnmatch" (click)="GetAllBets()">
+<div class="mobMatchUnmatch" (click)="GetAllPendingBets()">
   <a href="#" data-toggle="modal" data-target="#allbetsmodal">
     <div id="nav-icon1 " class="nav-icon position-relative">
       <div class="betCount">
@@ -1022,7 +1022,7 @@
                 </div>
               </div>
             </div>
-            <div class="mainTableMtch" *ngFor="let bets of uISERVICE.backUpBets;let i=index">
+            <div class="mainTableMtch" *ngFor="let bets of pendingBets;let i=index">
               <div class="odd-title">
                 <span> {{bets.MarketName}}</span>
                 <div class="match-name">{{bets.EventName}}</div>

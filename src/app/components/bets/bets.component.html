@@ -99,24 +99,6 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="row">
-                                    <!-- <div class="col-md-8">
-                                        <div class="row">
-                                            <div class="col-6 col-sm-3 col-md-2">
-                                                <div class="form-field">
-                                                    <label>Start Date</label>
-                                                    <input type="date" name="sdate" [(ngModel)]="latest_date" (blur)="getStartDate($event.target.value)"
-                                                    class="form-control mr-2" id="sdate">
-                                                </div>
-                                            </div>
-                                            <div class="col-6 col-sm-3 col-md-2">
-                                                <div class="form-field">
-                                                    <label>End Date</label>
-                                                    <input type="date" name="edate" [(ngModel)]="last" (blur)="getEndDate($event.target.value)"
-                                                        class="form-control mr-2" id="edate">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> 
                                     <div class="col-md-4">
                                         <div class="form-field customfield">
                                             <button (click)="getBetsHistory()" type="submit"
@@ -127,31 +109,14 @@
                                                 
                                             </div>
                                         </div>
-                                    </div>-->
-                                    <!-- <div class="col-md-12">
-                                        <div class="form-field d-flex justify-content-between align-items-center">
-                                            <button (click)="getBetsHistory()" type="submit"
-                                                class="btn btn-primary mr-2">Load</button>
-                                            <div class="d-flex align-items-center">
-                                                <button type="button" class="btn btn-primary file_btn " (click)="exportexcel()">
-                                                    Excel
-                                                </button>
-                                                <button type="button" class="btn btn-primary file_btn ">
-                                                    CSV
-                                                </button>
-                                                <button type="button" class="btn btn-primary file_btn ">
-                                                    PDF
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div> -->
+                                    </div> 
                                 </div>
                             </div>
                         </div>
                     </form>
-                    <div class="tableSearch  justify-content-center justify-content-sm-end mb-2">
+                    <!-- <div class="tableSearch  justify-content-center justify-content-sm-end mb-2">
                         <label>Search:<input type="search" class="" placeholder=""></label>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="table-responsive">
                     <table class="table align-middle table-striped mb-0 table_design" id="excel-table2"  style="border-bottom: 1px solid #111;">
@@ -165,42 +130,14 @@
                                 <th>Rate</th>
                                 <th>Stake</th>
                                 <th>P/L</th>
-                                <th>Matched/UnMatched</th>
+                                <!-- <th>Matched/UnMatched</th> -->
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Jan 2, 2024, 6:25:04 PM</td>
-                                <td>Event</td>
-                                <td>Market</td>
-                                <td>Selection</td>
-                                <td>Type</td>
-                                <td>Rate</td>
-                                <td>Stake</td>
-                                <td><span class="green">5,000</span></td>
-                                <td>Matched</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- <div class="table-responsive">
-                    <table class="table align-middle table-striped mb-0 table_design" id="excel-table2">
-                        <thead>
-                            <tr>
-                                <th>Match Name</th>
-                                <th>Market Name</th>
-                                <th>Selection Name</th>
-                                <th>Bate Type</th>
-                                <th>Odds</th>
-                                <th>Stack</th>
-                                <th>Profit</th>
-                                <th>Result</th>
-                                <th date_set>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr
-                                *ngFor="let data of betObj | paginate: { itemsPerPage:uISERVICE.take, currentPage:pageNo,totalItems: totalRec }">
+                            <tr  *ngFor="let data of betObj | paginate: { itemsPerPage:uISERVICE.take, currentPage:pageNo,totalItems: totalRec }">
+                                <td>
+                                    {{data.createdOn |date:'MMM d, y, h:mm:ss a' }}
+                                </td>
                                 <td>
                                     {{data.EventName}}
                                 </td>
@@ -223,26 +160,22 @@
                                     <span
                                         [ngClass]="{'red':data.Profit<0,'green':data.Profit>=0}">{{data.Profit |number : '1.2-2'}}</span>
                                 </td>
-                                <td>
-                                    {{data.Result}}
-                                </td>
-                                <td>
-                                    {{data.createdOn |date:'MMM d, y, h:mm:ss a' }}
-                                </td>
+                                <!-- <td>Matched</td> -->
                             </tr>
                         </tbody>
                     </table>
-                </div> -->
+                </div>
+         
                 <div class="pagination_filter pt-3 d-flex align-items-center flex-column flex-sm-row justify-content-center justify-content-sm-between">
-                    <!-- <select (change)="updateRecValue($event.target.value)" class="form-control mr-2" id="">
+                    <select (change)="updateRecValue($event.target.value)" class="form-control mr-2" id="">
                         <option value="uISERVICE.take" selected>{{uISERVICE.take}}</option>
                         <option value="10" *ngIf="uISERVICE.take!=10">10</option>
                         <option value="20" *ngIf="uISERVICE.take!=20">20</option>
                         <option value="30" *ngIf="uISERVICE.take!=30">30</option>
                         <option value="40" *ngIf="uISERVICE.take!=40">40</option>
                         <option value="50" *ngIf="uISERVICE.take!=50">50</option>
-                    </select> -->
-                    <p class="mb-4 mb-sm-0">Showing 1 to 8 of 8 entries</p>
+                    </select>
+                    <p class="mb-4 mb-sm-0">Showing {{betObj?.length}} of {{totalRec}} entries</p>
                     <pagination-controls class="pagination" maxSize="9" directionLinks="true" *ngIf="betObj?.length>0"
                         (pageChange)="pageChanged($event)">
                     </pagination-controls>

@@ -49,6 +49,7 @@ export class HeaderComponent implements OnInit {
   betCount: number = 0;
   firstTimeLoginChk : boolean = false;
   domain : string = window.location.origin;
+  pendingBets: any = [];
   constructor(
     private accountService: AccountService,
     public uISERVICE: UiService,
@@ -651,6 +652,20 @@ export class HeaderComponent implements OnInit {
           this.uISERVICE.betCount = this.betCount;
         } else {
           this.uISERVICE.backUpBets = [];
+        }
+      });
+  }
+
+  GetAllPendingBets() {
+    this.uISERVICE.backUpBets = [];
+    this.accountService
+      .GetAllPendingBets(
+      )
+      .then((response) => {
+        if (response.Status) {
+          this.pendingBets = response.Result;
+        } else {
+          this.pendingBets = [];
         }
       });
   }

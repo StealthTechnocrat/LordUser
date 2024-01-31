@@ -73,10 +73,19 @@ export class AccountService {
     environment.apiBaseUrl + "Event/GetFilteredResultList";
     private GetAllPendingBetsCountUrl =
     environment.apiBaseUrl + "Admin/GetAllPendingBetsCount";
-
+    private GetAllPendingBetsUrl =
+    environment.apiBaseUrl + "Admin/GetAllPendingBets";
   private usrDtlUrl = environment.apiBaseUrl + "SignUp/UsersDetails";
   private SearchEventUrl =
   environment.apiBaseUrl + "Admin/SearchEvent";
+
+  GetAllPendingBets(): Promise<any> {
+    return this.baseHttpService
+      .Get(this.GetAllPendingBetsUrl)
+      .then(function (response) {
+        return response.json();
+      });
+  }
 
   SearchEvent(keyword): Promise<any> {
     return this.baseHttpService
