@@ -1,17 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { UiService } from 'src/app/service/ui-service';
-import { HttpClient } from '@angular/common/http';
-import { PlaceBetModel } from 'src/app/Model/placebet_model';
-import { Cookie } from 'ng2-cookies';
-import { AccountService } from 'src/app/service/account-service';
-import { ToastrService } from 'ngx-toastr';
-
-
+import { Component, OnInit } from "@angular/core";
+import { UiService } from "src/app/service/ui-service";
+import { HttpClient } from "@angular/common/http";
+import { PlaceBetModel } from "src/app/Model/placebet_model";
+import { Cookie } from "ng2-cookies";
+import { AccountService } from "src/app/service/account-service";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
-  selector: 'app-bet-slip',
-  templateUrl: './bet-slip.component.html',
-  styleUrls: ['./bet-slip.component.scss']
+  selector: "app-bet-slip",
+  templateUrl: "./bet-slip.component.html",
+  styleUrls: ["./bet-slip.component.scss"],
 })
 export class BetSlipComponent implements OnInit {
   loader: boolean = false;
@@ -19,35 +17,36 @@ export class BetSlipComponent implements OnInit {
   betValid: boolean = true;
   public placeBetModel: PlaceBetModel;
 
-  constructor(private toastr: ToastrService,public uISERVICE: UiService, private http: HttpClient, private accountService: AccountService) { }
+  constructor(
+    private toastr: ToastrService,
+    public uISERVICE: UiService,
+    private http: HttpClient,
+    private accountService: AccountService
+  ) {}
 
   ngOnInit(): void {
-    // if(this.uISERVICE.OneClickBet == false){
-      if (Cookie.check('usersCookies')) {
+
+      if (Cookie.check("usersCookies")) {
         this.placeBetModel = <PlaceBetModel>{
           SportsId: 0,
-          EventId: '',
-          EventName: '',
-          MarketId: '',
-          MarketName: '',
-          RunnerId: '',
-          RunnerName: '',
+          EventId: "",
+          EventName: "",
+          MarketId: "",
+          MarketName: "",
+          RunnerId: "",
+          RunnerName: "",
           Stake: 0,
           Odds: 0,
-          Price: '',
-          BetType: '',
-          BetStatus: 'Pending',
+          Price: "",
+          BetType: "",
+          BetStatus: "Pending",
           ParentId: 0,
         };
       } else {
         this.uISERVICE.Header = false;
       }
-    }
-    // else{
-    // this.transform();
-    // this.checkBetCond();
-    // }
- 
+   
+  }
 
   getValue(value) {
     this.uISERVICE.stake = this.uISERVICE.stake + value;
@@ -59,53 +58,69 @@ export class BetSlipComponent implements OnInit {
     this.transform();
   }
 
-
-
   transform() {
+    debugger;
     switch (this.uISERVICE.betType) {
       case "Yes":
-        this.uISERVICE.profit = (this.uISERVICE.stake * parseInt(this.uISERVICE.price)) / 100;
+        this.uISERVICE.profit =
+          (this.uISERVICE.stake * parseInt(this.uISERVICE.price)) / 100;
         this.uISERVICE.exposure = this.uISERVICE.stake;
         break;
       case "No":
         this.uISERVICE.profit = this.uISERVICE.stake;
-        this.uISERVICE.exposure = (this.uISERVICE.stake * parseInt(this.uISERVICE.price)) / 100;
+        this.uISERVICE.exposure =
+          (this.uISERVICE.stake * parseInt(this.uISERVICE.price)) / 100;
         break;
       case "Back":
-        this.uISERVICE.profit = this.uISERVICE.mrktName=="BookMaker"?this.uISERVICE.stake * (this.uISERVICE.odds/100):this.uISERVICE.stake * (this.uISERVICE.odds - 1);
+        this.uISERVICE.profit =
+          this.uISERVICE.mrktName == "BookMaker"
+            ? this.uISERVICE.stake * (this.uISERVICE.odds / 100)
+            : this.uISERVICE.stake * (this.uISERVICE.odds - 1);
         this.uISERVICE.exposure = this.uISERVICE.stake;
         break;
       case "Lay":
         this.uISERVICE.profit = this.uISERVICE.stake;
-        this.uISERVICE.exposure = this.uISERVICE.mrktName=="BookMaker"?this.uISERVICE.stake * (this.uISERVICE.odds/100):this.uISERVICE.stake * (this.uISERVICE.odds - 1);
+        this.uISERVICE.exposure =
+          this.uISERVICE.mrktName == "BookMaker"
+            ? this.uISERVICE.stake * (this.uISERVICE.odds / 100)
+            : this.uISERVICE.stake * (this.uISERVICE.odds - 1);
         break;
+    }
+    if(this.uISERVICE.OneClickBet == true){
+      this.checkBetCond();
     }
   }
 
   checkBetCond() {
+    debugger;
     this.betValid = true;
     this.uISERVICE.betLoader = true;
     if (this.uISERVICE.odds == 0) {
-     
-      this.toastr.error('Bet odds cannot be 0.');
+      this.toastr.error("Bet odds cannot be 0.");
       this.betValid = false;
-    } if (this.uISERVICE.stake <= 0) {
-     
-      this.toastr.error('Bet amount cannot be 0.');
+    }
+    if (this.uISERVICE.stake <= 0) {
+      this.toastr.error("Bet amount cannot be 0.");
       this.betValid = false;
-    } if (this.uISERVICE.betType == "Fancy") {
+    }
+    if (this.uISERVICE.betType == "Fancy") {
       if (parseInt(this.uISERVICE.price) <= 0) {
-       
-        this.toastr.error('Fancy odds cannot be 0.');
+        this.toastr.error("Fancy odds cannot be 0.");
         this.betValid = false;
       }
-    } if (this.uISERVICE.maxMarkt < this.uISERVICE.stake) {
-     
-      this.toastr.error('Max bet amount on market is not greater then.' + this.uISERVICE.maxMarkt);
+    }
+    if (this.uISERVICE.maxMarkt < this.uISERVICE.stake) {
+      this.toastr.error(
+        "Max bet amount on market is not greater then." +
+          this.uISERVICE.maxMarkt
+      );
       this.betValid = false;
-    } if (this.uISERVICE.minMarkt > this.uISERVICE.stake) {
-     
-      this.toastr.error('Minimum bet amount on market is not less then.'+ this.uISERVICE.minMarkt);
+    }
+    if (this.uISERVICE.minMarkt > this.uISERVICE.stake) {
+      this.toastr.error(
+        "Minimum bet amount on market is not less then." +
+          this.uISERVICE.minMarkt
+      );
       this.betValid = false;
     }
     if (this.betValid) {
@@ -114,7 +129,6 @@ export class BetSlipComponent implements OnInit {
       } else {
         this.placeBet();
       }
-
     } else {
       this.uISERVICE.betLoader = false;
       setTimeout(() => {
@@ -124,20 +138,22 @@ export class BetSlipComponent implements OnInit {
   }
 
   async checkRoundIsValid() {
-    
-    if (this.uISERVICE.activeRoundId == this.uISERVICE.marketId && this.uISERVICE.gStatus > 0) {
+    if (
+      this.uISERVICE.activeRoundId == this.uISERVICE.marketId &&
+      this.uISERVICE.gStatus > 0
+    ) {
       this.placeBet();
     } else {
       this.betValid = false;
-     
-      this.toastr.error('Market Suspended.');
+
+      this.toastr.error("Market Suspended.");
       this.uISERVICE.betLoader = false;
       setTimeout(() => {
         this.uISERVICE.Error = false;
       }, 2000);
     }
   }
-  reset(){
+  reset() {
     this.uISERVICE.stake = 0;
     this.uISERVICE.exposure = 0;
     this.uISERVICE.stake = 0;
@@ -145,10 +161,11 @@ export class BetSlipComponent implements OnInit {
   }
 
   placeBet() {
-    
+    debugger;
     this.placeBetModel.SportsId = this.uISERVICE.sportsId;
     this.placeBetModel.EventName = this.uISERVICE.EventName;
-    this.placeBetModel.EventId = this.uISERVICE.eventId == undefined ? "321654" : this.uISERVICE.eventId;
+    this.placeBetModel.EventId =
+      this.uISERVICE.eventId == undefined ? "321654" : this.uISERVICE.eventId;
     this.placeBetModel.MarketId = this.uISERVICE.marketId;
     this.placeBetModel.MarketName = this.uISERVICE.mrktName;
     this.placeBetModel.RunnerId = this.uISERVICE.rnrId;
@@ -163,25 +180,21 @@ export class BetSlipComponent implements OnInit {
     setTimeout(() => {
       this.accountService.placeBet(this.placeBetModel).then((response) => {
         if (response.Status) {
-          if(!this.uISERVICE.betSound){
+          if (!this.uISERVICE.betSound) {
             this.playAlertTone();
           }
-          this.toastr.success('Bet Placed Successfully');
+          this.toastr.success("Bet Placed Successfully");
           this.uISERVICE.Bal = response.FreeChips;
           this.uISERVICE.Exp = response.Exp;
-          this.uISERVICE.Bets=response.Bets;
+          this.uISERVICE.Bets = response.Bets;
           this.uISERVICE.betLoader = false;
           this.cancelAll();
-          
         } else {
-          
           this.uISERVICE.betLoader = false;
           this.toastr.error(response.Result);
-         
         }
       });
     }, this.uISERVICE.betDelay * 1000);
-
   }
 
   playAlertTone() {
@@ -205,7 +218,9 @@ export class BetSlipComponent implements OnInit {
 
   ConcateChipvalue(numberConcate) {
     if (this.uISERVICE.stake > 0 && this.uISERVICE.stake != undefined) {
-      this.uISERVICE.stake = parseInt(this.uISERVICE.stake.toString() + numberConcate);
+      this.uISERVICE.stake = parseInt(
+        this.uISERVICE.stake.toString() + numberConcate
+      );
     } else {
       this.uISERVICE.stake = numberConcate;
     }
@@ -213,7 +228,11 @@ export class BetSlipComponent implements OnInit {
   }
   deleteChipVal() {
     if (this.uISERVICE.stake > 0 && this.uISERVICE.stake != undefined) {
-      this.uISERVICE.stake = parseInt((this.uISERVICE.stake).toString().substring(0, (this.uISERVICE.stake).toString().length - 1));
+      this.uISERVICE.stake = parseInt(
+        this.uISERVICE.stake
+          .toString()
+          .substring(0, this.uISERVICE.stake.toString().length - 1)
+      );
       this.transform();
     }
   }
