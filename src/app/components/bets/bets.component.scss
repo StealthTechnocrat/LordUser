@@ -151,7 +151,9 @@
     }
   }
 }
-
+input[type="date"]::-webkit-calendar-picker-indicator{
+  filter: invert(1);
+}
 .pagination_filter {
   color: #fff;
   font-size: 12px;
@@ -160,8 +162,14 @@
 
   select {
     margin-left: 5px;
-    color: #000;
+    color: #fff;
     font-weight: 600;
+    &:focus{
+      color: #000 !important;
+    }
+    option{
+    color: #000;
+    }
   }
 }
 

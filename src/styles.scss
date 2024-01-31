@@ -1451,7 +1451,7 @@ $m_box_width: 15%;
     background: #a7d8fd !important;
 
     td {
-      color: #000;
+      color: #000 !important;
     }
   }
 
@@ -1459,7 +1459,7 @@ $m_box_width: 15%;
     background: #f9c9d4 !important;
 
     td {
-      color: #000;
+      color: #000 !important;
     }
   }
 }
@@ -1882,16 +1882,20 @@ $m_box_width: 15%;
   &.poker {
     background-position: 0 -740px;
   }
-  &.grayhound{
+
+  &.grayhound {
     background-position: 0 -540px;
   }
-  &.horseracing{
+
+  &.horseracing {
     background-position: 0 -580px;
   }
-  &.casino{
+
+  &.casino {
     background-position: 0 -740px;
   }
-  &.livecasino{
+
+  &.livecasino {
     background-position: 0 -800px;
   }
 }
@@ -2399,7 +2403,72 @@ body {
   }
 }
 
+.search-list {
+  list-style: none;
+  background-color: #fff;
+  border-radius: 4px;
+  margin-top: 5px;
 
+  li {
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    padding: 4px 10px;
+    color: #5c6060;
+    font-size: 14px;
+
+    p {
+      line-height: 1.7;
+
+      &.serName {
+        font-weight: bold;
+      }
+
+      &.eveName {
+        font-size: 14px;
+        font-weight: 500;
+        color: #525252;
+        line-height: 20px;
+      }
+
+      &.eveTime {
+        font-size: 13px;
+        font-weight: 500;
+        color: #999;
+      }
+    }
+  }
+}
+
+.header-search-list {
+  height: auto !important;
+  line-height: normal !important;
+  margin: 0;
+  position: absolute;
+  top: calc(100% + 5px);
+  display: block !important;
+  width: 520px !important;
+  right: 0;
+  background: #53555b;
+  max-height: calc(100vh - 94px) !important;
+  overflow: auto;
+
+  li {
+    padding: 4px 20px !important;
+    color: #fff;
+
+    p {
+      &.eveName {
+        color: #fff;
+        font-size: 12px;
+      }
+
+      &.eveTime {
+        font-size: 12px;
+        font-weight: 600;
+      }
+    }
+  }
+}
 
 
 // dark mode css
@@ -2478,20 +2547,59 @@ body.dark-theme {
       }
     }
   }
+
+  .search-list {
+    list-style: none;
+    background-color: #242424;
+    border-radius: 4px;
+    margin-top: 5px;
+
+    li {
+      border-bottom: 1px solid #e5e5e563;
+      cursor: pointer;
+      padding: 4px 10px;
+      color: #d4d4d4;
+      font-size: 14px;
+
+      p {
+        line-height: 1.7;
+
+        &.serName {
+          font-weight: bold;
+        }
+
+        &.eveName {
+          font-size: 14px;
+          font-weight: 500;
+          color: #d4d4d4;
+          line-height: 20px;
+        }
+
+        &.eveTime {
+          font-size: 13px;
+          font-weight: 500;
+          color: #d4d4d4cd;
+        }
+      }
+    }
+  }
+
   .mob-BackLay {
     .bet_table_row {
-      .nation_name{
+      .nation_name {
         border-bottom: 1px solid #e5e5e547 !important;
       }
     }
   }
+
   .bet_table_row {
-    .bl_box{
-      &.fancy_bx{
+    .bl_box {
+      &.fancy_bx {
         color: #b9b9b9;
       }
     }
   }
+
   .news_marquee {
     color: #b9b9b9;
   }
@@ -2670,38 +2778,47 @@ body.dark-theme {
       .bl_box {}
     }
   }
-  .pagination_filter{
+
+  .pagination_filter {
     color: #b9b9b9 !important;
   }
+
   .tableSearch {
-    label{
+    label {
       color: #b9b9b9 !important;
     }
   }
+
   .prlsFilter {
     .form-field {
-      label{
+      label {
         color: #b9b9b9 !important;
       }
-      input{
+
+      input {
         color: #b9b9b9 !important;
+
         &[type="date"]::-webkit-calendar-picker-indicator {
           filter: invert(.8);
         }
-        &.text-danger{
-          color: #dc3545!important;
+
+        &.text-danger {
+          color: #dc3545 !important;
         }
       }
-      select{
+
+      select {
         color: #b9b9b9 !important;
       }
     }
   }
+
   .casino_bar {
     .rightGames {
       h3 {
         color: #b9b9b9 !important;
-        &:after{
+
+        &:after {
           border-bottom: 2px solid #b9b9b9;
         }
       }
@@ -2720,52 +2837,62 @@ body.dark-theme {
       }
     }
   }
+
   .upcoming_games_list {
     li {
-      .timeCol{
-        .animate{
-          .flip-animation{
-            .time_date{
+      .timeCol {
+        .animate {
+          .flip-animation {
+            .time_date {
               border: 1px solid #ffeeb9;
               background: #ffeeb9;
-              span{
+
+              span {
                 color: #333333 !important;
               }
             }
           }
         }
       }
-      .date_time.in-play{
-        .animate{
-          ul.flip-animation{
-            li.date_time.in-play{
-              span.time{
+
+      .date_time.in-play {
+        .animate {
+          ul.flip-animation {
+            li.date_time.in-play {
+              span.time {
                 color: #333333 !important;
               }
             }
           }
         }
       }
-      .date_time{
-        &.in-play{
+
+      .date_time {
+        &.in-play {
           background-color: #ffcb2f !important;
           color: #ffcb2f !important;
-          .animate{
-            .flip-animation{
-              li{
-                .time{
+
+          .animate {
+            .flip-animation {
+              li {
+                .time {
                   color: #333333 !important;
                 }
               }
             }
           }
-          ul{
-            li{
+
+          ul {
+            li {
               border: 0 !important;
-              .day-name, .time, .in-play-light{
+
+              .day-name,
+              .time,
+              .in-play-light {
                 color: #333333 !important;
               }
-              .sports-icon{
+
+              .sports-icon {
                 filter: invert(1);
               }
             }
@@ -2774,36 +2901,43 @@ body.dark-theme {
       }
     }
   }
+
   .user-menus {
     li.userDrop {
-      ul.dropdown-menu{
+      ul.dropdown-menu {
         background-color: #000e34 !important;
       }
     }
   }
+
   .chipSettingModal {
     .modal-content {
-      .modal-header{
+      .modal-header {
         background-color: #1f252a !important;
       }
+
       .termConWrap {
         background-color: #3c444b !important;
-        .page_title{
+
+        .page_title {
           background-color: #1f252a;
         }
       }
-      .modal-footer{
+
+      .modal-footer {
         background-color: #1f252a;
       }
     }
   }
+
   .customModaalTheme {
     .modal-content {
-      .modal-header{
+      .modal-header {
         background-color: #1f252a !important;
       }
     }
   }
+
   .footer-main {
     ul.links {
       li {
@@ -2862,8 +2996,11 @@ body.dark-theme {
         &:before {
           background-color: #4c4c4c !important;
         }
-        .times{
-          p, span{
+
+        .times {
+
+          p,
+          span {
             color: #b9b9b9 !important;
           }
         }
@@ -2946,15 +3083,17 @@ body.dark-theme {
       }
     }
   }
+
   .mobMatchUnmatch {
     a {
       .nav-icon {
-        span{
+        span {
           background: #b9b9b9 !important;
         }
       }
     }
   }
+
   .main_wrap {
     .cstm_row {
       .nav {
@@ -3021,273 +3160,294 @@ body.dark-theme {
       .modal-header {
         background-color: #1f252a !important;
       }
+
       .modal-body {
         background-color: #181818 !important;
+
         .table {
-          tbody{
+          tbody {
             tr {
               background-color: #383838;
-              td{
+
+              td {
                 color: #c6c6c6;
               }
-          }
-          }
-        }
-      }
-      .modal-footer{
-        background-color: #1f252a;
-      }
-    }
-  }
-
-.page_title {
-  h3 {
-    color: #b9b9b9 !important;
-    &:after{
-      border-bottom: 2px solid #b9b9b9;
-    }
-  }
-}
-
-.center_inner {
-  background-color: #000a2c;
-}
-
-.middle_area {
-  .mid_inner {
-    background-color: #181818;
-  }
-}
-
-.my_bets_table {
-  .filter {
-
-    .form-select,
-    .form-control {
-      border: 1px solid #919191;
-      background-color: transparent;
-      color: #ccc;
-    }
-  }
-}
-
-.pagination_filter {
-  select {
-    color: #b9b9b9 !important;
-  }
-}
-
-.ngx-pagination {
-  .disabled {
-    color: #cacaca !important;
-  }
-}
-
-.table {
-  thead {
-    th {
-      color: #b9b9b9 !important;
-    }
-  }
-
-  tbody {
-    tr {
-      background-color: #181818;
-
-      td {
-        border-bottom: 1px solid rgb(117 117 117 / 67%);
-        color: #b9b9b9 !important;
-        a{
-          color: #b9b9b9 !important;
-        }
-      }
-    }
-  }
-}
-.pagination_filter{
-  p{
-    color: #b9b9b9 !important;
-  }
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(1);
-}
-
-.my_bets_table {
-  .filter {
-    button {
-      &:hover {
-        border: 1px solid #fff !important;
-        background: #fff !important;
-        box-shadow: 0 0 8px 0 #fff !important;
-        color: #000 !important;
-      }
-    }
-  }
-}
-
-.modal {
-  // background-color: #3c444b !important;
-
-  .modal-content {
-    .modal-body {
-      background-color: #3c444b !important;
-    }
-  }
-}
-
-.termsCondition {
-  .termConWrap {
-    h3 {}
-  }
-}
-
-
-.modal-content {
-  background-color: #3c444b;
-}
-
-.chipSettingModal {
-  .modal-content {
-
-    form {
-      .form-field {
-
-        label,
-        input {
-          color: #b9b9b9;
-        }
-
-        input {
-          border-bottom: 1px solid #6a6a6a !important;
-        }
-      }
-    }
-  }
-}
-
-.login_form {
-  button.btn-close {
-    color: #b9b9b9 !important;
-  }
-}
-
-.upcoming_games_list {
-  li {
-    .game_name {
-      h5 {
-        color: #b9b9b9 !important;
-
-        .versis_img {
-          svg {
-            fill: #b9b9b9 !important;
-          }
-        }
-      }
-    }
-
-    .date_time {
-      .time {
-        color: #b9b9b9 !important;
-      }
-    }
-  }
-}
-
-.content_disable {
-  color: #b9b9b9 !important;
-}
-
-.pagination_filter {
-  .pagination {
-    a {
-      color: #b9b9b9 !important;
-    }
-  }
-}
-
-.ngx-pagination a:hover,
-.ngx-pagination button:hover {
-  background: #3a3939 !important;
-}
-
-.market {
-  .market-title {
-    color: #b9b9b9 !important;
-  }
-}
-
-.sidebar_toggle_btn {
-  img {
-    filter: invert(1);
-  }
-}
-
-.mobMarquee {
-  color: #b9b9b9 !important;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #868686 !important;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #868686 !important;
-}
-
-.bottom_nav {
-  background-color: #242424 !important;
-  color: #000 !important;
-
-  ul {
-    li {
-      &.all-items {
-        .menu-item {
-          box-shadow: 3px 3px 5px #1b1a1a, -3px -3px 5px #2b2b2b !important;
-          background-color: #242424 !important;
-        }
-
-        .bottom-circle {
-          .circle-nav {
-            .circle-nav-open {
-              background-color: #242424 !important;
             }
           }
         }
       }
 
-      &.big {
-        &:before {
-          box-shadow: 3px 3px 5px #4a4949, -3px -3px 5px #454444 !important;
-          background-color: #242424 !important;
-        }
+      .modal-footer {
+        background-color: #1f252a;
       }
+    }
+  }
 
-      .noneAllit {
-        svg {
-          path {
-            fill: #fff !important;
-          }
-        }
+  .back_layclr {
+    .back {
+      td {
+        color: #000 !important;
       }
+    }
 
-      a {
+    .lay {
+      td {
+        color: #000 !important;
+      }
+    }
+  }
+
+  .page_title {
+    h3 {
+      color: #b9b9b9 !important;
+
+      &:after {
+        border-bottom: 2px solid #b9b9b9;
+      }
+    }
+  }
+
+  .center_inner {
+    background-color: #000a2c;
+  }
+
+  .middle_area {
+    .mid_inner {
+      background-color: #181818;
+    }
+  }
+
+  .my_bets_table {
+    .filter {
+
+      .form-select,
+      .form-control {
+        border: 1px solid #919191;
+        background-color: transparent;
+        color: #ccc;
+      }
+    }
+  }
+
+  .pagination_filter {
+    select {
+      color: #b9b9b9 !important;
+    }
+  }
+
+  .ngx-pagination {
+    .disabled {
+      color: #cacaca !important;
+    }
+  }
+
+  .table {
+    thead {
+      th {
         color: #b9b9b9 !important;
+      }
+    }
 
-        svg {
-          path {
-            fill: #b9b9b9 !important;
+    tbody {
+      tr {
+        background-color: #181818;
+
+        td {
+          border-bottom: 1px solid rgb(117 117 117 / 67%);
+          color: #b9b9b9 !important;
+
+          a {
+            color: #b9b9b9 !important;
           }
         }
       }
     }
   }
-}
 
-.m_left_sidebar {
-  background: #181818 !important;
-}
+  .pagination_filter {
+    p {
+      color: #b9b9b9 !important;
+    }
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+  }
+
+  .my_bets_table {
+    .filter {
+      button {
+        &:hover {
+          border: 1px solid #fff !important;
+          background: #fff !important;
+          box-shadow: 0 0 8px 0 #fff !important;
+          color: #000 !important;
+        }
+      }
+    }
+  }
+
+  .modal {
+    // background-color: #3c444b !important;
+
+    .modal-content {
+      .modal-body {
+        background-color: #3c444b !important;
+      }
+    }
+  }
+
+  .termsCondition {
+    .termConWrap {
+      h3 {}
+    }
+  }
+
+
+  .modal-content {
+    background-color: #3c444b;
+  }
+
+  .chipSettingModal {
+    .modal-content {
+
+      form {
+        .form-field {
+
+          label,
+          input {
+            color: #b9b9b9;
+          }
+
+          input {
+            border-bottom: 1px solid #6a6a6a !important;
+          }
+        }
+      }
+    }
+  }
+
+  .login_form {
+    button.btn-close {
+      color: #b9b9b9 !important;
+    }
+  }
+
+  .upcoming_games_list {
+    li {
+      .game_name {
+        h5 {
+          color: #b9b9b9 !important;
+
+          .versis_img {
+            svg {
+              fill: #b9b9b9 !important;
+            }
+          }
+        }
+      }
+
+      .date_time {
+        .time {
+          color: #b9b9b9 !important;
+        }
+      }
+    }
+  }
+
+  .content_disable {
+    color: #b9b9b9 !important;
+  }
+
+  .pagination_filter {
+    .pagination {
+      a {
+        color: #b9b9b9 !important;
+      }
+    }
+  }
+
+  .ngx-pagination a:hover,
+  .ngx-pagination button:hover {
+    background: #3a3939 !important;
+  }
+
+  .market {
+    .market-title {
+      color: #b9b9b9 !important;
+    }
+  }
+
+  .sidebar_toggle_btn {
+    img {
+      filter: invert(1);
+    }
+  }
+
+  .mobMarquee {
+    color: #b9b9b9 !important;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #868686 !important;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #868686 !important;
+  }
+
+  .bottom_nav {
+    background-color: #242424 !important;
+    color: #000 !important;
+
+    ul {
+      li {
+        &.all-items {
+          .menu-item {
+            box-shadow: 3px 3px 5px #1b1a1a, -3px -3px 5px #2b2b2b !important;
+            background-color: #242424 !important;
+          }
+
+          .bottom-circle {
+            .circle-nav {
+              .circle-nav-open {
+                background-color: #242424 !important;
+              }
+            }
+          }
+        }
+
+        &.big {
+          &:before {
+            box-shadow: 3px 3px 5px #4a4949, -3px -3px 5px #454444 !important;
+            background-color: #242424 !important;
+          }
+        }
+
+        .noneAllit {
+          svg {
+            path {
+              fill: #fff !important;
+            }
+          }
+        }
+
+        a {
+          color: #b9b9b9 !important;
+
+          svg {
+            path {
+              fill: #b9b9b9 !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .m_left_sidebar {
+    background: #181818 !important;
+  }
 }
 
 .custoModalld {

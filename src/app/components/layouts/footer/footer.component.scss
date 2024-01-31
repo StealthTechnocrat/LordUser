@@ -387,41 +387,7 @@
 
                         }
 
-                        .search-list {
-                            list-style: none;
-                            background-color: #fff;
-                            border-radius: 4px;
-                            margin-top: 5px;
-
-                            li {
-                                border-bottom: 1px solid #eee;
-                                cursor: pointer;
-                                padding: 4px 10px;
-                                color: #5c6060;
-                                font-size: 14px;
-
-                                p {
-                                    line-height: 1.7;
-
-                                    &.serName {
-                                        font-weight: bold;
-                                    }
-
-                                    &.eveName {
-                                        font-size: 14px;
-                                        font-weight: 500;
-                                        color: #525252;
-                                        line-height: 20px;
-                                    }
-
-                                    &.eveTime {
-                                        font-size: 13px;
-                                        font-weight: 500;
-                                        color: #999;
-                                    }
-                                }
-                            }
-                        }
+                       
 
                         button {
                             width: 15%;
