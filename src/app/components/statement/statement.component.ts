@@ -21,7 +21,7 @@ export class StatementComponent implements OnInit {
   date: Date;
   startDate: string = "";
   endDate: string = "";
-  mrktName: string = "All";
+  mrktName: string = "";
   TransactionObj: any = [];
   skipRec: number = 0;
   pageNo: number = 0;
@@ -101,7 +101,16 @@ export class StatementComponent implements OnInit {
     this.Ttype = "";
     this.mrktName = ""
   }
-
+  search(value:any) {
+    debugger;
+    if(value == null || value == undefined || value == ""){
+      this.Ttype = "All";
+    }else{
+      this.Ttype = "Search";
+      this.mrktName = value;
+    }
+    this.getTransactionHistory();
+  }
 
 
    /* desiable date work start */

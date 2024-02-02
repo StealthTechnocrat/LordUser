@@ -9,6 +9,8 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ToastrService } from "ngx-toastr";
 import { SharedService } from "src/app/service/shared.service";
 import { BetSlipComponent } from "../bet-slip/bet-slip.component";
+import { PlaceBetModel } from "src/app/Model/placebet_model";
+
 @Component({
   selector: "app-set-bet",
   templateUrl: "./set-bet.component.html",
@@ -55,7 +57,8 @@ export class SetBetComponent implements OnInit {
   scoreUrlFrame: SafeResourceUrl;
   isMuted = true;
   eventData: any;
-
+  betValid: boolean = true;
+  public placeBetModel: PlaceBetModel;
   constructor(
     private router: Router,
     private toastr: ToastrService,
@@ -65,8 +68,7 @@ export class SetBetComponent implements OnInit {
     private route: ActivatedRoute,
     public uISERVICE: UiService,
     private modalService: NgbModal,
-    private sharedService: SharedService,
-  
+    private sharedService: SharedService
   ) {
     this.sharedService.getEventData().subscribe((data) => {
       this.sportsId = data.SportsId;
@@ -74,14 +76,35 @@ export class SetBetComponent implements OnInit {
       this.setIntialValues();
     });
   }
+
+  ngOnInit(): void {
+    this.setIntialValues();
+    if (Cookie.check("usersCookies")) {
+      this.placeBetModel = <PlaceBetModel>{
+        SportsId: 0,
+        EventId: "",
+        EventName: "",
+        MarketId: "",
+        MarketName: "",
+        RunnerId: "",
+        RunnerName: "",
+        Stake: 0,
+        Odds: 0,
+        Price: "",
+        BetType: "",
+        BetStatus: "Pending",
+        ParentId: 0,
+      };
+    } else {
+      this.uISERVICE.Header = false;
+    }
+  }
+
   toggleModal() {
     this.modalVisible = !this.modalVisible;
   }
-  ngOnInit(): void {
-    this.setIntialValues();
-  }
+
   toggleMute() {
-    
     this.isMuted = !this.isMuted;
     this.uISERVICE.betSound = this.isMuted;
   }
@@ -296,7 +319,6 @@ export class SetBetComponent implements OnInit {
   }
 
   LiveTv() {
-    
     //  if (this.uISERVICE.tv) {
     // this.uISERVICE.tv = false;
     //this.url = "";
@@ -716,7 +738,6 @@ export class SetBetComponent implements OnInit {
     }
   }
 
-  
   setValues(
     betType,
     odds,
@@ -732,14 +753,16 @@ export class SetBetComponent implements OnInit {
     betDly,
     filterName
   ) {
-    
     if (odds > 0) {
       this.checkLogin();
       if (!this.uISERVICE.logIn) {
-        if(this.uISERVICE.OneClickBet){
+        debugger;
+        if (this.uISERVICE.OneClickBet) {
+          this.uISERVICE.stake = parseInt(localStorage.getItem("Stake"));
+          this.uISERVICE.Points = parseInt(localStorage.getItem("Points"));
+          this.uISERVICE.stake = this.uISERVICE.stake * this.uISERVICE.Points;
           this.uISERVICE.profit = 0;
           this.uISERVICE.exposure = 0;
-          // this.uISERVICE.stake = this.uISERVICE.sta;
           if (mrktName != "Fancy") {
             this.uISERVICE.fancySlip = [];
             this.uISERVICE.showSlip = [false, false, false, false];
@@ -885,7 +908,7 @@ export class SetBetComponent implements OnInit {
                   this.uISERVICE.otherFancySlip[mainIndex] = true;
                 }
                 break;
-  
+
               case "All":
                 this.uISERVICE.otherFancySlip = [];
                 this.uISERVICE.ballsWicketLostSlip = [];
@@ -893,7 +916,7 @@ export class SetBetComponent implements OnInit {
                 this.uISERVICE.boundariesSlip = [];
                 this.uISERVICE.wicketsFallSlip = [];
                 this.uISERVICE.overRunsSlip = [];
-  
+
                 if (this.uISERVICE.fancySlip.length > 0) {
                   let j = 0;
                   this.uISERVICE.fancySlip.forEach((element, id) => {
@@ -912,7 +935,7 @@ export class SetBetComponent implements OnInit {
                 break;
             }
           }
-  
+
           this.uISERVICE.betType = betType;
           this.uISERVICE.odds = odds;
           this.uISERVICE.price = price;
@@ -927,8 +950,8 @@ export class SetBetComponent implements OnInit {
           this.uISERVICE.sportsId = this.sportsId;
           this.uISERVICE.eventId = this.eventId;
           this.uISERVICE.EventName = this.rtrnObj.EventName;
-        }
-        }else{
+          this.transform();
+        } else {
           this.uISERVICE.profit = 0;
           this.uISERVICE.exposure = 0;
           this.uISERVICE.stake = 0;
@@ -1077,7 +1100,7 @@ export class SetBetComponent implements OnInit {
                   this.uISERVICE.otherFancySlip[mainIndex] = true;
                 }
                 break;
-  
+
               case "All":
                 this.uISERVICE.otherFancySlip = [];
                 this.uISERVICE.ballsWicketLostSlip = [];
@@ -1085,7 +1108,7 @@ export class SetBetComponent implements OnInit {
                 this.uISERVICE.boundariesSlip = [];
                 this.uISERVICE.wicketsFallSlip = [];
                 this.uISERVICE.overRunsSlip = [];
-  
+
                 if (this.uISERVICE.fancySlip.length > 0) {
                   let j = 0;
                   this.uISERVICE.fancySlip.forEach((element, id) => {
@@ -1104,7 +1127,7 @@ export class SetBetComponent implements OnInit {
                 break;
             }
           }
-  
+
           this.uISERVICE.betType = betType;
           this.uISERVICE.odds = odds;
           this.uISERVICE.price = price;
@@ -1121,11 +1144,182 @@ export class SetBetComponent implements OnInit {
           this.uISERVICE.EventName = this.rtrnObj.EventName;
         }
       }
-        else {
-        this.toastr.error("Please login to access all features.", "LOGIN!");
-      }
+    } else {
+      this.toastr.error("Please login to access all features.", "LOGIN!");
+    }
+  }
+  //
+  transform() {
+    debugger;
+    switch (this.uISERVICE.betType) {
+      case "Yes":
+        this.uISERVICE.profit =
+          (this.uISERVICE.stake * parseInt(this.uISERVICE.price)) / 100;
+        this.uISERVICE.exposure = this.uISERVICE.stake;
+        break;
+      case "No":
+        this.uISERVICE.profit = this.uISERVICE.stake;
+        this.uISERVICE.exposure =
+          (this.uISERVICE.stake * parseInt(this.uISERVICE.price)) / 100;
+        break;
+      case "Back":
+        this.uISERVICE.profit =
+          this.uISERVICE.mrktName == "BookMaker"
+            ? this.uISERVICE.stake * (this.uISERVICE.odds / 100)
+            : this.uISERVICE.stake * (this.uISERVICE.odds - 1);
+        this.uISERVICE.exposure = this.uISERVICE.stake;
+        break;
+      case "Lay":
+        this.uISERVICE.profit = this.uISERVICE.stake;
+        this.uISERVICE.exposure =
+          this.uISERVICE.mrktName == "BookMaker"
+            ? this.uISERVICE.stake * (this.uISERVICE.odds / 100)
+            : this.uISERVICE.stake * (this.uISERVICE.odds - 1);
+        break;
+    }
+    if (this.uISERVICE.OneClickBet == true) {
+      this.checkBetCond();
+    }
   }
 
+  checkBetCond() {
+    debugger;
+    this.betValid = true;
+    this.uISERVICE.betLoader = true;
+    if (this.uISERVICE.odds == 0) {
+      this.toastr.error("Bet odds cannot be 0.");
+      this.betValid = false;
+    }
+    if (this.uISERVICE.stake <= 0) {
+      this.toastr.error("Bet amount cannot be 0.");
+      this.betValid = false;
+    }
+    if (this.uISERVICE.betType == "Fancy") {
+      if (parseInt(this.uISERVICE.price) <= 0) {
+        this.toastr.error("Fancy odds cannot be 0.");
+        this.betValid = false;
+      }
+    }
+    if (this.uISERVICE.maxMarkt < this.uISERVICE.stake) {
+      this.toastr.error(
+        "Max bet amount on market is not greater then." +
+          this.uISERVICE.maxMarkt
+      );
+      this.betValid = false;
+    }
+    if (this.uISERVICE.minMarkt > this.uISERVICE.stake) {
+      this.toastr.error(
+        "Minimum bet amount on market is not less then." +
+          this.uISERVICE.minMarkt
+      );
+      this.betValid = false;
+    }
+    if (this.betValid) {
+      if (this.uISERVICE.sportsId == 15) {
+        this.checkRoundIsValid();
+      } else {
+        this.placeBet();
+      }
+    } else {
+      this.uISERVICE.betLoader = false;
+      setTimeout(() => {
+        this.uISERVICE.Error = false;
+      }, 2000);
+    }
+  }
+
+  async checkRoundIsValid() {
+    if (
+      this.uISERVICE.activeRoundId == this.uISERVICE.marketId &&
+      this.uISERVICE.gStatus > 0
+    ) {
+      this.placeBet();
+    } else {
+      this.betValid = false;
+
+      this.toastr.error("Market Suspended.");
+      this.uISERVICE.betLoader = false;
+      setTimeout(() => {
+        this.uISERVICE.Error = false;
+      }, 2000);
+    }
+  }
+
+  placeBet() {
+    debugger;
+    this.placeBetModel.SportsId = this.uISERVICE.sportsId;
+    this.placeBetModel.EventName = this.uISERVICE.EventName;
+    this.placeBetModel.EventId =
+      this.uISERVICE.eventId == undefined ? "321654" : this.uISERVICE.eventId;
+    this.placeBetModel.MarketId = this.uISERVICE.marketId;
+    this.placeBetModel.MarketName = this.uISERVICE.mrktName;
+    this.placeBetModel.RunnerId = this.uISERVICE.rnrId;
+    this.placeBetModel.RunnerName = this.uISERVICE.rName;
+    this.placeBetModel.Stake = this.uISERVICE.stake;
+    this.placeBetModel.Odds = this.uISERVICE.odds;
+    this.placeBetModel.Price = this.uISERVICE.price;
+    this.placeBetModel.Profit = this.uISERVICE.profit;
+    this.placeBetModel.Exposure = this.uISERVICE.exposure;
+    this.placeBetModel.BetType = this.uISERVICE.betType;
+    this.placeBetModel.ParentId = this.uISERVICE.rIndx;
+    setTimeout(() => {
+      this.accountService.placeBet(this.placeBetModel).then((response) => {
+        if (response.Status) {
+          if (!this.uISERVICE.betSound) {
+            this.playAlertTone();
+          }
+          this.toastr.success("Bet Placed Successfully");
+          this.uISERVICE.Bal = response.FreeChips;
+          this.uISERVICE.Exp = response.Exp;
+          this.uISERVICE.Bets = response.Bets;
+          this.uISERVICE.betLoader = false;
+          this.cancelAll();
+        } else {
+          this.uISERVICE.betLoader = false;
+          this.toastr.error(response.Result);
+        }
+      });
+    }, this.uISERVICE.betDelay * 1000);
+  }
+  ConcateChipvalue(numberConcate) {
+    if (this.uISERVICE.stake > 0 && this.uISERVICE.stake != undefined) {
+      this.uISERVICE.stake = parseInt(
+        this.uISERVICE.stake.toString() + numberConcate
+      );
+    } else {
+      this.uISERVICE.stake = numberConcate;
+    }
+    this.transform();
+  }
+  deleteChipVal() {
+    if (this.uISERVICE.stake > 0 && this.uISERVICE.stake != undefined) {
+      this.uISERVICE.stake = parseInt(
+        this.uISERVICE.stake
+          .toString()
+          .substring(0, this.uISERVICE.stake.toString().length - 1)
+      );
+      this.transform();
+    }
+  }
+  cancelAll() {
+    this.uISERVICE.profit = 0;
+    this.uISERVICE.stake = 0;
+    this.uISERVICE.exposure = 0;
+    this.uISERVICE.showSlip = [false, false, false, false];
+    this.uISERVICE.fancySlip = [];
+    this.uISERVICE.overRunsSlip = [];
+    this.uISERVICE.boundariesSlip = [];
+    this.uISERVICE.wicketsFallSlip = [];
+    this.uISERVICE.ballFaceSlip = [];
+    this.uISERVICE.otherFancySlip = [];
+    this.uISERVICE.ballsWicketLostSlip = [];
+  }
+  playAlertTone() {
+    const alertTone = new Audio("assets/alertTone/IphoneTing1.mp3");
+    alertTone.play();
+  }
+
+  ////
 
   // setValues(
   //   betType,
@@ -1142,7 +1336,7 @@ export class SetBetComponent implements OnInit {
   //   betDly,
   //   filterName
   // ) {
-    
+
   //   if (odds > 0) {
   //     this.checkLogin();
   //     if (!this.uISERVICE.logIn) {

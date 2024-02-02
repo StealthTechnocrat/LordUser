@@ -168,7 +168,19 @@ app-sidebar,
         }
     }
 }
-
+.news_marquee {
+    .item {
+      display: flex;
+      margin-right: 10px;
+      font-size: 13px;
+      font-weight: 600;
+  
+      span.marquee-news-text {
+        display: flex;
+        gap: 26px;
+      }
+    }
+  }
 .live_games_design {
     .left_bar {
         display: none !important;

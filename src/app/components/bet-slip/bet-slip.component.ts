@@ -5,6 +5,10 @@ import { PlaceBetModel } from "src/app/Model/placebet_model";
 import { Cookie } from "ng2-cookies";
 import { AccountService } from "src/app/service/account-service";
 import { ToastrService } from "ngx-toastr";
+import { SharedService } from "src/app/service/shared.service";
+import { Subscription } from "rxjs";
+import { takeUntil } from "rxjs/operators";
+import { Subject } from "rxjs";
 
 @Component({
   selector: "app-bet-slip",
@@ -16,37 +20,41 @@ export class BetSlipComponent implements OnInit {
   apiData: any = [];
   betValid: boolean = true;
   public placeBetModel: PlaceBetModel;
-
   constructor(
     private toastr: ToastrService,
     public uISERVICE: UiService,
     private http: HttpClient,
-    private accountService: AccountService
-  ) {}
+    private accountService: AccountService,
+    private sharedService: SharedService
+  ) {
+    // this.sharedService.triggerFunction$.subscribe(() => {
+    //   this.callTransform();
+    //   this.sharedService.resetTrigger();
+    // });
+  }
 
   ngOnInit(): void {
-
-      if (Cookie.check("usersCookies")) {
-        this.placeBetModel = <PlaceBetModel>{
-          SportsId: 0,
-          EventId: "",
-          EventName: "",
-          MarketId: "",
-          MarketName: "",
-          RunnerId: "",
-          RunnerName: "",
-          Stake: 0,
-          Odds: 0,
-          Price: "",
-          BetType: "",
-          BetStatus: "Pending",
-          ParentId: 0,
-        };
-      } else {
-        this.uISERVICE.Header = false;
-      }
-   
+    if (Cookie.check("usersCookies")) {
+      this.placeBetModel = <PlaceBetModel>{
+        SportsId: 0,
+        EventId: "",
+        EventName: "",
+        MarketId: "",
+        MarketName: "",
+        RunnerId: "",
+        RunnerName: "",
+        Stake: 0,
+        Odds: 0,
+        Price: "",
+        BetType: "",
+        BetStatus: "Pending",
+        ParentId: 0,
+      };
+    } else {
+      this.uISERVICE.Header = false;
+    }
   }
+  
 
   getValue(value) {
     this.uISERVICE.stake = this.uISERVICE.stake + value;
@@ -60,6 +68,8 @@ export class BetSlipComponent implements OnInit {
 
   transform() {
     debugger;
+    this.uISERVICE.Points = parseInt(localStorage.getItem("Points"));
+    this.uISERVICE.stake = this.uISERVICE.stake * this.uISERVICE.Points;
     switch (this.uISERVICE.betType) {
       case "Yes":
         this.uISERVICE.profit =
@@ -86,7 +96,7 @@ export class BetSlipComponent implements OnInit {
             : this.uISERVICE.stake * (this.uISERVICE.odds - 1);
         break;
     }
-    if(this.uISERVICE.OneClickBet == true){
+    if (this.uISERVICE.OneClickBet == true) {
       this.checkBetCond();
     }
   }

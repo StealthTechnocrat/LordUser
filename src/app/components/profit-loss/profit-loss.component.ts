@@ -38,6 +38,7 @@ export class ProfitLossComponent implements OnInit {
   Ttype: string = "All";
   mrktName: string = "All";
   totalRec: number;
+  totalPl: number = 0;
   constructor(
     private http: HttpClient,
     private accountService: AccountService,
@@ -52,6 +53,9 @@ export class ProfitLossComponent implements OnInit {
 
     if (Cookie.check("usersCookies")) {
       this.uISERVICE.take=parseInt(localStorage.getItem('take'));
+      if(this.uISERVICE.take == null || this.uISERVICE.take == undefined){
+        this.uISERVICE.take = 10
+      }
       this.getDate();
     } else {
       this.uISERVICE.Header = false;
@@ -70,7 +74,7 @@ export class ProfitLossComponent implements OnInit {
      this.last=this.datepipe.transform(date, 'yyyy-MM-dd');
      this.endDate = this.datepipe.transform(date, 'yyyy-MM-dd') + " " + "23:59:59";
      this.getProfitLoss();
-     this.getTransactionHistory();
+    //  this.getTransactionHistory();
   }
 
   pageChanged(pageNo) {
@@ -79,7 +83,8 @@ export class ProfitLossComponent implements OnInit {
       this.uISERVICE.take = 10
     }
     this.skipRec = (pageNo - 1) * this.uISERVICE.take;
-    this.getTransactionHistory();
+    this.getProfitLoss();
+    // this.getTransactionHistory();
   }
   getTransactionHistory() {
     this.TransactionObj=[];
@@ -161,6 +166,8 @@ export class ProfitLossComponent implements OnInit {
         .then((response) => {
           if (response.Status) {
             this.profitLossObj = response.Result;
+            // this.totalRec =  response.Count;
+            this.totalPl = response.bets;
             // console.log("pl",this.profitLossObj)
             this.uISERVICE.loader = false;
           } else {

@@ -19,9 +19,9 @@ export class ResultsComponent implements OnInit {
   resultList: any = [];
   selectedSeriesId: number = 0;
   sportsId: number = 0;
-  seriesId: string = "";
-  eventId: string = "";
-  marketName: string = "";
+  seriesId: string = "All";
+  eventId: string = "All";
+  marketName: string = "All";
   last: string;
   latest_date: any;
   startDate: string = "";
@@ -52,21 +52,20 @@ export class ResultsComponent implements OnInit {
   }
 
   onSportSelection(selectedValue: number) {
-    
+    debugger;
     this.sportsId = selectedValue;
-    this.getCompList(this.sportsId);
+    this.getTournament(this.sportsId);
   }
 
   onSeriesSelection(selectedValue: string) {
     
     this.seriesId = selectedValue;
-    this.getEventList(this.sportsId, this.seriesId);
+    this.getEvent(this.sportsId, this.seriesId);
   }
 
   onEventSelection(selectedValue: string) {
     
     this.eventId = selectedValue;
-    this.getAllMarketList(this.eventId);
   }
 
   onMarketSelection(selectedValue: string) {
@@ -96,7 +95,6 @@ export class ResultsComponent implements OnInit {
   }
 
   getFilteredResults() {
-    
     if(this.eventId == "" || this.eventId == undefined || this.sportsId == undefined || this.sportsId == 0){
       this.getAllResultList();
     }else{
@@ -124,15 +122,43 @@ export class ResultsComponent implements OnInit {
     }
   }
 
+    getTournament(sportsId: number) {
+    this.accountService.GetBetSeries(this.sportsId).then((response) => {
+      if (response.Status) {
+        this.seriesList = response.Result;
+      } else {
+        this.seriesList = [];
+      }
+    });
+  }
+
+  getEvent( sportsId: number, seriesId: string) {
+    this.accountService
+      .GetBetEvent(this.sportsId, this.seriesId)
+      .then((response) => {
+        if (response.Status) {
+          this.eventList = response.Result;
+        } else {
+          this.eventList = [];
+        }
+      });
+  }
+
+  onChange(value : any) {
+    debugger;
+        this.marketName = value;
+  }
+
 
   getAllResultList() {
-    
     if(this.uISERVICE.take == null || this.uISERVICE.take == undefined){
       this.uISERVICE.take = 10
     }
     this.resultList = [];
     this.accountService
       .GetAllResults(
+        this.eventId,
+        this.marketName,this.seriesId,this.sportsId,
         this.skipRec,
         this.uISERVICE.take,
         this.startDate,
@@ -141,6 +167,7 @@ export class ResultsComponent implements OnInit {
       .then((response) => {
         if (response) {
           this.resultList = response.Result;
+          this.totalRec = response.Count;
           console.log("rslt", this.resultList);
         } else {
           this.resultList = [];
@@ -150,64 +177,7 @@ export class ResultsComponent implements OnInit {
 
   selectFilterType(value : string){
     this.marketName = value;
-    if(this.uISERVICE.take == null || this.uISERVICE.take == undefined){
-      this.uISERVICE.take = 10
-    }
-    this.resultList = [];
-    this.accountService
-      .filteredResult(
-        this.marketName,
-        this.skipRec,
-        this.uISERVICE.take,
-        this.startDate,
-        this.endDate
-      )
-      .then((response) => {
-        if (response) {
-          this.resultList = response.Result;
-          console.log("rslt", this.resultList);
-        } else {
-          this.resultList = [];
-        }
-      });
-  }
-
-  getCompList(sportsId: number) {
-    this.seriesList = [];
-    this.accountService.getCompList(sportsId).then((response) => {
-      if (response) {
-        this.seriesList = response.Result;
-        console.log("comp", this.seriesList);
-      } else {
-        this.seriesList = [];
-      }
-    });
-  }
-
-  getEventList(sportsId, seriesId) {
-    
-    this.eventList = [];
-    this.accountService.getEventList(sportsId, seriesId).then((response) => {
-      if (response) {
-        this.eventList = response.Result;
-        console.log("evt", this.eventList);
-      } else {
-        this.eventList = [];
-      }
-    });
-  }
-
-  getAllMarketList(eventId) {
-    
-    this.marketList = [];
-    this.accountService.GetAllMarkets(eventId).then((response) => {
-      if (response) {
-        this.marketList = response.Result;
-        console.log("mrkt", this.marketList);
-      } else {
-        this.marketList = [];
-      }
-    });
+this.getAllResultList();
   }
 
   getStartDate(data) {
@@ -229,5 +199,13 @@ export class ResultsComponent implements OnInit {
     this.endDate =
       this.datepipe.transform(date, "yyyy-MM-dd") + " " + "23:59:59";
       this.getAllResultList();
+  }
+
+  exportexcel(): void {
+    let element = document.getElementById("excel-table2");
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+    XLSX.writeFile(wb, "MyBets.xlsx");
   }
 }

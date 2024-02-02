@@ -38,8 +38,8 @@
                                             <select class="form-control"
                                                 (change)="onSeriesSelection($event.target.value)">
                                                 <option selected value=0>Select tournament</option>
-                                                <option *ngFor="let src of seriesList" [value]="src.SeriesId">
-                                                    {{src.SeriesName}}</option>
+                                                <option *ngFor="let src of seriesList" [value]="src.TournamentId">
+                                                    {{src.TournamentName}}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -54,15 +54,16 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-6 col-sm-4 col-md-3 mb-2">
+                                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                         <div class="form-field">
-                                            <label for=""> Market</label>
-                                            <select class="form-control"
-                                                (change)="onMarketSelection($event.target.value)">
-                                                <option selected [value]="0">Select market</option>
-                                                <option *ngFor="let mrkt of marketList" [value]="mrkt.marketName">
-                                                    {{mrkt.marketName}}</option>
-                                                <option *ngIf="sportsId==4" [value]="1">Fancy</option>
+                                            <label>Markets </label>
+                                            <select (change)="onChange($event.target.value)"
+                                                class="form-select" aria-label="Default select example">
+                                                <option selected value="All">Select market</option>
+                                                <option value="Match Odds">MATCH</option>
+                                                <option *ngIf="sportsId==4" value="BookMaker">BookMaker</option>
+                                                <option *ngIf="sportsId==4" value="To Win the Toss">Toss</option>
+                                                <option *ngIf="sportsId==4" value="Fancy">Fancy</option> <option value="Cup-Rate">Cup-Rate</option>
                                             </select>
                                         </div>
                                     </div>
@@ -82,54 +83,45 @@
                                                 id="edate">
                                         </div>
                                     </div>
-                                    <div class="col-12 col-sm-4 col-md-6 mb-2">
+                                    <div class="col-12 col-sm-4 col-md-6 mb-2 d-flex align-items-center">
                                         <div class="d-flex align-items-center flex-wrap">
-                                            <div class="form-field customCheckBx">
-                                                <input type="checkbox" class="form-check-input" name="filterType"
+                                            <div class="form-field customCheckBx mb-0 mr-2">
+                                                <input type="radio" class="form-check-input" name="filterType"
                                                     id="Market" (click)="selectFilterType('Match Odds')">
                                                 <label class="form-check-label" for="Market">Market</label>
                                             </div>
-                                            <div class="form-field customCheckBx">
-                                                <input type="checkbox" class="form-check-input" name="filterType"
+                                            <div class="form-field customCheckBx mb-0 mr-2">
+                                                <input type="radio" class="form-check-input" name="filterType"
                                                     id="BookMaker" (click)="selectFilterType('BookMaker')">
                                                 <label class="form-check-label" for="BookMaker">BookMaker</label>
                                             </div>
-                                            <div class="form-field customCheckBx">
-                                                <input type="checkbox" class="form-check-input" name="filterType"
+                                            <div class="form-field customCheckBx mb-0 mr-2">
+                                                <input type="radio" class="form-check-input" name="filterType"
                                                     id="AdvSession" (click)="selectFilterType('Fancy')">
                                                 <label class="form-check-label" for="AdvSession">Fancy</label>
                                             </div>
-                                            <div class="form-field customCheckBx">
-                                                <input type="checkbox" class="form-check-input" name="filterType" id="Toss"
+                                            <div class="form-field customCheckBx mb-0 mr-2">
+                                                <input type="radio" class="form-check-input" name="filterType" id="Toss"
                                                     (click)="selectFilterType('To Win The Toss')">
                                                 <label class="form-check-label" for="Toss">Toss</label>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <!-- <div class="col-md-12">
-                                <div class="form-field d-flex justify-content-between align-items-center">
-                                    <button type="submit" class="btn btn-primary"
-                                        (click)="getFilteredResults()">Load</button>
-                                    <div class="d-flex align-items-center">
-                                        <button type="button" class="btn btn-primary file_btn ">
-                                            Excel
-                                        </button>
-                                        <button type="button" class="btn btn-primary file_btn ">
-                                            CSV
-                                        </button>
-                                        <button type="button" class="btn btn-primary file_btn ">
-                                            PDF
-                                        </button>
+                                    <div class="col-12 col-sm-4 col-md-6 mb-2 mt-3">
+                                        <div class="form-field mb-0 d-flex align-items-center">
+                                            <button (click)="getAllResultList()" type="submit"
+                                                class="btn btn-primary mr-2">Load</button>
+                                                <button type="button" class="btn btn-primary file_btn mr-2 ml-0" (click)="exportexcel()"> Excel </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
                     </form>
-                    <div class="tableSearch  justify-content-center justify-content-sm-end">
+                    
+                    <!-- <div class="tableSearch  justify-content-center justify-content-sm-end">
                         <label>Search:<input type="search" class="" placeholder=""></label>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="table-responsive">
                     <table class="table align-middle table-striped mb-0 table_design" id="excel-table2" style="border-bottom: 1px solid #111;">
@@ -146,22 +138,23 @@
                                 *ngFor="let data of resultList | paginate: { itemsPerPage:uISERVICE.take, currentPage:pageNo,totalItems: totalRec }">
                                 <td>{{data.EventTime | date:'MMM d, y, h:mm:ss a'}}</td>
                                 <td>{{data.MarketName}}</td>
-                                <td>{{data.SportsName}}/{{data.SeriesName}}/{{data.EventName}}/{{data.MarketName}}</td>
+                                <td *ngIf="data.MarketName!= 'Fancy'">{{data.Sports}}/{{data.Series}}/{{data.Event}}/{{data.MarketName}}</td>
+                                <td *ngIf="data.MarketName== 'Fancy'">{{data.Sports}}/{{data.Series}}/{{data.Event}}/{{data.MarketName}}/{{data.Fancy}}</td>
                                 <td>{{data.Result}}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="pagination_filter pt-3 d-flex align-items-center flex-column flex-sm-row justify-content-center justify-content-sm-between">
-                    <!-- <select (change)="updateRecValue($event.target.value)" class="form-control mr-2" id="">
+                    <select (change)="updateRecValue($event.target.value)" class="form-control mr-2" id="">
                         <option value="uISERVICE.take" selected>{{uISERVICE.take}}</option>
                         <option value="10" *ngIf="uISERVICE.take!=10">10</option>
                         <option value="20" *ngIf="uISERVICE.take!=20">20</option>
                         <option value="30" *ngIf="uISERVICE.take!=30">30</option>
                         <option value="40" *ngIf="uISERVICE.take!=40">40</option>
                         <option value="50" *ngIf="uISERVICE.take!=50">50</option>
-                    </select> -->
-                    <p class="mb-4 mb-sm-0">Showing 1 to 8 of 8 entries</p>
+                    </select>
+                    <p class="mb-4 mb-sm-0">Showing {{resultList?.length}} of {{totalRec}} entries</p>
                     <pagination-controls class="pagination" maxSize="9" directionLinks="true"
                         (pageChange)="pageChanged($event)">
                     </pagination-controls>

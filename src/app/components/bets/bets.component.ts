@@ -4,10 +4,9 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { AccountService } from "src/app/service/account-service";
 import { UiService } from "src/app/service/ui-service";
 import { HttpClient } from "@angular/common/http";
-import * as XLSX from 'xlsx';
-import * as $ from 'jquery';
-import { DatePipe } from '@angular/common';
-
+import * as XLSX from "xlsx";
+import * as $ from "jquery";
+import { DatePipe } from "@angular/common";
 
 @Component({
   selector: "app-bets",
@@ -27,13 +26,19 @@ export class BetsComponent implements OnInit {
   totalRec: number;
   perPageItem: number;
   betObj: any = [];
-  dtToday:any;
-  month:any;
-  day:any;
-  year:any;
-  minDate:any;
-  last:string;
-  latest_date:any;
+  dtToday: any;
+  month: any;
+  day: any;
+  year: any;
+  minDate: any;
+  last: string;
+  latest_date: any;
+  seriesList: any = [];
+  eventList: any = [];
+  seriesId: string = "All";
+  eventId: string = "All";
+  selectedTournament: string = "All";
+  selectedEvent: string = "All";
   constructor(
     private http: HttpClient,
     private accountService: AccountService,
@@ -51,27 +56,35 @@ export class BetsComponent implements OnInit {
       this.uISERVICE.Header = false;
     }
     setInterval(() => {
-      this.desabledate()
+      this.desabledate();
     }, 1000);
   }
 
   getDate() {
-    
     var date = new Date();
-    this.last = new Date(date.getTime() - (6 * 24 * 60 * 60 * 1000)).toDateString();
-     this.latest_date =this.datepipe.transform(this.last, 'yyyy-MM-dd');
+    this.last = new Date(
+      date.getTime() - 6 * 24 * 60 * 60 * 1000
+    ).toDateString();
+    this.latest_date = this.datepipe.transform(this.last, "yyyy-MM-dd");
     this.startDate = this.latest_date + " " + "00:00:00";
-    this.last=this.datepipe.transform(date, 'yyyy-MM-dd');
-    this.endDate = this.datepipe.transform(date, 'yyyy-MM-dd') + " " + "23:59:59";
-     this.getBetsHistory();
-    
+    this.last = this.datepipe.transform(date, "yyyy-MM-dd");
+    this.endDate =
+      this.datepipe.transform(date, "yyyy-MM-dd") + " " + "23:59:59";
+    this.getBetsHistory();
   }
-  
+
   onChange(value, type) {
-    
     switch (type) {
       case "sports":
         this.sportsId = value;
+        this.getTournament();
+        break;
+      case "series":
+        this.seriesId = value;
+        this.getEvent();
+        break;
+      case "event":
+        this.eventId = value;
         break;
       case "market":
         this.mrktName = value;
@@ -82,35 +95,28 @@ export class BetsComponent implements OnInit {
     }
   }
   getStartDate(data) {
-    
     this.startDate = data + " " + "00:00:00";
   }
 
   getEndDate(data) {
     this.endDate = data + " " + "23:59:59";
   }
-
-     /* desiable date work start */
-     desabledate(){
-      this.dtToday = new Date();
-      this.month = this.dtToday.getMonth();
-      this.day = this.dtToday.getDate();
-      this.year = this.dtToday.getFullYear();
-     if(this.month < 10)
-         this.month = '0' + this.month.toString();
-     if(this.day < 10)
-         this.day = '0' + this.day.toString();
-      this.minDate= this.year + '-' + this.month + '-' + this.day;
-     $('#sdate').attr('min', this.minDate);
-      $('#edate').attr('min', this.minDate);
+  desabledate() {
+    this.dtToday = new Date();
+    this.month = this.dtToday.getMonth();
+    this.day = this.dtToday.getDate();
+    this.year = this.dtToday.getFullYear();
+    if (this.month < 10) this.month = "0" + this.month.toString();
+    if (this.day < 10) this.day = "0" + this.day.toString();
+    this.minDate = this.year + "-" + this.month + "-" + this.day;
+    $("#sdate").attr("min", this.minDate);
+    $("#edate").attr("min", this.minDate);
   }
-   /* end */
 
   updateRecValue(value) {
-    
     this.accountService.UpdateRecVal(value).then((response) => {
       if (response.Status) {
-       this.uISERVICE.take=value;
+        this.uISERVICE.take = value;
         this.getBetsHistory();
       } else {
         this.uISERVICE.Error = true;
@@ -122,35 +128,57 @@ export class BetsComponent implements OnInit {
     });
   }
 
+  getTournament() {
+    this.accountService.GetBetSeries(this.sportsId).then((response) => {
+      if (response.Status) {
+        this.seriesList = response.Result;
+      } else {
+        this.seriesList = [];
+      }
+    });
+  }
+
+  getEvent() {
+    this.accountService
+      .GetBetEvent(this.sportsId, this.seriesId)
+      .then((response) => {
+        if (response.Status) {
+          this.eventList = response.Result;
+        } else {
+          this.eventList = [];
+        }
+      });
+  }
+
   pageChanged(pageNo) {
     this.pageNo = pageNo;
-    if(this.uISERVICE.take == null || this.uISERVICE.take == undefined){
-      this.uISERVICE.take = 10
+    if (this.uISERVICE.take == null || this.uISERVICE.take == undefined) {
+      this.uISERVICE.take = 10;
     }
     this.skipRec = (pageNo - 1) * this.uISERVICE.take;
     this.getBetsHistory();
   }
 
   getBetsHistory() {
-    if(this.uISERVICE.take == null || this.uISERVICE.take == undefined){
-      this.uISERVICE.take = 10
+    if (this.uISERVICE.take == null || this.uISERVICE.take == undefined) {
+      this.uISERVICE.take = 10;
     }
     if (this.startDate != "" && this.endDate != "") {
       this.uISERVICE.loader = true;
       this.accountService
         .GetBetHistory(
-          this.userId,
+          this.skipRec,
+          this.uISERVICE.take,
+          this.eventId,
           this.sportsId,
           this.mrktName,
           this.betType,
           this.role,
-          this.skipRec,
-          this.uISERVICE.take,
+          this.userId,
           this.startDate,
           this.endDate
         )
         .then((response) => {
-          
           if (response.Status) {
             this.uISERVICE.loader = false;
             this.betObj = response.Result;
@@ -170,13 +198,11 @@ export class BetsComponent implements OnInit {
     }
   }
 
-  exportexcel(): void
-  {
-    let element = document.getElementById('excel-table2');
-    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+  exportexcel(): void {
+    let element = document.getElementById("excel-table2");
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-    XLSX.writeFile(wb, 'MyBets.xlsx');
+    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+    XLSX.writeFile(wb, "MyBets.xlsx");
   }
- 
 }

@@ -34,27 +34,28 @@
                                     </div>
                                     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                         <div class="form-field">
-                                            <label>Tournaments</label>
-                                            <select
-                                                class="form-select" aria-label="Default select example">
-                                                <option selected value=0>Select tournament</option>
-                                                <option value=1>tournament</option>
-                                            </select>
+                                          <label>Tournaments</label>
+                                          <select class="form-select" (change)="onChange($event.target.value,'series')" aria-label="Default select example" [(ngModel)]="selectedTournament">
+                                            <option selected value="All">All</option>
+                                            <option *ngFor="let tournament of seriesList" [value]="tournament.TournamentId">
+                                              {{ tournament.TournamentName }}
+                                            </option>
+                                          </select>
                                         </div>
-                                    </div>
-                                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                      </div>
+                                      
+                                      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                         <div class="form-field">
-                                            <label>Matches</label>
-                                            <select
-                                                class="form-select" aria-label="Default select example">
-                                                <option selected value=0>Select match</option>
-                                                <option value=1>Soccer</option>
-                                                <option value=2>Tennis</option>
-                                                <option value=4>Cricket</option>
-                                                <option value=5>Table Games</option>
-                                            </select>
+                                          <label>Matches</label>
+                                          <select class="form-select" (change)="onChange($event.target.value,'event')" aria-label="Default select example" [(ngModel)]="selectedEvent">
+                                            <option selected value="All">All</option>
+                                            <option *ngFor="let event of eventList" [value]="event.EventId">
+                                              {{ event.EventName }}
+                                            </option>
+                                          </select>
                                         </div>
-                                    </div>
+                                      </div>
+                                      
                                     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                         <div class="form-field">
                                             <label>Markets </label>
@@ -62,9 +63,9 @@
                                                 class="form-select" aria-label="Default select example">
                                                 <option selected value="All">Select market</option>
                                                 <option value="Match Odds">MATCH</option>
-                                                <option value="BookMaker">BookMaker</option>
-                                                <option value="To Win the Toss">Toss</option>
-                                                <option value="Fancy">Fancy</option> <option value="Cup-Rate">Cup-Rate</option>
+                                                <option *ngIf="sportsId==4" value="BookMaker">BookMaker</option>
+                                                <option *ngIf="sportsId==4" value="To Win the Toss">Toss</option>
+                                                <option *ngIf="sportsId==4" value="Fancy">Fancy</option> <option value="Cup-Rate">Cup-Rate</option>
                                             </select>
                                         </div>
                                     </div>
@@ -107,26 +108,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-field customfield">
-                                            <button (click)="getBetsHistory()" type="submit"
-                                                class="btn btn-primary mt-md-3 mr-2">Load</button>
-                                            <div>
-                                                <button type="button" class="btn file_btn excel mt-md-3" (click)="exportexcel()"><i
-                                                        class="fas fa-file-excel"></i></button>
-                                                
-                                            </div>
-                                        </div>
-                                    </div> 
-                                </div>
-                            </div> -->
                         </div>
                     </form>
-                    <!-- <div class="tableSearch  justify-content-center justify-content-sm-end mb-2">
-                        <label>Search:<input type="search" class="" placeholder=""></label>
-                    </div> -->
                 </div>
                 <div class="table-responsive">
                     <table class="table align-middle table-striped mb-0 table_design" id="excel-table2"  style="border-bottom: 1px solid #111;">

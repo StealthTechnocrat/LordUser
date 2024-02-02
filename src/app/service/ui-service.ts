@@ -14,6 +14,7 @@ export class UiService {
     take: number;
     Header: boolean = false;
     OneClickBet = false;
+    Points: number = 0;
     News: any = [];
     Bets: any = [];
     casinoProvidersList: any = [];

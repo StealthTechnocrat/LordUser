@@ -33,8 +33,6 @@ export class HeaderComponent implements OnInit {
   webLogo: string;
   IsPwd: boolean = false;
   loginShow: boolean = true;
-  newpwd: string;
-  oldpwd: string;
   confrmPwd: string;
   NewPwd: string = "";
   CnfPwd: string = "";
@@ -47,31 +45,46 @@ export class HeaderComponent implements OnInit {
   News: any = [];
   Name: string = "";
   betCount: number = 0;
-  firstTimeLoginChk : boolean = false;
-  domain : string = window.location.origin;
+  firstTimeLoginChk: boolean = false;
+  domain: string = window.location.origin;
   pendingBets: any = [];
   eventlist: any = [];
-  keyword: any ="";
+  keyword: any = "";
   eventId: any;
   sport: any;
   event: any;
   showMatchListDiv: boolean = false;
+  stake: number = 0;
+  isPassInvalid: boolean = true;
   constructor(
     private accountService: AccountService,
     public uISERVICE: UiService,
     private router: Router,
     private sharedService: SharedService,
-    private renderer: Renderer2,
+    private renderer: Renderer2
   ) {
     const isExpired = this.isTokenExpired(Cookie.get("usersCookies"));
     if (isExpired) {
       this.LogOut();
     }
-
-    const isDarkModeStorage = localStorage.getItem('darkMode');
-    this.isDarkMode = isDarkModeStorage === 'true';
+    debugger;
+    const oneClickBetString: string | null =
+      localStorage.getItem("OneClickBet");
+    if (oneClickBetString !== null) {
+      if (oneClickBetString == "false") {
+        this.uISERVICE.OneClickBet = false;
+      } else {
+        this.uISERVICE.OneClickBet = true;
+        if (parseInt(localStorage.getItem("Stake")) != 0) {
+          this.uISERVICE.stake = parseInt(localStorage.getItem("Stake"));
+          this.stake = parseInt(localStorage.getItem("Stake"));
+        }
+      }
+    }
+    const isDarkModeStorage = localStorage.getItem("darkMode");
+    this.isDarkMode = isDarkModeStorage === "true";
     if (this.isDarkMode) {
-      this.renderer.addClass(document.body, 'dark-theme');
+      this.renderer.addClass(document.body, "dark-theme");
     }
   }
 
@@ -82,7 +95,7 @@ export class HeaderComponent implements OnInit {
     });
     this.getLogos();
     this.uISERVICE.tv = false;
-    if (Cookie.check("usersCookies")) { 
+    if (Cookie.check("usersCookies")) {
       this.uISERVICE.Header = true;
       this.uISERVICE.Bets = JSON.parse(localStorage.getItem("Bets"));
 
@@ -110,62 +123,71 @@ export class HeaderComponent implements OnInit {
   }
 
   ChangePwd() {
-    if (this.NewPwd == "") {
-      this.uISERVICE.Error = true;
-      this.uISERVICE.Message = "Enter New Password";
-      setTimeout(() => {
-        this.uISERVICE.Error = false;
-      }, 3000);
-    } else {
-      if (this.CnfPwd == "") {
+    debugger;
+    if (this.isPassInvalid) {
+      if (this.NewPwd == "") {
         this.uISERVICE.Error = true;
-        this.uISERVICE.Message = "Enter Confirm Password";
+        this.uISERVICE.Message = "Enter New Password";
         setTimeout(() => {
           this.uISERVICE.Error = false;
         }, 3000);
       } else {
-        if (this.OldPwd == "") {
+        if (this.CnfPwd == "") {
           this.uISERVICE.Error = true;
-          this.uISERVICE.Message = "Enter Current Password";
+          this.uISERVICE.Message = "Enter Confirm Password";
           setTimeout(() => {
             this.uISERVICE.Error = false;
           }, 3000);
         } else {
-          if (this.NewPwd == this.CnfPwd) {
-            this.uISERVICE.loader = true;
-            this.accountService
-              .changePwd(this.OldPwd, this.NewPwd)
-              .then((response) => {
-                
-                if (response.Status) {
-                  this.uISERVICE.loader = false;
-                  this.uISERVICE.Success = true;
-                  this.uISERVICE.Message = "Executed Successfully";
-                  setTimeout(() => {
-                    this.uISERVICE.Success = false;
-                  }, 3000);
-                  document.getElementById("cls1000").click();
-                  this.NewPwd = "";
-                  this.CnfPwd = "";
-                  this.OldPwd = "";
-                } else {
-                  this.uISERVICE.loader = false;
-                  this.uISERVICE.Error = true;
-                  this.uISERVICE.Message = response.Result;
-                  setTimeout(() => {
-                    this.uISERVICE.Error = false;
-                  }, 3000);
-                }
-              });
-          } else {
-            this.uISERVICE.Message = "Confirm Password not matched";
+          if (this.OldPwd == "") {
             this.uISERVICE.Error = true;
+            this.uISERVICE.Message = "Enter Current Password";
             setTimeout(() => {
               this.uISERVICE.Error = false;
-            }, 2500);
+            }, 3000);
+          } else {
+            if (this.NewPwd == this.CnfPwd) {
+              this.uISERVICE.loader = true;
+              this.accountService
+                .changePwd(this.OldPwd, this.NewPwd)
+                .then((response) => {
+                  if (response.Status) {
+                    this.uISERVICE.loader = false;
+                    this.uISERVICE.Success = true;
+                    this.uISERVICE.Message = "Executed Successfully";
+                    setTimeout(() => {
+                      this.uISERVICE.Success = false;
+                    }, 3000);
+                    document.getElementById("cls1000").click();
+                    this.NewPwd = "";
+                    this.CnfPwd = "";
+                    this.OldPwd = "";
+                  } else {
+                    this.uISERVICE.loader = false;
+                    this.uISERVICE.Error = true;
+                    this.uISERVICE.Message = response.Result;
+                    setTimeout(() => {
+                      this.uISERVICE.Error = false;
+                    }, 3000);
+                  }
+                });
+            } else {
+              this.uISERVICE.Message = "Confirm Password not matched";
+              this.uISERVICE.Error = true;
+              setTimeout(() => {
+                this.uISERVICE.Error = false;
+              }, 2500);
+            }
           }
         }
       }
+    } else {
+      this.uISERVICE.Error = true;
+      this.uISERVICE.Message =
+        "Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, one digit, and one special character.";
+      setTimeout(() => {
+        this.uISERVICE.Error = false;
+      }, 3000);
     }
   }
 
@@ -186,10 +208,12 @@ export class HeaderComponent implements OnInit {
         this.Balance = response.Result.Balance;
         this.Exposure = response.Result.Exposure;
         this.Name = response.Result.Name;
-        this.uISERVICE.UserName=this.Name;
+        this.uISERVICE.UserName = this.Name;
         this.uISERVICE.take = response.Result.Take;
         this.uISERVICE.News = this.News;
-        console.log("this.uISERVICE.take", this.uISERVICE.take)
+        this.uISERVICE.Points = response.Result.Points
+        localStorage.setItem('Points', response.Result.Points.toString());
+        console.log("this.uISERVICE.take", this.uISERVICE.take);
       } else {
         this.usrDtl = [];
       }
@@ -202,7 +226,34 @@ export class HeaderComponent implements OnInit {
       if (response.Status) {
         this.uISERVICE.loader = false;
         this.chipData = response.Result;
-        console.log("chipdata", this.chipData)
+        console.log("chipdata", this.chipData);
+      } else {
+        this.chipData = [];
+        this.uISERVICE.loader = false;
+      }
+    });
+  }
+
+  isPasswordInvalid() {
+    if (!this.NewPwd) {
+      this.isPassInvalid = false;
+    }
+    this.isPassInvalid =
+      this.NewPwd.length >= 8 &&
+      /[a-z]/.test(this.NewPwd) &&
+      /[A-Z]/.test(this.NewPwd) &&
+      /\d/.test(this.NewPwd) &&
+      /[!@#$%^&*()?]/.test(this.NewPwd);
+  }
+
+  DeleteChips(data: any) {
+    data.status = data.status == true ? false : true;
+    this.uISERVICE.loader = true;
+    this.accountService.DeleteChips(data.id, data.status).then((response) => {
+      if (response.Status) {
+        this.uISERVICE.loader = false;
+        this.chipData = response.Result;
+        console.log("chipdata", this.chipData);
       } else {
         this.chipData = [];
         this.uISERVICE.loader = false;
@@ -227,16 +278,12 @@ export class HeaderComponent implements OnInit {
         this.uISERVICE.Message = response.Result;
         setTimeout(() => {
           this.uISERVICE.Error = false;
-          
         }, 3000);
       }
     });
   }
 
-
-
   getEvents() {
-    
     this.rtrnObj = [];
     this.accountService
       .GetAllEventsBySportsId(this.sportid)
@@ -263,7 +310,6 @@ export class HeaderComponent implements OnInit {
   }
 
   getInplayEvents() {
-    
     if (this.sportid == null || this.sportid == undefined) {
       this.sportid = 4;
     }
@@ -341,28 +387,32 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-
-
   usrPWDchk() {
-    
+    debugger;
+    this.uISERVICE.loader = true;
     this.accountService.usrPWDchk(this.signInModel).then((response) => {
+      this.uISERVICE.loader = false;
       if (response.Status) {
-        
         this.firstTimeLoginChk = response.Result;
-        if(this.firstTimeLoginChk){
+        if (this.firstTimeLoginChk) {
           document.getElementById("loginClose").click();
           document.getElementById("changepass").click();
-        }else{
+        } else {
           this.LogIn();
         }
       } else {
+        this.uISERVICE.Error = true;
+        this.uISERVICE.Message = response.Result;
+        setTimeout(() => {
+          this.uISERVICE.Error = false;
+        }, 3000);
         this.usrDtl = [];
       }
     });
   }
 
   LogIn() {
-    
+    debugger;
     if (
       this.signInModel.LoginID == "" ||
       this.signInModel.LoginID == undefined
@@ -385,7 +435,9 @@ export class HeaderComponent implements OnInit {
           if (response.Status) {
             var decodedToken = jwt_decode(response.Result);
             if (decodedToken["Role"] == "Client") {
-              localStorage.setItem("IsPwd", this.IsPwd.toString());              
+              localStorage.setItem("IsPwd", this.IsPwd.toString());
+              localStorage.setItem("Stake", "0");
+              localStorage.setItem("OneClickBet", "false");
               document.getElementById("term").click();
               // document.getElementById("changepass").click();s
               localStorage.setItem("logout", "false");
@@ -418,17 +470,17 @@ export class HeaderComponent implements OnInit {
   }
 
   SetNewPassword() {
+    debugger;
     this.uISERVICE.loader = true;
     if (this.NewPwd == this.CnfPwd) {
       this.accountService
         .SetNewPassword(this.signInModel.LoginID, this.OldPwd, this.NewPwd)
         .then((response) => {
           if (response.Status) {
-            
             this.uISERVICE.loader = false;
             this.uISERVICE.Success = true;
             this.uISERVICE.Message = "Password changed successfully";
-             document.getElementById("setpwdcls").click();
+            document.getElementById("setpwdcls").click();
             // localStorage.setItem("IsPwd", "true");
             setTimeout(() => {
               this.uISERVICE.Success = false;
@@ -456,8 +508,8 @@ export class HeaderComponent implements OnInit {
   }
 
   accept() {
-    // document.getElementById("termsConditionBtn").click();
-    document.getElementById("changepassClose").click();
+    document.getElementById("termsConditionBtn").click();
+    // document.getElementById("changepassClose").click();
     window.location.reload();
   }
 
@@ -647,59 +699,54 @@ export class HeaderComponent implements OnInit {
     this.GetAllBets();
   }
 
-  getBetCount(){
+  getBetCount() {
     this.uISERVICE.backUpBets = [];
-    this.accountService
-      .GetAllPendingBetsCount(
-      )
-      .then((response) => {
-        if (response.Status) {
-          this.betCount = response.Result;
-          this.uISERVICE.betCount = this.betCount;
-        } else {
-          this.uISERVICE.backUpBets = [];
-        }
-      });
-  }
-
-  getEvent(value: any) {
-    this.accountService.SearchEvent((this.keyword = value.target.value)).then((response) => {
+    this.accountService.GetAllPendingBetsCount().then((response) => {
       if (response.Status) {
-        this.showMatchListDiv = true;
-        this.eventlist = response.Result;
+        this.betCount = response.Result;
+        this.uISERVICE.betCount = this.betCount;
       } else {
-        this.eventlist = [];
-        this.showMatchListDiv = false;
+        this.uISERVICE.backUpBets = [];
       }
     });
   }
 
-  getEventData(data: any)
-  {
+  getEvent(value: any) {
+    this.accountService
+      .SearchEvent((this.keyword = value.target.value))
+      .then((response) => {
+        if (response.Status) {
+          this.showMatchListDiv = true;
+          this.eventlist = response.Result;
+        } else {
+          this.eventlist = [];
+          this.showMatchListDiv = false;
+        }
+      });
+  }
+
+  getEventData(data: any) {
     debugger;
-    console.log(data)
-    this.sport= data.SportsId;
-    this.event= data.EventId;
+    console.log(data);
+    this.sport = data.SportsId;
+    this.event = data.EventId;
     this.sharedService.setEventData(data);
     this.router.navigate([`/set-bet/${this.sport}/${this.event}`]);
-    this.keyword = ""
-    this.eventlist = []
+    this.keyword = "";
+    this.eventlist = [];
     document.getElementById("clsSrch").click();
     document.getElementById("cloBtnMenuTab").click();
   }
 
   GetAllPendingBets() {
     this.uISERVICE.backUpBets = [];
-    this.accountService
-      .GetAllPendingBets(
-      )
-      .then((response) => {
-        if (response.Status) {
-          this.pendingBets = response.Result;
-        } else {
-          this.pendingBets = [];
-        }
-      });
+    this.accountService.GetAllPendingBets().then((response) => {
+      if (response.Status) {
+        this.pendingBets = response.Result;
+      } else {
+        this.pendingBets = [];
+      }
+    });
   }
 
   GetAllBets() {
@@ -731,11 +778,11 @@ export class HeaderComponent implements OnInit {
   }
   toggleDarkMode() {
     this.isDarkMode = !this.isDarkMode;
-    localStorage.setItem('darkMode', this.isDarkMode.toString());
+    localStorage.setItem("darkMode", this.isDarkMode.toString());
     if (this.isDarkMode) {
-      this.renderer.addClass(document.body, 'dark-theme');
+      this.renderer.addClass(document.body, "dark-theme");
     } else {
-      this.renderer.removeClass(document.body, 'dark-theme');
+      this.renderer.removeClass(document.body, "dark-theme");
     }
   }
   ngAfterViewInit() {
@@ -789,9 +836,6 @@ export class HeaderComponent implements OnInit {
       $(".livetvSec").toggleClass("d-block");
     });
 
-
-
-
     // $("ul.list a.main_drop").click(function () {
     //   var $step1 = $(this).parent().find("ul.step_1");
     //   $("ul.list ul.step_1").not($step1).slideUp();
@@ -802,7 +846,6 @@ export class HeaderComponent implements OnInit {
 
     // });
 
-
     // $("ul.list a.main_drop").click(function (e) {
     //   e.preventDefault();
     //   var $step1 = $(this).parent().find("ul.step_1");
@@ -810,16 +853,5 @@ export class HeaderComponent implements OnInit {
     //   $("ul.list a.main_drop").removeClass("drop_open");
     //   $(this).toggleClass("drop_open").next("ul.step_1").slideToggle();
     // });
-
-
-
-
-    
-
-
-
-
-
-
   }
 }

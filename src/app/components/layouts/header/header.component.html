@@ -236,7 +236,7 @@
             </ul>
           </div>
         </li>
-        
+
         <!-- <li class="ml-auto">
           <div class="logo-search mr-2">
             <input placeholder="Search.." type="text" name="search" autocomplete="off" class="validate"
@@ -264,7 +264,7 @@
                   data-name="Path 2"></path>
               </g>
             </svg>
-            <span class="countBedge" *ngIf="uISERVICE.OneClickBet">{{uISERVICE.stake}}</span>
+            <span class="countBedge" *ngIf="uISERVICE.OneClickBet">{{stake}}</span>
           </a>
         </li>
         <li class="mr-3">
@@ -797,7 +797,19 @@
                           [(ngModel)]="chips.ChipValue">
                       </div>
                     </div>
-                    <button class="deleteChipBtn"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <div class="custom-chipscheckbox">
+                      <div class="switchCommon">
+                        <label class="switchBtnCommon">
+                          <input type="checkbox" id="togBtn" (click)="DeleteChips(chips)" [checked]="!chips.status"
+                            [(ngModel)]="chips.status">
+                          <div class="slider round">
+                            <span class="on" value="False">On</span>
+                            <span class="off" value="True">Off</span>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                    <!-- <button class="deleteChipBtn"><i class="fa fa-trash" aria-hidden="true"></i></button> -->
                   </div>
                 </div>
               </form>
@@ -842,14 +854,14 @@
                     <div class="form-field">
                       <label>New Password</label>
                       <input type="password" class="form-control" placeholder="New Password" name="NewPwd"
-                        [(ngModel)]="NewPwd">
+                        [(ngModel)]="NewPwd" (blur)="isPasswordInvalid()">
                     </div>
                   </div>
                   <div class="col-12">
                     <div class="form-field">
                       <label>Confirm New Password</label>
                       <input type="password" class="form-control" placeholder="Confirm New Password" name="CnfPwd"
-                        [(ngModel)]="CnfPwd">
+                        [(ngModel)]="CnfPwd" (blur)="isPasswordInvalid()">
                     </div>
                   </div>
 
@@ -898,14 +910,14 @@
                     <div class="form-field">
                       <label>New Password</label>
                       <input type="password" class="form-control" placeholder="New Password" name="NewPwd"
-                        [(ngModel)]="NewPwd">
+                        [(ngModel)]="NewPwd" (blur)="isPasswordInvalid()">
                     </div>
                   </div>
                   <div class="col-12">
                     <div class="form-field">
                       <label>Confirm New Password</label>
                       <input type="password" class="form-control" placeholder="Confirm New Password" name="CnfPwd"
-                        [(ngModel)]="CnfPwd">
+                        [(ngModel)]="CnfPwd" (blur)="isPasswordInvalid()">
                     </div>
                   </div>
 

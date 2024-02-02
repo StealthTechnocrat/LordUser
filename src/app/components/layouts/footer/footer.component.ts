@@ -47,7 +47,7 @@ export class FooterComponent implements OnInit {
   keyword: string = "";
   SportsId: number ;
   EventId: string;
-  checkedValue: boolean = false;
+  checkedValue: boolean;
   constructor(
     private renderer: Renderer2, 
     public uISERVICE: UiService,
@@ -60,24 +60,28 @@ export class FooterComponent implements OnInit {
     if (this.isDarkMode) {
       this.renderer.addClass(document.body, 'dark-theme');
     }
+    debugger;
+    const oneClickBetString: string | null =
+    localStorage.getItem("OneClickBet");
+  if (oneClickBetString !== null) {
+    if(oneClickBetString == "false"){
+      this.uISERVICE.OneClickBet = false;
+      this.checkedValue = false;
+    }
+    else{
+      this.uISERVICE.OneClickBet = true;
+      if (parseInt(localStorage.getItem("Stake")) != 0) {
+        this.uISERVICE.stake = parseInt(localStorage.getItem("Stake"));
+        this.checkedValue = true;
+      }
+    }
+  }
   }
 
   ngOnInit(): void {
   }
 
-    toggleStatus(event: any){
-      if(event.target.checked == true){
-        this.getChips();
-        this.uISERVICE.OneClickBet = true;
-        this
-        // this.sharedService.setOneClick(true);
-      }else{
-        // this.sharedService.setOneClick(false);
-        this.chipData = []
-        this.uISERVICE.stake = 0
-        this.uISERVICE.OneClickBet = false;
-      }
-    }
+   
   toggleDarkMode() {
     this.isDarkMode = !this.isDarkMode;
     localStorage.setItem('darkMode', this.isDarkMode.toString());
@@ -132,10 +136,26 @@ export class FooterComponent implements OnInit {
       document.getElementById("cloBtnMenuTab").click();
     }
 
+    toggleStatus(event: any){
+      debugger;
+      if(event.target.checked == true){
+        this.getChips();
+        this.uISERVICE.OneClickBet = true;
+        localStorage.setItem("OneClickBet", this.uISERVICE.OneClickBet.toString());  
+      }else{
+        this.chipData = []
+        this.uISERVICE.stake = 0
+        this.uISERVICE.OneClickBet = false;
+        localStorage.setItem("Stake", this.uISERVICE.stake.toString()); 
+        localStorage.setItem("OneClickBet", this.uISERVICE.OneClickBet.toString());  
+      }
+    }
+
     setDefaultChips(data: number){
-      
-this.uISERVICE.stake = data;
-document.getElementById("cls1Click").click();
+      debugger;
+      this.uISERVICE.stake = data;
+      localStorage.setItem("Stake", this.uISERVICE.stake.toString());  
+      document.getElementById("cls1Click").click();
     }
 
     reset(){
@@ -144,7 +164,6 @@ document.getElementById("cls1Click").click();
     }
 
   getInplayEvents() {
-    
     if (this.sportid == null || this.sportid == undefined) {
       this.sportid = 4;
     }

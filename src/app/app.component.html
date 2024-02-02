@@ -14,14 +14,17 @@
                 </marquee>
                 <span class="icon"><img src="/assets/img/icons/noti_ic.svg" alt=""></span>
             </div> -->
-            <div class="news_marquee mobMarquee px-2 mb-1 d-flex d-xl-none">
+            <div class="news_marquee mobMarquee px-2 mb-1 d-flex d-xl-none" *ngIf="uISERVICE.Header">
                 <marquee behavior="scroll" direction="left" [scrollDelay]="100">
-                  <div class="item">
-                    <i class="fas fa-circle"></i>
-                    <span class="marquee-news-text"> * ECI GERMANY * Saurashtra premier league * East
-                      Africa T20 * Andra premier league * Maharaja trophy * Rajasthan premier league * youths odi *Under19
-                      matches. Bets will be Deleted Due to some technical issues. </span>
-                  </div>
+                    <div class="item">
+                        <span class="marquee-news-text">
+                          <p *ngFor="let news of uISERVICE.News">
+                            <span class="date">
+                              <i class="fas fa-circle"></i>
+                              {{news.createdOn | date:'M/d/yy, h:mm a'}}</span>:- {{news.News}}
+                          </p>
+                        </span>
+                      </div>
                 </marquee>
               </div>
             <router-outlet></router-outlet>
