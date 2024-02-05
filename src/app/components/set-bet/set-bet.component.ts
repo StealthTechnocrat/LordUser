@@ -760,7 +760,7 @@ export class SetBetComponent implements OnInit {
         if (this.uISERVICE.OneClickBet) {
           this.uISERVICE.stake = parseInt(localStorage.getItem("Stake"));
           this.uISERVICE.Points = parseInt(localStorage.getItem("Points"));
-          this.uISERVICE.stake = this.uISERVICE.stake * this.uISERVICE.Points;
+          this.uISERVICE.stake = this.uISERVICE.stake;
           this.uISERVICE.profit = 0;
           this.uISERVICE.exposure = 0;
           if (mrktName != "Fancy") {
@@ -1200,14 +1200,14 @@ export class SetBetComponent implements OnInit {
         this.betValid = false;
       }
     }
-    if (this.uISERVICE.maxMarkt < this.uISERVICE.stake) {
+    if (this.uISERVICE.maxMarkt/this.uISERVICE.Points < this.uISERVICE.stake) {
       this.toastr.error(
         "Max bet amount on market is not greater then." +
           this.uISERVICE.maxMarkt
       );
       this.betValid = false;
     }
-    if (this.uISERVICE.minMarkt > this.uISERVICE.stake) {
+    if (this.uISERVICE.minMarkt/this.uISERVICE.Points > this.uISERVICE.stake) {
       this.toastr.error(
         "Minimum bet amount on market is not less then." +
           this.uISERVICE.minMarkt
